@@ -7,10 +7,10 @@
 2. [ ] Introductory statistics with R (2 lectures)
     1. [x] Graphics calculator on steroids
     2. [x] Probability distributions and random number generation
-    2. [ ] Hypothesis testing
-    3. [ ] Simple power calculations
-	4. [ ] Statistical transformations
+    2. [x] Hypothesis testing
+    3. [x] Simple power calculations
 3. [ ] Working with data (2 lectures)
+    1. [ ] Bad data 
     1. [ ] Data input and output
     2. [ ] Deconstructing the dataframe
     3. [ ] Basic dataframe scrubbing
