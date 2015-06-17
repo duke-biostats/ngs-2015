@@ -2,8 +2,8 @@
     1. [ ] Learning to use the command line
     2. [ ] Learning to use a text editor
     3. [x]] Learning to use the virtual machine (VM)
-	4. [ ] Learning to use RStudio
-	5. [ ] Learning to use Jupyter
+	4. [x] Learning to use RStudio
+	5. [x] Learning to use Jupyter
 2. [ ] Introductory statistics with R (2 lectures)
     1. [x] Graphics calculator on steroids
     2. [x] Probability distributions and random number generation
