@@ -12,8 +12,9 @@
 3. [ ] Working with data (2 lectures)
     1. [ ] Bad data 
     1. [ ] Data input and output
-    2. [ ] Deconstructing the dataframe
+    2. [ ] Deconstructing the data frame
     3. [ ] Basic dataframe scrubbing
+    2. [ ] Merging data from multiple data frames 
 	4. [ ] Dataframe acrobatics (`plyr`)
 5. [ ] R formulas and statistical modeling (4 lectures)
     1. [ ] Linear regression
@@ -21,7 +22,7 @@
     3. [ ] Logistic regression (and GLM)
 	4. [ ] Penalized regression to prevent overfitting
 7. [ ] Writing custom functions in R (2 lectures)
-    1. [ ] Anatomy of a function
+    1. [x] Anatomy of a function
     2. [ ] Program logic
     3. [ ] Looping and vectorization
     4. [ ] Functional programming concepts
