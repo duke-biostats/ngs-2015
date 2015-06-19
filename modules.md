@@ -10,11 +10,8 @@
     2. [x] Hypothesis testing
     3. [x] Simple power calculations
 3. [ ] Working with data (2 lectures)
-    1. [ ] Bad data 
-    1. [ ] Data input and output
-    2. [ ] Deconstructing the data frame
-    3. [ ] Basic dataframe scrubbing
-    2. [ ] Merging data from multiple data frames 
+    2. [x] Working with data (Part 1)
+    2. [ ] Working with data (Part21)
 	4. [ ] Dataframe acrobatics (`plyr`)
 5. [ ] R formulas and statistical modeling (4 lectures)
     1. [ ] Linear regression
