@@ -1,6 +1,6 @@
 1. [ ] Tools for data analysis (2 lecture)
-    1. [ ] Learning to use the command line
-    2. [ ] Learning to use a text editor
+    1. [x] Learning to use the command line
+    2. [x] Learning to use a text editor
     3. [x]] Learning to use the virtual machine (VM)
 	4. [x] Learning to use RStudio
 	5. [x] Learning to use Jupyter
@@ -17,14 +17,15 @@
     1. [ ] Linear regression
 	2. [ ] Understanding R formulas
     3. [ ] Logistic regression (and GLM)
+	5. [ ] Example: Overfitting 
 	4. [ ] Penalized regression to prevent overfitting
+	4. [  ] Example: noise discovery  
 7. [ ] Writing custom functions in R (2 lectures)
     1. [x] Anatomy of a function
     2. [ ] Program logic
     3. [ ] Looping and vectorization
     4. [ ] Functional programming concepts
 8. [ ] Tools for reproducible analysis (2 lectures)
-    1. [ ] Literate programming and `knitr`
-    2. [ ] Version control with `git` and `Github`
+	9. [ ] Writing shell scripts
     3. [ ] Using Rscript for batch processing
 
