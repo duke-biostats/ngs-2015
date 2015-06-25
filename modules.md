@@ -22,8 +22,8 @@
 	4. [  ] Example: noise discovery  
 7. [ ] Writing custom functions in R (2 lectures)
     1. [x] Anatomy of a function
-    2. [ ] Program logic
-    3. [ ] Looping and vectorization
+    2. [x] Program logic
+    3. [x] Looping and vectorization
     4. [ ] Functional programming concepts
 8. [ ] Tools for reproducible analysis (2 lectures)
 	9. [ ] Writing shell scripts
