@@ -14,8 +14,8 @@
     2. [ ] Working with data (Part21)
 	4. [ ] Dataframe acrobatics (`plyr`)
 5. [ ] R formulas and statistical modeling (4 lectures)
-    1. [ ] Linear regression
-	2. [ ] Understanding R formulas
+    1. [x] Linear regression
+	2. [x] Understanding R formulas
     3. [ ] Logistic regression (and GLM)
 	5. [ ] Example: Overfitting 
 	4. [ ] Penalized regression to prevent overfitting
@@ -24,7 +24,7 @@
     1. [x] Anatomy of a function
     2. [x] Program logic
     3. [x] Looping and vectorization
-    4. [ ] Functional programming concepts
+    4. [x] Functional programming concepts
 8. [ ] Tools for reproducible analysis (2 lectures)
 	9. [ ] Writing shell scripts
     3. [ ] Using Rscript for batch processing
