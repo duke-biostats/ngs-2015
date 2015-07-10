@@ -11,7 +11,8 @@
     3. [x] Simple power calculations
 3. [ ] Working with data (2 lectures)
     2. [x] Working with data (Part 1)
-    2. [ ] Working with data (Part21)
+    2. [x] Working with data (Part21)
+	3. [x] R graphics
 	4. [ ] Dataframe acrobatics (`plyr`)
 5. [ ] R formulas and statistical modeling (4 lectures)
     1. [x] Linear regression
