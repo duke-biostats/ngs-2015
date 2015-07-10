@@ -16,7 +16,7 @@
 5. [ ] R formulas and statistical modeling (4 lectures)
     1. [x] Linear regression
 	2. [x] Understanding R formulas
-    3. [ ] Logistic regression (and GLM)
+    3. [x] Logistic regression (and GLM)
 	5. [ ] Example: Overfitting 
 	4. [ ] Penalized regression to prevent overfitting
 	4. [  ] Example: noise discovery  
