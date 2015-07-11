@@ -1,3 +1,88 @@
+Week 1
+-----
+
+### Mon
+
+- 1:00 -2:15
+    - [ ] Using the VM
+    - [ ] Tour of RStudio and Jupyter
+    - [ ] R fundamentals
+- 2:45 - 4:00
+    - [ ] Learning about R
+    - [ ] Introduction to variables, functions and basic plotting
+    - [ ] Introduction to random numbers and simulation
+
+### Tue
+
+- 1:00 -2:15
+    - [ ] Introduction to statistical inference and hypothesis testing
+    - [ ] Basic sample size calculation
+    - [ ] Using simulation to determine power
+- 2:45 - 4:00
+    - [ ] ?
+	- [ ] ?
+	- [ ] ?
+
+### Wed
+
+- 1:00 -2:15
+    - [ ] Predicting gender from height and weight with k-nearest neighbors
+	- [ ] A hold-out pipeline
+	- [ ] A cross-validation pipeline
+- 2:45 - 4:00
+    - [ ] ?
+	- [ ] ?
+	- [ ] ?
+
+### Thu
+
+- 1:00 -2:15
+    - [ ] ?
+	- [ ] ?
+	- [ ] ?
+- 2:45 - 4:00
+    - [ ] ?
+	- [ ] ?
+	- [ ] ?
+
+### Fri
+
+- 1:00 -2:15
+    - [ ] ?
+	- [ ] ?
+	- [ ] ?
+- 2:45 - 4:00
+    - [ ] ?
+	- [ ] ?
+	- [ ] ?
+
+Week 2
+----
+
+### Mon
+
+- 1:00 -2:15
+    - [ ] ?
+	- [ ] ?
+	- [ ] ?
+- 2:45 - 4:00
+    - [ ] ?
+	- [ ] ?
+	- [ ] ?
+
+### Tue
+
+- 1:00 -2:15
+    - [ ] ?
+	- [ ] ?
+	- [ ] ?
+- 2:45 - 4:00
+    - [ ] ?
+	- [ ] ?
+	- [ ] ?
+
+
+
 1. [ ] Tools for data analysis (2 lecture)
     1. [x] Learning to use the command line
     2. [x] Learning to use a text editor
