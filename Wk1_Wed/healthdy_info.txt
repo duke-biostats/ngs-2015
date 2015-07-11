@@ -1,0 +1,23 @@
+Data from Health Dynamics class at Hope College--collected about 1985 by Gregg Afman.
+
+Gender 1 = Male
+Gender 2 = Female
+
+Flexpre = Flexability at the beginning of the semester
+Flexpro = Flexability at the end of the semester
+
+Bawpre = Air Weight at the beginning of the semester
+Bawpro = Air weight at the end of the semester
+
+Bwwpre = Water weight at the beginning of the semester
+Bwwpro = Water weight at the end of the semester
+
+Bfppre = Body fat at the beginning of the semester
+Bfppro = Body fat at the end of the semester
+
+Fvcpre = Forced capacity at the beginning of the semester
+Fvcpro = Forced capacity at the end of the semester
+
+Metspre = Mets at the beginning of the semester
+Metspro = Mets at the end of the semester
+
