@@ -81,3 +81,10 @@ Week 2
 	- [ ] ?
 	- [ ] ?
 
+Online Resources
+----
+
+[Official manuals](http://cran.r-project.org/manuals.html)
+[Qucik-R](http://www.statmethods.net/)
+[Online tutorials](https://www.rstudio.com/resources/training/online-learning/)
+[Answers to your R questions](http://stackoverflow.com/) 
