@@ -3,70 +3,70 @@ Week 1
 
 ### Mon (Introduction)
 
-- 1:00 -2:15 Getting to know your tools and environment
+- 1:00 -2:15 Getting to know your tools and environment (Janice)
     - [ ] Using the VM
     - [ ] Tour of RStudio and Jupyter
     - [ ] R fundamentals
-- 2:45 - 4:00 A gentle (?) introduction to R
+- 2:45 - 4:00 An  R primer (Cliburn)
     - [ ] Learning about R
     - [ ] Introduction to variables, functions and basic plotting
     - [ ] Introduction to random numbers and simulation
 
 ### Tue (Inference)
 
-- 1:00 -2:15 Using R for simple statistical inference
+- 1:00 -2:15 Using R for simple statistical inference (Cliburn)
     - [ ] Introduction to hypothesis testing
     - [ ] Basic sample size calculation
     - [ ] Using simulation to determine power
-- 2:45 - 4:00
+- 2:45 - 4:00 Linear models in R (Janice)
     - [ ] Simple linear fits in R
 	- [ ] R formulas
 	- [ ] Rails example revisited
 
-### Wed (Supervised learning)
+### Wed (Multiple testing)
 
-- 1:00 -2:15 More Advanced R
-      [ ] Custom Functions and Programming Logic
-      [ ] Functional Programming
-
-
-- 2:45 - 4:00 Using R for supervised learning
-    - [ ] Predicting gender from height and weight with k-nearest neighbors
-	- [ ] A hold-out pipeline
-
-
-### Thu (Unsupervised learning)
-
-- 1:00 -2:15 Finish Supervised Learning
-	- [ ] A cross-validation pipeline
-   	- [ ] Supervised Learning - Incorrect Validation
-      [ ] Unsupervised Learning Example
-
-- 2:45 - 4:00 Working with Data
+- 1:00 -2:15 Working with Data (Cliburn)
     - [ ] Formatting spreadsheets for use in R
 	- [ ] Working with dataframes
 	- [ ] Aggregating and Summarizing Data
+-  2:45 - 4:00 More Advanced R (Janice)
+    - [ ] Custom Functions and Programming Logic
+    - [ ] Functional Programming
+    - [ ] Multiple Testing Examples 
 
-### Fri (Multiple testing)
+### Thu (Supervised learning)
 
-- 1:00 -2:15 Graphics in R (especially `ggplot2`)
-    - [ ] Making and customizing basic plots
-	- [ ] Showing model fits
-	- [ ] Fancy plots (graphs, heatmaps and dendrograms, scatterplot matrix)
-- 2:45 - 4:00
-    - [ ] Multiple Testing Examples
-	- [ ] 
-	- [ ] 
+- 1:00 -2:15 Using R for supervised learning (Cliburn)
+    - [ ] Predicting gender with k-nearest neighbors
+	- [ ] A hold-out pipeline
+    - [ ] Cross-validation
+
+- 2:45 -4:00 Applied Supervised Learning (Janice)
+	- [ ] A cross-validation pipeline
+   	- [ ] Supervised Learning - Incorrect Validation
+    - [ ] Unsupervised Learning Example
+
+### Fri (Unsupervised learning)
+
+- 1:00 - 2:15 Using R for unsupervised learning (Cliburn)
+    - [ ] Dimension reduction
+    - [ ] K-means clustering
+	- [ ] Agglomerative hierarchical clustering
+
+- 2:45 -4:00 Applied Unsupervised Learning (Janice)
+    - [ ] Drawing and interpreting heatmaps
+    - [ ] Drawing and interpreting dendrograms
+   	- [ ] Dimension reduction to detect batch effects
 
 Week 2
 ----
 
 ### Mon (Logistic regression)
 
-- 1:00 -2:15 Intermediate simulations
-    - [ ] The density/mass function, cumulative distribution function, quantile function and random variate generation family
-	- [ ] Discrete and continuous distributions
-    - [ ] Resampling statistics and bootstrap
+- 1:00 -2:15 
+    - [ ] ?
+	- [ ] ?
+    - [ ] ?
 - 2:45 - 4:00
     - [ ] ?
 	- [ ] ?
@@ -74,7 +74,7 @@ Week 2
 
 ### Tue (Counting  models)
 
-- 1:00 -2:15 Introduction to BioConductor
+- 1:00 -2:15 
     - [ ] ?
 	- [ ] ?
 	- [ ] ?
@@ -83,3 +83,7 @@ Week 2
 	- [ ] ?
 	- [ ] ?
 
+- More on Graphics in R
+    - [ ] Making and customizing basic plots
+	- [ ] The aesthetics of `ggplot2` graphics
+	- [ ] Conditioning with `lattice` graphics
