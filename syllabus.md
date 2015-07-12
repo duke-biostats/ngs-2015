@@ -19,31 +19,33 @@ Week 1
     - [ ] Basic sample size calculation
     - [ ] Using simulation to determine power
 - 2:45 - 4:00
-    - [ ] ?
-	- [ ] ?
-	- [ ] ?
+    - [ ] Simple linear fits in R
+	- [ ] R formulas
+	- [ ] Rails example revisited
 
 ### Wed (Supervised learning)
 
-- 1:00 -2:15 Using R for supervised learning
+- 1:00 -2:15 More Advanced R
+      [ ] Custom Functions and Programming Logic
+      [ ] Functional Programming
+
+
+- 2:45 - 4:00 Using R for supervised learning
     - [ ] Predicting gender from height and weight with k-nearest neighbors
 	- [ ] A hold-out pipeline
-	- [ ] A cross-validation pipeline
-- 2:45 - 4:00
-    - [ ] ?
-	- [ ] ?
-	- [ ] ?
+
 
 ### Thu (Unsupervised learning)
 
-- 1:00 -2:15 Working with data
+- 1:00 -2:15 Finish Supervised Learning
+	- [ ] A cross-validation pipeline
+   	- [ ] Supervised Learning - Incorrect Validation
+      [ ] Unsupervised Learning Example
+
+- 2:45 - 4:00 Working with Data
     - [ ] Formatting spreadsheets for use in R
 	- [ ] Working with dataframes
 	- [ ] Aggregating and Summarizing Data
-- 2:45 - 4:00
-    - [ ] ?
-	- [ ] ?
-	- [ ] ?
 
 ### Fri (Multiple testing)
 
@@ -52,9 +54,9 @@ Week 1
 	- [ ] Showing model fits
 	- [ ] Fancy plots (graphs, heatmaps and dendrograms, scatterplot matrix)
 - 2:45 - 4:00
-    - [ ] ?
-	- [ ] ?
-	- [ ] ?
+    - [ ] Multiple Testing Examples
+	- [ ] 
+	- [ ] 
 
 Week 2
 ----
@@ -81,10 +83,3 @@ Week 2
 	- [ ] ?
 	- [ ] ?
 
-Online Resources
-----
-
-[Official manuals](http://cran.r-project.org/manuals.html)
-[Qucik-R](http://www.statmethods.net/)
-[Online tutorials](https://www.rstudio.com/resources/training/online-learning/)
-[Answers to your R questions](http://stackoverflow.com/) 
