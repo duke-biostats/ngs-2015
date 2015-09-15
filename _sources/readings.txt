@@ -1,0 +1,39 @@
+.. _readings:
+
+Assigned Reading
+========================================
+
+Biology
+----------------------------------------
+
+- `Quantitative bacterial transcriptomics with RNA-seq <http://people.duke.edu/~ccc14/ngs-2015/_downloads/quantitative_bacterial_transcriptomics.pdf>`_
+
+- `Studying bacterial transcriptomes using RNA-seq <http://people.duke.edu/~ccc14/ngs-2015/_downloads/studying_bacterial_transcriptomes.pdf>`_
+
+- `Efficient and robust RNA-seq process for cultured bacteria and complex community transcriptomes <http://people.duke.edu/~ccc14/ngs-2015/_downloads/efficient_and_robust_rnaseq.pdf>`_
+
+- `pH Regulates Genes for Flagellar Motility, Catabolism, and Oxidative Stress in Escherichia coli K-12† <http://people.duke.edu/~ccc14/ngs-2015/_downloads/pH_Regulates_Genes.pdf>`_ 
+
+Statistics
+----------------------------------------
+
+- `Statistical Design and Analysis of RNA Sequencing Data <http://people.duke.edu/~ccc14/ngs-2015/_downloads/Auer_Doerge_Statistical%20Design%20and%20analysis%20of%20RNA%20Seq%20data.pdf>`_
+
+- `Statistical Challenges in Preprocessing in Microarray Experiments in Cancer <http://people.duke.edu/~ccc14/ngs-2015/_downloads/Clin%20Cancer%20Res-2008-Owzar-5959-66.pdf>`_
+
+- `Statistical Considerations for Analysis of Microarray Experiments <http://people.duke.edu/~ccc14/ngs-2015/_downloads/Owzar_et_al-2011-Clinical_and_Translational_Science>`_
+
+- `Differential expression analysis for sequence count data <http://people.duke.edu/~ccc14/ngs-2015/_downloads/deseq-Anders-2010.pdf>`_
+
+Bioinformatics
+----------------------------------------
+
+- `Ultrafast and memory-efficient alignment of short DNA sequences to the human genome <http://people.duke.edu/~ccc14/ngs-2015/_downloads/Bowtie.pdf>`_
+
+- `Measurement of mRNA abundance using RNA-seq data: RPKM measure is inconsistent among samples <http://people.duke.edu/~ccc14/ngs-2015/_downloads/TPM-Wagner-2012.pdf>`_
+
+-  `Fast gapped-read alignment with Bowtie 2 <http://people.duke.edu/~ccc14/ngs-2015/_downloads/Bowtie2.pdf>`_
+   
+- `TopHat: discovering splice junctions with RNA-Seq <http://people.duke.edu/~ccc14/ngs-2015/_downloads/TopHat.pdf>`_
+
+- `Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2 <http://people.duke.edu/~ccc14/ngs-2015/_downloads/deseq2-Love-2014.pdf>`_

@@ -71,6 +71,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Assigned Reading</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lectures.html">Lecture notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
@@ -82,17 +83,15 @@
 <li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SupervisedLearningWhatCouldGoWrong.html">Supervised Learning Continued - What Could Go Wrong?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">R Graphics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="PracticeONE-Solutions.html">Hands-on Computing Sessions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DESeq2-Notebook.html">Introduction to DESeq2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DESeq2-Notebook-from-Matrix.html">Import count data using basic tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Comparing Base Graphics with  <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONESolutios.html">Coding Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
 </ul>
 </ul>
 </li>
@@ -160,33 +159,33 @@
     <div class="col-md-12">
       
   <div class="section" id="assigned-reading">
-<span id="read"></span><h1>Assigned Reading<a class="headerlink" href="#assigned-reading" title="Permalink to this headline">¶</a></h1>
+<span id="readings"></span><h1>Assigned Reading<a class="headerlink" href="#assigned-reading" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="biology">
 <h2>Biology<a class="headerlink" href="#biology" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="http://www.sciencedirect.com/science/article/pii/S1369527414001787/pdfft?md5=3a1b7b219987066a0b38bd6834872850&amp;pid=1-s2.0-S1369527414001787-main.pdf">Quantitative bacterial transcriptomics with RNA-seq</a></li>
-<li><a class="reference external" href="http://www.sciencedirect.com/science/article/pii/S1369527410001360/pdfft?md5=ce41f658272cff429b86e8fb406e9781&amp;pid=1-s2.0-S1369527410001360-main.pdf">Studying bacterial transcriptomes using RNA-seq</a></li>
-<li><a class="reference external" href="http://www.genomebiology.com/content/pdf/gb-2012-13-3-r23.pdf">Efficient and robust RNA-seq process for cultured bacteria and complex community transcriptomes</a></li>
-<li><a class="reference external" href="http://jb.asm.org/content/187/1/304.full.pdf">pH Regulates Genes for Flagellar Motility, Catabolism, and Oxidative Stress in Escherichia coli K-12†</a></li>
+<li><a class="reference external" href="http://people.duke.edu/~ccc14/ngs-2015/_downloads/quantitative_bacterial_transcriptomics.pdf">Quantitative bacterial transcriptomics with RNA-seq</a></li>
+<li><a class="reference external" href="http://people.duke.edu/~ccc14/ngs-2015/_downloads/studying_bacterial_transcriptomes.pdf">Studying bacterial transcriptomes using RNA-seq</a></li>
+<li><a class="reference external" href="http://people.duke.edu/~ccc14/ngs-2015/_downloads/efficient_and_robust_rnaseq.pdf">Efficient and robust RNA-seq process for cultured bacteria and complex community transcriptomes</a></li>
+<li><a class="reference external" href="http://people.duke.edu/~ccc14/ngs-2015/_downloads/pH_Regulates_Genes.pdf">pH Regulates Genes for Flagellar Motility, Catabolism, and Oxidative Stress in Escherichia coli K-12†</a></li>
 </ul>
 </div>
 <div class="section" id="statistics">
 <h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="http://www.genetics.org/content/185/2/405.full.pdf">Statistical Design and Analysis of RNA Sequencing Data</a></li>
-<li><a class="reference external" href="http://clincancerres.aacrjournals.org/content/14/19/5959.full.pdf">Statistical Challenges in Preprocessing in Microarray Experiments in Cancer</a></li>
-<li><a class="reference external" href="http://onlinelibrary.wiley.com/doi/10.1111/j.1752-8062.2011.00309.x/epdf">Statistical Considerations for Analysis of Microarray Experiments</a></li>
-<li><a class="reference external" href="http://www.genomebiology.com/content/pdf/gb-2010-11-10-r106.pdf">Differential expression analysis for sequence count data</a></li>
+<li><a class="reference external" href="http://people.duke.edu/~ccc14/ngs-2015/_downloads/Auer_Doerge_Statistical%20Design%20and%20analysis%20of%20RNA%20Seq%20data.pdf">Statistical Design and Analysis of RNA Sequencing Data</a></li>
+<li><a class="reference external" href="http://people.duke.edu/~ccc14/ngs-2015/_downloads/Clin%20Cancer%20Res-2008-Owzar-5959-66.pdf">Statistical Challenges in Preprocessing in Microarray Experiments in Cancer</a></li>
+<li><a class="reference external" href="http://people.duke.edu/~ccc14/ngs-2015/_downloads/Owzar_et_al-2011-Clinical_and_Translational_Science">Statistical Considerations for Analysis of Microarray Experiments</a></li>
+<li><a class="reference external" href="http://people.duke.edu/~ccc14/ngs-2015/_downloads/deseq-Anders-2010.pdf">Differential expression analysis for sequence count data</a></li>
 </ul>
 </div>
 <div class="section" id="bioinformatics">
 <h2>Bioinformatics<a class="headerlink" href="#bioinformatics" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="http://www.genomebiology.com/content/pdf/gb-2009-10-3-r25.pdf">Ultrafast and memory-efficient alignment of short DNA sequences to the human genome</a></li>
-<li><a class="reference external" href="http://download.springer.com/static/pdf/729/art%253A10.1007%252Fs12064-012-0162-3.pdf?originUrl=http%3A%2F%2Flink.springer.com%2Farticle%2F10.1007%2Fs12064-012-0162-3&amp;token2=exp=1442259383~acl=%2Fstatic%2Fpdf%2F729%2Fart%25253A10.1007%25252Fs12064-012-0162-3.pdf%3ForiginUrl%3Dhttp%253A%252F%252Flink.springer.com%252Farticle%252F10.1007%252Fs12064-012-0162-3*~hmac=2a7bcf19aa568f6c1d65c0740857a9e1c914096ce376b319203fc4ca8539a30a">Measurement of mRNA abundance using RNA-seq data: RPKM measure is inconsistent among samples</a></li>
-<li><a class="reference external" href="http://www.nature.com/nmeth/journal/v9/n4/pdf/nmeth.1923.pdf">Fast gapped-read alignment with Bowtie 2</a></li>
-<li><a class="reference external" href="http://bioinformatics.oxfordjournals.org/content/25/9/1105.full.pdf">TopHat: discovering splice junctions with RNA-Seq</a></li>
-<li><a class="reference external" href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4302049/pdf/13059_2014_Article_550.pdf">Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2</a></li>
+<li><a class="reference external" href="http://people.duke.edu/~ccc14/ngs-2015/_downloads/Bowtie.pdf">Ultrafast and memory-efficient alignment of short DNA sequences to the human genome</a></li>
+<li><a class="reference external" href="http://people.duke.edu/~ccc14/ngs-2015/_downloads/TPM-Wagner-2012.pdf">Measurement of mRNA abundance using RNA-seq data: RPKM measure is inconsistent among samples</a></li>
+<li><a class="reference external" href="http://people.duke.edu/~ccc14/ngs-2015/_downloads/Bowtie2.pdf">Fast gapped-read alignment with Bowtie 2</a></li>
+<li><a class="reference external" href="http://people.duke.edu/~ccc14/ngs-2015/_downloads/TopHat.pdf">TopHat: discovering splice junctions with RNA-Seq</a></li>
+<li><a class="reference external" href="http://people.duke.edu/~ccc14/ngs-2015/_downloads/deseq2-Love-2014.pdf">Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2</a></li>
 </ul>
 </div>
 </div>

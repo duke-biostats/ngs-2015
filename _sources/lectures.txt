@@ -1,0 +1,30 @@
+.. _lectures:
+
+Lecture notes
+========================================
+
+Biology
+----------------------------------------
+
+- `Introduction to RNA-seq I <http://people.duke.edu/~ccc14/ngs-2015/_downloads/Intro_to_RNAseq.pptx>`_
+
+Experimental Design
+----------------------------------------
+
+- `Experimental Design I <http://people.duke.edu/~ccc14/ngs-2015/_downloads/ExpDesign_Part_I.7.13.15.pdf>`_
+
+- `Experimental Design II <http://people.duke.edu/~ccc14/ngs-2015/_downloads/ExpDesign_PartII.7.22.15.pdf>`_
+
+Statistical Inference
+----------------------------------------
+
+- `Statistics for Weeks 1-2 <http://people.duke.edu/~ccc14/ngs-2015/_downloads/NGS-Statistics-Weeks-1and2.pdf>`_
+
+- `Clustering exercise I <http://people.duke.edu/~ccc14/ngs-2015/_downloads/cluster-exercise.pdf>`_
+
+Bioinformatics
+----------------------------------------
+
+- `Overview of Bioinfromatics for RNA-seqI <http://people.duke.edu/~ccc14/ngs-2015/_downloads/bioinformatics_overview.pdf>`_
+
+- `Short Read Alignment Algorithms <http://people.duke.edu/~ccc14/ngs-2015/_downloads/ShortReadAlignment_08-04-2015.pdf>`_
