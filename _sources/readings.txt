@@ -6,34 +6,34 @@ Assigned Reading
 Biology
 ----------------------------------------
 
-- `Quantitative bacterial transcriptomics with RNA-seq <http://people.duke.edu/~ccc14/ngs-2015/_downloads/quantitative_bacterial_transcriptomics.pdf>`_
+- `Quantitative bacterial transcriptomics with RNA-seq <http://www.sciencedirect.com/science/article/pii/S1369527414001787/pdfft?md5=3a1b7b219987066a0b38bd6834872850&pid=1-s2.0-S1369527414001787-main.pdf>`_
 
-- `Studying bacterial transcriptomes using RNA-seq <http://people.duke.edu/~ccc14/ngs-2015/_downloads/studying_bacterial_transcriptomes.pdf>`_
+- `Studying bacterial transcriptomes using RNA-seq <http://www.sciencedirect.com/science/article/pii/S1369527410001360/pdfft?md5=ce41f658272cff429b86e8fb406e9781&pid=1-s2.0-S1369527410001360-main.pdf>`_
 
-- `Efficient and robust RNA-seq process for cultured bacteria and complex community transcriptomes <http://people.duke.edu/~ccc14/ngs-2015/_downloads/efficient_and_robust_rnaseq.pdf>`_
+- `Efficient and robust RNA-seq process for cultured bacteria and complex community transcriptomes <http://www.genomebiology.com/content/pdf/gb-2012-13-3-r23.pdf>`_
 
-- `pH Regulates Genes for Flagellar Motility, Catabolism, and Oxidative Stress in Escherichia coli K-12† <http://people.duke.edu/~ccc14/ngs-2015/_downloads/pH_Regulates_Genes.pdf>`_ 
+- `pH Regulates Genes for Flagellar Motility, Catabolism, and Oxidative Stress in Escherichia coli K-12† <http://jb.asm.org/content/187/1/304.full.pdf>`_ 
 
 Statistics
 ----------------------------------------
 
-- `Statistical Design and Analysis of RNA Sequencing Data <http://people.duke.edu/~ccc14/ngs-2015/_downloads/Auer_Doerge_Statistical%20Design%20and%20analysis%20of%20RNA%20Seq%20data.pdf>`_
+- `Statistical Design and Analysis of RNA Sequencing Data <http://www.genetics.org/content/185/2/405.full.pdf>`_
 
-- `Statistical Challenges in Preprocessing in Microarray Experiments in Cancer <http://people.duke.edu/~ccc14/ngs-2015/_downloads/Clin%20Cancer%20Res-2008-Owzar-5959-66.pdf>`_
+- `Statistical Challenges in Preprocessing in Microarray Experiments in Cancer <http://clincancerres.aacrjournals.org/content/14/19/5959.full.pdf>`_
 
-- `Statistical Considerations for Analysis of Microarray Experiments <http://people.duke.edu/~ccc14/ngs-2015/_downloads/Owzar_et_al-2011-Clinical_and_Translational_Science>`_
+- `Statistical Considerations for Analysis of Microarray Experiments <http://people.duke.edu/~ccc14/ngs-2015/_downloads/Owzar_et_al-2011-Clinical_and_Translational_Sciencehttp://onlinelibrary.wiley.com/doi/10.1111/j.1752-8062.2011.00309.x/epdf>`_
 
-- `Differential expression analysis for sequence count data <http://people.duke.edu/~ccc14/ngs-2015/_downloads/deseq-Anders-2010.pdf>`_
+- `Differential expression analysis for sequence count data <http://people.duke.edu/~ccc14/ngs-2015/_downloads/deseq-Anders-2010.pdfhttp://www.genomebiology.com/content/pdf/gb-2010-11-10-r106.pdf>`_
 
 Bioinformatics
 ----------------------------------------
 
-- `Ultrafast and memory-efficient alignment of short DNA sequences to the human genome <http://people.duke.edu/~ccc14/ngs-2015/_downloads/Bowtie.pdf>`_
+- `Ultrafast and memory-efficient alignment of short DNA sequences to the human genome <http://www.genomebiology.com/content/pdf/gb-2009-10-3-r25.pdf>`_
 
-- `Measurement of mRNA abundance using RNA-seq data: RPKM measure is inconsistent among samples <http://people.duke.edu/~ccc14/ngs-2015/_downloads/TPM-Wagner-2012.pdf>`_
+- `Measurement of mRNA abundance using RNA-seq data: RPKM measure is inconsistent among samples <http://download.springer.com/static/pdf/729/art%253A10.1007%252Fs12064-012-0162-3.pdf?originUrl=http%3A%2F%2Flink.springer.com%2Farticle%2F10.1007%2Fs12064-012-0162-3&token2=exp=1442259383~acl=%2Fstatic%2Fpdf%2F729%2Fart%25253A10.1007%25252Fs12064-012-0162-3.pdf%3ForiginUrl%3Dhttp%253A%252F%252Flink.springer.com%252Farticle%252F10.1007%252Fs12064-012-0162-3*~hmac=2a7bcf19aa568f6c1d65c0740857a9e1c914096ce376b319203fc4ca8539a30a>`_
 
--  `Fast gapped-read alignment with Bowtie 2 <http://people.duke.edu/~ccc14/ngs-2015/_downloads/Bowtie2.pdf>`_
+-  `Fast gapped-read alignment with Bowtie 2 <http://www.nature.com/nmeth/journal/v9/n4/pdf/nmeth.1923.pdf>`_
    
-- `TopHat: discovering splice junctions with RNA-Seq <http://people.duke.edu/~ccc14/ngs-2015/_downloads/TopHat.pdf>`_
+- `TopHat: discovering splice junctions with RNA-Seq <http://bioinformatics.oxfordjournals.org/content/25/9/1105.full.pdf>`_
 
-- `Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2 <http://people.duke.edu/~ccc14/ngs-2015/_downloads/deseq2-Love-2014.pdf>`_
+- `Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2 <http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4302049/pdf/13059_2014_Article_550.pdf>`_
