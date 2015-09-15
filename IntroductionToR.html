@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction to R &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+    <link rel="next" title="Preparing Data for Analysis" href="PreparingDataForAnalysis.html" />
+    <link rel="prev" title="Basic R in the Jupyter Notebook and RStudio" href="BasicRinJupyterAndRstudio.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearningWhatCouldGoWrong.html">Supervised Learning Continued - What Could Go Wrong?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONESolutios.html">Practice ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTWOSolutions.html">Practice TWO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTHREESolutions.html">Practice THREE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeFOURSolutions.html">Practice FOUR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2NotebookFromMatrix.html">Import count data using basic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Introduction to R</a><ul>
+<li><a class="reference internal" href="#loading-libraries">Loading libraries</a></li>
+<li><a class="reference internal" href="#installing-libraries">Installing libraries</a></li>
+<li><a class="reference internal" href="#r-as-simple-calculator">R as simple calculator</a></li>
+<li><a class="reference internal" href="#printing-results">Printing results</a></li>
+<li><a class="reference internal" href="#getting-help">Getting help</a><ul>
+<li><a class="reference internal" href="#work">Work!</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#assigning-to-variables">Assigning to variables</a></li>
+<li><a class="reference internal" href="#creating-and-using-sequences">Creating and using sequences</a></li>
+<li><a class="reference internal" href="#vectorized-operations">Vectorized operations</a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#id1">Work!</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#graphics">Graphics</a><ul>
+<li><a class="reference internal" href="#id2">Work!</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#introudction-to-simulations">Introudction to simulations</a><ul>
+<li><a class="reference internal" href="#continuous-distributions">Continuous distributions</a></li>
+<li><a class="reference internal" href="#discrete-distributions">Discrete distributions</a></li>
+<li><a class="reference internal" href="#checking-distributions-with-qqplot">Checking distributions with <code class="docutils literal"><span class="pre">qqplot</span></code></a><ul>
+<li><a class="reference internal" href="#a-simple-simulation">A simple simulation</a></li>
+<li><a class="reference internal" href="#digression-using-loops">Digression - using Loops</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#looping-in-r-can-be-slow-here-is-a-fast-vectorized-version">Looping in R can be slow - here is a fast vectorized version</a></li>
+<li><a class="reference internal" href="#id3">Work!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="BasicRinJupyterAndRstudio.html" title="Previous Chapter: Basic R in the Jupyter Notebook and RStudio"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Basic R in th...</span>
+    </a>
+  </li>
+  <li>
+    <a href="PreparingDataForAnalysis.html" title="Next Chapter: Preparing Data for Analysis"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Preparing Dat... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/IntroductionToR.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="introduction-to-r">
+<h1>Introduction to R<a class="headerlink" href="#introduction-to-r" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="loading-libraries">
+<h2>Loading libraries<a class="headerlink" href="#loading-libraries" title="Permalink to this headline">¶</a></h2>
+<p>Some R functions are in libraries that have to be explicitly loaded. You
+do this with the <code class="docutils literal"><span class="pre">library</span></code> command. The next cell shows an example of
+loading the <code class="docutils literal"><span class="pre">genefilter</span></code> library which contains the <code class="docutils literal"><span class="pre">rowttests</span></code>
+fucntion that we will be using later.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">genefilter</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Attaching package: ‘genefilter’
+
+The following object is masked from ‘package:base’:
+
+    anyNA
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-libraries">
+<h2>Installing libraries<a class="headerlink" href="#installing-libraries" title="Permalink to this headline">¶</a></h2>
+<p>Most libraries have been pre-installed on the VM. However, if you need
+to install a new library, all you need is to use the
+<code class="docutils literal"><span class="pre">install.packages()</span></code> function. For example, you can install the MASS
+(Modern Applied Statistics in S) library like so:</p>
+<div class="code r highlight-python"><div class="highlight"><pre><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s">&quot;MASS&quot;</span><span class="p">,</span> <span class="n">repos</span> <span class="o">=</span> <span class="s">&quot;http://cran.r-project.org&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Some specialized libraries come from the R BioConductor project, and the
+installation processs is slgihtly different. This will be covered in a
+later session.</p>
+</div>
+<div class="section" id="r-as-simple-calculator">
+<h2>R as simple calculator<a class="headerlink" href="#r-as-simple-calculator" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="o">^</span><span class="mi">5</span>
+</pre></div>
+</div>
+245<div class="code python highlight-python"><div class="highlight"><pre>7 %% 3
+</pre></div>
+</div>
+1<div class="code python highlight-python"><div class="highlight"><pre><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">pi</span><span class="p">)</span>
+</pre></div>
+</div>
+1<div class="code python highlight-python"><div class="highlight"><pre><span class="mf">1.23e3</span>
+</pre></div>
+</div>
+1230</div>
+<div class="section" id="printing-results">
+<h2>Printing results<a class="headerlink" href="#printing-results" title="Permalink to this headline">¶</a></h2>
+<p>By default, the result on the last line is displayed in the Jupyter
+notebook. To see other lines, use the <code class="docutils literal"><span class="pre">print</span></code> function.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>print(1 * 2 * 3 *4)
+print(11 %% 3 == 1)
+10 &gt; 1
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 24
+[1] FALSE
+</pre></div>
+</div>
+TRUE</div>
+<div class="section" id="getting-help">
+<h2>Getting help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
+<p>Type soemthing and hit the tab key - this will either complete the R
+command for you (if unique) or present a list of opitons.</p>
+<p>Use ?topic to get a description of <code class="docutils literal"><span class="pre">topic</span></code>, or more verbosely, you can
+also use <code class="docutils literal"><span class="pre">help(topic)</span></code>.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>?seq
+</pre></div>
+</div>
+<table width="100%" summary="page for seq {base}"><tr><td>seq {base}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Sequence Generation</h2>
+
+<h3>Description</h3>
+
+<p>Generate regular sequences.  <code>seq</code> is a standard generic with a
+default method.  <code>seq.int</code> is a primitive which can be
+much faster but has a few restrictions.  <code>seq_along</code> and
+<code>seq_len</code> are very fast primitives for two common cases.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+seq(...)
+
+## Default S3 method:
+seq(from = 1, to = 1, by = ((to - from)/(length.out - 1)),
+    length.out = NULL, along.with = NULL, ...)
+
+seq.int(from, to, by, length.out, along.with, ...)
+
+seq_along(along.with)
+seq_len(length.out)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>arguments passed to or from methods.</p>
+</td></tr>
+<tr valign="top"><td><code>from, to</code></td>
+<td>
+<p>the starting and (maximal) end values of the
+sequence.  Of length <code>1</code> unless just <code>from</code> is supplied as
+an unnamed argument.</p>
+</td></tr>
+<tr valign="top"><td><code>by</code></td>
+<td>
+<p>number: increment of the sequence.</p>
+</td></tr>
+<tr valign="top"><td><code>length.out</code></td>
+<td>
+<p>desired length of the sequence.  A
+non-negative number, which for <code>seq</code> and <code>seq.int</code> will be
+rounded up if fractional.</p>
+</td></tr>
+<tr valign="top"><td><code>along.with</code></td>
+<td>
+<p>take the length from the length of this argument.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>Numerical inputs should all be finite (that is, not infinite,
+<code>NaN</code> or <code>NA</code>).
+</p>
+<p>The interpretation of the unnamed arguments of <code>seq</code> and
+<code>seq.int</code> is <em>not</em> standard, and it is recommended always to
+name the arguments when programming.
+</p>
+<p><code>seq</code> is  generic, and only the default method is described here.
+Note that it dispatches on the class of the <strong>first</strong> argument
+irrespective of argument names.  This can have unintended consequences
+if it is called with just one argument intending this to be taken as
+<code>along.with</code>: it is much better to use <code>seg_along</code> in that
+case.
+</p>
+<p><code>seq.int</code> is an internal generic which dispatches on
+methods for <code>"seq"</code> based on the class of the first supplied
+argument (before argument matching).
+</p>
+<p>Typical usages are
+</p>
+<pre>seq(from, to)
+seq(from, to, by= )
+seq(from, to, length.out= )
+seq(along.with= )
+seq(from)
+seq(length.out= )
+</pre>
+<p>The first form generates the sequence <code>from, from+/-1, ..., to</code>
+(identical to <code>from:to</code>).
+</p>
+<p>The second form generates <code>from, from+by</code>, ..., up to the
+sequence value less than or equal to <code>to</code>.  Specifying <code>to -
+  from</code> and <code>by</code> of opposite signs is an error.  Note that the
+computed final value can go just beyond <code>to</code> to allow for
+rounding error, but is truncated to <code>to</code>.  (&lsquo;Just beyond&rsquo;
+is by up to <i>1e-10</i> times <code>abs(from - to)</code>.)
+</p>
+<p>The third generates a sequence of <code>length.out</code> equally spaced
+values from <code>from</code> to <code>to</code>.  (<code>length.out</code> is usually
+abbreviated to <code>length</code> or <code>len</code>, and <code>seq_len</code> is much
+faster.)
+</p>
+<p>The fourth form generates the integer sequence <code>1, 2, ...,
+    length(along.with)</code>.  (<code>along.with</code> is usually abbreviated to
+<code>along</code>, and <code>seq_along</code> is much faster.)
+</p>
+<p>The fifth form generates the sequence <code>1, 2, ..., length(from)</code>
+(as if argument <code>along.with</code> had been specified), <em>unless</em>
+the argument is numeric of length 1 when it is interpreted as
+<code>1:from</code> (even for <code>seq(0)</code> for compatibility with S).
+Using either <code>seq_along</code> or <code>seq_len</code> is much preferred
+(unless strict S compatibility is essential).
+</p>
+<p>The final form generates the integer sequence <code>1, 2, ...,
+  length.out</code> unless <code>length.out = 0</code>, when it generates
+<code>integer(0)</code>.
+</p>
+<p>Very small sequences (with <code>from - to</code> of the order of <i>10^{-14}</i>
+times the larger of the ends) will return <code>from</code>.
+</p>
+<p>For <code>seq</code> (only), up to two of <code>from</code>, <code>to</code> and
+<code>by</code> can be supplied as complex values provided <code>length.out</code>
+or <code>along.with</code> is specified.  More generally, the default method
+of <code>seq</code> will handle classed objects with methods for
+the <code>Math</code>, <code>Ops</code> and <code>Summary</code> group generics.
+</p>
+<p><code>seq.int</code>, <code>seq_along</code> and <code>seq_len</code> are
+primitive.
+</p>
+
+
+<h3>Value</h3>
+
+<p><code>seq.int</code> and the default method of <code>seq</code> for numeric
+arguments return a vector of type <code>"integer"</code> or <code>"double"</code>:
+programmers should not rely on which.
+</p>
+<p><code>seq_along</code> and <code>seq_len</code> return an integer vector, unless
+it is a <em>long vector</em> when it will be double.
+</p>
+
+
+<h3>References</h3>
+
+<p>Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
+<em>The New S Language</em>.
+Wadsworth &amp; Brooks/Cole.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>The methods <code>seq.Date</code> and <code>seq.POSIXt</code>.
+</p>
+<p><code>:</code>,
+<code>rep</code>,
+<code>sequence</code>,
+<code>row</code>,
+<code>col</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+seq(0, 1, length.out = 11)
+seq(stats::rnorm(20)) # effectively 'along'
+seq(1, 9, by = 2)     # matches 'end'
+seq(1, 9, by = pi)    # stays below 'end'
+seq(1, 6, by = 3)
+seq(1.575, 5.125, by = 0.05)
+seq(17) # same as 1:17, or even better seq_len(17)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>base</em> version 3.2.0 ]</div><p>Use example to see usage examples.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">example</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>seq&gt; seq(0, 1, length.out = 11)
+ [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0
+
+seq&gt; seq(stats::rnorm(20)) # effectively &#39;along&#39;
+ [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+
+seq&gt; seq(1, 9, by = 2)     # matches &#39;end&#39;
+[1] 1 3 5 7 9
+
+seq&gt; seq(1, 9, by = pi)    # stays below &#39;end&#39;
+[1] 1.000000 4.141593 7.283185
+
+seq&gt; seq(1, 6, by = 3)
+[1] 1 4
+
+seq&gt; seq(1.575, 5.125, by = 0.05)
+ [1] 1.575 1.625 1.675 1.725 1.775 1.825 1.875 1.925 1.975 2.025 2.075 2.125
+[13] 2.175 2.225 2.275 2.325 2.375 2.425 2.475 2.525 2.575 2.625 2.675 2.725
+[25] 2.775 2.825 2.875 2.925 2.975 3.025 3.075 3.125 3.175 3.225 3.275 3.325
+[37] 3.375 3.425 3.475 3.525 3.575 3.625 3.675 3.725 3.775 3.825 3.875 3.925
+[49] 3.975 4.025 4.075 4.125 4.175 4.225 4.275 4.325 4.375 4.425 4.475 4.525
+[61] 4.575 4.625 4.675 4.725 4.775 4.825 4.875 4.925 4.975 5.025 5.075 5.125
+
+seq&gt; seq(17) # same as 1:17, or even better seq_len(17)
+ [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17
+</pre></div>
+</div>
+<p>To search for all functions with the phrase <code class="docutils literal"><span class="pre">topic</span></code>, use
+<code class="docutils literal"><span class="pre">apropos(topic)</span></code>.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">apropos</span><span class="p">(</span><span class="s">&quot;seq&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>'seq'</li>
+    <li>'seq_along'</li>
+    <li>'seq.Date'</li>
+    <li>'seq.default'</li>
+    <li>'seq.int'</li>
+    <li>'seq_len'</li>
+    <li>'seq.POSIXt'</li>
+    <li>'sequence'</li>
+</ol><p>For a broader search using &#8220;fuzzy&#8221; matching, use <code class="docutils literal"><span class="pre">??</span></code> prepended to the
+search term.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>??seq
+</pre></div>
+</div>
+<p>Finally, you can always use a search engine - e.g. Googling for &#8220;how to
+generate random numbers from a normal distribution in R&#8221; returens:</p>
+<p>R Learning Module: Probabilities and Distributions
+www.ats.ucla.edu › stat › r › modules
+University of California, Los Angeles
+Generating random samples from a normal distribution ... (For more information on the random number generator used in R please refer to the help pages for the  ...</p>
+<p>R: The Normal Distribution
+<a class="reference external" href="https://stat.ethz.ch/R-manual/R-devel/library/.../Normal.html">https://stat.ethz.ch/R-manual/R-devel/library/.../Normal.html</a>
+ETH Zurich
+Normal {stats}, R Documentation ... quantile function and random generation for the normal distribution with mean equal to mean and ... number of observations.</p>
+<p>CASt R: Random numbers
+astrostatistics.psu.edu/.../R/Random.html
+Pennsylvania State University
+It is often necessary to simulate random numbers in R. There are many functions available to ... Let&#8217;s consider the well-known normal distribution as an example: ?Normal .... Creating functions in R, as illustrated above, is a common procedure.</p>
+<div class="section" id="work">
+<h3>Work!<a class="headerlink" href="#work" title="Permalink to this headline">¶</a></h3>
+<p>These ntoebooks will be interspersed with many such Work! sections,
+since the only way to learn R is by using R. Remember to use <code class="docutils literal"><span class="pre">TAB</span></code> and
+<code class="docutils literal"><span class="pre">?</span></code> and <code class="docutils literal"><span class="pre">apropos</span></code> whenever you&#8217;re stuck. If you don&#8217;t like to work
+so much, reanme them as Play! sections since in our world
+<code class="docutils literal"><span class="pre">work</span> <span class="pre">==</span> <span class="pre">play</span></code>.</p>
+<hr class="docutils" />
+<p>If you put USD 100 in a bank that pays5 percent interest compounded
+daily, how much will you have in the bank at the end of one year? Recall
+from high school math that</p>
+<div class="math">
+\[A = P(1 + r/n)^m\]</div>
+<p>where <span class="math">\(A\)</span> is the amount, <span class="math">\(P\)</span> is the principal, <span class="math">\(r\)</span> is
+the interest rate, <span class="math">\(n\)</span> is the compoundings per period and
+<span class="math">\(m\)</span> is the number of periods.</p>
+<p>What is the (Euclideean) distance between two points at (1,5) and (4,8)?
+Recall that the Eucliean distacne between two points (x1, y1) and (x2,
+y2) is given by the Pythagorean theorem:</p>
+<div class="math">
+\[\sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}\]</div>
+</div>
+</div>
+<div class="section" id="assigning-to-variables">
+<h2>Assigning to variables<a class="headerlink" href="#assigning-to-variables" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">&lt;-</span> <span class="mi">3</span>
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">z</span> <span class="o">&lt;-</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">z</span>
+</pre></div>
+</div>
+15</div>
+<div class="section" id="creating-and-using-sequences">
+<h2>Creating and using sequences<a class="headerlink" href="#creating-and-using-sequences" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>1:4
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre><span class="n">seq</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>2</li>
+    <li>5</li>
+    <li>8</li>
+    <li>11</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre>seq(from=0, to=pi, by=pi/4)
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>0</li>
+    <li>0.785398163397448</li>
+    <li>1.5707963267949</li>
+    <li>2.35619449019234</li>
+    <li>3.14159265358979</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre>seq(from=0, to=pi, length.out = 5)
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>0</li>
+    <li>0.785398163397448</li>
+    <li>1.5707963267949</li>
+    <li>2.35619449019234</li>
+    <li>3.14159265358979</li>
+</ol></div>
+<div class="section" id="vectorized-operations">
+<h2>Vectorized operations<a class="headerlink" href="#vectorized-operations" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>x &lt;- 1:10
+y &lt;- 1:10
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>1</li>
+    <li>4</li>
+    <li>9</li>
+    <li>16</li>
+    <li>25</li>
+    <li>36</li>
+    <li>49</li>
+    <li>64</li>
+    <li>81</li>
+    <li>100</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">seq</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">,</span> <span class="n">length</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>0</li>
+    <li>1</li>
+    <li>1.22464679914735e-16</li>
+    <li>-1</li>
+    <li>-2.44929359829471e-16</li>
+</ol></div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p>A function is code tha behaves like a black box - you give it some input
+and it returns some output. Functions are essenital because they allow
+you to design use potentially complicated algorithms without having to
+keep track of the algorithmic details - all you need to remeber are the
+function name (which you can search with <code class="docutils literal"><span class="pre">apropos</span></code> or prepnding <code class="docutils literal"><span class="pre">??</span></code>
+to the search term), the input arguments (TAB provides hings), and what
+type of output will be generated. Most of R&#8217;s usefulness comes from the
+large collection of functions that it provides - for example,
+<code class="docutils literal"><span class="pre">library()</span></code>, <code class="docutils literal"><span class="pre">seq()</span></code>, <code class="docutils literal"><span class="pre">as.fractions()</span></code> are all functions. You can
+also write your own R functions - this will be covered in detail in a
+later session - but we show the basics here so that you can follow the
+statistics lecutures.</p>
+<p>A function has the following structure</p>
+<div class="code r highlight-python"><div class="highlight"><pre>function_name &lt;- function(arguments) {
+    body_of_function
+    return(result)
+    }
+</pre></div>
+</div>
+<p>The simple example below will make this explicit.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>my.func &lt;- function(a, b) {
+    c &lt;- a * b
+    return(a + b - c)
+    }
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">my</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+-11<div class="code python highlight-python"><div class="highlight"><pre><span class="n">my</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+-11<div class="section" id="id1">
+<h3>Work!<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>What is the sum of all the numbers from 1 to 100?</p>
+<p>What is the sum of the natural log of all the numbers from 1 to 100?</p>
+<p>What is the sum of all the odd numbers from 1 to 10?</p>
+<p>Write a function that returns the sum of all the odd numbers from <code class="docutils literal"><span class="pre">a</span></code>
+to <code class="docutils literal"><span class="pre">b</span></code>, where <code class="docutils literal"><span class="pre">a</span></code> and <code class="docutils literal"><span class="pre">b</span></code> are the minimum and maximum values of a
+sequence of integers. For example, if the funciton was called
+<code class="docutils literal"><span class="pre">sum.odd</span></code>, then you would answer the previous question by</p>
+<div class="code r highlight-python"><div class="highlight"><pre><span class="nb">sum</span><span class="o">.</span><span class="n">odd</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="graphics">
+<h2>Graphics<a class="headerlink" href="#graphics" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">seq</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">,</span> <span class="n">length</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Graph of Sin(x)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/IntroductionToR_57_0.png"><img alt="_images/IntroductionToR_57_0.png" src="_images/IntroductionToR_57_0.png" style="width: 600px;" /></a>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Graph of Sin(x)&quot;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Graph of Cos(x)&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">lty</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tan</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Graph of Tan(x)&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/IntroductionToR_58_0.png"><img alt="_images/IntroductionToR_58_0.png" src="_images/IntroductionToR_58_0.png" style="width: 600px;" /></a>
+<p>The concept of &#8220;saving&#8221; a graphical plot in R involves the following
+steps</p>
+<ul class="simple">
+<li>open a &#8220;device&#8221; to plot to (the next shows a <code class="docutils literal"><span class="pre">pdf</span></code> device)<ul>
+<li>this includes the filename and other configuration parameters such
+as width and height</li>
+</ul>
+</li>
+<li>write all the plotting and customization commands as usual</li>
+<li>close the device with <code class="docutils literal"><span class="pre">dev.close()</span></code> - this writes the plot to file</li>
+</ul>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">pdf</span><span class="p">(</span><span class="s">&quot;trig.pdf&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Graph of Sin(x)&quot;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Graph of Cos(x)&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">lty</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tan</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Graph of Tan(x)&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">dev</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+<strong>pdf:</strong> 2<div class="code python highlight-python"><div class="highlight"><pre>?device
+</pre></div>
+</div>
+<table width="100%" summary="page for Devices {grDevices}"><tr><td>Devices {grDevices}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>List of Graphical Devices</h2>
+
+<h3>Description</h3>
+
+<p>The following graphics devices are currently available:
+</p>
+
+<ul>
+<li> <p><code>pdf</code> Write PDF graphics commands to a file
+</p>
+</li>
+<li> <p><code>postscript</code> Writes PostScript graphics commands to
+a file
+</p>
+</li>
+<li> <p><code>xfig</code> Device for XFIG graphics file format
+</p>
+</li>
+<li> <p><code>bitmap</code> bitmap pseudo-device via
+<code>Ghostscript</code> (if available).
+</p>
+</li>
+<li> <p><code>pictex</code> Writes TeX/PicTeX graphics commands to a
+file (of historical interest only)
+</p>
+</li></ul>
+
+<p>The following devices will be functional if <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> was compiled to use
+them (they exist but will return with a warning on other systems):
+</p>
+
+<ul>
+<li> <p><code>X11</code> The graphics device for the X11 windowing system
+</p>
+</li>
+<li> <p><code>cairo_pdf</code>, <code>cairo_ps</code> PDF and PostScript
+devices based on cairo graphics.
+</p>
+</li>
+<li> <p><code>svg</code> SVG device based on cairo graphics.
+</p>
+</li>
+<li> <p><code>png</code> PNG bitmap device
+</p>
+</li>
+<li> <p><code>jpeg</code> JPEG bitmap device
+</p>
+</li>
+<li> <p><code>bmp</code> BMP bitmap device
+</p>
+</li>
+<li> <p><code>tiff</code> TIFF bitmap device
+</p>
+</li>
+<li> <p><code>quartz</code> The graphics device for the OS X
+native Quartz 2d graphics system.  (This is only functional on
+OS X where it can be used from the <code>R.app</code> GUI and from the
+command line: but it will display on the local screen even for a
+remote session.)
+</p>
+</li></ul>
+
+
+
+<h3>Details</h3>
+
+<p>If no device is open, using a high-level graphics function will cause
+a device to be opened.  Which device is given by
+<code>options("device")</code> which is initially set as the most
+appropriate for each platform: a screen device for most interactive use and
+<code>pdf</code> (or the setting of <span class="env">R_DEFAULT_DEVICE</span>)
+otherwise.  The exception is interactive use under Unix if no screen
+device is known to be available, when <code>pdf()</code> is used.
+</p>
+<p>It is possible for an <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> package to provide further graphics devices
+and several packages on CRAN do so.  These include other devices outputting
+SVG and PGF/TiKZ (TeX-based graphics, see <a href="http://pgf.sourceforge.net/">http://pgf.sourceforge.net/</a>).
+</p>
+
+
+<h3>See Also</h3>
+
+<p>The individual help files for further information on any of the
+devices listed here;
+<code>X11.options</code>, <code>quartz.options</code>,
+<code>ps.options</code> and <code>pdf.options</code> for how to
+customize devices.
+</p>
+<p><code>dev.interactive</code>,
+<code>dev.cur</code>, <code>dev.print</code>,
+<code>graphics.off</code>, <code>image</code>,
+<code>dev2bitmap</code>.
+</p>
+<p><code>capabilities</code> to see if <code>X11</code>,
+<code>jpeg</code> <code>png</code>, <code>tiff</code>,
+<code>quartz</code> and the cairo-based devices are available.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>## Not run:
+## open the default screen device on this platform if no device is
+## open
+if(dev.cur() == 1) dev.new()
+
+## End(Not run)</pre>
+
+<hr /><div style="text-align: center;">[Package <em>grDevices</em> version 3.2.0 ]</div><div class="section" id="id2">
+<h3>Work!<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Generate 100 random numbers from a standard normal distribution and
+assign to a variable <code class="docutils literal"><span class="pre">r</span></code>. Plot a histogram of the distribuiton of
+numbers in r.</p>
+<p>Save the histogram you just geneerated as a PNG file.</p>
+<p>Plot the <code class="docutils literal"><span class="pre">sin</span></code>, <code class="docutils literal"><span class="pre">cos</span></code> and <code class="docutils literal"><span class="pre">tan</span></code> functions from the examples for x
+beteen 0 and 2<span class="math">\(\pi\)</span>, but place them all in the same plot using
+different colors and line styles to distinguish them. Add an appropriate
+figure legend.</p>
+</div>
+</div>
+<div class="section" id="introudction-to-simulations">
+<h2>Introudction to simulations<a class="headerlink" href="#introudction-to-simulations" title="Permalink to this headline">¶</a></h2>
+<p>The statistics lectures will use statistical simulations extensively to
+illustrate key concepts. Basically, a simulaition is the use of random
+numbers drawn from some probability distribution to simulate
+experimental results. Simulations are a wonderful way to learn more
+about probability distributions and the concepts behind statistical
+inference.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span> <span class="c"># fix random number seed for reproducibility</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">c</span><span class="p">(</span><span class="s">&quot;H&quot;</span><span class="p">,</span> <span class="s">&quot;T&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>'H'</li>
+    <li>'T'</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre><span class="n">sample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="n">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>'T'</li>
+    <li>'H'</li>
+    <li>'H'</li>
+    <li>'T'</li>
+    <li>'T'</li>
+    <li>'H'</li>
+    <li>'T'</li>
+    <li>'T'</li>
+    <li>'H'</li>
+    <li>'T'</li>
+    <li>'T'</li>
+    <li>'T'</li>
+    <li>'H'</li>
+    <li>'H'</li>
+    <li>'H'</li>
+    <li>'T'</li>
+    <li>'T'</li>
+    <li>'H'</li>
+    <li>'T'</li>
+    <li>'H'</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre>(x &lt;- 1:6)
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre><span class="n">sample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="n">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Error in sample.int(length(x), size, replace, prob): cannot take a sample larger than the population when &#39;replace = FALSE&#39;
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">sample</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>1</li>
+    <li>6</li>
+    <li>4</li>
+    <li>3</li>
+    <li>2</li>
+    <li>5</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre><span class="n">sample</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>3</li>
+    <li>4</li>
+    <li>2</li>
+    <li>1</li>
+    <li>6</li>
+    <li>5</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre><span class="n">sample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>3</li>
+    <li>2</li>
+    <li>5</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre><span class="n">sample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>3</li>
+    <li>3</li>
+    <li>4</li>
+    <li>1</li>
+    <li>2</li>
+    <li>1</li>
+    <li>1</li>
+    <li>3</li>
+    <li>1</li>
+    <li>3</li>
+</ol><div class="section" id="continuous-distributions">
+<h3>Continuous distributions<a class="headerlink" href="#continuous-distributions" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="c"># arrange plots in a 2 x 2 grid</span>
+
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Normal distribution&quot;</span><span class="p">)</span>
+<span class="n">rug</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rexp</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">rate</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Exponenital distribution&quot;</span><span class="p">)</span>
+<span class="n">rug</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="n">runif</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Uniform distribution&quot;</span><span class="p">)</span>
+<span class="n">rug</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rbeta</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">shape1</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">shape2</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Beta distribution&quot;</span><span class="p">)</span>
+<span class="n">rug</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/IntroductionToR_83_0.png"><img alt="_images/IntroductionToR_83_0.png" src="_images/IntroductionToR_83_0.png" style="width: 600px;" /></a>
+</div>
+<div class="section" id="discrete-distributions">
+<h3>Discrete distributions<a class="headerlink" href="#discrete-distributions" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-python"><div class="highlight"><pre>par(mfrow=c(2,2)) # arrange plots in a 2 x 2 grid
+
+x &lt;- rpois(n=100, lambda = 1)
+barplot(table(x), main=&quot;Poisson distribution&quot;)
+
+x &lt;- rbinom(n=100, size=10, prob=0.3)
+barplot(table(x), main=&quot;Bionmial distribution&quot;)
+
+x &lt;- rnbinom(n=100, size=10, prob=0.3)
+barplot(table(x), main=&quot;Negative binomial distribution&quot;)
+
+x &lt;- rgeom(n=100, prob=0.3)
+barplot(table(x), main=&quot;Geometric distribution&quot;)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/IntroductionToR_85_0.png"><img alt="_images/IntroductionToR_85_0.png" src="_images/IntroductionToR_85_0.png" style="width: 600px;" /></a>
+</div>
+<div class="section" id="checking-distributions-with-qqplot">
+<h3>Checking distributions with <code class="docutils literal"><span class="pre">qqplot</span></code><a class="headerlink" href="#checking-distributions-with-qqplot" title="Permalink to this headline">¶</a></h3>
+<p>Most commonly, we want to check if data comes from a normal
+distribution. To do this, we can plot the sample quantiles against the
+theoretical quantiles - if the data is normally distributed, this should
+not deviate far from a straight line. To chack against a normal
+distribution, use <code class="docutils literal"><span class="pre">qqnorm(x)</span></code> where x is the sample to be tested. More
+generally, you can test if <code class="docutils literal"><span class="pre">x</span></code> comes from any distribution using
+<code class="docutils literal"><span class="pre">qqplot(x,</span> <span class="pre">dist)</span></code>.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">options</span><span class="p">(</span><span class="nb">repr</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">options</span><span class="p">(</span><span class="nb">repr</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">n</span> <span class="o">&lt;-</span> <span class="mi">250</span>
+
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qqnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Normal disrribution&quot;</span><span class="p">)</span>
+<span class="n">qqline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">probability</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Normal&quot;</span><span class="p">)</span>
+<span class="n">lines</span><span class="p">(</span><span class="n">density</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rgamma</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">qqnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Gamma distribution&quot;</span><span class="p">)</span>
+<span class="n">qqline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">probability</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;right skew&quot;</span><span class="p">)</span>
+<span class="n">lines</span><span class="p">(</span><span class="n">density</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rt</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qqnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Student T distribution&quot;</span><span class="p">)</span>
+<span class="n">qqline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">probability</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;heavy tails&quot;</span><span class="p">)</span>
+<span class="n">lines</span><span class="p">(</span><span class="n">density</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rbeta</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">shape1</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">shape2</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">qqnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Beta distribution&quot;</span><span class="p">)</span>
+<span class="n">qqline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">probability</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;bimodal&quot;</span><span class="p">)</span>
+<span class="n">lines</span><span class="p">(</span><span class="n">density</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/IntroductionToR_87_0.png"><img alt="_images/IntroductionToR_87_0.png" src="_images/IntroductionToR_87_0.png" style="width: 600px;" /></a>
+<div class="section" id="a-simple-simulation">
+<h4>A simple simulation<a class="headerlink" href="#a-simple-simulation" title="Permalink to this headline">¶</a></h4>
+<p>How frequently do we find significant differences (p &lt; 0.05) between two
+groups when they are drawn from the same distribuiton if we use a t
+test?</p>
+<p>As a bonus, this code snippet also shows a simple way to time chunks of
+code.</p>
+</div>
+<div class="section" id="digression-using-loops">
+<h4>Digression - using Loops<a class="headerlink" href="#digression-using-loops" title="Permalink to this headline">¶</a></h4>
+<p>To repeat an action many times, we use loops. The most useful loop
+construct in R is the for loop. A simple example shows how to use it.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>for (i in 1:4) {
+    print(c(i, i*i))
+    }
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 1 1
+[1] 2 4
+[1] 3 9
+[1]  4 16
+</pre></div>
+</div>
+<p>Loops many include an if condition to only run the code if some
+condition is met.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>for (i in 1:4) {
+    if (i %% 2 == 0) { # is i an even number?
+        print(c(i, i*i))
+        }
+    }
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 2 4
+[1]  4 16
+</pre></div>
+</div>
+<p>Now that we know how to use loops, let&#8217;s write the actural simulation.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>nexpts = 10000
+nsamps = 100
+s = 0
+alpha = 0.05
+
+ptm &lt;- proc.time()
+for (i in 1:nexpts) {
+    u &lt;- rnorm(nsamps)
+    v &lt;- rnorm(nsamps)
+    if (t.test(u, v)$p.value &lt; alpha)
+        s = s + 1
+}
+print(s/nexpts)
+
+proc.time() - ptm
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 0.047
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre> user  system elapsed
+2.544   0.006   2.551
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="looping-in-r-can-be-slow-here-is-a-fast-vectorized-version">
+<h3>Looping in R can be slow - here is a fast vectorized version<a class="headerlink" href="#looping-in-r-can-be-slow-here-is-a-fast-vectorized-version" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-python"><div class="highlight"><pre>ptm &lt;- proc.time()
+x &lt;- matrix(rnorm(2*nexpts*nsamps), nexpts, 2*nsamps)
+grp &lt;- factor(rep(0:1, c(nsamps, nsamps)))
+print(sum(rowttests(x, grp)$p.value &lt; alpha)/nexpts)
+
+proc.time() - ptm
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 0.0507
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre> user  system elapsed
+0.544   0.017   0.562
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Work!<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>How frequently do we find significant differences (p &lt; 0.05) between two
+groups when group 1 is drawn form a <span class="math">\(\mathcal{N}(0, 1)\)</span>
+distribution and group 2 from an <span class="math">\(\mathcal{N}(0.2, 1)\)</span>
+distribution? Write one version using explicit looping and another using
+vecgorized code, using 10000 experiments and 100 samples per group.</p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

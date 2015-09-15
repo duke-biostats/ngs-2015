@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Functional Programming &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+    <link rel="next" title="Linear Regression" href="RFormulasAndStatisticalModeling.html" />
+    <link rel="prev" title="Writing Custom Functions" href="WritingcustomfunctionsinRSolutions.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearningWhatCouldGoWrong.html">Supervised Learning Continued - What Could Go Wrong?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONE-Solutions.html">Practice ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTWOSolutions.html">Practice TWO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTHREESolutions.html">Practice THREE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeFOURSolutions.html">Practice FOUR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2NotebookFromMatrix.html">Import count data using basic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Functional Programming</a><ul>
+<li><a class="reference internal" href="#r-apply">R apply</a><ul>
+<li><a class="reference internal" href="#work">Work!</a></li>
+<li><a class="reference internal" href="#custom-functions-and-apply">Custom Functions and <code class="docutils literal"><span class="pre">apply</span></code></a></li>
+<li><a class="reference internal" href="#id1">Work!</a></li>
+<li><a class="reference internal" href="#sapply-and-lapply"><code class="docutils literal"><span class="pre">sapply</span></code> and <code class="docutils literal"><span class="pre">lapply</span></code></a></li>
+<li><a class="reference internal" href="#aside-on-lists">Aside on Lists</a><ul>
+<li><a class="reference internal" href="#one-more-thing-about-lists">One more thing about lists</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="WritingcustomfunctionsinRSolutions.html" title="Previous Chapter: Writing Custom Functions"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Writing Custo...</span>
+    </a>
+  </li>
+  <li>
+    <a href="RFormulasAndStatisticalModeling.html" title="Next Chapter: Linear Regression"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Linear Regres... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/FunctionalProgramming.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="functional-programming">
+<h1>Functional Programming<a class="headerlink" href="#functional-programming" title="Permalink to this headline">¶</a></h1>
+<p>Functional programming refers to a specialized way of writing code so
+that &#8216;side effects&#8217; are avoided, making the outcome of the code easier
+to predict. It is &#8216;declarative&#8217; - functions are given as expressions, as
+opposed to &#8216;imperative&#8217;, where commands are issued to change the state
+of the program (e.g. change the value of variables by assignment).
+Historically, programming has been imperative, but the notion of
+functional programming is gaining ground lately, especially because of
+its connection to paralellization and distributed computing.</p>
+<p>We won&#8217;t discuss the methodology in detail, but we will cover the basic
+R tools for functional programming - tools that allow us to apply
+functions across data structures. These tools allow us to avoid looping
+by extending the ability to vectorize operations.</p>
+<div class="section" id="r-apply">
+<h2>R apply<a class="headerlink" href="#r-apply" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">apply</span></code> maps a function to a matrix:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">m</span><span class="o">&lt;-</span><span class="n">matrix</span><span class="p">(</span><span class="n">rnorm</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span><span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">nrow</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>             [,1]        [,2]        [,3]
+ [1,] -1.88415809 -0.09135793 -0.04933136
+ [2,]  0.27581447  0.59928155 -0.01019772
+ [3,]  0.23509325 -1.38182122 -1.49150530
+ [4,] -1.29592234 -0.10180487 -1.62481563
+ [5,]  0.31163838 -1.16070666  0.60327878
+ [6,]  0.23685780  0.80313813  1.49028075
+ [7,] -0.51883441  0.30667497  0.81876505
+ [8,] -0.01050835 -1.49125738  1.67045716
+ [9,] -0.17823674  0.50897338 -1.11499439
+[10,]  1.00128144  0.70455616 -0.23839229
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c"># Get the mean of the rows, returned as a vector</span>
+<span class="nb">apply</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">mean</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>-0.674949128760326</li>
+    <li>0.288299434064387</li>
+    <li>-0.87941108856336</li>
+    <li>-1.00751428266863</li>
+    <li>-0.0819298347992709</li>
+    <li>0.84342555958658</li>
+    <li>0.202201872370568</li>
+    <li>0.0562304744778094</li>
+    <li>-0.261419251214308</li>
+    <li>0.489148438901616</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre><span class="c"># Get the mean of the columns, returned as a vector</span>
+<span class="nb">apply</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">mean</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>-0.18269745842911</li>
+    <li>-0.130432387900508</li>
+    <li>0.00535450434813664</li>
+</ol><div class="section" id="work">
+<h3>Work!<a class="headerlink" href="#work" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Find the sum of each of the columns of the matrix m.</li>
+<li>Find the product of each of the rows of the matrix m.</li>
+</ul>
+</div>
+<div class="section" id="custom-functions-and-apply">
+<h3>Custom Functions and <code class="docutils literal"><span class="pre">apply</span></code><a class="headerlink" href="#custom-functions-and-apply" title="Permalink to this headline">¶</a></h3>
+<p>Any function that acts on a vector can be applied to the rows or columns
+of a matrix using <code class="docutils literal"><span class="pre">apply</span></code>. For example:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>apply(m,1,function(x) x*x)
+</pre></div>
+</div>
+<table>
+<tbody>
+    <tr><td>3.5500517085</td><td>0.0760736240</td><td>0.0552688372</td><td>1.6794147170</td><td>0.0971184776</td><td>0.0561016187</td><td>0.2691891415</td><td>0.0001104255</td><td>0.0317683363</td><td>1.0025645300</td></tr>
+    <tr><td>0.008346272</td><td>0.359138375</td><td>1.909429885</td><td>0.010364232</td><td>1.347239959</td><td>0.645030852</td><td>0.094049538</td><td>2.223848573</td><td>0.259053905</td><td>0.496399383</td></tr>
+    <tr><td>0.0024335833</td><td>0.0001039935</td><td>2.2245880524</td><td>2.6400258400</td><td>0.3639452898</td><td>2.2209367091</td><td>0.6703762101</td><td>2.7904271078</td><td>1.2432125008</td><td>0.0568308829</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>apply(m,1,function(x) x%*%x)
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>3.56083156395646</li>
+    <li>0.435315992058913</li>
+    <li>4.18928677483859</li>
+    <li>4.32980478918986</li>
+    <li>1.80830372628942</li>
+    <li>2.92206917996323</li>
+    <li>1.03361488996985</li>
+    <li>5.01438610625781</li>
+    <li>1.5340347423788</li>
+    <li>1.55579479637673</li>
+</ol><p>Note that <code class="docutils literal"><span class="pre">apply</span></code> returns an object of the appropriate dimension
+automagically. In the first example, the multiplication operator is the
+element-by-element product, so <code class="docutils literal"><span class="pre">apply</span></code> give us a matrix whose rows are
+the result of multiplying each of the 3 rows by itself. In the second
+example, the multiplication operator is a dot product, so <code class="docutils literal"><span class="pre">apply</span></code>
+returns a 10-dimensional vector with each entry the squared norm of the
+3-dimensional row vector.</p>
+</div>
+<div class="section" id="id1">
+<h3>Work!<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Use <code class="docutils literal"><span class="pre">apply</span></code> to count the number of negative values in each column of
+m.</p>
+</div>
+<div class="section" id="sapply-and-lapply">
+<h3><code class="docutils literal"><span class="pre">sapply</span></code> and <code class="docutils literal"><span class="pre">lapply</span></code><a class="headerlink" href="#sapply-and-lapply" title="Permalink to this headline">¶</a></h3>
+<p>R has several other versions of apply, for specific types of input and
+output data structures. Two of the most common are <code class="docutils literal"><span class="pre">lapply</span></code> and
+<code class="docutils literal"><span class="pre">sapply</span></code>. <code class="docutils literal"><span class="pre">sapply</span></code> can operate on either a list or a vector and
+returns a list or vector, respectively. <code class="docutils literal"><span class="pre">lapply</span></code> can operate on either
+a list or a vector, but returns a list.</p>
+<p>For example:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>v&lt;-1:10
+sapply(v,function(x) x*2)
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>2</li>
+    <li>4</li>
+    <li>6</li>
+    <li>8</li>
+    <li>10</li>
+    <li>12</li>
+    <li>14</li>
+    <li>16</li>
+    <li>18</li>
+    <li>20</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre>v&lt;-1:10
+lapply(v,function(x) x*2)
+</pre></div>
+</div>
+<ol>
+    <li>2</li>
+    <li>4</li>
+    <li>6</li>
+    <li>8</li>
+    <li>10</li>
+    <li>12</li>
+    <li>14</li>
+    <li>16</li>
+    <li>18</li>
+    <li>20</li>
+</ol></div>
+<div class="section" id="aside-on-lists">
+<h3>Aside on Lists<a class="headerlink" href="#aside-on-lists" title="Permalink to this headline">¶</a></h3>
+<p>You may be wondering what is the difference between lists and vectors?
+Well, vectors are lists - but they are a specific type of list that
+contains only numbers. Lists can contain different types of objects.
+Consider the following:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">my</span><span class="o">.</span><span class="n">list</span><span class="o">&lt;-</span><span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+<span class="n">my</span><span class="o">.</span><span class="n">list</span>
+</pre></div>
+</div>
+<ol>
+    <li><ol class=list-inline>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+</ol>
+</li>
+    <li><table>
+<tbody>
+    <tr><td>-1.88415809</td><td>-0.09135793</td><td>-0.04933136</td></tr>
+    <tr><td> 0.27581447</td><td> 0.59928155</td><td>-0.01019772</td></tr>
+    <tr><td> 0.2350933</td><td>-1.3818212</td><td>-1.4915053</td></tr>
+    <tr><td>-1.2959223</td><td>-0.1018049</td><td>-1.6248156</td></tr>
+    <tr><td> 0.3116384</td><td>-1.1607067</td><td> 0.6032788</td></tr>
+    <tr><td>0.2368578</td><td>0.8031381</td><td>1.4902807</td></tr>
+    <tr><td>-0.5188344</td><td> 0.3066750</td><td> 0.8187651</td></tr>
+    <tr><td>-0.01050835</td><td>-1.49125738</td><td> 1.67045716</td></tr>
+    <tr><td>-0.1782367</td><td> 0.5089734</td><td>-1.1149944</td></tr>
+    <tr><td> 1.0012814</td><td> 0.7045562</td><td>-0.2383923</td></tr>
+</tbody>
+</table>
+</li>
+</ol><p>As you can see, <code class="docutils literal"><span class="pre">my.list</span></code> contains a vector AND a matrix. Now, lets
+use <code class="docutils literal"><span class="pre">lapply</span></code>:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>lapply(my.list,function(x) x*2)
+</pre></div>
+</div>
+<ol>
+    <li><ol class=list-inline>
+    <li>2</li>
+    <li>4</li>
+    <li>6</li>
+    <li>8</li>
+    <li>10</li>
+    <li>12</li>
+    <li>14</li>
+    <li>16</li>
+    <li>18</li>
+    <li>20</li>
+</ol>
+</li>
+    <li><table>
+<tbody>
+    <tr><td>-3.76831618</td><td>-0.18271587</td><td>-0.09866272</td></tr>
+    <tr><td> 0.55162895</td><td> 1.19856310</td><td>-0.02039544</td></tr>
+    <tr><td> 0.4701865</td><td>-2.7636424</td><td>-2.9830106</td></tr>
+    <tr><td>-2.5918447</td><td>-0.2036097</td><td>-3.2496313</td></tr>
+    <tr><td> 0.6232768</td><td>-2.3214133</td><td> 1.2065576</td></tr>
+    <tr><td>0.4737156</td><td>1.6062763</td><td>2.9805615</td></tr>
+    <tr><td>-1.0376688</td><td> 0.6133499</td><td> 1.6375301</td></tr>
+    <tr><td>-0.0210167</td><td>-2.9825148</td><td> 3.3409143</td></tr>
+    <tr><td>-0.3564735</td><td> 1.0179468</td><td>-2.2299888</td></tr>
+    <tr><td> 2.0025629</td><td> 1.4091123</td><td>-0.4767846</td></tr>
+</tbody>
+</table>
+</li>
+</ol><p>What does <code class="docutils literal"><span class="pre">sapply</span></code> do?</p>
+<div class="code python highlight-python"><div class="highlight"><pre>sapply(my.list,function(x) x*2)
+</pre></div>
+</div>
+<ol>
+    <li><ol class=list-inline>
+    <li>2</li>
+    <li>4</li>
+    <li>6</li>
+    <li>8</li>
+    <li>10</li>
+    <li>12</li>
+    <li>14</li>
+    <li>16</li>
+    <li>18</li>
+    <li>20</li>
+</ol>
+</li>
+    <li><table>
+<tbody>
+    <tr><td>-3.76831618</td><td>-0.18271587</td><td>-0.09866272</td></tr>
+    <tr><td> 0.55162895</td><td> 1.19856310</td><td>-0.02039544</td></tr>
+    <tr><td> 0.4701865</td><td>-2.7636424</td><td>-2.9830106</td></tr>
+    <tr><td>-2.5918447</td><td>-0.2036097</td><td>-3.2496313</td></tr>
+    <tr><td> 0.6232768</td><td>-2.3214133</td><td> 1.2065576</td></tr>
+    <tr><td>0.4737156</td><td>1.6062763</td><td>2.9805615</td></tr>
+    <tr><td>-1.0376688</td><td> 0.6133499</td><td> 1.6375301</td></tr>
+    <tr><td>-0.0210167</td><td>-2.9825148</td><td> 3.3409143</td></tr>
+    <tr><td>-0.3564735</td><td> 1.0179468</td><td>-2.2299888</td></tr>
+    <tr><td> 2.0025629</td><td> 1.4091123</td><td>-0.4767846</td></tr>
+</tbody>
+</table>
+</li>
+</ol><p>Same thing! Well, what we see here is that R is sometimes smarter than
+us. <code class="docutils literal"><span class="pre">sapply</span></code> returns a list, because we gave it a list. Let&#8217;s try
+something else:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>another.list&lt;-list(1:5)
+mult.list&lt;-sapply(another.list,function(x) x*2)
+print(mult.list)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>     [,1]
+[1,]    2
+[2,]    4
+[3,]    6
+[4,]    8
+[5,]   10
+</pre></div>
+</div>
+<p>Now what? <code class="docutils literal"><span class="pre">sapply</span></code> gave us a <em>matrix</em>.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">dim</span><span class="p">(</span><span class="n">mult</span><span class="o">.</span><span class="n">list</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>5</li>
+    <li>1</li>
+</ol><p>Why R does this is a bit beyond our scope. The take-away here is to be
+careful with data types, and try to give R the right one. If you want a
+vector returned, give R a vector, not a list!</p>
+<div class="section" id="one-more-thing-about-lists">
+<h4>One more thing about lists<a class="headerlink" href="#one-more-thing-about-lists" title="Permalink to this headline">¶</a></h4>
+<p>If you mix character or logical types, you can get unintended results:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>my.list&lt;-list(1:5,TRUE,TRUE)
+mult.list&lt;-sapply(my.list,function(x) x*2)
+print(mult.list)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[[1]]
+[1]  2  4  6  8 10
+
+[[2]]
+[1] 2
+
+[[3]]
+[1] 2
+</pre></div>
+</div>
+<p>R interpreted <code class="docutils literal"><span class="pre">TRUE</span></code> as a numeric 1.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>my.list&lt;-list(1:5,&quot;a&quot;,&quot;b&quot;)
+mult.list&lt;-sapply(my.list,function(x) x*2)
+print(mult.list)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Error in x * 2: non-numeric argument to binary operator
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>     [,1]
+[1,]    2
+[2,]    4
+[3,]    6
+[4,]    8
+[5,]   10
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>my.list&lt;-list(1:5,&quot;1&quot;,&quot;2&quot;)
+mult.list&lt;-sapply(my.list,function(x) x*2)
+print(mult.list)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Error in x * 2: non-numeric argument to binary operator
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>     [,1]
+[1,]    2
+[2,]    4
+[3,]    6
+[4,]    8
+[5,]   10
+</pre></div>
+</div>
+<p>In these last two examples, R returns an error, because we have tried to
+multiply by a character type.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

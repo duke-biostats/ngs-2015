@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Practice 4 &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONESolutios.html">Coding Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Practice 4</a><ul>
+<li><a class="reference internal" href="#exercise-1">Exercise 1</a></li>
+<li><a class="reference internal" href="#exercise-2">Exercise 2</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/PracticeFOURSolutions.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="practice-4">
+<h1>Practice 4<a class="headerlink" href="#practice-4" title="Permalink to this headline">¶</a></h1>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">reshape2</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">pheatmap</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">genefilter</span><span class="p">)</span> <span class="c"># for rowttests</span>
+<span class="n">library</span><span class="p">(</span><span class="n">nlme</span><span class="p">)</span>
+<span class="n">data</span><span class="p">(</span><span class="n">Rail</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Attaching package: ‘genefilter’
+
+The following object is masked from ‘package:base’:
+
+    anyNA
+</pre></div>
+</div>
+<p><strong>Exericse 0</strong></p>
+<p>Using base graphics, make a 2 x 2 grid for plotting.</p>
+<p>Top left - Generate 100 random numbers from a t-distribution with 5
+degrees of freedom - Plot a normalized histogram (i.e. area sums to 1)
+with 8 breaks - Overlay a smoothed density estimate (using <code class="docutils literal"><span class="pre">density</span></code>)
+in orange - Overlay the true density estimate (using <code class="docutils literal"><span class="pre">dt</span></code>) in red -
+Add a rug</p>
+<p>Tor right - Using the <code class="docutils literal"><span class="pre">iris</span></code> data set, make a scatter plot of Sepal
+length agaisnt Sepal width. Color the points by Species. - Add your own
+title and x and y lables</p>
+<p>Bottom left - Generate 100 numbers from a Poisson distribution with rate
+= 3 - Plot a bar chart showing the counts for each value</p>
+<p>Bottom right - Make a box and whiskers plot of the 4 numeric variables
+in the <code class="docutils literal"><span class="pre">iris</span></code> data set - Show vertical labels for all Species names -
+Adjust the margins so that the labels are visible using the <code class="docutils literal"><span class="pre">mar</span></code>
+(bottom, left, top, right) parameter. You can see the default values
+with <code class="docutils literal"><span class="pre">par()$mar</span></code>. Remember to restore the orignal parameters at the
+end.</p>
+<p>Save the plot as a Portable Neetwork Graphics (png) file.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>png(&quot;myplot.png&quot;)
+par(mfrow=c(2,2))
+x &lt;- rt(100, df=5)
+hist(x, breaks = 8, probability = TRUE)
+lines(density(x), col=&quot;orange&quot;)
+xp &lt;- seq(min(x), max(x), length.out = 50)
+lines(xp, dt(xp, df=5), col=&quot;red&quot;)
+rug(x)
+plot(iris$Sepal.Width, iris$Sepal.Length, col=iris$Species,
+     main=&quot;Scatter by Iris species&quot;, ylab=&quot;Length&quot;, xlab=&quot;Width&quot;)
+n &lt;- rpois(100, lambda = 3)
+barplot(table(n))
+orig &lt;- par(no.readonly=TRUE)
+par(mar=c(6.1,4.1,4.1,2.1))
+boxplot(iris[,1:4], las=2)
+par(orig)
+dev.off()
+</pre></div>
+</div>
+<strong>pdf:</strong> 2<div class="code python highlight-python"><div class="highlight"><pre><span class="n">head</span><span class="p">(</span><span class="n">Rail</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Rail</th><th scope=col>travel</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>55</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>53</td></tr>
+    <tr><th scope=row>3</th><td>1</td><td>54</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>26</td></tr>
+    <tr><th scope=row>5</th><td>2</td><td>37</td></tr>
+    <tr><th scope=row>6</th><td>2</td><td>32</td></tr>
+</tbody>
+</table><div class="section" id="exercise-1">
+<h2>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Use the ggplot function</li>
+<li>Create a scatter plot with Rail on the x-axis and travel on the
+y-axis.</li>
+<li>CHange the title to &#8220;I made this!&#8221;</li>
+<li>Change the y-axis label to be &#8220;Zero-force travel time (nano-seconds)&#8221;</li>
+<li>Change the size of the points to 5</li>
+<li>Change the color of potins to blue and transparency to 0.5</li>
+<li>Add a simple linear regression line to the plot with 90% confidence
+intervals</li>
+</ul>
+<div class="code python highlight-python"><div class="highlight"><pre>ggplot(Rail, aes(x=as.numeric(Rail), y=travel)) +
+geom_point(size=5, color=&quot;blue&quot;, alpha=0.5) +
+geom_smooth(method=&quot;lm&quot;) +
+labs(title=&quot;I made this&quot;, ylab=&quot;Zero-force travel time (nano-seconds)&quot;)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/PracticeFOURSolutions_6_0.png"><img alt="_images/PracticeFOURSolutions_6_0.png" src="_images/PracticeFOURSolutions_6_0.png" style="width: 600px;" /></a>
+</div>
+<div class="section" id="exercise-2">
+<h2>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h2>
+<p>Here we will try to replicate the noise discovery heatmaps shown in the
+statistics class.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>set.seed(123)
+
+n &lt;- 20 # number of subjects
+m &lt;- 20000 # number of genes
+alpha &lt;- 0.005 # significance level
+
+# create a matrix of gene expression values with m rows and 2*n columns
+M &lt;- matrix(rnorm(2*n*m), m, 2*n)
+
+# give row and column names
+rownames(M) &lt;- paste(&quot;G&quot;, 1:m, sep=&quot;&quot;)
+colnames(M) &lt;- paste(&quot;id&quot;, 1:(2*n), sep=&quot;&quot;)
+
+# assign subjects inot equal sized groups
+grp &lt;- factor(rep(0:1, c(n, n)))
+
+# calculate p-value using t-test for mean experession value of each gene
+pvals &lt;- rowttests(M, grp)$p.value
+
+# extract the genes which meet the specified significance level
+hits &lt;- M[pvals &lt; alpha,]
+</pre></div>
+</div>
+<ul class="simple">
+<li>Use pheatmap to plot a heatmap</li>
+<li>Remove the row names (Use tAB or R&#8217;s built-in help to figure out to
+do this)</li>
+<li>Use this color palette to map expression values to a red-blakc-green
+scale <code class="docutils literal"><span class="pre">colorRampPalette(c(&quot;red3&quot;,</span> <span class="pre">&quot;black&quot;,</span> <span class="pre">&quot;green3&quot;))(50)</span></code></li>
+</ul>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">pheatmap</span><span class="p">(</span><span class="n">hits</span><span class="p">,</span> <span class="n">show_rownames</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colorRampPalette</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="s">&quot;red3&quot;</span><span class="p">,</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="s">&quot;green3&quot;</span><span class="p">))(</span><span class="mi">50</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/PracticeFOURSolutions_10_0.png"><img alt="_images/PracticeFOURSolutions_10_0.png" src="_images/PracticeFOURSolutions_10_0.png" style="width: 600px;" /></a>
+<div class="code python highlight-python"><div class="highlight"><pre>a1 &lt;- 1
+a2 &lt;- 2
+sigma1 &lt;- 25
+sigma2 &lt;- 25
+
+subject &lt;- paste(&quot;PID&quot;, rep(1:2, each=5))
+dose &lt;- rep(seq(10, 100, 20), 2)
+geneA &lt;- a1 * dose + rnorm(length(dose), sd=sigma1)
+geneB &lt;- a2 * dose + rnorm(length(dose), sd=sigma2)
+
+df &lt;- data.frame(subject=subject, dose=dose, geneA=geneA, geneB=geneB)
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">df</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>subject</th><th scope=col>dose</th><th scope=col>geneA</th><th scope=col>geneB</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>PID 1</td><td>10</td><td>-3.367338</td><td>-31.18716</td></tr>
+    <tr><th scope=row>2</th><td>PID 1</td><td>30</td><td>54.03613</td><td>91.78636</td></tr>
+    <tr><th scope=row>3</th><td>PID 1</td><td>50</td><td>22.40099</td><td>124.477</td></tr>
+    <tr><th scope=row>4</th><td>PID 1</td><td>70</td><td>73.61274</td><td>111.6039</td></tr>
+    <tr><th scope=row>5</th><td>PID 1</td><td>90</td><td>84.05749</td><td>188.5058</td></tr>
+    <tr><th scope=row>6</th><td>PID 2</td><td>10</td><td>-13.63179</td><td>12.04911</td></tr>
+    <tr><th scope=row>7</th><td>PID 2</td><td>30</td><td>40.03472</td><td>57.40407</td></tr>
+    <tr><th scope=row>8</th><td>PID 2</td><td>50</td><td>64.98747</td><td>79.04738</td></tr>
+    <tr><th scope=row>9</th><td>PID 2</td><td>70</td><td>91.22307</td><td>147.4357</td></tr>
+    <tr><th scope=row>10</th><td>PID 2</td><td>90</td><td>70.94818</td><td>166.8696</td></tr>
+</tbody>
+</table><p><strong>Exercise 3</strong></p>
+<p>Using <code class="docutils literal"><span class="pre">ggplot2</span></code>, plot gene expression agaisnt does, using differnt
+colors for differetn genes and differnet shapes for different subjects.
+(Hint: The <code class="docutils literal"><span class="pre">reshape2</span></code> library may come in useful)</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">md</span> <span class="o">&lt;-</span> <span class="n">melt</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s">&quot;subject&quot;</span><span class="p">,</span> <span class="s">&quot;dose&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">md</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>subject</th><th scope=col>dose</th><th scope=col>variable</th><th scope=col>value</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>PID 1</td><td>10</td><td>geneA</td><td>-3.367338</td></tr>
+    <tr><th scope=row>2</th><td>PID 1</td><td>30</td><td>geneA</td><td>54.03613</td></tr>
+    <tr><th scope=row>3</th><td>PID 1</td><td>50</td><td>geneA</td><td>22.40099</td></tr>
+    <tr><th scope=row>4</th><td>PID 1</td><td>70</td><td>geneA</td><td>73.61274</td></tr>
+    <tr><th scope=row>5</th><td>PID 1</td><td>90</td><td>geneA</td><td>84.05749</td></tr>
+    <tr><th scope=row>6</th><td>PID 2</td><td>10</td><td>geneA</td><td>-13.63179</td></tr>
+    <tr><th scope=row>7</th><td>PID 2</td><td>30</td><td>geneA</td><td>40.03472</td></tr>
+    <tr><th scope=row>8</th><td>PID 2</td><td>50</td><td>geneA</td><td>64.98747</td></tr>
+    <tr><th scope=row>9</th><td>PID 2</td><td>70</td><td>geneA</td><td>91.22307</td></tr>
+    <tr><th scope=row>10</th><td>PID 2</td><td>90</td><td>geneA</td><td>70.94818</td></tr>
+    <tr><th scope=row>11</th><td>PID 1</td><td>10</td><td>geneB</td><td>-31.18716</td></tr>
+    <tr><th scope=row>12</th><td>PID 1</td><td>30</td><td>geneB</td><td>91.78636</td></tr>
+    <tr><th scope=row>13</th><td>PID 1</td><td>50</td><td>geneB</td><td>124.477</td></tr>
+    <tr><th scope=row>14</th><td>PID 1</td><td>70</td><td>geneB</td><td>111.6039</td></tr>
+    <tr><th scope=row>15</th><td>PID 1</td><td>90</td><td>geneB</td><td>188.5058</td></tr>
+    <tr><th scope=row>16</th><td>PID 2</td><td>10</td><td>geneB</td><td>12.04911</td></tr>
+    <tr><th scope=row>17</th><td>PID 2</td><td>30</td><td>geneB</td><td>57.40407</td></tr>
+    <tr><th scope=row>18</th><td>PID 2</td><td>50</td><td>geneB</td><td>79.04738</td></tr>
+    <tr><th scope=row>19</th><td>PID 2</td><td>70</td><td>geneB</td><td>147.4357</td></tr>
+    <tr><th scope=row>20</th><td>PID 2</td><td>90</td><td>geneB</td><td>166.8696</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>ggplot(md, aes(x=dose, y=value, color=variable, shape=subject)) +
+geom_point(size=5)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/PracticeFOURSolutions_16_0.png"><img alt="_images/PracticeFOURSolutions_16_0.png" src="_images/PracticeFOURSolutions_16_0.png" style="width: 600px;" /></a>
+<p><strong>Exercise 4</strong></p>
+<p>Usign <code class="docutils literal"><span class="pre">ggplot2</span></code>, make a grid of plots with separae colummsn for each
+subject and separate rows for each gene. Vary the color and size by the
+gene expression value. Add a linear regression fit with 95% confidence
+intervals to each plot.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>ggplot(md, aes(x=dose, y=value, color=value)) +
+geom_point(size=3) +
+geom_smooth(method=&quot;lm&quot;) +
+facet_grid(variable ~ subject)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/PracticeFOURSolutions_18_0.png"><img alt="_images/PracticeFOURSolutions_18_0.png" src="_images/PracticeFOURSolutions_18_0.png" style="width: 600px;" /></a>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

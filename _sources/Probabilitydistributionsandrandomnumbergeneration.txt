@@ -1,0 +1,559 @@
+
+Probability distributions and Random Number Genereation
+=======================================================
+
+Probability distributions
+-------------------------
+
+To some extent, the foundation of statistics is an understanding of
+probability distributions. In addition, drawing of random samples from
+specific probability distributions is ubiquitous in applied statistics
+and useful in many contexts, not least of which is an appreciation of
+how different probabilty distriutions behave
+
+.. code:: python
+
+    help(Distributions)
+
+
+
+
+.. raw:: html
+
+    
+    <table width="100%" summary="page for Distributions {stats}"><tr><td>Distributions {stats}</td><td align="right">R Documentation</td></tr></table>
+    
+    <h2>Distributions in the stats package</h2>
+    
+    <h3>Description</h3>
+    
+    <p>Density, cumulative distribution function, quantile function and random
+    variate generation for many standard probability distributions are
+    available in the <span class="pkg">stats</span> package.
+    </p>
+    
+    
+    <h3>Details</h3>
+    
+    <p>The functions for the density/mass function, cumulative distribution
+    function, quantile function and random variate generation are named in the
+    form <code>dxxx</code>, <code>pxxx</code>, <code>qxxx</code> and <code>rxxx</code> respectively.
+    </p>
+    <p>For the beta distribution see <code>dbeta</code>.
+    </p>
+    <p>For the binomial (including Bernoulli) distribution see
+    <code>dbinom</code>.
+    </p>
+    <p>For the Cauchy distribution see <code>dcauchy</code>.
+    </p>
+    <p>For the chi-squared distribution see <code>dchisq</code>.
+    </p>
+    <p>For the exponential distribution see <code>dexp</code>.
+    </p>
+    <p>For the F distribution see <code>df</code>.
+    </p>
+    <p>For the gamma distribution see <code>dgamma</code>.
+    </p>
+    <p>For the geometric distribution see <code>dgeom</code>.  (This is also
+    a special case of the negative binomial.)
+    </p>
+    <p>For the hypergeometric distribution see <code>dhyper</code>.
+    </p>
+    <p>For the log-normal distribution see <code>dlnorm</code>.
+    </p>
+    <p>For the multinomial distribution see <code>dmultinom</code>.
+    </p>
+    <p>For the negative binomial distribution see <code>dnbinom</code>.
+    </p>
+    <p>For the normal distribution see <code>dnorm</code>.
+    </p>
+    <p>For the Poisson distribution see <code>dpois</code>.
+    </p>
+    <p>For the Student's t distribution see <code>dt</code>.
+    </p>
+    <p>For the uniform distribution see <code>dunif</code>.
+    </p>
+    <p>For the Weibull distribution see <code>dweibull</code>.
+    </p>
+    <p>For less common distributions of test statistics see
+    <code>pbirthday</code>, <code>dsignrank</code>,
+    <code>ptukey</code> and <code>dwilcox</code> (and see the
+    &lsquo;See Also&rsquo; section of <code>cor.test</code>).
+    </p>
+    
+    
+    <h3>See Also</h3>
+    
+    <p><code>RNG</code> about random number generation in <font face="Courier New,Courier" color="#666666"><b>R</b></font>.
+    </p>
+    <p>The CRAN task view on distributions,
+    <a href="http://cran.r-project.org/web/views/Distributions.html">http://cran.r-project.org/web/views/Distributions.html</a>,
+    mentioning several CRAN packages for additional distributions.
+    </p>
+    
+    <hr><div align="center">[Package <em>stats</em> version 3.1.2 ]</div>
+
+
+
+Basic functions for working with probabilty distributions ----
+
+In the help documentaion, it is stated that "The functions for the
+density/mass function, cumulative distribution function, quantile
+function and random variate generation are named in the form dxxx, pxxx,
+qxxx and rxxx respectively". We will explore what this means with a
+couple of examples.
+
+Discrete distributions
+~~~~~~~~~~~~~~~~~~~~~~
+
+For discrte distributions, the random values can only take integer
+values. One of the simplest discrete distributions is the Bernoulli
+distribution, where the only possible values are 0 ("Failure") and 1
+("Success"). This has 2 parameters - the number of trials :math:`n` and
+the probabilty of success in each trial :math:`p`. For example the
+Bernoulli distribution could model getting HEADs in a sequence or coin
+tosses, or whether a given subject in an experiment repsonds to a drug
+or not. Another discrete distribution is the Binomial distribution,
+which gives the probability of :math:`k` successes in :math:`n` trials.
+For example, the binomial distibution can tell you how many HEADS you
+get in 10 coin tosses for a biased coin wiht p=0.45. Note that the
+Bernoulli distribution can be considered a special case of the binomial
+distribution with a size of 1.
+
+.. code:: python
+
+    ?rbinom
+
+
+
+
+.. raw:: html
+
+    
+    <table width="100%" summary="page for Binomial {stats}"><tr><td>Binomial {stats}</td><td align="right">R Documentation</td></tr></table>
+    
+    <h2>The Binomial Distribution</h2>
+    
+    <h3>Description</h3>
+    
+    <p>Density, distribution function, quantile function and random
+    generation for the binomial distribution with parameters <code>size</code>
+    and <code>prob</code>.
+    </p>
+    <p>This is conventionally interpreted as the number of &lsquo;successes&rsquo;
+    in <code>size</code> trials.
+    </p>
+    
+    
+    <h3>Usage</h3>
+    
+    <pre>
+    dbinom(x, size, prob, log = FALSE)
+    pbinom(q, size, prob, lower.tail = TRUE, log.p = FALSE)
+    qbinom(p, size, prob, lower.tail = TRUE, log.p = FALSE)
+    rbinom(n, size, prob)
+    </pre>
+    
+    
+    <h3>Arguments</h3>
+    
+    <table summary="R argblock">
+    <tr valign="top"><td><code>x, q</code></td>
+    <td>
+    <p>vector of quantiles.</p>
+    </td></tr>
+    <tr valign="top"><td><code>p</code></td>
+    <td>
+    <p>vector of probabilities.</p>
+    </td></tr>
+    <tr valign="top"><td><code>n</code></td>
+    <td>
+    <p>number of observations. If <code>length(n) &gt; 1</code>, the length
+    is taken to be the number required.</p>
+    </td></tr>
+    <tr valign="top"><td><code>size</code></td>
+    <td>
+    <p>number of trials (zero or more).</p>
+    </td></tr>
+    <tr valign="top"><td><code>prob</code></td>
+    <td>
+    <p>probability of success on each trial.</p>
+    </td></tr>
+    <tr valign="top"><td><code>log, log.p</code></td>
+    <td>
+    <p>logical; if TRUE, probabilities p are given as log(p).</p>
+    </td></tr>
+    <tr valign="top"><td><code>lower.tail</code></td>
+    <td>
+    <p>logical; if TRUE (default), probabilities are
+    <i>P[X &le; x]</i>, otherwise, <i>P[X &gt; x]</i>.</p>
+    </td></tr>
+    </table>
+    
+    
+    <h3>Details</h3>
+    
+    <p>The binomial distribution with <code>size</code> <i>= n</i> and
+    <code>prob</code> <i>= p</i> has density
+    </p>
+    <p align="center"><i>
+        p(x) = choose(n, x) p^x (1-p)^(n-x)</i></p>
+    
+    <p>for <i>x = 0, &hellip;, n</i>.
+    Note that binomial <EM>coefficients</EM> can be computed by
+    <code>choose</code> in <font face="Courier New,Courier" color="#666666"><b>R</b></font>.
+    </p>
+    <p>If an element of <code>x</code> is not integer, the result of <code>dbinom</code>
+    is zero, with a warning.
+    </p>
+    <i>p(x)</i><p> is computed using Loader's algorithm, see the reference below.
+    </p>
+    <p>The quantile is defined as the smallest value <i>x</i> such that
+    <i>F(x) &ge; p</i>, where <i>F</i> is the distribution function.
+    </p>
+    
+    
+    <h3>Value</h3>
+    
+    <p><code>dbinom</code> gives the density, <code>pbinom</code> gives the distribution
+    function, <code>qbinom</code> gives the quantile function and <code>rbinom</code>
+    generates random deviates.
+    </p>
+    <p>If <code>size</code> is not an integer, <code>NaN</code> is returned.
+    </p>
+    <p>The length of the result is determined by <code>n</code> for
+    <code>rbinom</code>, and is the maximum of the lengths of the
+    numerical arguments for the other functions.  
+    </p>
+    <p>The numerical arguments other than <code>n</code> are recycled to the
+    length of the result.  Only the first elements of the logical
+    arguments are used.
+    </p>
+    
+    
+    <h3>Source</h3>
+    
+    <p>For <code>dbinom</code> a saddle-point expansion is used: see
+    </p>
+    <p>Catherine Loader (2000). <EM>Fast and Accurate Computation of
+    Binomial Probabilities</EM>; available from
+    <a href="http://www.herine.net/stat/software/dbinom.html">http://www.herine.net/stat/software/dbinom.html</a>.
+    </p>
+    <p><code>pbinom</code> uses <code>pbeta</code>.
+    </p>
+    <p><code>qbinom</code> uses the Cornish&ndash;Fisher Expansion to include a skewness
+    correction to a normal approximation, followed by a search.
+    </p>
+    <p><code>rbinom</code> (for <code>size &lt; .Machine$integer.max</code>) is based on
+    </p>
+    <p>Kachitvichyanukul, V. and Schmeiser, B. W. (1988)
+    Binomial random variate generation.
+    <EM>Communications of the ACM</EM>, <B>31</B>, 216&ndash;222.
+    </p>
+    <p>For larger values it uses inversion.
+    </p>
+    
+    
+    <h3>See Also</h3>
+    
+    <p>Distributions for other standard distributions, including
+    <code>dnbinom</code> for the negative binomial, and
+    <code>dpois</code> for the Poisson distribution.
+    </p>
+    
+    
+    <h3>Examples</h3>
+    
+    <pre>
+    require(graphics)
+    # Compute P(45 &lt; X &lt; 55) for X Binomial(100,0.5)
+    sum(dbinom(46:54, 100, 0.5))
+    
+    ## Using "log = TRUE" for an extended range :
+    n &lt;- 2000
+    k &lt;- seq(0, n, by = 20)
+    plot (k, dbinom(k, n, pi/10, log = TRUE), type = "l", ylab = "log density",
+          main = "dbinom(*, log=TRUE) is better than  log(dbinom(*))")
+    lines(k, log(dbinom(k, n, pi/10)), col = "red", lwd = 2)
+    ## extreme points are omitted since dbinom gives 0.
+    mtext("dbinom(k, log=TRUE)", adj = 0)
+    mtext("extended range", adj = 0, line = -1, font = 4)
+    mtext("log(dbinom(k))", col = "red", adj = 1)
+    </pre>
+    
+    <hr><div align="center">[Package <em>stats</em> version 3.1.2 ]</div>
+
+
+
+The ``rxxx`` family
+~~~~~~~~~~~~~~~~~~~
+
+If I coss a toin with probablity of heads = 0.45, how many heads do I
+see? Let's simulate this experiemnt by drawing random numbers from the
+Bernoulli distribution (or equivalently the binomial distribution with
+size=1).
+
+.. code:: python
+
+    rbinom(n=100, prob=0.45, size=1)
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    </ol>
+
+
+
+
+How many heads do we see if we repeat this experiemnt 10 times?
+
+.. code:: python
+
+    rbinom(n=10, prob=0.45, size=100)
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>44</li>
+    	<li>42</li>
+    	<li>37</li>
+    	<li>50</li>
+    	<li>45</li>
+    	<li>47</li>
+    	<li>52</li>
+    	<li>47</li>
+    	<li>38</li>
+    	<li>52</li>
+    </ol>
+
+
+
+
+It should be clear that the number of heads we observe is alwayss a
+number between 0 and 100. What is the probabily of observing exactly 35
+heades?
+
+The ``dxxx`` family
+~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    dbinom(x=35, prob=0.45, size=100)
+
+
+
+
+.. raw:: html
+
+    0.0106036052539107
+
+
+
+Let's plot the proabbity for all numbers from 0 to 100.
+
+.. code:: python
+
+    plot(dbinom(x=0:100, prob=0.45, size=100))
+
+.. image:: Probabilitydistributionsandrandomnumbergeneration _files/Probabilitydistributionsandrandomnumbergeneration_16_0.png
+   :width: 600
+
+
+The ``pxxx`` family
+~~~~~~~~~~~~~~~~~~~
+
+We can also see the cumulative probabilty of otbaiining a certain number
+of heads with ``pbinom``.
+
+.. code:: python
+
+    plot(pbinom(0:100, prob=0.45, size=100))
+
+
+.. image:: Probabilitydistributionsandrandomnumbergeneration _files/Probabilitydistributionsandrandomnumbergeneration_19_0.png
+   :width: 600
+
+
+
+The ``qxxx`` family
+~~~~~~~~~~~~~~~~~~~
+
+The ``qxxx`` or quantile function is a little more tricky to understand.
+One way to think about it is to look at the cumulative distirbution plot
+and ask - If I start with a horizontal line from the y-axis at some
+value p between 0 and 1 until I hit the funciton, then drop a veritcal
+line to teh x-axis, what is the value I get? For example, what is the
+number of heads where the cumulative distribution first reaches a value
+of 0.5?
+
+.. code:: python
+
+    qbinom(p = 0.5, prob = 0.45, size=100)
+
+
+
+
+.. raw:: html
+
+    45
+
+
+
+Work!
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+What is the mean, median and standard deviation of the number of heads
+if the probabilty of heads is 0.4 and we toss 50 coins per experiment?
+Do 1000 such experiments and use the appropirate R functions to
+callculate these summary statistics.
+
+
+What is the probability of getting between 2 to 5 (that is 2, 3, 4 or 5)
+sixes in 10 rolls of a fair six-sided die?
+
+
+Explore what the Poisson distribution is (e.g. see Wikipedia and R
+help). Suppose there is on averate one mutation every 10,000 bases. What
+is the probabilty of finding exactly 8 mutations in 100,000 bases? What
+is the prrobability fo finding 15 or more mutations in 100,000 bases?
+
+
+Continuous Distributions
+------------------------
+
+Distributions can also be continuous - a familiar example is the normal
+distribution.
+
+.. code:: python
+
+    x <- seq(-5, 5, length.out = 100)
+    ns <- rnorm(n=1000, mean=0.0, sd=1.0)
+    hist(ns, probability=TRUE, ylim = c(0, 1))
+    lines(x, dnorm(x), type="l", col="blue")
+    lines(x, pnorm(x), type="l", lty=2, col="red")
+
+.. image:: Probabilitydistributionsandrandomnumbergeneration _files/Probabilitydistributionsandrandomnumbergeneration_31_0.png
+   :width: 600
+
+
+
+
+Work!
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If IQ is normally distributed, the mean IQ is 100 with a standard
+deviation of 15, and you have an IQ of 135, what percentage of people
+have IQs higher than you?
+
+
+Suppose that you toss 100 unbiased conis per experiemnt and count the
+number of heads. Plot the density function of this discrete
+distribution. Now superimpose a normal distribution density function
+with mean 50 and standard deviation of 5. What do you observe?
+

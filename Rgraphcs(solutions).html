@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Making interesting plots in R &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearningWhatCouldGoWrong.html">Supervised Learning Continued - What Could Go Wrong?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONE-Solutions.html">Practice ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTWOSolutions.html">Practice TWO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTHREESolutions.html">Practice THREE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeFOURSolutions.html">Practice FOUR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2NotebookFromMatrix.html">Import count data using basic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Making interesting plots in R</a><ul>
+<li><a class="reference internal" href="#data-set">Data set</a></li>
+<li><a class="reference internal" href="#basic-plots">Basic plots</a></li>
+<li><a class="reference internal" href="#plot-aesthetics">Plot aesthetics</a></li>
+<li><a class="reference internal" href="#adding-fitted-lines">Adding fitted lines</a><ul>
+<li><a class="reference internal" href="#using-existing-model-fits">Using existing model fits</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#graphs">Graphs</a></li>
+<li><a class="reference internal" href="#heatmap">Heatmap</a></li>
+<li><a class="reference internal" href="#heatmap-with-dendrogram">Heatmap with dendrogram</a></li>
+<li><a class="reference internal" href="#fancy-heatmaps">Fancy heatmaps</a></li>
+<li><a class="reference internal" href="#plotting-mulitple-plots-with-condiitioning-using-lattice">Plotting mulitple plots with condiitioning using <code class="docutils literal"><span class="pre">lattice</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#work">Work!</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/Rgraphcs(solutions).txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="making-interesting-plots-in-r">
+<h1>Making interesting plots in R<a class="headerlink" href="#making-interesting-plots-in-r" title="Permalink to this headline">¶</a></h1>
+<p>In addition to the <code class="docutils literal"><span class="pre">base</span></code> plotting facilites we have been using, R
+also has the <code class="docutils literal"><span class="pre">lattice</span></code> and <code class="docutils literal"><span class="pre">ggplot2</span></code> packages that can be used to
+generate beutfiul graphs. We will only touch on a small subset of
+<code class="docutils literal"><span class="pre">ggplot2</span></code> capabiliites here.</p>
+<p><strong>References</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.cookbook-r.com/Graphs/">R Graphics Cookbook</a></li>
+<li><a class="reference external" href="http://www.springer.com/statistics/computational/book/978-0-387-75968-5">Lattice: Multivariate Data Visualization with
+R</a></li>
+</ul>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">options</span><span class="p">(</span><span class="n">warn</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre># from https://gist.github.com/stevenworthington/3178163
+ipak &lt;- function(pkg){
+    new.pkg &lt;- pkg[!(pkg %in% installed.packages()[, &quot;Package&quot;])]
+    if (length(new.pkg))
+        install.packages(new.pkg, dependencies = TRUE, repos = &quot;http://cran.r-project.org&quot;)
+    sapply(pkg, require, character.only = TRUE)
+}
+
+# usage
+packages &lt;- c(&quot;ggplot2&quot;,  &quot;gplots&quot;, &quot;lattice&quot;, &quot;plyr&quot;, &quot;reshape2&quot;,
+              &quot;RColorBrewer&quot;, &quot;grid&quot;, &quot;gridExtra&quot;, &quot;igraph&quot;, &quot;igraphdata&quot;)
+ipak(packages)
+</pre></div>
+</div>
+<dl class=dl-horizontal>
+    <dt>ggplot2</dt>
+            <dd>TRUE</dd>
+    <dt>gplots</dt>
+            <dd>TRUE</dd>
+    <dt>lattice</dt>
+            <dd>TRUE</dd>
+    <dt>plyr</dt>
+            <dd>TRUE</dd>
+    <dt>reshape2</dt>
+            <dd>TRUE</dd>
+    <dt>RColorBrewer</dt>
+            <dd>TRUE</dd>
+    <dt>grid</dt>
+            <dd>TRUE</dd>
+    <dt>gridExtra</dt>
+            <dd>TRUE</dd>
+    <dt>igraph</dt>
+            <dd>TRUE</dd>
+    <dt>igraphdata</dt>
+            <dd>TRUE</dd>
+</dl><div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="data-set">
+<h2>Data set<a class="headerlink" href="#data-set" title="Permalink to this headline">¶</a></h2>
+<p>We will use about characteristics of different cars.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>?mtcars
+</pre></div>
+</div>
+<table width="100%" summary="page for mtcars {datasets}"><tr><td>mtcars {datasets}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Motor Trend Car Road Tests</h2>
+
+<h3>Description</h3>
+
+<p>The data was extracted from the 1974 <EM>Motor Trend</EM> US magazine,
+and comprises fuel consumption and 10 aspects of
+automobile design and performance for 32 automobiles (1973&ndash;74
+models).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>mtcars</pre>
+
+
+<h3>Format</h3>
+
+<p>A data frame with 32 observations on 11 variables.
+</p>
+
+<table summary="Rd table">
+<tr>
+ <td align="right">
+    [, 1] </td><td align="left"> mpg  </td><td align="left"> Miles/(US) gallon </td>
+</tr>
+<tr>
+ <td align="right">
+    [, 2] </td><td align="left"> cyl  </td><td align="left"> Number of cylinders </td>
+</tr>
+<tr>
+ <td align="right">
+    [, 3] </td><td align="left"> disp </td><td align="left"> Displacement (cu.in.) </td>
+</tr>
+<tr>
+ <td align="right">
+    [, 4] </td><td align="left"> hp   </td><td align="left"> Gross horsepower </td>
+</tr>
+<tr>
+ <td align="right">
+    [, 5] </td><td align="left"> drat </td><td align="left"> Rear axle ratio </td>
+</tr>
+<tr>
+ <td align="right">
+    [, 6] </td><td align="left"> wt   </td><td align="left"> Weight (lb/1000) </td>
+</tr>
+<tr>
+ <td align="right">
+    [, 7] </td><td align="left"> qsec </td><td align="left"> 1/4 mile time </td>
+</tr>
+<tr>
+ <td align="right">
+    [, 8] </td><td align="left"> vs   </td><td align="left"> V/S </td>
+</tr>
+<tr>
+ <td align="right">
+    [, 9] </td><td align="left"> am   </td><td align="left"> Transmission (0 = automatic, 1 = manual) </td>
+</tr>
+<tr>
+ <td align="right">
+    [,10] </td><td align="left"> gear </td><td align="left"> Number of forward gears </td>
+</tr>
+<tr>
+ <td align="right">
+    [,11] </td><td align="left"> carb </td><td align="left"> Number of carburetors
+  </td>
+</tr>
+
+</table>
+
+
+
+<h3>Source</h3>
+
+<p>Henderson and Velleman (1981),
+Building multiple regression models interactively.
+<EM>Biometrics</EM>, <B>37</B>, 391&ndash;411.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+require(graphics)
+pairs(mtcars, main = "mtcars data")
+coplot(mpg ~ disp | as.factor(cyl), data = mtcars,
+       panel = panel.smooth, rows = 1)
+</pre>
+
+<hr><div align="center">[Package <em>datasets</em> version 3.1.2 ]</div><div class="code python highlight-python"><div class="highlight"><pre><span class="n">head</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>mpg</th><th scope=col>cyl</th><th scope=col>disp</th><th scope=col>hp</th><th scope=col>drat</th><th scope=col>wt</th><th scope=col>qsec</th><th scope=col>vs</th><th scope=col>am</th><th scope=col>gear</th><th scope=col>carb</th></tr></thead>
+<tbody>
+    <tr><th scope=row>Mazda RX4</th><td>21</td><td>6</td><td>160</td><td>110</td><td>3.9</td><td>2.62</td><td>16.46</td><td>0</td><td>1</td><td>4</td><td>4</td></tr>
+    <tr><th scope=row>Mazda RX4 Wag</th><td>21</td><td>6</td><td>160</td><td>110</td><td>3.9</td><td>2.875</td><td>17.02</td><td>0</td><td>1</td><td>4</td><td>4</td></tr>
+    <tr><th scope=row>Datsun 710</th><td>22.8</td><td>4</td><td>108</td><td>93</td><td>3.85</td><td>2.32</td><td>18.61</td><td>1</td><td>1</td><td>4</td><td>1</td></tr>
+    <tr><th scope=row>Hornet 4 Drive</th><td>21.4</td><td>6</td><td>258</td><td>110</td><td>3.08</td><td>3.215</td><td>19.44</td><td>1</td><td>0</td><td>3</td><td>1</td></tr>
+    <tr><th scope=row>Hornet Sportabout</th><td>18.7</td><td>8</td><td>360</td><td>175</td><td>3.15</td><td>3.44</td><td>17.02</td><td>0</td><td>0</td><td>3</td><td>2</td></tr>
+    <tr><th scope=row>Valiant</th><td>18.1</td><td>6</td><td>225</td><td>105</td><td>2.76</td><td>3.46</td><td>20.22</td><td>1</td><td>0</td><td>3</td><td>1</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="basic-plots">
+<h2>Basic plots<a class="headerlink" href="#basic-plots" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>p1 &lt;- ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point()
+p2 &lt;- ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() + geom_line()
+p3 &lt;- ggplot(mtcars, aes(x=mpg)) + geom_histogram(binwidth=5)
+p4 &lt;- ggplot(mtcars, aes(x=factor(gear), y=wt)) + geom_boxplot()
+p5 &lt;- ggplot(data.frame(x=seq(0, 2*pi, length.out = 50)), aes(x=x)) + stat_function(fun=sin, geom=&quot;line&quot;)
+p6 &lt;- ggplot(mtcars, aes(x=mpg, alpha=0.5, fill=factor(gear))) + geom_density() +
+    guides(alpha=FALSE, fill=FALSE)
+grid.arrange(p1, p2, p3, p4, p5, p6, ncol = 2, main = &quot;Basic plots&quot;)
+</pre></div>
+</div>
+</div>
+<div class="section" id="plot-aesthetics">
+<h2>Plot aesthetics<a class="headerlink" href="#plot-aesthetics" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>p &lt;- ggplot(mtcars, aes(x=wt, y=mpg))
+p1 &lt;- p + geom_point(aes(alpha=qsec))
+p2 &lt;- p + geom_point(aes(color=factor(gear))) + xlab(&quot;Weight&quot;) + ylab(&quot;Miles per gallon&quot;)
+p3 &lt;- p + geom_point(aes(size=hp, color=disp)) + ggtitle(&quot;Color and size&quot;)
+p4 &lt;- p + geom_point(colour=&quot;black&quot;, size = 4.5, show_guide = TRUE) +
+          geom_point(colour=&quot;pink&quot;, size = 4, show_guide = TRUE) +
+          geom_point(aes(shape = factor(cyl)))
+grid.arrange(p1, p2, p3, p4, ncol = 2, main = &quot;Scatter plots with different aesthetics&quot;)
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-fitted-lines">
+<h2>Adding fitted lines<a class="headerlink" href="#adding-fitted-lines" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>p &lt;- ggplot(mtcars, aes(x=wt, y=mpg))
+p1 &lt;- p + geom_point() + stat_smooth(method=lm, se=FALSE)
+p2 &lt;- p + geom_point() + stat_smooth(method=lm, level=0.95)
+p3 &lt;- p + geom_point() + stat_smooth(method=loess, color=&#39;red&#39;)
+p4 &lt;- ggplot(mtcars, aes(x=wt, y=mpg, color=factor(am))) + geom_point() +
+    geom_smooth(method=&#39;loess&#39;) + guides(color=FALSE)
+grid.arrange(p1, p2, p3, p4, ncol = 2, main = &quot;Scatter plots with fitted lines&quot;)
+</pre></div>
+</div>
+<div class="section" id="using-existing-model-fits">
+<h3>Using existing model fits<a class="headerlink" href="#using-existing-model-fits" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-python"><div class="highlight"><pre>m1 &lt;- lm(mpg ~ wt, data=mtcars)
+pred1 &lt;- data.frame(wt=seq(min(mtcars$wt), max(mtcars$wt), length.out=100))
+pred &lt;- predict(m1, pred1, se.fit=TRUE)
+pred1$mpg &lt;- pred$fit
+pred1$low &lt;- pred1$mpg - 1.96*pred$se.fit
+pred1$high &lt;- pred1$mpg + 1.96*pred$se.fit
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>m2 &lt;- loess(mpg ~ wt, data=mtcars)
+pred2 &lt;- data.frame(wt=seq(min(mtcars$wt), max(mtcars$wt), length.out=100))
+pred2$mpg &lt;- predict(m2, pred2)
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>p &lt;- ggplot(mtcars, aes(x=wt, y=mpg))
+p1 &lt;- p + geom_point(size=4, color=&#39;gray40&#39;) + geom_line(data=pred1)
+p2 &lt;- p + geom_point(size=4, color=&#39;gray40&#39;) + geom_line(data=pred1) +
+    annotate(&quot;text&quot;, label=&quot;r^2 == 0.75&quot;, parse=TRUE, x=4.8, y=32)
+p3 &lt;- p + geom_point(size=4, color=&#39;gray40&#39;) + geom_line(data=pred1) +
+    geom_ribbon(data=pred1,aes(ymin=low,ymax=high),alpha=0.3) +
+    annotate(&quot;text&quot;, label=&quot;r^2 == 0.75&quot;, parse=TRUE, x=4.8, y=32)
+p4 &lt;- p + geom_point(size=4, color=&#39;blue&#39;, alpha=0.5) + geom_line(data=pred2, color=&#39;red&#39;, size=1)
+grid.arrange(p1, p2, p3, p4, ncol = 2, main = &quot;Scatter plots with fitted lines from prior models&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="graphs">
+<h2>Graphs<a class="headerlink" href="#graphs" title="Permalink to this headline">¶</a></h2>
+<p>It may be necessary to install first</p>
+<div class="code r highlight-python"><div class="highlight"><pre><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s">&quot;igraphdata&quot;</span><span class="p">,</span> <span class="n">repos</span> <span class="o">=</span> <span class="s">&quot;http://cran.r-project.org&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">igraphdata</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">data</span><span class="p">(</span><span class="n">macaque</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plot</span><span class="p">(</span><span class="n">macaque</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">layout</span><span class="o">.</span><span class="n">auto</span><span class="p">,</span> <span class="n">vertex</span><span class="o">.</span><span class="n">shape</span><span class="o">=</span><span class="s">&quot;circle&quot;</span><span class="p">,</span>
+     <span class="n">vertex</span><span class="o">.</span><span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">arrow</span><span class="o">.</span><span class="n">size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">vertex</span><span class="o">.</span><span class="n">label</span><span class="o">=</span><span class="n">NA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="heatmap">
+<h2>Heatmap<a class="headerlink" href="#heatmap" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>heatmap(as.matrix(mtcars), Rowv = NA, Colv = NA, scale = &quot;column&quot;)
+</pre></div>
+</div>
+</div>
+<div class="section" id="heatmap-with-dendrogram">
+<h2>Heatmap with dendrogram<a class="headerlink" href="#heatmap-with-dendrogram" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>heatmap(as.matrix(mtcars), scale = &quot;column&quot;)
+</pre></div>
+</div>
+</div>
+<div class="section" id="fancy-heatmaps">
+<h2>Fancy heatmaps<a class="headerlink" href="#fancy-heatmaps" title="Permalink to this headline">¶</a></h2>
+<p>Also see <a class="reference external" href="https://github.com/rstudio/d3heatmap">d3heatmaps</a> if you
+want an interactive heatmap. This does not seem to work within the
+notebook but will work in RStudio or an R script.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">pheatmap</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>pheatmap(as.matrix(mtcars), scale = &quot;column&quot;)
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">gplots</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>heatmap.2(as.matrix(mtcars), scale = &quot;column&quot;, col=redgreen)
+</pre></div>
+</div>
+</div>
+<div class="section" id="plotting-mulitple-plots-with-condiitioning-using-lattice">
+<h2>Plotting mulitple plots with condiitioning using <code class="docutils literal"><span class="pre">lattice</span></code><a class="headerlink" href="#plotting-mulitple-plots-with-condiitioning-using-lattice" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>splom(~mtcars[c(1, 3:7)] | factor(am), data=mtcars, groups=cyl, pscale=0, auto.key=TRUE,
+     main=&quot;Cars grouped by cylinders for manual and automatic transmission&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="work">
+<h1>Work!<a class="headerlink" href="#work" title="Permalink to this headline">¶</a></h1>
+<p>Reporduce plots doen by Kouros using ggplot2.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">nlme</span><span class="p">)</span>
+<span class="n">data</span><span class="p">(</span><span class="n">Rail</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">head</span><span class="p">(</span><span class="n">Rail</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Rail</th><th scope=col>travel</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>55</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>53</td></tr>
+    <tr><th scope=row>3</th><td>1</td><td>54</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>26</td></tr>
+    <tr><th scope=row>5</th><td>2</td><td>37</td></tr>
+    <tr><th scope=row>6</th><td>2</td><td>32</td></tr>
+</tbody>
+</table><ul class="simple">
+<li>Use the ggplot function</li>
+<li>Create a scatter plot with Rail on the x-axis and travel on the
+y-axis.</li>
+<li>CHange the title to &#8220;I made this!&#8221;</li>
+<li>Change the y-axis label to be &#8220;Zero-force travel time (nano-seconds)&#8221;</li>
+<li>Change the size of the points to 5</li>
+<li>Change the color of potins to blue and transparency to 0.5</li>
+<li>Add a simple linear regression line to the plot with 90% confidence
+intervals</li>
+</ul>
+<ul class="simple">
+<li>Use the ggplot function</li>
+<li>Create a varaible <code class="docutils literal"><span class="pre">x</span></code> that contains 100 points drawn from a normal
+distribution with mean 10 and standerd deviation 2</li>
+<li>Plot a density estimate in blue</li>
+<li>Plot the true denstiy function in red</li>
+<li>Add a rug showing locaiton of individual points in <code class="docutils literal"><span class="pre">x</span></code> (Google for
+this)</li>
+<li>Add a normalized histogram with bin width = 1 (Hint: add
+aes(y=..density..) as an argument to geom_histogram)</li>
+<li>Remove the legend</li>
+<li>Set the title to &#8220;100 points from the N(10,2) distribution&#8221;</li>
+</ul>
+<div class="code python highlight-python"><div class="highlight"><pre>x &lt;- rnorm(mean=10, sd=2, n=100)
+xp &lt;- seq(2, 18, length.out = 100)
+y &lt;- dnorm(xp, mean=10, sd=2)
+ggplot(data.frame(x), aes(x=x, alpha=0.3)) +
+    geom_line(data=data.frame(x=x, y=y), aes(x=xp, y=y), col=&quot;red&quot;) +
+    geom_rug() +
+    geom_density(color=&quot;blue&quot;) +
+    geom_histogram(binwidth=1, aes(y=..density..), alpha=0.3) +
+    guides(alpha=FALSE)
+</pre></div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

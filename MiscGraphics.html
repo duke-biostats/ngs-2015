@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Plotting Graphcs and Heatmpas &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+    <link rel="next" title="Introdcution to ggplot2" href="BaseGraphicsGGPlotComparison.html" />
+    <link rel="prev" title="Base Graphics" href="BaseGraphics.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearningWhatCouldGoWrong.html">Supervised Learning Continued - What Could Go Wrong?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONE-Solutions.html">Practice ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTWOSolutions.html">Practice TWO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTHREESolutions.html">Practice THREE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeFOURSolutions.html">Practice FOUR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2NotebookFromMatrix.html">Import count data using basic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Plotting Graphcs and Heatmpas</a><ul>
+<li><a class="reference internal" href="#graphs">Graphs</a></li>
+<li><a class="reference internal" href="#heatmap">Heatmap</a></li>
+<li><a class="reference internal" href="#heatmap-with-dendrogram">Heatmap with dendrogram</a></li>
+<li><a class="reference internal" href="#fancy-heatmaps">Fancy heatmaps</a><ul>
+<li><a class="reference internal" href="#work">Work!</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#perform-noise-discovery">Perform noise discovery</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="BaseGraphics.html" title="Previous Chapter: Base Graphics"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Base Graphics</span>
+    </a>
+  </li>
+  <li>
+    <a href="BaseGraphicsGGPlotComparison.html" title="Next Chapter: Introdcution to ggplot2"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Introdcution ... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/MiscGraphics.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="plotting-graphcs-and-heatmpas">
+<h1>Plotting Graphcs and Heatmpas<a class="headerlink" href="#plotting-graphcs-and-heatmpas" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="graphs">
+<h2>Graphs<a class="headerlink" href="#graphs" title="Permalink to this headline">¶</a></h2>
+<p>It may be necessary to install first</p>
+<div class="code r highlight-python"><div class="highlight"><pre><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s">&quot;igraphdata&quot;</span><span class="p">,</span> <span class="n">repos</span> <span class="o">=</span> <span class="s">&quot;http://cran.r-project.org&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">igraphdata</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">data</span><span class="p">(</span><span class="n">macaque</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plot</span><span class="p">(</span><span class="n">macaque</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">layout</span><span class="o">.</span><span class="n">auto</span><span class="p">,</span> <span class="n">vertex</span><span class="o">.</span><span class="n">shape</span><span class="o">=</span><span class="s">&quot;circle&quot;</span><span class="p">,</span>
+     <span class="n">vertex</span><span class="o">.</span><span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">arrow</span><span class="o">.</span><span class="n">size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">vertex</span><span class="o">.</span><span class="n">label</span><span class="o">=</span><span class="n">NA</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/MiscGraphics_4_0.png"><img alt="_images/MiscGraphics_4_0.png" src="_images/MiscGraphics_4_0.png" style="width: 600px;" /></a>
+</div>
+<div class="section" id="heatmap">
+<h2>Heatmap<a class="headerlink" href="#heatmap" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>heatmap(as.matrix(mtcars), Rowv = NA, Colv = NA, scale = &quot;column&quot;)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/MiscGraphics_6_0.png"><img alt="_images/MiscGraphics_6_0.png" src="_images/MiscGraphics_6_0.png" style="width: 600px;" /></a>
+</div>
+<div class="section" id="heatmap-with-dendrogram">
+<h2>Heatmap with dendrogram<a class="headerlink" href="#heatmap-with-dendrogram" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>heatmap(as.matrix(mtcars), scale = &quot;column&quot;)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/MiscGraphics_8_0.png"><img alt="_images/MiscGraphics_8_0.png" src="_images/MiscGraphics_8_0.png" style="width: 600px;" /></a>
+</div>
+<div class="section" id="fancy-heatmaps">
+<h2>Fancy heatmaps<a class="headerlink" href="#fancy-heatmaps" title="Permalink to this headline">¶</a></h2>
+<p>Also see <a class="reference external" href="https://github.com/rstudio/d3heatmap">d3heatmaps</a> if you
+want an interactive heatmap. This does not seem to work within the
+notebook but will work in RStudio or an R script.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">pheatmap</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>pheatmap(as.matrix(mtcars), scale = &quot;column&quot;)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/MiscGraphics_11_0.png"><img alt="_images/MiscGraphics_11_0.png" src="_images/MiscGraphics_11_0.png" style="width: 600px;" /></a>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">gplots</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>heatmap.2(as.matrix(mtcars), scale = &quot;column&quot;, col=redgreen)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/MiscGraphics_13_0.png"><img alt="_images/MiscGraphics_13_0.png" src="_images/MiscGraphics_13_0.png" style="width: 600px;" /></a>
+<div class="section" id="work">
+<h3>Work!<a class="headerlink" href="#work" title="Permalink to this headline">¶</a></h3>
+<p>Here we will try to replicate the noise discovery heatmap shown in the
+statistics class.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">suppressMessages</span><span class="p">(</span><span class="n">library</span><span class="p">(</span><span class="n">genefilter</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="perform-noise-discovery">
+<h2>Perform noise discovery<a class="headerlink" href="#perform-noise-discovery" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>set.seed(123)
+
+n &lt;- 20 # number of subjects
+m &lt;- 20000 # number of genes
+alpha &lt;- 0.005 # significance level
+
+# create a matrix of gene expression values with m rows and 2*n columns
+M &lt;- matrix(rnorm(2*n*m), m, 2*n)
+
+# give row and column names
+rownames(M) &lt;- paste(&quot;G&quot;, 1:m, sep=&quot;&quot;)
+colnames(M) &lt;- paste(&quot;id&quot;, 1:(2*n), sep=&quot;&quot;)
+
+# assign subjects inot equal sized groups
+grp &lt;- factor(rep(0:1, c(n, n)))
+
+# calculate p-value using t-test for mean experession value of each gene
+pvals &lt;- rowttests(M, grp)$p.value
+
+# extract the genes which meet the specified significance level
+hits &lt;- M[pvals &lt; alpha,]
+</pre></div>
+</div>
+<ul class="simple">
+<li>Use pheatmap to plot a heatmap</li>
+<li>Remove the row names (Google or use R&#8217;s built-in help to figure out
+to do this)</li>
+<li>Use this color palette to map expression values to a red-blakc-green
+scale</li>
+</ul>
+<p><code class="docutils literal"><span class="pre">colorRampPalette(c(&quot;red3&quot;,</span> <span class="pre">&quot;black&quot;,</span> <span class="pre">&quot;green3&quot;))(50)</span></code></p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

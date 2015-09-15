@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Supervised Learning Continued - What Could Go Wrong? &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+    <link rel="next" title="Unsupervised Learning" href="UnsupervisedLearning.html" />
+    <link rel="prev" title="Using R for supervised learning" href="SupervisedLearning.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Supervised Learning Continued - What Could Go Wrong?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONE-Solutions.html">Practice ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTWOSolutions.html">Practice TWO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTHREESolutions.html">Practice THREE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeFOURSolutions.html">Practice FOUR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2NotebookFromMatrix.html">Import count data using basic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Supervised Learning Continued - What Could Go Wrong?</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="SupervisedLearning.html" title="Previous Chapter: Using R for supervised learning"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Using R for s...</span>
+    </a>
+  </li>
+  <li>
+    <a href="UnsupervisedLearning.html" title="Next Chapter: Unsupervised Learning"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Unsupervised ... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/SupervisedLearningWhatCouldGoWrong.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="supervised-learning-continued-what-could-go-wrong">
+<h1>Supervised Learning Continued - What Could Go Wrong?<a class="headerlink" href="#supervised-learning-continued-what-could-go-wrong" title="Permalink to this headline">¶</a></h1>
+<p>In this lab, we will demonstrate some common pitfalls that may be
+encountered in performing a supervised learning analysis. To this end,
+we will simulate data under the null (meaning, we will simulate no
+relationship between outcome and independent variables) to observe
+situations where we may commit type I error.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>## Supervised
+
+# Simulate noisy data matrix (EXPRS)
+set.seed(123)
+# We&#39;ll use 2 groups of 20 subjects - think 20 cases and 20 controls
+n=20
+# Simulate 1000 genes
+m=1000
+
+# randomly generate a matrix of &#39;expression levels&#39; -- any continuous variable we may be interested in
+EXPRS=matrix(rnorm(2*n*m),2*n,m)
+
+# Just naming rows and columns
+rownames(EXPRS)=paste(&quot;patient&quot;,1:(2*n),sep=&quot;&quot;)
+colnames(EXPRS)=paste(&quot;gene exp&quot;,1:m,sep=&quot;&quot;)
+
+# The group labels are assigned arbitrarily - i.e. we are just randomly assigning
+#                case/control status with no reference to gene expression
+grp=rep(0:1,c(n,n))
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c">#Pick the top 10 features based on the</span>
+<span class="c">#two-sample $t$-test</span>
+
+<span class="c"># load the library &#39;genefilter&#39; - part of the Bioconductor suite</span>
+<span class="n">library</span><span class="p">(</span><span class="n">genefilter</span><span class="p">)</span>
+
+<span class="c"># rowttests is a genefilter function that performs a student t test on rows.</span>
+
+<span class="n">ttest</span><span class="o">.</span><span class="n">data</span><span class="o">=</span><span class="n">rowttests</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">EXPRS</span><span class="p">),</span> <span class="n">factor</span><span class="p">(</span><span class="n">grp</span><span class="p">))</span>
+<span class="n">head</span><span class="p">(</span><span class="n">ttest</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>statistic</th><th scope=col>dm</th><th scope=col>p.value</th></tr></thead>
+<tbody>
+    <tr><th scope=row>gene exp1</th><td>0.6746243</td><td>0.192881</td><td>0.5039985</td></tr>
+    <tr><th scope=row>gene exp2</th><td>0.7417175</td><td>0.2264023</td><td>0.4628184</td></tr>
+    <tr><th scope=row>gene exp3</th><td>3.025423</td><td>0.7344752</td><td>0.004436959</td></tr>
+    <tr><th scope=row>gene exp4</th><td>0.4030939</td><td>0.1349871</td><td>0.6891382</td></tr>
+    <tr><th scope=row>gene exp5</th><td>0.9545301</td><td>0.3004477</td><td>0.3458485</td></tr>
+    <tr><th scope=row>gene exp6</th><td>0.3305064</td><td>0.09782354</td><td>0.7428327</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre># Extract the absolute value of the statistic
+stats=abs(ttest.data$statistic)
+
+# &#39;order&#39; will return the indices of ascending values of it&#39;s argument
+ii=order(-stats)
+
+#Filter out all genes (i.e. columns of the matrix) except the top 10 rated by stats
+
+TOPEXPRS=EXPRS[, ii[1:10]]
+dim(TOPEXPRS)
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>40</li>
+    <li>10</li>
+</ol><p>Now we will perform a 3-nearest-neighbor clustering, just like we did
+with the health dynamics class data.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>plot(TOPEXPRS, col=grp+1,
+      main=&quot;Gene Expression&quot;)
+legend(-2, 2, c(&quot;Case&quot;, &quot;Control&quot;), pch=1, col=1:2)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/SupervisedLearningWhatCouldGoWrong_6_0.png"><img alt="_images/SupervisedLearningWhatCouldGoWrong_6_0.png" src="_images/SupervisedLearningWhatCouldGoWrong_6_0.png" style="width: 600px;" /></a>
+<div class="code python highlight-python"><div class="highlight"><pre># Fit 3-NN
+library(class)
+mod0=knn(train=TOPEXPRS,test=TOPEXPRS,cl=grp,k=3)
+print(mod0)
+
+# Error Resubstituion
+table(mod0,grp)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre> [1] 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[39] 1 1
+Levels: 0 1
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    grp
+mod0  0  1
+   0 17  0
+   1  3 20
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c"># Naive CV</span>
+<span class="n">mod1</span><span class="o">=</span><span class="n">knn</span><span class="o">.</span><span class="n">cv</span><span class="p">(</span><span class="n">TOPEXPRS</span><span class="p">,</span><span class="n">grp</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">table</span><span class="p">(</span><span class="n">mod1</span><span class="p">,</span><span class="n">grp</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    grp
+mod1  0  1
+   0 16  0
+   1  4 20
+</pre></div>
+</div>
+<p>This looks like differential gene expression. We can accurately predict
+case-control status, based on gene expression. But, we haven&#8217;t
+cross-validated. And we have only 40 subjects and have looked at 1000
+genes! Let&#8217;s do it the right way now. This is like tossing a coin 40
+times, and repeating that 1000 times. We <em>will</em> see some very long
+strings of heads and tails in some replicates - just by chance!</p>
+<div class="code python highlight-python"><div class="highlight"><pre># Oh! Super fancy code! I&#39;ll rewrite if there is time. Otherwise, we need to skip through.
+
+# Proper CV
+top.features=function(EXP,resp,test,fsnum)
+  {
+    top.features.i=function(i,EXP,resp,test,fsnum)
+      {
+        stats=abs(mt.teststat(EXP[,-i],resp[-i],test=test))
+        ii=order(-stats)[1:fsnum]
+        rownames(EXP)[ii]
+      }
+    sapply(1:ncol(EXP),top.features.i,EXP=EXP,resp=resp,test=test,fsnum=fsnum)
+  }
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre># This function evaluates the knn
+
+knn.loocv=function(EXP,resp,test,k,fsnum,tabulate=FALSE,permute=FALSE)
+  {
+    if(permute)
+      resp=sample(resp)
+    topfeat=top.features(EXP,resp,test,fsnum)
+    pids=rownames(EXP)
+    EXP=t(EXP)
+    colnames(EXP)=as.character(pids)
+    knn.loocv.i=function(i,EXP,resp,k,topfeat)
+      {
+        ii=topfeat[,i]
+        mod=knn(train=EXP[-i,ii],test=EXP[i,ii],cl=resp[-i],k=k)[1]
+      }
+    out=sapply(1:nrow(EXP),knn.loocv.i,EXP=EXP,resp=resp,k=k,topfeat=topfeat)
+    if(tabulate)
+      out=ftable(pred=out,obs=resp)
+    return(out)
+}
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>library(multtest)
+knn.loocv(t(EXPRS),as.integer(grp),&quot;t.equalvar&quot;,3,10,TRUE)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Loading required package: Biobase
+Loading required package: BiocGenerics
+Loading required package: parallel
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB
+
+The following object is masked from ‘package:stats’:
+
+    xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, as.vector, cbind, colnames,
+    do.call, duplicated, eval, evalq, Filter, Find, get, intersect,
+    is.unsorted, lapply, Map, mapply, match, mget, order, paste, pmax,
+    pmax.int, pmin, pmin.int, Position, rank, rbind, Reduce, rep.int,
+    rownames, sapply, setdiff, sort, table, tapply, union, unique,
+    unlist
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    &#39;browseVignettes()&#39;. To cite Bioconductor, see
+    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>     obs  0  1
+pred
+0         7  7
+1        13 13
+</pre></div>
+</div>
+<p>Well, now that looks right! We are no longer fitting noise. What&#8217;s the
+difference? Everytime we perform a validation step, we need to
+re-evaluate the top ten picks!</p>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

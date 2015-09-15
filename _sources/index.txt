@@ -1,0 +1,59 @@
+.. NGS-R-Bootcamp documentation master file, created by
+   sphinx-quickstart on Tue Jul 21 12:16:06 2015.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Duke NGS Course (Summer 2015)
+==========================================
+
+.. toctree::
+   :maxdepth: 2
+   
+   readings
+   lectures
+   VMsAtDuke 
+   Installation
+   ..
+      InstallPackages 
+
+   BasicRinJupyterAndRstudio
+   IntroductionToR 
+   PreparingDataForAnalysis 
+   WorkingWithData 
+   GroupingandAggregation
+   Hypothesistestingandpowercalcuations 
+   Probabilitydistributionsandrandomnumbergeneration 
+   WritingcustomfunctionsinRSolutions 
+   FunctionalProgramming 
+   RFormulasAndStatisticalModeling 
+   SupervisedLearning
+   ..
+      SupervisedLearningWhatCouldGoWrong
+   UnsupervisedLearning
+   UnsupervisedLearningAndNGS
+   MultipleTesting 
+   CountModels 
+   LogisticRegression 
+   BaseGraphics
+   ..
+      MiscGraphics 
+   BaseGraphicsGGPlotComparison
+   ..
+      GGPlot2Graphics
+   PracticeONESolutios
+   ..
+      PracticeTWOSolutions
+      PracticeTHREESolutions 
+      PracticeFOURSolutions
+   DESeq2Notebook
+   ..
+      DESeq2NotebookFromMatrix 
+    
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+

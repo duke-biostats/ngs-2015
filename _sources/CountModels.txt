@@ -1,0 +1,274 @@
+
+Counting Models/Discrete Distributions
+======================================
+
+This lab will cover the discrete distributions used in the analysis of
+RNAseq data.
+
+Binomial Distribution and Bernoulli Trials
+------------------------------------------
+
+One of the simplest examples in probability is the coin toss. It is an
+experiment with only two possible outcomes. Arbritrarily, we say that
+the outcome 'heads' is a 'success' and 'tails' is a 'failure'. This
+simple example is powerful, because many, many relevant experiments have
+only two possible outcomes, such as whether a person has a disease or
+does not or whether a component of some product is defective or not.
+Because such examples are common, they are given a name:
+
+**Bernoulli trial: an experiment that has two possible outcomes, usually
+denoted 'success' and 'failure'. Success probability is denote :math:`p`
+and failure probability is denoted :math:`q` (or :math:`1-p`).**
+
+Often, we are interested in the result of a number of repeated,
+independent Bernoulli trials. The outcome of interest of such a series
+of trials determines a discrete probability distribution.
+
+Binomial Distribution
+---------------------
+
+The binomial distribution gives the probability of :math:`x` number of
+success in :math:`n` Bernoulli trials. For example, suppose we want to
+know the probability of getting :math:`2` heads when tossing a *biased*
+coin :math:`5` times. First, we consider the different ways to get
+:math:`2` heads in :math:`5` tosses:
+
++-----------+--------------+
+| Outcome   | Probaility   |
++===========+==============+
+| HHTTT     | ppqqq        |
++-----------+--------------+
+| HTHTT     | pqpqq        |
++-----------+--------------+
+| HTTHT     | pqqpq        |
++-----------+--------------+
+| HTTTH     | pqqqp        |
++-----------+--------------+
+| THHTT     | qppqq        |
++-----------+--------------+
+| THTHT     | qpqpq        |
++-----------+--------------+
+| THTTH     | qpqqp        |
++-----------+--------------+
+| TTHHT     | qqppq        |
++-----------+--------------+
+| TTHTH     | qqpqp        |
++-----------+--------------+
+| TTTHH     | qqqpp        |
++-----------+--------------+
+
+We can see that the right hand column of the table is the same for each
+outcome, i.e. :math:`p^2q^3`. Thus, the total probaility is the number
+of rows (number of ways to get :math:`2` heads and :math:`3` tails)
+times :math:`p^2q^3`.
+
+.. math:: Pr(2 \textrm{ heads in }5 \textrm{ trials}) = 10 p^2q^2
+
+In general:
+
+.. math:: Pr(x \textrm{ heads in }n \textrm{ trials}) = C p^xq^{n-x}
+
+where :math:`C` is the number of ways to get :math:`x` heads in
+:math:`n` trials. This is simply:
+
+.. math:: \left(\begin{matrix}n\\x\end{matrix}\right) = \frac{n!}{x!(n-x)!}
+
+Work!
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use the R function pbinom to find the probability of getting :math:`2`
+heads in :math:`5` tosses for
+
+-  a fair coin
+-  a biased coin with P(H) = 1/3
+
+Draw a sample of 1000 values from the binomial distribution with
+:math:`10` trials and success probability :math:`p=.3` and plot a
+histogram of the result. Do the same but change the number of trials to
+:math:`100`.
+
+Often, a normal approximation to the binomial is used. Based on the
+above, is this a good idea in all situations?
+
+Negative Binomial
+-----------------
+
+While the binomial distributions models the probability of :math:`x`
+successes (events) in :math:`n` trials, the negative binomial models the
+probability of requiring :math:`x` trials to get :math:`r` successes.
+
+.. math:: P(X=x) = \left(\begin{matrix}x+r -1\\x-1\end{matrix}\right)p^rq^x
+
+where :math:`x = r, r+1, r+2,...`
+
+The mean of this distribution is
+
+.. math:: \mu = \frac{pr}{q}
+
+and the variance is
+
+.. math:: \sigma^2 = \frac{pr}{q^2}
+
+We can do a bit of algebra and come up with a slightly different
+parametrization:
+
+.. math:: \sigma^2 = \frac{pr}{q^2} = \frac{\mu}{q}
+
+.. math:: = \mu + \frac{\mu}q -\mu
+
+.. math:: = \mu + \frac{\mu}q -\frac{\mu q}q
+
+.. math:: = \mu + \frac{\mu(1-q)}q
+
+.. math:: = \mu + \frac{\mu p}q
+
+and because :math:`\frac{p}{q} =\frac{\mu}{r}`, we have:
+
+.. math:: \sigma^2 = \mu + \frac{\mu^2}r
+
+Because the variance differs from the mean by the quantity
+
+.. math:: \frac{\mu^2}{r}
+
+we call this quantity the 'dispersion parameter'.
+
+Work !
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Generate :math:`1000` samples from the negative binomial distribution
+for :math:`10` successes given a success probability of :math:`0.5` and
+plot a histogram. Do the same for success probability of :math:`0.05`.
+
+.. code:: python
+
+    x<-rnbinom(1000,10,prob=.05)
+    hist(x,freq=FALSE,breaks=100)
+    x<-rnbinom(1000,10,prob=.5)
+    hist(x,freq=FALSE,breaks=100)
+
+
+.. image:: CountModels_files/CountModels_16_0.png
+   :width: 600
+.. image:: CountModels_files/CountModels_16_1.png
+   :width: 600
+
+
+
+Poisson Distribution
+--------------------
+
+The Poisson distribution models the probability of :math:`x` events in a
+given time period, assuming an average rate of :math:`\lambda`
+
+.. math:: P(X=x) = \frac{\lambda^xe^{-\lambda}}{x!}
+
+An important thing to note is that the mean and variance of the Poisson
+distribution are *both* :math:`\lambda`.
+
+Work!
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+-  Suppose a manufacturer receives on average 3 orders per day. What is
+   the probability that :math:`5` orders come in on a given day?
+
+-  Draw a random sample of size 1000 from a poisson distribution with
+   parameter :math:`\lambda = 1` and plot a histogram of those values.
+
+-  Draw histograms for poisson distributions with parameters
+   :math:`\lambda = 1,4,10`
+
+Binomial and Poisson Distributions
+----------------------------------
+
+.. code:: python
+
+    In this section, we explore the relationship between the Binomial and Poisson distributions.
+
+.. code:: python
+
+    n<-1000000  # Set number of trials to 1 million
+    p<-1/n      # Set success probability to 1/1million
+
+.. code:: python
+
+    set.seed(9988)
+    x=rbinom(99999,n,p)  # Simulate 999,999 iterations of 1 million trials
+    length(x)
+
+
+
+
+.. raw:: html
+
+    99999
+
+
+
+.. code:: python
+
+    mean(x)
+
+
+
+
+.. raw:: html
+
+    1.00055000550005
+
+
+
+.. code:: python
+
+    round(dpois(0:7,lambda=1),3) # generate cdf values for poisson 
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>0.368</li>
+    	<li>0.368</li>
+    	<li>0.184</li>
+    	<li>0.061</li>
+    	<li>0.015</li>
+    	<li>0.003</li>
+    	<li>0.001</li>
+    	<li>0</li>
+    </ol>
+
+
+
+
+.. code:: python
+
+    round(table(x)/99999,3) # Same for binomial with p<<1
+
+
+
+
+.. parsed-literal::
+
+    x
+        0     1     2     3     4     5     6 
+    0.004 0.004 0.002 0.001 0.000 0.000 0.000 
+
+
+
+.. code:: python
+
+    hist(rpois(1000,lambda=1),freq=FALSE)
+    hist(rbinom(1000,n,prob=p),freq=FALSE)
+
+
+
+.. image:: CountModels_files/CountModels_29_0.png
+   :width: 600
+
+.. image:: CountModels_files/CountModels_29_1.png
+   :width: 600
+
+
+
+
+

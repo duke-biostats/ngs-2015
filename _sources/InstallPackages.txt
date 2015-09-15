@@ -1,0 +1,48 @@
+
+Installing R Graphics packages
+----------------------------------------
+
+.. code:: python
+
+    # from https://gist.github.com/stevenworthington/3178163
+    ipak <- function(pkg){
+        new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+        if (length(new.pkg)) 
+            install.packages(new.pkg, dependencies = TRUE, repos = "http://cran.r-project.org")
+        sapply(pkg, require, character.only = TRUE)
+    }
+     
+    # usage
+    packages <- c("ggplot2",  "gplots", "lattice", "plyr", "reshape2",
+                  "RColorBrewer", "grid", "gridExtra", "igraph", "igraphdata")
+    suppressMessages(ipak(packages))
+
+
+
+
+.. raw:: html
+
+    <dl class=dl-horizontal>
+    	<dt>ggplot2</dt>
+    		<dd>TRUE</dd>
+    	<dt>gplots</dt>
+    		<dd>TRUE</dd>
+    	<dt>lattice</dt>
+    		<dd>TRUE</dd>
+    	<dt>plyr</dt>
+    		<dd>TRUE</dd>
+    	<dt>reshape2</dt>
+    		<dd>TRUE</dd>
+    	<dt>RColorBrewer</dt>
+    		<dd>TRUE</dd>
+    	<dt>grid</dt>
+    		<dd>TRUE</dd>
+    	<dt>gridExtra</dt>
+    		<dd>TRUE</dd>
+    	<dt>igraph</dt>
+    		<dd>TRUE</dd>
+    	<dt>igraphdata</dt>
+    		<dd>TRUE</dd>
+    </dl>
+
+

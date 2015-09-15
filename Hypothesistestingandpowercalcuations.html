@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Hypothesis Testing and Power Calculations &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+    <link rel="next" title="Probability distributions and Random Number Genereation" href="Probabilitydistributionsandrandomnumbergeneration.html" />
+    <link rel="prev" title="Grouping and Aggregation" href="GroupingandAggregation.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearningWhatCouldGoWrong.html">Supervised Learning Continued - What Could Go Wrong?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONESolutios.html">Practice ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTWOSolutions.html">Practice TWO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTHREESolutions.html">Practice THREE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeFOURSolutions.html">Practice FOUR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2NotebookFromMatrix.html">Import count data using basic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Hypothesis Testing and Power Calculations</a><ul>
+<li><a class="reference internal" href="#what-is-covered-in-this-section">What is covered in this section</a></li>
+<li><a class="reference internal" href="#set-random-see">Set random see</a></li>
+<li><a class="reference internal" href="#estimation">Estimation</a></li>
+<li><a class="reference internal" href="#hypothesis-testing">Hypothesis testing</a><ul>
+<li><a class="reference internal" href="#example-comparing-group-means">Example: Comparing group means</a><ul>
+<li><a class="reference internal" href="#the-t-test">The t-test</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#what-is-going-on-and-what-does-all-this-actually-mean">What is going on and what does all this actually mean?</a><ul>
+<li><a class="reference internal" href="#the-ranksum-test">The ranksum test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#explicit-calculation-of-statistic">Explicit calculation of statistic</a><ul>
+<li><a class="reference internal" href="#effect-of-sample-size">Effect of sample size</a><ul>
+<li><a class="reference internal" href="#work">Work!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example-comparing-proportions">Example: Comparing proportions</a><ul>
+<li><a class="reference internal" href="#one-sample">One sample</a></li>
+<li><a class="reference internal" href="#two-samples">Two samples</a><ul>
+<li><a class="reference internal" href="#id1">Effect of sample size</a></li>
+<li><a class="reference internal" href="#test-that-proportions-are-equal-using-z-score-prop-test">Test that proportions are equal using z-score (prop.test)</a></li>
+<li><a class="reference internal" href="#alternative-using-test">Alternative using <span class="math">\(\chi^2\)</span> test</a></li>
+<li><a class="reference internal" href="#id2">Work!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sample-size-calculations">Sample size calculations</a><ul>
+<li><a class="reference internal" href="#check-our-understanding-of-what-power-means">Check our understanding of what power means</a><ul>
+<li><a class="reference internal" href="#id3">Work!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="GroupingandAggregation.html" title="Previous Chapter: Grouping and Aggregation"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Grouping and ...</span>
+    </a>
+  </li>
+  <li>
+    <a href="Probabilitydistributionsandrandomnumbergeneration.html" title="Next Chapter: Probability distributions and Random Number Genereation"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Probability d... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/Hypothesistestingandpowercalcuations.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="hypothesis-testing-and-power-calculations">
+<h1>Hypothesis Testing and Power Calculations<a class="headerlink" href="#hypothesis-testing-and-power-calculations" title="Permalink to this headline">¶</a></h1>
+<p>One of things that R is used for is to perform simple testing and power
+calculations using <em>canned</em> functions. These functions are very simple
+to run; beign able to use and interpret them correctly is the hard part.</p>
+<div class="section" id="what-is-covered-in-this-section">
+<h2>What is covered in this section<a class="headerlink" href="#what-is-covered-in-this-section" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Simple summary statistics</li>
+<li>Functions dealing with probability distributions</li>
+<li>Hypothesis testing</li>
+<li>Power / Sample size calculations</li>
+<li>Tabulating data</li>
+<li>Using simulations to calculate power (use of <code class="docutils literal"><span class="pre">for</span></code> and <code class="docutils literal"><span class="pre">if</span></code>)</li>
+<li>Customization of graphical plots</li>
+</ol>
+</div>
+<div class="section" id="set-random-see">
+<h2>Set random see<a class="headerlink" href="#set-random-see" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="estimation">
+<h2>Estimation<a class="headerlink" href="#estimation" title="Permalink to this headline">¶</a></h2>
+<p>Often we want to estimate functions of data - for example, the mean or
+median of a set of numbers.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c"># First create a sample of 10 numbers from a normal distribution with mean 0 and sd 1</span>
+<span class="p">(</span><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>1.2369408226151</li>
+    <li>0.465511274432508</li>
+    <li>0.070684445387072</li>
+    <li>1.42149413805108</li>
+    <li>-1.15858605831964</li>
+    <li>0.460407001136643</li>
+    <li>-0.625685808667741</li>
+    <li>0.313346968415322</li>
+    <li>-1.24274709077289</li>
+    <li>-0.945266218602314</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+0.0336346830742124<div class="code python highlight-python"><div class="highlight"><pre><span class="n">median</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+0.16910863599832<div class="code python highlight-python"><div class="highlight"><pre><span class="n">sd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+1.21633299330955<div class="code python highlight-python"><div class="highlight"><pre><span class="n">var</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+1.47946595061337</div>
+<div class="section" id="hypothesis-testing">
+<h2>Hypothesis testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this headline">¶</a></h2>
+<p>Asssume theroy covered in morning statistics lecutres.</p>
+<div class="section" id="example-comparing-group-means">
+<h3>Example: Comparing group means<a class="headerlink" href="#example-comparing-group-means" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="the-t-test">
+<h4>The t-test<a class="headerlink" href="#the-t-test" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">5.5</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">&lt;-</span> <span class="n">t</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s">&quot;two.sided&quot;</span><span class="p">,</span> <span class="n">paired</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">,</span>  <span class="n">var</span><span class="o">.</span><span class="n">equal</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">)</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    Two Sample t-test
+
+data:  x and y
+t = 0.4472, df = 18, p-value = 0.6601
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.105854  1.703865
+sample estimates:
+mean of x mean of y
+ 5.611938  5.312933
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="what-is-going-on-and-what-does-all-this-actually-mean">
+<h3>What is going on and what does all this actually mean?<a class="headerlink" href="#what-is-going-on-and-what-does-all-this-actually-mean" title="Permalink to this headline">¶</a></h3>
+<p>The variable <code class="docutils literal"><span class="pre">result</span></code> is a list (similar to a hashmap or dictionary in
+other languages), and named parts can be extracte with the <code class="docutils literal"><span class="pre">$</span></code> method
+- e.g. <code class="docutils literal"><span class="pre">result$p.value</span></code> gives the p-value.</p>
+<p>The test firs cacluates a number called a <span class="math">\(t\)</span> statistic that is
+given by some function of the data. From theoretical anaysis, we know
+that if the null hypothesis and assumptions of equal vairance and normal
+distributiono of the data are correct, then the <span class="math">\(t\)</span> random
+variable will have a <span class="math">\(t\)</span> distribution with 18 degrees of freedom
+(20 data points minus 2 estimated means).</p>
+<p>The formula fot calcualting the <span class="math">\(t\)</span>-statitic is</p>
+<div class="math">
+\[t = \frac{(\bar{x_1} - \bar{x_2})}{\text{se}}\]</div>
+<p>where <span class="math">\(\bar{x_1}\)</span> and <span class="math">\(\bar{x_2}\)</span> are the sample means, and
+se (standard error) is</p>
+<div class="math">
+\[\text{se} = \sqrt{s_1^2/n_1 + s_2^2/n_2}\]</div>
+<p>where <span class="math">\(s_1^2\)</span> and <span class="math">\(s_2^2\)</span> are the sample variances.</p>
+<p>We will calculate all these values to show what goes on in the sausage
+factory.</p>
+<div class="code python highlight-python"><div class="highlight"><pre># These are custom R functions which we briefly showed you how to write in yesterday&#39;s session.
+
+se &lt;- function(x1, x2) {
+    n1 &lt;- length(x1)
+    n2 &lt;- length(x2)
+    v1 &lt;- var(x1)
+    v2 &lt;- var(x2)
+    sqrt(v1/n1 + v2/n2)
+    }
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>t &lt;- function(x1, x2) {
+    (mean(x1) - mean(x2))/se(x1, x2)
+    }
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">t</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+0.447153048434479<p>Now we will make use of our knowledge of probability distributions to
+understan what the p-value is.</p>
+<p>We will plot the PDF of the t-distribution with df=18. The x-axis is the
+value of the t-statistic and the y-axis is the density (you can think of
+the density as the height of a histogram with total area normalized to
+sum to 1). The red lines are at the 2.5th and 97.5th quantiles - so for
+a two-sided test, the t-statistic must be more extreme than these two
+red lines (i.e. to the right of the 97.5th quantile or to the left of
+the 2.5th quantile) to reject the null hypothesis. We sse that our
+<span class="math">\(t\)</span> statisitc (and its symmeetric negative) in dashed green do not
+meet this requirement - hence the p-value is &gt; 0.05.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">xp</span> <span class="o">&lt;-</span> <span class="n">seq</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">length</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">dt</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="mi">18</span><span class="p">),</span> <span class="nb">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">score</span> <span class="o">&lt;-</span> <span class="n">t</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">abline</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="o">-</span><span class="n">score</span><span class="p">),</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;green&quot;</span><span class="p">,</span> <span class="n">lty</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">thresholds</span> <span class="o">&lt;-</span> <span class="n">c</span><span class="p">(</span><span class="n">qt</span><span class="p">(</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="mi">18</span><span class="p">),</span> <span class="n">qt</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="mi">18</span><span class="p">))</span>
+<span class="n">abline</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="n">thresholds</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">lty</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/Hypothesistestingandpowercalcuations_21_0.png"><img alt="_images/Hypothesistestingandpowercalcuations_21_0.png" src="_images/Hypothesistestingandpowercalcuations_21_0.png" style="width: 600px;" /></a>
+<p>The p-value is the areau under the curve more extreme than the green
+lines. Since the t-statisic is positive, we can find the area to its
+right as one minus the cumulative density up to the value of the
+t-statitic. Doubling this (why?) gives us the p-value.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pt</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="mi">18</span><span class="p">))</span>
+</pre></div>
+</div>
+0.660098549618083<p>Note that this agrees with the value given by <code class="docutils literal"><span class="pre">t.test</span></code>.</p>
+<div class="section" id="the-ranksum-test">
+<h4>The ranksum test<a class="headerlink" href="#the-ranksum-test" title="Permalink to this headline">¶</a></h4>
+<p>This calculates a test statistic <span class="math">\(W\)</span> that is the sum of the
+outcomes for all pairwise comparisons of the ranks of the values in
+<span class="math">\(x\)</span> and <span class="math">\(y\)</span>. Outcomes are 1 if the first item &gt; the second
+item, 0.5 for a tie and 0 otherwise. This can be simplified to the
+follwoing formula</p>
+<div class="math">
+\[W = R_1 - \frac{n_1(n_1 + 1)}{2}\]</div>
+<p>where <span class="math">\(R_1\)</span> is the sum of ranks for the values in <span class="math">\(x\)</span>. For
+large samples, <span class="math">\(W\)</span> can be considered to come from the normal
+distribution with means aand standard deviations that can be calculated
+from the data (look up by Googling or any mathematical statitics
+textbook if interested).</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">wilcox</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    Wilcoxon rank sum test
+
+data:  x and y
+W = 53, p-value = 0.8534
+alternative hypothesis: true location shift is not equal to 0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="explicit-calculation-of-statistic">
+<h2>Explicit calculation of statistic<a class="headerlink" href="#explicit-calculation-of-statistic" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>w &lt;- function(x, y) {
+    r &lt;- rank(c(x, y))
+    nx &lt;- length(x)
+    sum(r[1:nx]) - nx*(nx+1)/2
+    }
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">w</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+53<div class="section" id="effect-of-sample-size">
+<h3>Effect of sample size<a class="headerlink" href="#effect-of-sample-size" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">5.5</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    Welch Two Sample t-test
+
+data:  x and y
+t = 3.1236, df = 397.539, p-value = 0.001917
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.1676522 0.7370648
+sample estimates:
+mean of x mean of y
+ 5.474823  5.022465
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">wilcox</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    Wilcoxon rank sum test with continuity correction
+
+data:  x and y
+W = 23106, p-value = 0.007229
+alternative hypothesis: true location shift is not equal to 0
+</pre></div>
+</div>
+<div class="section" id="work">
+<h4>Work!<a class="headerlink" href="#work" title="Permalink to this headline">¶</a></h4>
+<p>Supppose we measure the weights of 100 people before and after a
+marathon. We want to know if there is a difference. What is the p-value
+for an appropirate parametric and non-parametric test?</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">before</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mi">165</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">change</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">mean</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">after</span> <span class="o">&lt;-</span> <span class="n">before</span> <span class="o">+</span> <span class="n">change</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c"># Parametric test</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c"># Non-parametric test</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="example-comparing-proportions">
+<h2>Example: Comparing proportions<a class="headerlink" href="#example-comparing-proportions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="one-sample">
+<h3>One sample<a class="headerlink" href="#one-sample" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">sample</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="s">&#39;H&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">),</span> <span class="mi">50</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="n">TRUE</span><span class="p">)</span>
+<span class="n">table</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>x
+ H  T
+26 24
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">binom</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">p</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    Exact binomial test
+
+data:  table(x)
+number of successes = 26, number of trials = 50, p-value = 0.8877
+alternative hypothesis: true probability of success is not equal to 0.5
+95 percent confidence interval:
+ 0.3741519 0.6633949
+sample estimates:
+probability of success
+                  0.52
+</pre></div>
+</div>
+</div>
+<div class="section" id="two-samples">
+<h3>Two samples<a class="headerlink" href="#two-samples" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">size</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="n">rbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="n">m</span> <span class="o">&lt;-</span> <span class="n">matrix</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">size</span><span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="n">size</span><span class="o">-</span><span class="n">y</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<table>
+<tbody>
+    <tr><td>10</td><td>40</td></tr>
+    <tr><td>16</td><td>34</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre><span class="n">prop</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    2-sample test for equality of proportions with continuity correction
+
+data:  m
+X-squared = 1.2994, df = 1, p-value = 0.2543
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ -0.31032527  0.07032527
+sample estimates:
+prop 1 prop 2
+  0.20   0.32
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h4>Effect of sample size<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">size</span> <span class="o">&lt;-</span> <span class="mi">500</span>
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="n">rbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="n">m</span> <span class="o">&lt;-</span> <span class="n">matrix</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">size</span><span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="n">size</span><span class="o">-</span><span class="n">y</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<table>
+<tbody>
+    <tr><td>155</td><td>345</td></tr>
+    <tr><td>193</td><td>307</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="test-that-proportions-are-equal-using-z-score-prop-test">
+<h4>Test that proportions are equal using z-score (prop.test)<a class="headerlink" href="#test-that-proportions-are-equal-using-z-score-prop-test" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">prop</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    2-sample test for equality of proportions with continuity correction
+
+data:  m
+X-squared = 6.0336, df = 1, p-value = 0.01404
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ -0.13685795 -0.01514205
+sample estimates:
+prop 1 prop 2
+ 0.310  0.386
+</pre></div>
+</div>
+</div>
+<div class="section" id="alternative-using-test">
+<h4>Alternative using <span class="math">\(\chi^2\)</span> test<a class="headerlink" href="#alternative-using-test" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">chisq</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+
+data:  m
+X-squared = 6.0336, df = 1, p-value = 0.01404
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h4>Work!<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>You find 3 circulating DNA fragments with the following properties</p>
+<ul class="simple">
+<li>fragment 1 has length 100 and is 35% CG</li>
+<li>fragment 2 has length 110 and is 40% CG</li>
+<li>fragment 3 has length 120 and is 50% GC</li>
+</ul>
+<p>Do you reject the null hypotheses that the percent GC content is the
+same for all 3 fraemnets?</p>
+</div>
+</div>
+</div>
+<div class="section" id="sample-size-calculations">
+<h2>Sample size calculations<a class="headerlink" href="#sample-size-calculations" title="Permalink to this headline">¶</a></h2>
+<p>Need some explanation and disclaimers here!</p>
+<p>See <a class="reference external" href="http://www.statmethods.net/stats/power.html">Qucik-R Power</a> for
+more examples and more detailed explanation of function parameters.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s">&quot;pwr&quot;</span><span class="p">,</span> <span class="n">repos</span> <span class="o">=</span> <span class="s">&quot;http://cran.r-project.org&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>The downloaded binary packages are in
+    /var/folders/xf/rzdg30ps11g93j3w0h589q780000gn/T//RtmpBJlIML/downloaded_packages
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">pwr</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Warning message:
+: package ‘pwr’ was built under R version 3.1.3
+</pre></div>
+</div>
+<p>For simple power calculations, you need 3 out of 4 of the follwoing: - n
+= number of samples / experimental units - sig.level = what &#8220;p-value&#8221;
+you will be using to determine significance - power = fraction of
+experiments that will reject null hypothesis - d = &#8220;effect size&#8221; ~
+depends on context</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">d</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="mf">5.5</span> <span class="o">-</span> <span class="mf">5.0</span><span class="p">)</span><span class="o">/</span><span class="mf">1.5</span>
+<span class="n">pwr</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">,</span> <span class="n">sig</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">power</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">
+     Two-sample t test power calculation
+
+              n = 142.2462
+              d = 0.3333333
+      sig.level = 0.05
+          power = 0.8
+    alternative = two.sided
+
+NOTE: n is number in <em>each</em> group
+</pre>
+<div class="code python highlight-python"><div class="highlight"><pre>p1 = 0.30
+p2 = 0.35
+(h = abs(2*asin(p1) - 2*asin(p2)))
+
+pwr.2p.test(h = h, sig.level = 0.05, power = 0.9)
+</pre></div>
+</div>
+0.105756899260226<div class="highlight-python"><div class="highlight"><pre>     Difference of proportion power calculation for binomial distribution (arcsine transformation)
+
+              h = 0.1057569
+              n = 1878.922
+      sig.level = 0.05
+          power = 0.9
+    alternative = two.sided
+
+NOTE: same sample sizes
+</pre></div>
+</div>
+<div class="section" id="check-our-understanding-of-what-power-means">
+<h3>Check our understanding of what power means<a class="headerlink" href="#check-our-understanding-of-what-power-means" title="Permalink to this headline">¶</a></h3>
+<p>Note: The code below is an example of a statistical <em>simulation</em>. It can
+be made more efficient by vectorization, but looping is initially easer
+to understand and the speed makes no practical differnece for such a
+small exmaple.</p>
+<p>Before running the code - try to answer this question:</p>
+<blockquote>
+<div>If we performed the same experiment 1000 times with n=1879 (from
+power calucations above), how many experiments would yield a p-value
+of less than 0.05?</div></blockquote>
+<div class="code python highlight-python"><div class="highlight"><pre>size &lt;- 1879
+hits &lt;- 0
+ntrials &lt;- 1000
+for (i in 1:ntrials) {
+    x &lt;- rbinom(n=1, prob=0.3, size=size)
+    y &lt;- rbinom(n=1, prob=0.35, size=size)
+    m &lt;- matrix(c(x, y, size-x, size-y), ncol = 2)
+    result &lt;- prop.test(m)
+    hits &lt;- hits + (result$p.value &lt; 0.05)
+    }
+hits/ntrials
+</pre></div>
+</div>
+0.886<div class="section" id="id3">
+<h4>Work!<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>Suppose an investigator proposes to use an unpaired t-test to examine
+differences between two groups of size 13 and 16. What is the power at
+the usual 0.05 significance level for effet sizes of 0.1, 0.5 and 1.0.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

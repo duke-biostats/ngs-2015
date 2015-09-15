@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Practice ONE &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+    <link rel="next" title="Practice TWO" href="PracticeTWOSolutions.html" />
+    <link rel="prev" title="More ggplot2" href="GGPlot2Graphics.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearningWhatCouldGoWrong.html">Supervised Learning Continued - What Could Go Wrong?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Practice ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTWOSolutions.html">Practice TWO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTHREESolutions.html">Practice THREE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeFOURSolutions.html">Practice FOUR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2NotebookFromMatrix.html">Import count data using basic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Practice ONE</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="GGPlot2Graphics.html" title="Previous Chapter: More ggplot2"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; More ggplot2</span>
+    </a>
+  </li>
+  <li>
+    <a href="PracticeTWOSolutions.html" title="Next Chapter: Practice TWO"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Practice TWO &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/PracticeONE-Solutions.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="practice-one">
+<h1>Practice ONE<a class="headerlink" href="#practice-one" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li>Create a sequence of integers starting from 12 and ending at 17.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>12:17
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 12 13 14 15 16 17
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>Create a vector of length 10 starting from <span class="math">\(\pi\)</span> and ending at
+<span class="math">\(2\pi\)</span> with evenly spaced intervals between numbers.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">seq</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">,</span> <span class="n">length</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 3.141593 3.490659 3.839724 4.188790 4.537856 4.886922 5.235988 5.585054
+[9] 5.934119 6.283185
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>Find the sum of all numbers between 1 and 1000 that are divisible by
+3.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>ns &lt;- 1:1000
+idx &lt;- ns %% 3 == 0
+sum(ns[idx])
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 166833
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>Find the sum of the square numbers (e.g. 1, 4, 9, 16, ...) from 1
+that are less than or equal to 10,000.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>top &lt;- sqrt(10000)
+ns &lt;- 1:top
+sum(ns^2)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 338350
+</pre></div>
+</div>
+<ol class="arabic" start="5">
+<li><p class="first">Loop through the numbers from 1 to 20. If the number is divisible by
+3, print &#8220;Fizz&#8221;. If the number is divisible by 5, print &#8220;Buzz&#8221;. If
+it is divisible by both 3 and 5 print &#8220;FizzBuzz&#8221;. Otherwise just
+print the number. Your output should look something like</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">1</span>
+<span class="mi">2</span>
+<span class="n">Fizz</span>
+<span class="mi">4</span>
+<span class="n">Buzz</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>for (i in 1:20) {
+    if (i %% 15 == 0)
+        print(&quot;FizzBuzz&quot;)
+    else if (i %% 3 == 0)
+        print(&quot;Fizz&quot;)
+    else if (i %% 5 == 0)
+        print(&quot;Buzz&quot;)
+    else print(i)
+}
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 1
+[1] 2
+[1] &quot;Fizz&quot;
+[1] 4
+[1] &quot;Buzz&quot;
+[1] &quot;Fizz&quot;
+[1] 7
+[1] 8
+[1] &quot;Fizz&quot;
+[1] &quot;Buzz&quot;
+[1] 11
+[1] &quot;Fizz&quot;
+[1] 13
+[1] 14
+[1] &quot;FizzBuzz&quot;
+[1] 16
+[1] 17
+[1] &quot;Fizz&quot;
+[1] 19
+[1] &quot;Buzz&quot;
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li>Generate 1000 numbers from the standard normal distirbution. How
+many of these numbers are greater than 0?</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">xs</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="nb">sum</span><span class="p">(</span><span class="n">xs</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 503
+</pre></div>
+</div>
+<ol class="arabic" start="7">
+<li><p class="first">Start by copying and pasting the code below in a Code cell</p>
+<div class="code r highlight-python"><div class="highlight"><pre><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">&lt;-</span> <span class="mi">10</span>
+<span class="n">case</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ctrl</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Run the above code, then state the null hypothesis for comparing the
+mean between cases and controls. Perform a t-test with <span class="math">\(n = 10\)</span>
+and $n = <span class="math">\(1000\)</span>.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">&lt;-</span> <span class="mi">10</span>
+<span class="n">case</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ctrl</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">t</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">case</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    Welch Two Sample t-test
+
+data:  case and ctrl
+t = -0.5249, df = 17.872, p-value = 0.6061
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.1710488  0.7030562
+sample estimates:
+ mean of x  mean of y
+0.07462564 0.30862196
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">&lt;-</span> <span class="mi">1000</span>
+<span class="n">case</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ctrl</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">t</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">case</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    Welch Two Sample t-test
+
+data:  case and ctrl
+t = -2.8229, df = 1997.355, p-value = 0.004806
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.2141064 -0.0385684
+sample estimates:
+ mean of x  mean of y
+0.01612787 0.14246525
+</pre></div>
+</div>
+<ol class="arabic simple" start="8">
+<li>You are plannning an experiment to test the effect of a new drug on
+mouse growth as measured in grams. You plan to give the drug to a
+treatment group and not to an otherwise identical control group. You
+consider differences to be meaningful if the mean weights differ by
+at least 10 grams. From previous experiments, you know that the
+standard deviation between mice weights is 20 grams. What sample
+size do you need in each group for 80%, 90% and 100% power (use
+p=0.05)? If you recorded weights in kilograms instead, would the
+sample sizes need to change?</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">pwr</span><span class="p">)</span>
+<span class="n">pwr</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">d</span> <span class="o">=</span> <span class="mi">10</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">sig</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">power</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="s">&quot;two.sample&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">
+     Two-sample t test power calculation
+
+              n = 63.76561
+              d = 0.5
+      sig.level = 0.05
+          power = 0.8
+    alternative = two.sided
+
+NOTE: n is number in <em>each</em> group
+</pre>
+<ol class="arabic simple" start="9">
+<li>Make a plot of sample size (y-axis) against power (x-axis) for
+powers ranging from 0.01 to 0.99 in steps of 0.01 with an effect
+size of 0.1. Add in curves of different colors for effect sizes of
+0.5 and 1.0. Add a legend for each curve.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>ans &lt;- pwr.t.test(d = 10/20, sig.level = 0.05, power = 0.8, type = &quot;two.sample&quot;)
+ans$n
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 63.76561
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>pwrs &lt;- seq(0.5, 0.99, by=0.01)
+ds &lt;- c(0.1, 0.5, 1.0)
+nrow &lt;- length(pwrs)
+ncol &lt;- length(ds)
+ns &lt;- matrix(, nrow=nrow, ncol=ncol)
+for (i in 1:nrow) {
+    for (j in 1:ncol) {
+        ns[i, j] &lt;- pwr.t.test(d = ds[j], sig.level = 0.05, power = pwrs[i], type = &quot;two.sample&quot;)$n
+    }
+}
+plot(pwrs, ns[,1], type=&#39;o&#39;, col=&quot;red&quot;, ylim = c(0, 3800))
+lines(pwrs, ns[,2], type=&#39;o&#39;, col=&quot;blue&quot;)
+lines(pwrs, ns[,3], type=&#39;o&#39;, col=&quot;green&quot;)
+legend(0.5, 3500, paste(&quot;effeect size =&quot;, c(&quot;0.1&quot;, &quot;0.5&quot;, &quot;1.0&quot;)), col=c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;), pch=&quot;o&quot;)
+</pre></div>
+</div>
+<img alt="_images/PracticeONE-Solutions_21_0.png" src="_images/PracticeONE-Solutions_21_0.png" />
+<ol class="arabic simple" start="10">
+<li>Calcualte the probabity that you will see the sequence H, H, H, H when you toss a coin 4 times (on pen and paper!). Now conduct 10,000 simulation experiments in which you perform 4 coin tosses per experiment and record the number of heads. What is the frequency of all heads and is this similar to what you calculated?</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="mf">0.5</span><span class="o">^</span><span class="mi">4</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 0.0625
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expts</span> <span class="o">&lt;-</span> <span class="n">rbinom</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="nb">sum</span><span class="p">(</span><span class="n">expts</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 613
+</pre></div>
+</div>
+<ol class="arabic simple" start="11">
+<li>The <code class="docutils literal"><span class="pre">anscombe</span></code> dataframe has 8 columns and 11 rows. Perform a
+linear regression of <span class="math">\(y1\)</span> against <span class="math">\(x1\)</span>, <span class="math">\(y2\)</span>
+against <span class="math">\(x2\)</span> and so on and report what the intercept and
+slope are in each case (Note: the anscombe dataframe is already
+loaded).</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>model &lt;- lm(y1 ~ x1, data=anscombe)
+model$coefficients
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>(Intercept)          x1
+  3.0000909   0.5000909
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>model &lt;- lm(y2 ~ x2, data=anscombe)
+model$coefficients
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>model &lt;- lm(y3 ~ x3, data=anscombe)
+model$coefficients
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>model &lt;- lm(y4 ~ x4, data=anscombe)
+model$coefficients
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>(Intercept)          x4
+  3.0017273   0.4999091
+</pre></div>
+</div>
+<ol class="arabic simple" start="12">
+<li>Now plot four scatter plots, one for <span class="math">\(y1\)</span> against x1$,
+<span class="math">\(y2\)</span> against <span class="math">\(x2\)</span> and so on for the same anscombe
+datafraem.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>par(mfrow=c(2,2))
+with(anscombe, plot(x1, y1, type=&quot;p&quot;))
+with(anscombe, plot(x2, y2, type=&quot;p&quot;))
+with(anscombe, plot(x3, y3, type=&quot;p&quot;))
+with(anscombe, plot(x4, y4, type=&quot;p&quot;))
+</pre></div>
+</div>
+<img alt="_images/PracticeONE-Solutions_31_0.png" src="_images/PracticeONE-Solutions_31_0.png" />
+<ol class="arabic simple" start="13">
+<li>Write a function that takes two p-dimensional vectors and retunrs
+the Euclidean distance between them. The definitiion for Euclidean
+distance in p dimensions extneds the 2-dimensional definition in
+the obvious way. For example, the distance between the 3-dimensonal
+vectors <span class="math">\((1,2,3)\)</span> and <span class="math">\((2,4,6)\)</span> is
+<span class="math">\(\sqrt{((1-2)^2 + (2-4)^2 + (3-6)^2)}\)</span>.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>my.dist &lt;- function(v1, v2) {
+    return(sqrt(sum((v1-v2)^2)))
+}
+
+my.dist(c(0,0), c(3,4))
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 5
+</pre></div>
+</div>
+<ol class="arabic simple" start="14">
+<li>Write a function to calculate the median of a vector of numbers.
+Recall that if the vector is of odd length, the median is the
+central number of the sorted vacotr; othersise it is the average of
+the two central numbers.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>my.median &lt;- function(v) {
+    v &lt;- sort(v)
+    n &lt;- length(v)
+    if (n %% 2 == 1)
+        ans &lt;- v[floor(n/2)]
+    else {
+        low &lt;- floor(n/2)
+        ans &lt;- mean(v[low:(low+1)])
+    }
+    return(ans)
+}
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>my.median(1:11)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 5
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>my.median(1:12)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 6.5
+</pre></div>
+</div>
+<ol class="arabic simple" start="15">
+<li>Write a function called <code class="docutils literal"><span class="pre">peek</span></code> that will take a dataframe and a
+number as arguments - so you would eovke the function with a call
+like <code class="docutils literal"><span class="pre">peek(df,</span> <span class="pre">n)</span></code>. What this function does is return <span class="math">\(n\)</span>
+rows at random (no duplicate rows). If <span class="math">\(n\)</span> is greater than
+the number of rows, the enitre data frame is returned.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>peek &lt;- function(df, n) {
+    if (n &gt; length(df)) {
+        ans &lt;- df
+    }
+    else {
+        idx &lt;- sample(1:length(df), n, replace=FALSE)
+        ans &lt;- df[idx,]
+    }
+    return(ans)
+}
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">peek</span><span class="p">(</span><span class="n">anscombe</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>  x1 x2 x3 x4   y1   y2    y3   y4
+4  9  9  9  8 8.81 8.77  7.11 8.84
+3 13 13 13  8 7.58 8.74 12.74 7.71
+5 11 11 11  8 8.33 9.26  7.81 8.47
+</pre></div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

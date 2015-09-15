@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Coding Exercises &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+    <link rel="next" title="Introduction to DESeq2" href="DESeq2Notebook.html" />
+    <link rel="prev" title="More ggplot2" href="GGPlot2Graphics.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Coding Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Coding Exercises</a><ul>
+<li><a class="reference internal" href="#practice-1">Practice 1</a></li>
+<li><a class="reference internal" href="#practice-2">Practice 2</a><ul>
+<li><a class="reference internal" href="#working-with-dataframes">Working with dataframes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#practice-3">Practice 3</a></li>
+<li><a class="reference internal" href="#practice-4">Practice 4</a><ul>
+<li><a class="reference internal" href="#exercise-1">Exercise 1</a></li>
+<li><a class="reference internal" href="#exercise-2">Exercise 2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="GGPlot2Graphics.html" title="Previous Chapter: More ggplot2"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; More ggplot2</span>
+    </a>
+  </li>
+  <li>
+    <a href="DESeq2Notebook.html" title="Next Chapter: Introduction to DESeq2"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Introduction ... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/PracticeONESolutios.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="coding-exercises">
+<h1>Coding Exercises<a class="headerlink" href="#coding-exercises" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="practice-1">
+<h2>Practice 1<a class="headerlink" href="#practice-1" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Create a sequence of integers starting from 12 and ending at 17.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>12:17
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 12 13 14 15 16 17
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>Create a vector of length 10 starting from <span class="math">\(\pi\)</span> and ending at
+<span class="math">\(2\pi\)</span> with evenly spaced intervals between numbers.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">seq</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">,</span> <span class="n">length</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 3.141593 3.490659 3.839724 4.188790 4.537856 4.886922 5.235988 5.585054
+[9] 5.934119 6.283185
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>Find the sum of all numbers between 1 and 1000 that are divisible by
+3.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>ns &lt;- 1:1000
+idx &lt;- ns %% 3 == 0
+sum(ns[idx])
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 166833
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>Find the sum of the square numbers (e.g. 1, 4, 9, 16, ...) from 1
+that are less than or equal to 10,000.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>top &lt;- sqrt(10000)
+ns &lt;- 1:top
+sum(ns^2)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 338350
+</pre></div>
+</div>
+<ol class="arabic" start="5">
+<li><p class="first">Loop through the numbers from 1 to 20. If the number is divisible by
+3, print &#8220;Fizz&#8221;. If the number is divisible by 5, print &#8220;Buzz&#8221;. If
+it is divisible by both 3 and 5 print &#8220;FizzBuzz&#8221;. Otherwise just
+print the number. Your output should look something like</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">1</span>
+<span class="mi">2</span>
+<span class="n">Fizz</span>
+<span class="mi">4</span>
+<span class="n">Buzz</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>for (i in 1:20) {
+    if (i %% 15 == 0)
+        print(&quot;FizzBuzz&quot;)
+    else if (i %% 3 == 0)
+        print(&quot;Fizz&quot;)
+    else if (i %% 5 == 0)
+        print(&quot;Buzz&quot;)
+    else print(i)
+}
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 1
+[1] 2
+[1] &quot;Fizz&quot;
+[1] 4
+[1] &quot;Buzz&quot;
+[1] &quot;Fizz&quot;
+[1] 7
+[1] 8
+[1] &quot;Fizz&quot;
+[1] &quot;Buzz&quot;
+[1] 11
+[1] &quot;Fizz&quot;
+[1] 13
+[1] 14
+[1] &quot;FizzBuzz&quot;
+[1] 16
+[1] 17
+[1] &quot;Fizz&quot;
+[1] 19
+[1] &quot;Buzz&quot;
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li>Generate 1000 numbers from the standard normal distirbution. How
+many of these numbers are greater than 0?</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">xs</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="nb">sum</span><span class="p">(</span><span class="n">xs</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 503
+</pre></div>
+</div>
+<ol class="arabic" start="7">
+<li><p class="first">Start by copying and pasting the code below in a Code cell</p>
+<div class="code r highlight-python"><div class="highlight"><pre><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">&lt;-</span> <span class="mi">10</span>
+<span class="n">case</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ctrl</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Run the above code, then state the null hypothesis for comparing the
+mean between cases and controls. Perform a t-test with <span class="math">\(n = 10\)</span>
+and $n = <span class="math">\(1000\)</span>.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">&lt;-</span> <span class="mi">10</span>
+<span class="n">case</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ctrl</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">t</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">case</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    Welch Two Sample t-test
+
+data:  case and ctrl
+t = -0.5249, df = 17.872, p-value = 0.6061
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.1710488  0.7030562
+sample estimates:
+ mean of x  mean of y
+0.07462564 0.30862196
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">&lt;-</span> <span class="mi">1000</span>
+<span class="n">case</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ctrl</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">t</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">case</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    Welch Two Sample t-test
+
+data:  case and ctrl
+t = -2.8229, df = 1997.355, p-value = 0.004806
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.2141064 -0.0385684
+sample estimates:
+ mean of x  mean of y
+0.01612787 0.14246525
+</pre></div>
+</div>
+<ol class="arabic simple" start="8">
+<li>You are plannning an experiment to test the effect of a new drug on
+mouse growth as measured in grams. You plan to give the drug to a
+treatment group and not to an otherwise identical control group. You
+consider differences to be meaningful if the mean weights differ by
+at least 10 grams. From previous experiments, you know that the
+standard deviation between mice weights is 20 grams. What sample
+size do you need in each group for 80%, 90% and 100% power (use
+p=0.05)? If you recorded weights in kilograms instead, would the
+sample sizes need to change?</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">pwr</span><span class="p">)</span>
+<span class="n">pwr</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">d</span> <span class="o">=</span> <span class="mi">10</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">sig</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">power</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="s">&quot;two.sample&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">
+     Two-sample t test power calculation
+
+              n = 63.76561
+              d = 0.5
+      sig.level = 0.05
+          power = 0.8
+    alternative = two.sided
+
+NOTE: n is number in <em>each</em> group
+</pre>
+<ol class="arabic simple" start="9">
+<li>Make a plot of sample size (y-axis) against power (x-axis) for
+powers ranging from 0.01 to 0.99 in steps of 0.01 with an effect
+size of 0.1. Add in curves of different colors for effect sizes of
+0.5 and 1.0. Add a legend for each curve.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>ans &lt;- pwr.t.test(d = 10/20, sig.level = 0.05, power = 0.8, type = &quot;two.sample&quot;)
+ans$n
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 63.76561
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>pwrs &lt;- seq(0.5, 0.99, by=0.01)
+ds &lt;- c(0.1, 0.5, 1.0)
+nrow &lt;- length(pwrs)
+ncol &lt;- length(ds)
+ns &lt;- matrix(, nrow=nrow, ncol=ncol)
+for (i in 1:nrow) {
+    for (j in 1:ncol) {
+        ns[i, j] &lt;- pwr.t.test(d = ds[j], sig.level = 0.05, power = pwrs[i], type = &quot;two.sample&quot;)$n
+    }
+}
+plot(pwrs, ns[,1], type=&#39;o&#39;, col=&quot;red&quot;, ylim = c(0, 3800))
+lines(pwrs, ns[,2], type=&#39;o&#39;, col=&quot;blue&quot;)
+lines(pwrs, ns[,3], type=&#39;o&#39;, col=&quot;green&quot;)
+legend(0.5, 3500, paste(&quot;effeect size =&quot;, c(&quot;0.1&quot;, &quot;0.5&quot;, &quot;1.0&quot;)), col=c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;), pch=&quot;o&quot;)
+</pre></div>
+</div>
+<img alt="_images/PracticeONESolutios_21_0.png" src="_images/PracticeONESolutios_21_0.png" />
+<ol class="arabic simple" start="10">
+<li>Calcualte the probabity that you will see the sequence H, H, H, H when you toss a coin 4 times (on pen and paper!). Now conduct 10,000 simulation experiments in which you perform 4 coin tosses per experiment and record the number of heads. What is the frequency of all heads and is this similar to what you calculated?</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="mf">0.5</span><span class="o">^</span><span class="mi">4</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 0.0625
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expts</span> <span class="o">&lt;-</span> <span class="n">rbinom</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="nb">sum</span><span class="p">(</span><span class="n">expts</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 613
+</pre></div>
+</div>
+<ol class="arabic simple" start="11">
+<li>The <code class="docutils literal"><span class="pre">anscombe</span></code> dataframe has 8 columns and 11 rows. Perform a
+linear regression of <span class="math">\(y1\)</span> against <span class="math">\(x1\)</span>, <span class="math">\(y2\)</span>
+against <span class="math">\(x2\)</span> and so on and report what the intercept and
+slope are in each case (Note: the anscombe dataframe is already
+loaded).</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>model &lt;- lm(y1 ~ x1, data=anscombe)
+model$coefficients
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>(Intercept)          x1
+  3.0000909   0.5000909
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>model &lt;- lm(y2 ~ x2, data=anscombe)
+model$coefficients
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>model &lt;- lm(y3 ~ x3, data=anscombe)
+model$coefficients
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>model &lt;- lm(y4 ~ x4, data=anscombe)
+model$coefficients
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>(Intercept)          x4
+  3.0017273   0.4999091
+</pre></div>
+</div>
+<ol class="arabic simple" start="12">
+<li>Now plot four scatter plots, one for <span class="math">\(y1\)</span> against x1$,
+<span class="math">\(y2\)</span> against <span class="math">\(x2\)</span> and so on for the same anscombe
+datafraem.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>par(mfrow=c(2,2))
+with(anscombe, plot(x1, y1, type=&quot;p&quot;))
+with(anscombe, plot(x2, y2, type=&quot;p&quot;))
+with(anscombe, plot(x3, y3, type=&quot;p&quot;))
+with(anscombe, plot(x4, y4, type=&quot;p&quot;))
+</pre></div>
+</div>
+<img alt="_images/PracticeONESolutios_31_0.png" src="_images/PracticeONESolutios_31_0.png" />
+<ol class="arabic simple" start="13">
+<li>Write a function that takes two p-dimensional vectors and retunrs
+the Euclidean distance between them. The definitiion for Euclidean
+distance in p dimensions extneds the 2-dimensional definition in
+the obvious way. For example, the distance between the 3-dimensonal
+vectors <span class="math">\((1,2,3)\)</span> and <span class="math">\((2,4,6)\)</span> is
+<span class="math">\(\sqrt{((1-2)^2 + (2-4)^2 + (3-6)^2)}\)</span>.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>my.dist &lt;- function(v1, v2) {
+    return(sqrt(sum((v1-v2)^2)))
+}
+
+my.dist(c(0,0), c(3,4))
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 5
+</pre></div>
+</div>
+<ol class="arabic simple" start="14">
+<li>Write a function to calculate the median of a vector of numbers.
+Recall that if the vector is of odd length, the median is the
+central number of the sorted vacotr; othersise it is the average of
+the two central numbers.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>my.median &lt;- function(v) {
+    v &lt;- sort(v)
+    n &lt;- length(v)
+    if (n %% 2 == 1)
+        ans &lt;- v[floor(n/2)]
+    else {
+        low &lt;- floor(n/2)
+        ans &lt;- mean(v[low:(low+1)])
+    }
+    return(ans)
+}
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>my.median(1:11)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 5
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>my.median(1:12)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 6.5
+</pre></div>
+</div>
+<ol class="arabic simple" start="15">
+<li>Write a function called <code class="docutils literal"><span class="pre">peek</span></code> that will take a dataframe and a
+number as arguments - so you would eovke the function with a call
+like <code class="docutils literal"><span class="pre">peek(df,</span> <span class="pre">n)</span></code>. What this function does is return <span class="math">\(n\)</span>
+rows at random (no duplicate rows). If <span class="math">\(n\)</span> is greater than
+the number of rows, the enitre data frame is returned.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>peek &lt;- function(df, n) {
+    if (n &gt; length(df)) {
+        ans &lt;- df
+    }
+    else {
+        idx &lt;- sample(1:length(df), n, replace=FALSE)
+        ans &lt;- df[idx,]
+    }
+    return(ans)
+}
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">peek</span><span class="p">(</span><span class="n">anscombe</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>  x1 x2 x3 x4   y1   y2    y3   y4
+4  9  9  9  8 8.81 8.77  7.11 8.84
+3 13 13 13  8 7.58 8.74 12.74 7.71
+5 11 11 11  8 8.33 9.26  7.81 8.47
+</pre></div>
+</div>
+</div>
+<div class="section" id="practice-2">
+<h2>Practice 2<a class="headerlink" href="#practice-2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="working-with-dataframes">
+<h3>Working with dataframes<a class="headerlink" href="#working-with-dataframes" title="Permalink to this headline">¶</a></h3>
+<p>Practice TWO is meant to help you get comfortable working with data
+frames, and the basic ways you can slice and dice datafrmaes.</p>
+<ol class="arabic simple">
+<li>How many rows and columns are there in the <code class="docutils literal"><span class="pre">mtcars</span></code> dataframe?</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="n">nrow</span><span class="p">(</span><span class="n">mtcars</span><span class="p">))</span>
+<span class="p">(</span><span class="n">ncol</span><span class="p">(</span><span class="n">mtcars</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 32
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 11
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">dim</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 32 11
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>Show the last 6 rows of <code class="docutils literal"><span class="pre">mtcars</span></code>.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">tail</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>                mpg cyl  disp  hp drat    wt qsec vs am gear carb
+Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.7  0  1    5    2
+Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2
+Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.5  0  1    5    4
+Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.5  0  1    5    6
+Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.6  0  1    5    8
+Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>Show 6 rows at random (no duplicates) from <code class="docutils literal"><span class="pre">mtcars</span></code></li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>ridx &lt;- sample(1:nrow(mtcars), 6, replace=FALSE)
+mtcars[ridx,]
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>               mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+Toyota Corona 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+Camaro Z28    13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+Valiant       18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+Merc 280C     17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+Fiat 128      32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+AMC Javelin   15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>Display information only for the subset of cars with automatic
+transmission.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>mtcars[mtcars$am == 1,]
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>                mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4      21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710     22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+Fiat 128       32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+Honda Civic    30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+Toyota Corolla 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+Fiat X1-9      27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li>Display information only for the subset of cars with weight between
+2 and 3.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>mtcars[(2 &lt; mtcars$wt) &amp; (mtcars$wt &lt; 3),]
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>               mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4     21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag 21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710    22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+Fiat 128      32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+Toyota Corona 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+Porsche 914-2 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+Ferrari Dino  19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+Volvo 142E    21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li>What is the mean weight of all cars?</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>mean(mtcars$wt)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 3.21725
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>(7) What is the mean weight of cars wtih `mpg` greater than 20?
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>mean(mtcars[mtcars$mpg &gt; 20, &quot;wt&quot;])
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 2.418071
+</pre></div>
+</div>
+<ol class="arabic simple" start="8">
+<li>Add a column <code class="docutils literal"><span class="pre">kpl</span></code> showing the number of kilometers per liter (1
+mile = 1.609344 kilometers, and 1 gallon = 3.78541178 liters)</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>mpg.to.kpl &lt;- function(mpg) {
+    return(mpg * 1.609344 / 3.78541178)
+}
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>mtcars$kpl &lt;- mpg.to.kpl(mtcars$mpg)
+head(mtcars)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb      kpl
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 8.928018
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 8.928018
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 9.693277
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1 9.098075
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 7.950187
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 7.695101
+</pre></div>
+</div>
+<ol class="arabic simple" start="9">
+<li>Make a new dataframe <code class="docutils literal"><span class="pre">mtcars.1</span></code> with only the <code class="docutils literal"><span class="pre">mpg</span></code> and <code class="docutils literal"><span class="pre">kpl</span></code>
+columns.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>mtcars.1 &lt;- mtcars[, c(&quot;mpg&quot;, &quot;kpl&quot;)]
+head(mtcars.1)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>                   mpg      kpl
+Mazda RX4         21.0 8.928018
+Mazda RX4 Wag     21.0 8.928018
+Datsun 710        22.8 9.693277
+Hornet 4 Drive    21.4 9.098075
+Hornet Sportabout 18.7 7.950187
+Valiant           18.1 7.695101
+</pre></div>
+</div>
+<ol class="arabic simple" start="10">
+<li>Perform a linear regression model of <code class="docutils literal"><span class="pre">mpg</span></code> against <code class="docutils literal"><span class="pre">wt</span></code>. Plot
+the model fit.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>fit &lt;- lm(mpg ~ wt, data=mtcars)
+summary(fit)
+</pre></div>
+</div>
+<pre class="literal-block">
+Call:
+lm(formula = mpg ~ wt, data = mtcars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-4.5432 -2.3647 -0.1252  1.4096  6.8727
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  37.2851     1.8776  19.858  &lt; 2e-16 <strong>*
+wt           -5.3445     0.5591  -9.559 1.29e-10 *</strong>
+---
+Signif. codes:  0 ‘<strong>*’ 0.001 ‘</strong>’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 3.046 on 30 degrees of freedom
+Multiple R-squared:  0.7528,        Adjusted R-squared:  0.7446
+F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10
+</pre>
+<div class="code python highlight-python"><div class="highlight"><pre>plot(mtcars$wt, mtcars$mpg, col=rgb(0,0,1,0.5), pch=16, cex=2.0,
+    xlab=&quot;Weigth&quot;, ylab=&quot;Miles per gallon&quot;,
+     main=&quot;Linear regression of MPG against wt&quot;)
+abline(fit, col=&quot;red&quot;, lwd=2)
+</pre></div>
+</div>
+<img alt="_images/PracticeTWOSolutions_24_0.png" src="_images/PracticeTWOSolutions_24_0.png" />
+<ol class="arabic simple" start="11">
+<li>Print 10 rows at ranodm from the <code class="docutils literal"><span class="pre">iris</span></code> dataframe</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>ridx &lt;- sample(1:nrow(iris), 10, replace = FALSE)
+iris[ridx,]
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+136          7.7         3.0          6.1         2.3  virginica
+10           4.9         3.1          1.5         0.1     setosa
+29           5.2         3.4          1.4         0.2     setosa
+80           5.7         2.6          3.5         1.0 versicolor
+54           5.5         2.3          4.0         1.3 versicolor
+11           5.4         3.7          1.5         0.2     setosa
+58           4.9         2.4          3.3         1.0 versicolor
+56           5.7         2.8          4.5         1.3 versicolor
+150          5.9         3.0          5.1         1.8  virginica
+59           6.6         2.9          4.6         1.3 versicolor
+</pre></div>
+</div>
+<ol class="arabic simple" start="12">
+<li>Find the mean Sepal.Length Sepal.Width Petal.Length Petal.Width for
+each iris species using the <code class="docutils literal"><span class="pre">aggregate</span></code> command.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>aggregate(iris[,1:4], by=list(iris$Species), FUN=mean)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>     Group.1 Sepal.Length Sepal.Width Petal.Length Petal.Width
+1     setosa        5.006       3.428        1.462       0.246
+2 versicolor        5.936       2.770        4.260       1.326
+3  virginica        6.588       2.974        5.552       2.026
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="practice-3">
+<h2>Practice 3<a class="headerlink" href="#practice-3" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Make a plot of the standard normal curve on the interval [-4, 4].
+Give the plot a title &#8220;Standard normal curve&#8221;, an x label of &#8220;Normal
+deviate&#8221; and a y label of &#8220;Density&#8221;.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>x &lt;- pretty(-4:4, n=100)
+y &lt;- dnorm(x)
+plot(x, y, type=&quot;l&quot;, main=&quot;Standard normal curve&quot;, xlab=&quot;Normal deviate&quot;, ylab=&quot;Density&quot;)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/PracticeTHREESolutions_2_0.png"><img alt="_images/PracticeTHREESolutions_2_0.png" src="_images/PracticeTHREESolutions_2_0.png" style="width: 600px;" /></a>
+<ol class="arabic simple" start="2">
+<li>What is the area under the curve to the right of x=3? In other
+words, what is the probability of drawing a random number from the
+normal distribution that is 3 standard deviations or more larger
+than the mean?</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="mi">1</span> <span class="o">-</span> <span class="n">pnorm</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+0.0013498980316301<ol class="arabic simple" start="3">
+<li>If the expression valuse for a gene are normally distributed with
+mean 10 and standard deviation 2, what is the value of a gene at the
+95th percentile?</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">qnorm</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+13.2897072539029<p>Generate 50 numbers from a normal distribtuion with mean=10 and sd=2.
+Now trnaform this vector so that the numbers have a stnadard normal
+distribtuion with mean=0 and sd=1.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">sd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>A t-test with 6 degrees of freedom has a score of 3.5. Using only
+the dt, pt, qt or rt probability functions, what is the p-value if
+this was a two-sided test? Recall that a p-value is the probailty of
+seeing a value as extreme or more extreme than the observed score,
+assuming the score was drawn from the specified distirbution.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pt</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+0.0128263383328053<ol class="arabic simple" start="5">
+<li>Draw 1 million random numbers from the t-distirbution with 6 degrees
+of freedom. How many times is the numbr less than -3.5 or greater
+than 3.5?</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rt</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">3.5</span><span class="p">)</span>
+</pre></div>
+</div>
+1238<ol class="arabic simple" start="6">
+<li>Find the mean value of all numeric variables for the mtcars data,
+grouping by number of gears and automtatic or manual transmission.
+(Hint: Use the aggregate function)</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>with(mtcars, aggregate(mtcars, by=list(gear=gear, transmission=am), FUN=mean))
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>gear</th><th scope=col>transmission</th><th scope=col>mpg</th><th scope=col>cyl</th><th scope=col>disp</th><th scope=col>hp</th><th scope=col>drat</th><th scope=col>wt</th><th scope=col>qsec</th><th scope=col>vs</th><th scope=col>am</th><th scope=col>gear</th><th scope=col>carb</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>3</td><td>0</td><td>16.10667</td><td>7.466667</td><td>326.3</td><td>176.1333</td><td>3.132667</td><td>3.8926</td><td>17.692</td><td>0.2</td><td>0</td><td>3</td><td>2.666667</td></tr>
+    <tr><th scope=row>2</th><td>4</td><td>0</td><td>21.05</td><td>5</td><td>155.675</td><td>100.75</td><td>3.8625</td><td>3.305</td><td>20.025</td><td>1</td><td>0</td><td>4</td><td>3</td></tr>
+    <tr><th scope=row>3</th><td>4</td><td>1</td><td>26.275</td><td>4.5</td><td>106.6875</td><td>83.875</td><td>4.13375</td><td>2.2725</td><td>18.435</td><td>0.75</td><td>1</td><td>4</td><td>2</td></tr>
+    <tr><th scope=row>4</th><td>5</td><td>1</td><td>21.38</td><td>6</td><td>202.48</td><td>195.6</td><td>3.916</td><td>2.6326</td><td>15.64</td><td>0.2</td><td>1</td><td>5</td><td>4.4</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">plyr</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">reshape2</span><span class="p">)</span>
+<span class="n">data</span><span class="p">(</span><span class="n">airquality</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Warning message:
+: package ‘plyr’ was built under R version 3.1.3
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">head</span><span class="p">(</span><span class="n">airquality</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Ozone</th><th scope=col>Solar.R</th><th scope=col>Wind</th><th scope=col>Temp</th><th scope=col>Month</th><th scope=col>Day</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>41</td><td>190</td><td>7.4</td><td>67</td><td>5</td><td>1</td></tr>
+    <tr><th scope=row>2</th><td>36</td><td>118</td><td>8</td><td>72</td><td>5</td><td>2</td></tr>
+    <tr><th scope=row>3</th><td>12</td><td>149</td><td>12.6</td><td>74</td><td>5</td><td>3</td></tr>
+    <tr><th scope=row>4</th><td>18</td><td>313</td><td>11.5</td><td>62</td><td>5</td><td>4</td></tr>
+    <tr><th scope=row>5</th><td>NA</td><td>NA</td><td>14.3</td><td>56</td><td>5</td><td>5</td></tr>
+    <tr><th scope=row>6</th><td>28</td><td>NA</td><td>14.9</td><td>66</td><td>5</td><td>6</td></tr>
+</tbody>
+</table><ol class="arabic simple" start="7">
+<li>Use <code class="docutils literal"><span class="pre">melt</span></code> to convert the airquality dataframe into a &#8220;tall&#8221;
+format using Month and Day as teh id variables, saving it as a new
+datafrmae. Print the first 6 rows.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">md</span> <span class="o">&lt;-</span> <span class="n">melt</span><span class="p">(</span><span class="n">airquality</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s">&quot;Month&quot;</span><span class="p">,</span> <span class="s">&quot;Day&quot;</span><span class="p">))</span>
+<span class="n">head</span><span class="p">(</span><span class="n">md</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Month</th><th scope=col>Day</th><th scope=col>variable</th><th scope=col>value</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>5</td><td>1</td><td>Ozone</td><td>41</td></tr>
+    <tr><th scope=row>2</th><td>5</td><td>2</td><td>Ozone</td><td>36</td></tr>
+    <tr><th scope=row>3</th><td>5</td><td>3</td><td>Ozone</td><td>12</td></tr>
+    <tr><th scope=row>4</th><td>5</td><td>4</td><td>Ozone</td><td>18</td></tr>
+    <tr><th scope=row>5</th><td>5</td><td>5</td><td>Ozone</td><td>NA</td></tr>
+    <tr><th scope=row>6</th><td>5</td><td>6</td><td>Ozone</td><td>28</td></tr>
+</tbody>
+</table><ol class="arabic simple" start="8">
+<li>Find the avarage values of Ozone, Solar.R, Wind and Temp for each
+month using <code class="docutils literal"><span class="pre">dcast</span></code>. Hint: Give an extra argument <code class="docutils literal"><span class="pre">na.rm</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>
+to ignore missing data.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>dcast(md, Month ~ variable, mean, na.rm = TRUE)
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Month</th><th scope=col>Ozone</th><th scope=col>Solar.R</th><th scope=col>Wind</th><th scope=col>Temp</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>5</td><td>23.61538</td><td>181.2963</td><td>11.62258</td><td>65.54839</td></tr>
+    <tr><th scope=row>2</th><td>6</td><td>29.44444</td><td>190.1667</td><td>10.26667</td><td>79.1</td></tr>
+    <tr><th scope=row>3</th><td>7</td><td>59.11538</td><td>216.4839</td><td>8.941935</td><td>83.90323</td></tr>
+    <tr><th scope=row>4</th><td>8</td><td>59.96154</td><td>171.8571</td><td>8.793548</td><td>83.96774</td></tr>
+    <tr><th scope=row>5</th><td>9</td><td>31.44828</td><td>167.4333</td><td>10.18</td><td>76.9</td></tr>
+</tbody>
+</table><ol class="arabic simple" start="9">
+<li>Find the avarage values of Ozone, Solar.R, Wind and Temp for each
+month using <code class="docutils literal"><span class="pre">dcast</span></code>, but only for the first 2 weeks of each month.
+Hint: Give an extra argument <code class="docutils literal"><span class="pre">na.rm</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> to ignore missing
+data. Hint: Use the subset argument.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>dcast(md, Month ~ variable, mean, subset = .(Day &lt; 15), na.rm = TRUE)
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Month</th><th scope=col>Ozone</th><th scope=col>Solar.R</th><th scope=col>Wind</th><th scope=col>Temp</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>5</td><td>19.41667</td><td>200.0909</td><td>11.17857</td><td>66.28571</td></tr>
+    <tr><th scope=row>2</th><td>6</td><td>40.5</td><td>249.1429</td><td>10.73571</td><td>82.85714</td></tr>
+    <tr><th scope=row>3</th><td>7</td><td>64.81818</td><td>228.7143</td><td>9.007143</td><td>84.85714</td></tr>
+    <tr><th scope=row>4</th><td>8</td><td>58.41667</td><td>168.7273</td><td>8.721429</td><td>85.5</td></tr>
+    <tr><th scope=row>5</th><td>9</td><td>43.35714</td><td>188.6429</td><td>9.407143</td><td>82.21429</td></tr>
+</tbody>
+</table><p><strong>Questions below use the day.1 and day.2 dataframes</strong></p>
+<div class="code python highlight-python"><div class="highlight"><pre>set.seed(123)
+pid.1 &lt;- c(1,1,2,2)
+gid.1 &lt;- c(1,2,1,2)
+val.1 &lt;- rnorm(4)
+day.1 &lt;- data.frame(pid=pid.1, gid=gid.1, val=val.1)
+
+pid.2 &lt;- c(1,1,2,2)
+gid.2 &lt;- c(1,2,1,2)
+val.2 &lt;- 1 + rnorm(4)
+day.2 &lt;- data.frame(pid=pid.2, gid=gid.2, val=val.2)
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>day.1
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>2</td><td>-0.2301775</td></tr>
+    <tr><th scope=row>3</th><td>2</td><td>1</td><td>1.558708</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>day.2
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>1</td><td>1.129288</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>2</td><td>2.715065</td></tr>
+    <tr><th scope=row>3</th><td>2</td><td>1</td><td>1.460916</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>2</td><td>-0.2650612</td></tr>
+</tbody>
+</table><ol class="arabic simple" start="10">
+<li>Suppose day.1 and day.2 are results from experiments performed on
+differnet days. Merge the data from day.1 and day.2 into a single
+dataframe caleld <code class="docutils literal"><span class="pre">days</span></code> to combine the data sets.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>days &lt;- merge(day.1, day.2, by=c(&quot;pid&quot;, &quot;gid&quot;), suffixes = 1:2)
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">days</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val1</th><th scope=col>val2</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>2</td><td>-0.2301775</td><td>2.715065</td></tr>
+    <tr><th scope=row>3</th><td>2</td><td>1</td><td>1.558708</td><td>1.460916</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+</tbody>
+</table><ol class="arabic simple" start="11">
+<li>Sort the <code class="docutils literal"><span class="pre">days</span></code> dataframe by val1 in decreasing order.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>days[order(-days$val1),]
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val1</th><th scope=col>val2</th></tr></thead>
+<tbody>
+    <tr><th scope=row>3</th><td>2</td><td>1</td><td>1.558708</td><td>1.460916</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>2</td><td>-0.2301775</td><td>2.715065</td></tr>
+    <tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>(12) Remove duplicate rows from the following dataframe.
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">df</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s">&quot;df.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val1</th><th scope=col>val2</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    <tr><th scope=row>3</th><td>1</td><td>2</td><td>-0.2301775</td><td>2.715065</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    <tr><th scope=row>5</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    <tr><th scope=row>6</th><td>2</td><td>1</td><td>1.558708</td><td>1.460916</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val1</th><th scope=col>val2</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    <tr><th scope=row>3</th><td>1</td><td>2</td><td>-0.2301775</td><td>2.715065</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    <tr><th scope=row>6</th><td>2</td><td>1</td><td>1.558708</td><td>1.460916</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="practice-4">
+<h2>Practice 4<a class="headerlink" href="#practice-4" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">reshape2</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">pheatmap</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">genefilter</span><span class="p">)</span> <span class="c"># for rowttests</span>
+<span class="n">library</span><span class="p">(</span><span class="n">nlme</span><span class="p">)</span>
+<span class="n">data</span><span class="p">(</span><span class="n">Rail</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Attaching package: ‘genefilter’
+
+The following object is masked from ‘package:base’:
+
+    anyNA
+</pre></div>
+</div>
+<p><strong>Exericse 0</strong></p>
+<p>Using base graphics, make a 2 x 2 grid for plotting.</p>
+<p>Top left - Generate 100 random numbers from a t-distribution with 5
+degrees of freedom - Plot a normalized histogram (i.e. area sums to 1)
+with 8 breaks - Overlay a smoothed density estimate (using <code class="docutils literal"><span class="pre">density</span></code>)
+in orange - Overlay the true density estimate (using <code class="docutils literal"><span class="pre">dt</span></code>) in red -
+Add a rug</p>
+<p>Tor right - Using the <code class="docutils literal"><span class="pre">iris</span></code> data set, make a scatter plot of Sepal
+length agaisnt Sepal width. Color the points by Species. - Add your own
+title and x and y lables</p>
+<p>Bottom left - Generate 100 numbers from a Poisson distribution with rate
+= 3 - Plot a bar chart showing the counts for each value</p>
+<p>Bottom right - Make a box and whiskers plot of the 4 numeric variables
+in the <code class="docutils literal"><span class="pre">iris</span></code> data set - Show vertical labels for all Species names -
+Adjust the margins so that the labels are visible using the <code class="docutils literal"><span class="pre">mar</span></code>
+(bottom, left, top, right) parameter. You can see the default values
+with <code class="docutils literal"><span class="pre">par()$mar</span></code>. Remember to restore the orignal parameters at the
+end.</p>
+<p>Save the plot as a Portable Neetwork Graphics (png) file.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>png(&quot;myplot.png&quot;)
+par(mfrow=c(2,2))
+x &lt;- rt(100, df=5)
+hist(x, breaks = 8, probability = TRUE)
+lines(density(x), col=&quot;orange&quot;)
+xp &lt;- seq(min(x), max(x), length.out = 50)
+lines(xp, dt(xp, df=5), col=&quot;red&quot;)
+rug(x)
+plot(iris$Sepal.Width, iris$Sepal.Length, col=iris$Species,
+     main=&quot;Scatter by Iris species&quot;, ylab=&quot;Length&quot;, xlab=&quot;Width&quot;)
+n &lt;- rpois(100, lambda = 3)
+barplot(table(n))
+orig &lt;- par(no.readonly=TRUE)
+par(mar=c(6.1,4.1,4.1,2.1))
+boxplot(iris[,1:4], las=2)
+par(orig)
+dev.off()
+</pre></div>
+</div>
+<strong>pdf:</strong> 2<div class="code python highlight-python"><div class="highlight"><pre><span class="n">head</span><span class="p">(</span><span class="n">Rail</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Rail</th><th scope=col>travel</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>55</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>53</td></tr>
+    <tr><th scope=row>3</th><td>1</td><td>54</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>26</td></tr>
+    <tr><th scope=row>5</th><td>2</td><td>37</td></tr>
+    <tr><th scope=row>6</th><td>2</td><td>32</td></tr>
+</tbody>
+</table><div class="section" id="exercise-1">
+<h3>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Use the ggplot function</li>
+<li>Create a scatter plot with Rail on the x-axis and travel on the
+y-axis.</li>
+<li>CHange the title to &#8220;I made this!&#8221;</li>
+<li>Change the y-axis label to be &#8220;Zero-force travel time (nano-seconds)&#8221;</li>
+<li>Change the size of the points to 5</li>
+<li>Change the color of potins to blue and transparency to 0.5</li>
+<li>Add a simple linear regression line to the plot with 90% confidence
+intervals</li>
+</ul>
+<div class="code python highlight-python"><div class="highlight"><pre>ggplot(Rail, aes(x=as.numeric(Rail), y=travel)) +
+geom_point(size=5, color=&quot;blue&quot;, alpha=0.5) +
+geom_smooth(method=&quot;lm&quot;) +
+labs(title=&quot;I made this&quot;, ylab=&quot;Zero-force travel time (nano-seconds)&quot;)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/PracticeFOURSolutions_6_0.png"><img alt="_images/PracticeFOURSolutions_6_0.png" src="_images/PracticeFOURSolutions_6_0.png" style="width: 600px;" /></a>
+</div>
+<div class="section" id="exercise-2">
+<h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+<p>Here we will try to replicate the noise discovery heatmaps shown in the
+statistics class.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>set.seed(123)
+
+n &lt;- 20 # number of subjects
+m &lt;- 20000 # number of genes
+alpha &lt;- 0.005 # significance level
+
+# create a matrix of gene expression values with m rows and 2*n columns
+M &lt;- matrix(rnorm(2*n*m), m, 2*n)
+
+# give row and column names
+rownames(M) &lt;- paste(&quot;G&quot;, 1:m, sep=&quot;&quot;)
+colnames(M) &lt;- paste(&quot;id&quot;, 1:(2*n), sep=&quot;&quot;)
+
+# assign subjects inot equal sized groups
+grp &lt;- factor(rep(0:1, c(n, n)))
+
+# calculate p-value using t-test for mean experession value of each gene
+pvals &lt;- rowttests(M, grp)$p.value
+
+# extract the genes which meet the specified significance level
+hits &lt;- M[pvals &lt; alpha,]
+</pre></div>
+</div>
+<ul class="simple">
+<li>Use pheatmap to plot a heatmap</li>
+<li>Remove the row names (Use tAB or R&#8217;s built-in help to figure out to
+do this)</li>
+<li>Use this color palette to map expression values to a red-blakc-green
+scale <code class="docutils literal"><span class="pre">colorRampPalette(c(&quot;red3&quot;,</span> <span class="pre">&quot;black&quot;,</span> <span class="pre">&quot;green3&quot;))(50)</span></code></li>
+</ul>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">pheatmap</span><span class="p">(</span><span class="n">hits</span><span class="p">,</span> <span class="n">show_rownames</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colorRampPalette</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="s">&quot;red3&quot;</span><span class="p">,</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="s">&quot;green3&quot;</span><span class="p">))(</span><span class="mi">50</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/PracticeFOURSolutions_10_0.png"><img alt="_images/PracticeFOURSolutions_10_0.png" src="_images/PracticeFOURSolutions_10_0.png" style="width: 600px;" /></a>
+<div class="code python highlight-python"><div class="highlight"><pre>a1 &lt;- 1
+a2 &lt;- 2
+sigma1 &lt;- 25
+sigma2 &lt;- 25
+
+subject &lt;- paste(&quot;PID&quot;, rep(1:2, each=5))
+dose &lt;- rep(seq(10, 100, 20), 2)
+geneA &lt;- a1 * dose + rnorm(length(dose), sd=sigma1)
+geneB &lt;- a2 * dose + rnorm(length(dose), sd=sigma2)
+
+df &lt;- data.frame(subject=subject, dose=dose, geneA=geneA, geneB=geneB)
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">df</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>subject</th><th scope=col>dose</th><th scope=col>geneA</th><th scope=col>geneB</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>PID 1</td><td>10</td><td>-3.367338</td><td>-31.18716</td></tr>
+    <tr><th scope=row>2</th><td>PID 1</td><td>30</td><td>54.03613</td><td>91.78636</td></tr>
+    <tr><th scope=row>3</th><td>PID 1</td><td>50</td><td>22.40099</td><td>124.477</td></tr>
+    <tr><th scope=row>4</th><td>PID 1</td><td>70</td><td>73.61274</td><td>111.6039</td></tr>
+    <tr><th scope=row>5</th><td>PID 1</td><td>90</td><td>84.05749</td><td>188.5058</td></tr>
+    <tr><th scope=row>6</th><td>PID 2</td><td>10</td><td>-13.63179</td><td>12.04911</td></tr>
+    <tr><th scope=row>7</th><td>PID 2</td><td>30</td><td>40.03472</td><td>57.40407</td></tr>
+    <tr><th scope=row>8</th><td>PID 2</td><td>50</td><td>64.98747</td><td>79.04738</td></tr>
+    <tr><th scope=row>9</th><td>PID 2</td><td>70</td><td>91.22307</td><td>147.4357</td></tr>
+    <tr><th scope=row>10</th><td>PID 2</td><td>90</td><td>70.94818</td><td>166.8696</td></tr>
+</tbody>
+</table><p><strong>Exercise 3</strong></p>
+<p>Using <code class="docutils literal"><span class="pre">ggplot2</span></code>, plot gene expression agaisnt does, using differnt
+colors for differetn genes and differnet shapes for different subjects.
+(Hint: The <code class="docutils literal"><span class="pre">reshape2</span></code> library may come in useful)</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">md</span> <span class="o">&lt;-</span> <span class="n">melt</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s">&quot;subject&quot;</span><span class="p">,</span> <span class="s">&quot;dose&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">md</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>subject</th><th scope=col>dose</th><th scope=col>variable</th><th scope=col>value</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>PID 1</td><td>10</td><td>geneA</td><td>-3.367338</td></tr>
+    <tr><th scope=row>2</th><td>PID 1</td><td>30</td><td>geneA</td><td>54.03613</td></tr>
+    <tr><th scope=row>3</th><td>PID 1</td><td>50</td><td>geneA</td><td>22.40099</td></tr>
+    <tr><th scope=row>4</th><td>PID 1</td><td>70</td><td>geneA</td><td>73.61274</td></tr>
+    <tr><th scope=row>5</th><td>PID 1</td><td>90</td><td>geneA</td><td>84.05749</td></tr>
+    <tr><th scope=row>6</th><td>PID 2</td><td>10</td><td>geneA</td><td>-13.63179</td></tr>
+    <tr><th scope=row>7</th><td>PID 2</td><td>30</td><td>geneA</td><td>40.03472</td></tr>
+    <tr><th scope=row>8</th><td>PID 2</td><td>50</td><td>geneA</td><td>64.98747</td></tr>
+    <tr><th scope=row>9</th><td>PID 2</td><td>70</td><td>geneA</td><td>91.22307</td></tr>
+    <tr><th scope=row>10</th><td>PID 2</td><td>90</td><td>geneA</td><td>70.94818</td></tr>
+    <tr><th scope=row>11</th><td>PID 1</td><td>10</td><td>geneB</td><td>-31.18716</td></tr>
+    <tr><th scope=row>12</th><td>PID 1</td><td>30</td><td>geneB</td><td>91.78636</td></tr>
+    <tr><th scope=row>13</th><td>PID 1</td><td>50</td><td>geneB</td><td>124.477</td></tr>
+    <tr><th scope=row>14</th><td>PID 1</td><td>70</td><td>geneB</td><td>111.6039</td></tr>
+    <tr><th scope=row>15</th><td>PID 1</td><td>90</td><td>geneB</td><td>188.5058</td></tr>
+    <tr><th scope=row>16</th><td>PID 2</td><td>10</td><td>geneB</td><td>12.04911</td></tr>
+    <tr><th scope=row>17</th><td>PID 2</td><td>30</td><td>geneB</td><td>57.40407</td></tr>
+    <tr><th scope=row>18</th><td>PID 2</td><td>50</td><td>geneB</td><td>79.04738</td></tr>
+    <tr><th scope=row>19</th><td>PID 2</td><td>70</td><td>geneB</td><td>147.4357</td></tr>
+    <tr><th scope=row>20</th><td>PID 2</td><td>90</td><td>geneB</td><td>166.8696</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>ggplot(md, aes(x=dose, y=value, color=variable, shape=subject)) +
+geom_point(size=5)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/PracticeFOURSolutions_16_0.png"><img alt="_images/PracticeFOURSolutions_16_0.png" src="_images/PracticeFOURSolutions_16_0.png" style="width: 600px;" /></a>
+<p><strong>Exercise 4</strong></p>
+<p>Usign <code class="docutils literal"><span class="pre">ggplot2</span></code>, make a grid of plots with separae colummsn for each
+subject and separate rows for each gene. Vary the color and size by the
+gene expression value. Add a linear regression fit with 95% confidence
+intervals to each plot.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>ggplot(md, aes(x=dose, y=value, color=value)) +
+geom_point(size=3) +
+geom_smooth(method=&quot;lm&quot;) +
+facet_grid(variable ~ subject)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/PracticeFOURSolutions_18_0.png"><img alt="_images/PracticeFOURSolutions_18_0.png" src="_images/PracticeFOURSolutions_18_0.png" style="width: 600px;" /></a>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

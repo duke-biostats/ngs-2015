@@ -1,0 +1,489 @@
+
+Functional Programming
+======================
+
+Functional programming refers to a specialized way of writing code so
+that 'side effects' are avoided, making the outcome of the code easier
+to predict. It is 'declarative' - functions are given as expressions, as
+opposed to 'imperative', where commands are issued to change the state
+of the program (e.g. change the value of variables by assignment).
+Historically, programming has been imperative, but the notion of
+functional programming is gaining ground lately, especially because of
+its connection to paralellization and distributed computing.
+
+We won't discuss the methodology in detail, but we will cover the basic
+R tools for functional programming - tools that allow us to apply
+functions across data structures. These tools allow us to avoid looping
+by extending the ability to vectorize operations.
+
+R apply
+-------
+
+``apply`` maps a function to a matrix:
+
+.. code:: python
+
+    m<-matrix(rnorm(30),ncol=3,nrow=10)
+    print(m)
+
+
+.. parsed-literal::
+
+                 [,1]        [,2]        [,3]
+     [1,] -1.88415809 -0.09135793 -0.04933136
+     [2,]  0.27581447  0.59928155 -0.01019772
+     [3,]  0.23509325 -1.38182122 -1.49150530
+     [4,] -1.29592234 -0.10180487 -1.62481563
+     [5,]  0.31163838 -1.16070666  0.60327878
+     [6,]  0.23685780  0.80313813  1.49028075
+     [7,] -0.51883441  0.30667497  0.81876505
+     [8,] -0.01050835 -1.49125738  1.67045716
+     [9,] -0.17823674  0.50897338 -1.11499439
+    [10,]  1.00128144  0.70455616 -0.23839229
+
+
+.. code:: python
+
+    # Get the mean of the rows, returned as a vector 
+    apply(m,1,mean)
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>-0.674949128760326</li>
+    	<li>0.288299434064387</li>
+    	<li>-0.87941108856336</li>
+    	<li>-1.00751428266863</li>
+    	<li>-0.0819298347992709</li>
+    	<li>0.84342555958658</li>
+    	<li>0.202201872370568</li>
+    	<li>0.0562304744778094</li>
+    	<li>-0.261419251214308</li>
+    	<li>0.489148438901616</li>
+    </ol>
+
+
+
+
+.. code:: python
+
+    # Get the mean of the columns, returned as a vector 
+    apply(m,2,mean)
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>-0.18269745842911</li>
+    	<li>-0.130432387900508</li>
+    	<li>0.00535450434813664</li>
+    </ol>
+
+
+
+
+Work!
+~~~~~
+
+-  Find the sum of each of the columns of the matrix m.
+-  Find the product of each of the rows of the matrix m.
+
+Custom Functions and ``apply``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Any function that acts on a vector can be applied to the rows or columns
+of a matrix using ``apply``. For example:
+
+.. code:: python
+
+    apply(m,1,function(x) x*x)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <tbody>
+    	<tr><td>3.5500517085</td><td>0.0760736240</td><td>0.0552688372</td><td>1.6794147170</td><td>0.0971184776</td><td>0.0561016187</td><td>0.2691891415</td><td>0.0001104255</td><td>0.0317683363</td><td>1.0025645300</td></tr>
+    	<tr><td>0.008346272</td><td>0.359138375</td><td>1.909429885</td><td>0.010364232</td><td>1.347239959</td><td>0.645030852</td><td>0.094049538</td><td>2.223848573</td><td>0.259053905</td><td>0.496399383</td></tr>
+    	<tr><td>0.0024335833</td><td>0.0001039935</td><td>2.2245880524</td><td>2.6400258400</td><td>0.3639452898</td><td>2.2209367091</td><td>0.6703762101</td><td>2.7904271078</td><td>1.2432125008</td><td>0.0568308829</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    apply(m,1,function(x) x%*%x)
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>3.56083156395646</li>
+    	<li>0.435315992058913</li>
+    	<li>4.18928677483859</li>
+    	<li>4.32980478918986</li>
+    	<li>1.80830372628942</li>
+    	<li>2.92206917996323</li>
+    	<li>1.03361488996985</li>
+    	<li>5.01438610625781</li>
+    	<li>1.5340347423788</li>
+    	<li>1.55579479637673</li>
+    </ol>
+
+
+
+
+Note that ``apply`` returns an object of the appropriate dimension
+automagically. In the first example, the multiplication operator is the
+element-by-element product, so ``apply`` give us a matrix whose rows are
+the result of multiplying each of the 3 rows by itself. In the second
+example, the multiplication operator is a dot product, so ``apply``
+returns a 10-dimensional vector with each entry the squared norm of the
+3-dimensional row vector.
+
+Work!
+~~~~~
+
+Use ``apply`` to count the number of negative values in each column of
+m.
+
+
+``sapply`` and ``lapply``
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+R has several other versions of apply, for specific types of input and
+output data structures. Two of the most common are ``lapply`` and
+``sapply``. ``sapply`` can operate on either a list or a vector and
+returns a list or vector, respectively. ``lapply`` can operate on either
+a list or a vector, but returns a list.
+
+For example:
+
+.. code:: python
+
+    v<-1:10
+    sapply(v,function(x) x*2)
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>2</li>
+    	<li>4</li>
+    	<li>6</li>
+    	<li>8</li>
+    	<li>10</li>
+    	<li>12</li>
+    	<li>14</li>
+    	<li>16</li>
+    	<li>18</li>
+    	<li>20</li>
+    </ol>
+
+
+
+
+.. code:: python
+
+    v<-1:10
+    lapply(v,function(x) x*2)
+
+
+
+
+.. raw:: html
+
+    <ol>
+    	<li>2</li>
+    	<li>4</li>
+    	<li>6</li>
+    	<li>8</li>
+    	<li>10</li>
+    	<li>12</li>
+    	<li>14</li>
+    	<li>16</li>
+    	<li>18</li>
+    	<li>20</li>
+    </ol>
+
+
+
+
+Aside on Lists
+~~~~~~~~~~~~~~
+
+You may be wondering what is the difference between lists and vectors?
+Well, vectors are lists - but they are a specific type of list that
+contains only numbers. Lists can contain different types of objects.
+Consider the following:
+
+.. code:: python
+
+    my.list<-list(v,m)
+    my.list
+
+
+
+
+.. raw:: html
+
+    <ol>
+    	<li><ol class=list-inline>
+    	<li>1</li>
+    	<li>2</li>
+    	<li>3</li>
+    	<li>4</li>
+    	<li>5</li>
+    	<li>6</li>
+    	<li>7</li>
+    	<li>8</li>
+    	<li>9</li>
+    	<li>10</li>
+    </ol>
+    </li>
+    	<li><table>
+    <tbody>
+    	<tr><td>-1.88415809</td><td>-0.09135793</td><td>-0.04933136</td></tr>
+    	<tr><td> 0.27581447</td><td> 0.59928155</td><td>-0.01019772</td></tr>
+    	<tr><td> 0.2350933</td><td>-1.3818212</td><td>-1.4915053</td></tr>
+    	<tr><td>-1.2959223</td><td>-0.1018049</td><td>-1.6248156</td></tr>
+    	<tr><td> 0.3116384</td><td>-1.1607067</td><td> 0.6032788</td></tr>
+    	<tr><td>0.2368578</td><td>0.8031381</td><td>1.4902807</td></tr>
+    	<tr><td>-0.5188344</td><td> 0.3066750</td><td> 0.8187651</td></tr>
+    	<tr><td>-0.01050835</td><td>-1.49125738</td><td> 1.67045716</td></tr>
+    	<tr><td>-0.1782367</td><td> 0.5089734</td><td>-1.1149944</td></tr>
+    	<tr><td> 1.0012814</td><td> 0.7045562</td><td>-0.2383923</td></tr>
+    </tbody>
+    </table>
+    </li>
+    </ol>
+
+
+
+
+As you can see, ``my.list`` contains a vector AND a matrix. Now, lets
+use ``lapply``:
+
+.. code:: python
+
+    lapply(my.list,function(x) x*2)
+
+
+
+
+.. raw:: html
+
+    <ol>
+    	<li><ol class=list-inline>
+    	<li>2</li>
+    	<li>4</li>
+    	<li>6</li>
+    	<li>8</li>
+    	<li>10</li>
+    	<li>12</li>
+    	<li>14</li>
+    	<li>16</li>
+    	<li>18</li>
+    	<li>20</li>
+    </ol>
+    </li>
+    	<li><table>
+    <tbody>
+    	<tr><td>-3.76831618</td><td>-0.18271587</td><td>-0.09866272</td></tr>
+    	<tr><td> 0.55162895</td><td> 1.19856310</td><td>-0.02039544</td></tr>
+    	<tr><td> 0.4701865</td><td>-2.7636424</td><td>-2.9830106</td></tr>
+    	<tr><td>-2.5918447</td><td>-0.2036097</td><td>-3.2496313</td></tr>
+    	<tr><td> 0.6232768</td><td>-2.3214133</td><td> 1.2065576</td></tr>
+    	<tr><td>0.4737156</td><td>1.6062763</td><td>2.9805615</td></tr>
+    	<tr><td>-1.0376688</td><td> 0.6133499</td><td> 1.6375301</td></tr>
+    	<tr><td>-0.0210167</td><td>-2.9825148</td><td> 3.3409143</td></tr>
+    	<tr><td>-0.3564735</td><td> 1.0179468</td><td>-2.2299888</td></tr>
+    	<tr><td> 2.0025629</td><td> 1.4091123</td><td>-0.4767846</td></tr>
+    </tbody>
+    </table>
+    </li>
+    </ol>
+
+
+
+
+What does ``sapply`` do?
+
+.. code:: python
+
+    sapply(my.list,function(x) x*2)
+
+
+
+
+.. raw:: html
+
+    <ol>
+    	<li><ol class=list-inline>
+    	<li>2</li>
+    	<li>4</li>
+    	<li>6</li>
+    	<li>8</li>
+    	<li>10</li>
+    	<li>12</li>
+    	<li>14</li>
+    	<li>16</li>
+    	<li>18</li>
+    	<li>20</li>
+    </ol>
+    </li>
+    	<li><table>
+    <tbody>
+    	<tr><td>-3.76831618</td><td>-0.18271587</td><td>-0.09866272</td></tr>
+    	<tr><td> 0.55162895</td><td> 1.19856310</td><td>-0.02039544</td></tr>
+    	<tr><td> 0.4701865</td><td>-2.7636424</td><td>-2.9830106</td></tr>
+    	<tr><td>-2.5918447</td><td>-0.2036097</td><td>-3.2496313</td></tr>
+    	<tr><td> 0.6232768</td><td>-2.3214133</td><td> 1.2065576</td></tr>
+    	<tr><td>0.4737156</td><td>1.6062763</td><td>2.9805615</td></tr>
+    	<tr><td>-1.0376688</td><td> 0.6133499</td><td> 1.6375301</td></tr>
+    	<tr><td>-0.0210167</td><td>-2.9825148</td><td> 3.3409143</td></tr>
+    	<tr><td>-0.3564735</td><td> 1.0179468</td><td>-2.2299888</td></tr>
+    	<tr><td> 2.0025629</td><td> 1.4091123</td><td>-0.4767846</td></tr>
+    </tbody>
+    </table>
+    </li>
+    </ol>
+
+
+
+
+Same thing! Well, what we see here is that R is sometimes smarter than
+us. ``sapply`` returns a list, because we gave it a list. Let's try
+something else:
+
+.. code:: python
+
+    another.list<-list(1:5)
+    mult.list<-sapply(another.list,function(x) x*2)
+    print(mult.list)
+
+
+.. parsed-literal::
+
+         [,1]
+    [1,]    2
+    [2,]    4
+    [3,]    6
+    [4,]    8
+    [5,]   10
+
+
+Now what? ``sapply`` gave us a *matrix*.
+
+.. code:: python
+
+    dim(mult.list)
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>5</li>
+    	<li>1</li>
+    </ol>
+
+
+
+
+Why R does this is a bit beyond our scope. The take-away here is to be
+careful with data types, and try to give R the right one. If you want a
+vector returned, give R a vector, not a list!
+
+One more thing about lists
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you mix character or logical types, you can get unintended results:
+
+.. code:: python
+
+    my.list<-list(1:5,TRUE,TRUE)
+    mult.list<-sapply(my.list,function(x) x*2)
+    print(mult.list)
+
+
+.. parsed-literal::
+
+    [[1]]
+    [1]  2  4  6  8 10
+    
+    [[2]]
+    [1] 2
+    
+    [[3]]
+    [1] 2
+    
+
+
+R interpreted ``TRUE`` as a numeric 1.
+
+.. code:: python
+
+    my.list<-list(1:5,"a","b")
+    mult.list<-sapply(my.list,function(x) x*2)
+    print(mult.list)
+
+
+::
+
+
+    Error in x * 2: non-numeric argument to binary operator
+
+
+
+.. parsed-literal::
+
+         [,1]
+    [1,]    2
+    [2,]    4
+    [3,]    6
+    [4,]    8
+    [5,]   10
+
+
+.. code:: python
+
+    my.list<-list(1:5,"1","2")
+    mult.list<-sapply(my.list,function(x) x*2)
+    print(mult.list)
+
+
+::
+
+
+    Error in x * 2: non-numeric argument to binary operator
+
+
+
+.. parsed-literal::
+
+         [,1]
+    [1,]    2
+    [2,]    4
+    [3,]    6
+    [4,]    8
+    [5,]   10
+
+
+In these last two examples, R returns an error, because we have tried to
+multiply by a character type.
+

@@ -1,0 +1,297 @@
+
+Practice 4
+----------------------------------------
+
+.. code:: python
+
+    library(ggplot2)
+    library(reshape2)
+    library(pheatmap)
+    library(genefilter) # for rowttests
+    library(nlme)
+    data(Rail)
+
+
+.. parsed-literal::
+
+    
+    Attaching package: ‘genefilter’
+    
+    The following object is masked from ‘package:base’:
+    
+        anyNA
+    
+
+
+**Exericse 0**
+
+Using base graphics, make a 2 x 2 grid for plotting.
+
+Top left - Generate 100 random numbers from a t-distribution with 5
+degrees of freedom - Plot a normalized histogram (i.e. area sums to 1)
+with 8 breaks - Overlay a smoothed density estimate (using ``density``)
+in orange - Overlay the true density estimate (using ``dt``) in red -
+Add a rug
+
+Tor right - Using the ``iris`` data set, make a scatter plot of Sepal
+length agaisnt Sepal width. Color the points by Species. - Add your own
+title and x and y lables
+
+Bottom left - Generate 100 numbers from a Poisson distribution with rate
+= 3 - Plot a bar chart showing the counts for each value
+
+Bottom right - Make a box and whiskers plot of the 4 numeric variables
+in the ``iris`` data set - Show vertical labels for all Species names -
+Adjust the margins so that the labels are visible using the ``mar``
+(bottom, left, top, right) parameter. You can see the default values
+with ``par()$mar``. Remember to restore the orignal parameters at the
+end.
+
+Save the plot as a Portable Neetwork Graphics (png) file.
+
+.. code:: python
+
+    png("myplot.png")
+    par(mfrow=c(2,2))
+    x <- rt(100, df=5)
+    hist(x, breaks = 8, probability = TRUE)
+    lines(density(x), col="orange")
+    xp <- seq(min(x), max(x), length.out = 50)
+    lines(xp, dt(xp, df=5), col="red")
+    rug(x)
+    plot(iris$Sepal.Width, iris$Sepal.Length, col=iris$Species, 
+         main="Scatter by Iris species", ylab="Length", xlab="Width")
+    n <- rpois(100, lambda = 3)
+    barplot(table(n))
+    orig <- par(no.readonly=TRUE)
+    par(mar=c(6.1,4.1,4.1,2.1))
+    boxplot(iris[,1:4], las=2)
+    par(orig)
+    dev.off()
+
+.. raw:: html
+
+    <strong>pdf:</strong> 2
+
+
+
+.. code:: python
+
+    head(Rail)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Rail</th><th scope=col>travel</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>55</td></tr>
+    	<tr><th scope=row>2</th><td>1</td><td>53</td></tr>
+    	<tr><th scope=row>3</th><td>1</td><td>54</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>26</td></tr>
+    	<tr><th scope=row>5</th><td>2</td><td>37</td></tr>
+    	<tr><th scope=row>6</th><td>2</td><td>32</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Exercise 1
+^^^^^^^^^^
+
+-  Use the ggplot function
+-  Create a scatter plot with Rail on the x-axis and travel on the
+   y-axis.
+-  CHange the title to "I made this!"
+-  Change the y-axis label to be "Zero-force travel time (nano-seconds)"
+-  Change the size of the points to 5
+-  Change the color of potins to blue and transparency to 0.5
+-  Add a simple linear regression line to the plot with 90% confidence
+   intervals
+
+.. code:: python
+
+    ggplot(Rail, aes(x=as.numeric(Rail), y=travel)) +
+    geom_point(size=5, color="blue", alpha=0.5) +
+    geom_smooth(method="lm") +
+    labs(title="I made this", ylab="Zero-force travel time (nano-seconds)")
+
+
+.. image:: PracticeFOURSolutions_files/PracticeFOURSolutions_6_0.png
+   :width: 600
+
+
+
+
+Exercise 2
+^^^^^^^^^^
+
+Here we will try to replicate the noise discovery heatmaps shown in the
+statistics class.
+
+.. code:: python
+
+    set.seed(123)
+    
+    n <- 20 # number of subjects
+    m <- 20000 # number of genes 
+    alpha <- 0.005 # significance level
+    
+    # create a matrix of gene expression values with m rows and 2*n columns
+    M <- matrix(rnorm(2*n*m), m, 2*n)
+    
+    # give row and column names
+    rownames(M) <- paste("G", 1:m, sep="")
+    colnames(M) <- paste("id", 1:(2*n), sep="")
+    
+    # assign subjects inot equal sized groups
+    grp <- factor(rep(0:1, c(n, n)))
+    
+    # calculate p-value using t-test for mean experession value of each gene
+    pvals <- rowttests(M, grp)$p.value
+    
+    # extract the genes which meet the specified significance level
+    hits <- M[pvals < alpha,]
+
+-  Use pheatmap to plot a heatmap
+-  Remove the row names (Use tAB or R's built-in help to figure out to
+   do this)
+-  Use this color palette to map expression values to a red-blakc-green
+   scale ``colorRampPalette(c("red3", "black", "green3"))(50)``
+
+.. code:: python
+
+    pheatmap(hits, show_rownames = FALSE, color = colorRampPalette(c("red3", "black", "green3"))(50))
+
+
+
+.. image:: PracticeFOURSolutions_files/PracticeFOURSolutions_10_0.png
+   :width: 600
+
+
+
+.. code:: python
+
+    a1 <- 1
+    a2 <- 2
+    sigma1 <- 25
+    sigma2 <- 25
+    
+    subject <- paste("PID", rep(1:2, each=5))
+    dose <- rep(seq(10, 100, 20), 2)
+    geneA <- a1 * dose + rnorm(length(dose), sd=sigma1)
+    geneB <- a2 * dose + rnorm(length(dose), sd=sigma2)
+    
+    df <- data.frame(subject=subject, dose=dose, geneA=geneA, geneB=geneB)
+
+.. code:: python
+
+    df
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>subject</th><th scope=col>dose</th><th scope=col>geneA</th><th scope=col>geneB</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>PID 1</td><td>10</td><td>-3.367338</td><td>-31.18716</td></tr>
+    	<tr><th scope=row>2</th><td>PID 1</td><td>30</td><td>54.03613</td><td>91.78636</td></tr>
+    	<tr><th scope=row>3</th><td>PID 1</td><td>50</td><td>22.40099</td><td>124.477</td></tr>
+    	<tr><th scope=row>4</th><td>PID 1</td><td>70</td><td>73.61274</td><td>111.6039</td></tr>
+    	<tr><th scope=row>5</th><td>PID 1</td><td>90</td><td>84.05749</td><td>188.5058</td></tr>
+    	<tr><th scope=row>6</th><td>PID 2</td><td>10</td><td>-13.63179</td><td>12.04911</td></tr>
+    	<tr><th scope=row>7</th><td>PID 2</td><td>30</td><td>40.03472</td><td>57.40407</td></tr>
+    	<tr><th scope=row>8</th><td>PID 2</td><td>50</td><td>64.98747</td><td>79.04738</td></tr>
+    	<tr><th scope=row>9</th><td>PID 2</td><td>70</td><td>91.22307</td><td>147.4357</td></tr>
+    	<tr><th scope=row>10</th><td>PID 2</td><td>90</td><td>70.94818</td><td>166.8696</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+**Exercise 3**
+
+Using ``ggplot2``, plot gene expression agaisnt does, using differnt
+colors for differetn genes and differnet shapes for different subjects.
+(Hint: The ``reshape2`` library may come in useful)
+
+.. code:: python
+
+    md <- melt(df, id=c("subject", "dose"))
+
+.. code:: python
+
+    md
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>subject</th><th scope=col>dose</th><th scope=col>variable</th><th scope=col>value</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>PID 1</td><td>10</td><td>geneA</td><td>-3.367338</td></tr>
+    	<tr><th scope=row>2</th><td>PID 1</td><td>30</td><td>geneA</td><td>54.03613</td></tr>
+    	<tr><th scope=row>3</th><td>PID 1</td><td>50</td><td>geneA</td><td>22.40099</td></tr>
+    	<tr><th scope=row>4</th><td>PID 1</td><td>70</td><td>geneA</td><td>73.61274</td></tr>
+    	<tr><th scope=row>5</th><td>PID 1</td><td>90</td><td>geneA</td><td>84.05749</td></tr>
+    	<tr><th scope=row>6</th><td>PID 2</td><td>10</td><td>geneA</td><td>-13.63179</td></tr>
+    	<tr><th scope=row>7</th><td>PID 2</td><td>30</td><td>geneA</td><td>40.03472</td></tr>
+    	<tr><th scope=row>8</th><td>PID 2</td><td>50</td><td>geneA</td><td>64.98747</td></tr>
+    	<tr><th scope=row>9</th><td>PID 2</td><td>70</td><td>geneA</td><td>91.22307</td></tr>
+    	<tr><th scope=row>10</th><td>PID 2</td><td>90</td><td>geneA</td><td>70.94818</td></tr>
+    	<tr><th scope=row>11</th><td>PID 1</td><td>10</td><td>geneB</td><td>-31.18716</td></tr>
+    	<tr><th scope=row>12</th><td>PID 1</td><td>30</td><td>geneB</td><td>91.78636</td></tr>
+    	<tr><th scope=row>13</th><td>PID 1</td><td>50</td><td>geneB</td><td>124.477</td></tr>
+    	<tr><th scope=row>14</th><td>PID 1</td><td>70</td><td>geneB</td><td>111.6039</td></tr>
+    	<tr><th scope=row>15</th><td>PID 1</td><td>90</td><td>geneB</td><td>188.5058</td></tr>
+    	<tr><th scope=row>16</th><td>PID 2</td><td>10</td><td>geneB</td><td>12.04911</td></tr>
+    	<tr><th scope=row>17</th><td>PID 2</td><td>30</td><td>geneB</td><td>57.40407</td></tr>
+    	<tr><th scope=row>18</th><td>PID 2</td><td>50</td><td>geneB</td><td>79.04738</td></tr>
+    	<tr><th scope=row>19</th><td>PID 2</td><td>70</td><td>geneB</td><td>147.4357</td></tr>
+    	<tr><th scope=row>20</th><td>PID 2</td><td>90</td><td>geneB</td><td>166.8696</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    ggplot(md, aes(x=dose, y=value, color=variable, shape=subject)) + 
+    geom_point(size=5)
+
+
+
+.. image:: PracticeFOURSolutions_files/PracticeFOURSolutions_16_0.png
+   :width: 600
+
+
+
+**Exercise 4**
+
+Usign ``ggplot2``, make a grid of plots with separae colummsn for each
+subject and separate rows for each gene. Vary the color and size by the
+gene expression value. Add a linear regression fit with 95% confidence
+intervals to each plot.
+
+.. code:: python
+
+    ggplot(md, aes(x=dose, y=value, color=value)) + 
+    geom_point(size=3) +
+    geom_smooth(method="lm") +
+    facet_grid(variable ~ subject)
+
+
+
+.. image:: PracticeFOURSolutions_files/PracticeFOURSolutions_18_0.png
+   :width: 600
+
+

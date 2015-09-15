@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Preparing Data for Analysis &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+    <link rel="next" title="Working with Data" href="WorkingWithData.html" />
+    <link rel="prev" title="Introduction to R" href="IntroductionToR.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearningWhatCouldGoWrong.html">Supervised Learning Continued - What Could Go Wrong?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONE-Solutions.html">Practice ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTWOSolutions.html">Practice TWO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTHREESolutions.html">Practice THREE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeFOURSolutions.html">Practice FOUR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2NotebookFromMatrix.html">Import count data using basic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Preparing Data for Analysis</a><ul>
+<li><a class="reference internal" href="#do-this">Do this</a></li>
+<li><a class="reference internal" href="#not-this">Not this</a></li>
+<li><a class="reference internal" href="#id1">Do this</a></li>
+<li><a class="reference internal" href="#id2">Not this</a></li>
+<li><a class="reference internal" href="#round-trip-from-excel-to-csv-and-back-to-excel">Round-trip from Excel to CSV and back to Excel</a><ul>
+<li><a class="reference internal" href="#before">Before</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#after">After</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="IntroductionToR.html" title="Previous Chapter: Introduction to R"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Introduction ...</span>
+    </a>
+  </li>
+  <li>
+    <a href="WorkingWithData.html" title="Next Chapter: Working with Data"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Working with ... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/PreparingDataForAnalysis.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="preparing-data-for-analysis">
+<h1>Preparing Data for Analysis<a class="headerlink" href="#preparing-data-for-analysis" title="Permalink to this headline">¶</a></h1>
+<p>In biomedical contexts, data most often comes from external text files
+such as spreadsheets. Here we will look at how to prepare such data for
+importing into R as a data frame. In order to read spreadsheets
+correctly, you need to be follow some simple rules when cosntrucitng the
+table:</p>
+<div class="section" id="do-this">
+<h2>Do this<a class="headerlink" href="#do-this" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>A table has column headers and a number of rows and nothing else – it
+is RECTANGULAR</li>
+</ul>
+<a class="reference internal image-reference" href="_images/good_spreadsheet.png"><img alt="_images/good_spreadsheet.png" src="_images/good_spreadsheet.png" style="width: 600px;" /></a>
+</div>
+<div class="section" id="not-this">
+<h2>Not this<a class="headerlink" href="#not-this" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Do not put more than 1 table in a worksheet</li>
+<li>Do not use non-rectangular tables</li>
+</ul>
+<a class="reference internal image-reference" href="_images/bad_spreadsheet.png"><img alt="_images/bad_spreadsheet.png" src="_images/bad_spreadsheet.png" style="width: 600px;" /></a>
+</div>
+<div class="section" id="id1">
+<h2>Do this<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>One cell = one value</li>
+<li>Easy to filter by tube, sample or subject</li>
+<li>Easy to write validation rules or lookup table</li>
+</ul>
+<a class="reference internal image-reference" href="_images/simple_information.png"><img alt="_images/simple_information.png" src="_images/simple_information.png" style="width: 600px;" /></a>
+</div>
+<div class="section" id="id2">
+<h2>Not this<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>ID column has 3 different values</li>
+<li>Need to do text parsing to recover information – very error prone</li>
+</ul>
+<a class="reference internal image-reference" href="_images/complex_information.png"><img alt="_images/complex_information.png" src="_images/complex_information.png" style="width: 600px;" /></a>
+</div>
+<div class="section" id="round-trip-from-excel-to-csv-and-back-to-excel">
+<h2>Round-trip from Excel to CSV and back to Excel<a class="headerlink" href="#round-trip-from-excel-to-csv-and-back-to-excel" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="before">
+<h3>Before<a class="headerlink" href="#before" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Inofmration in highlighting</li>
+<li>Information in comment notes</li>
+<li>Information in font color</li>
+<li>Merged cells</li>
+</ul>
+<a class="reference internal image-reference" href="_images/before.png"><img alt="_images/before.png" src="_images/before.png" style="width: 600px;" /></a>
+</div>
+</div>
+<div class="section" id="after">
+<h2>After<a class="headerlink" href="#after" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Comments are lost</li>
+<li>Highlighting is lost</li>
+<li>Bad cell formatting is lost</li>
+<li>Merged cells become missing information</li>
+</ul>
+<a class="reference internal image-reference" href="_images/after.png"><img alt="_images/after.png" src="_images/after.png" style="width: 600px;" /></a>
+<ul class="simple">
+<li>When sorting, make sure you sort all the columns, even the ones that
+are not on the screen</li>
+<li>Use a lookup table rather than typing if possible to avoid errors due
+to typos</li>
+<li>Use a special marker to indicate misssing values - do not use 0 or
+999 etc</li>
+<li>Do not keeep multiple copies of the same spredsheet</li>
+<li>If you must keep multiple copies, make sure you version them clearly
+in the fileanme</li>
+<li>Excel is OK if you use almost NONE of its features!</li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,462 @@
+
+Base Graphics
+=============
+
+Building Graphs
+---------------
+
+Incremental building of features into graphs.
+
+`Less is more <http://i.imgur.com/W4BKCVU.gif>`__
+
+`More visualization
+tips <http://blog.plot.ly/post/123617968702/online-dashboards-eight-helpful-tips-you-should>`__
+
+**References**
+
+1. `Graphical
+   parameters <http://www.statmethods.net/advgraphs/parameters.html>`__
+2. `Colors <http://research.stowers-institute.org/efg/R/Color/Chart/index.htm>`__
+3. Named colors - type ``colors()``
+4. `Using color scales and plattes in
+   R <http://thedata.co/sites/thedata.co/files/u1/VisThis_Tutorial_Using%20Color%20Scales%20and%20Palettes%20in%20R.pdf>`__
+5. ``?plot``
+6. ``?par``
+7. Specific options e.g. ``?pch``
+
+Basic plots
+~~~~~~~~~~~
+
+.. code:: python
+
+    head(mtcars)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>mpg</th><th scope=col>cyl</th><th scope=col>disp</th><th scope=col>hp</th><th scope=col>drat</th><th scope=col>wt</th><th scope=col>qsec</th><th scope=col>vs</th><th scope=col>am</th><th scope=col>gear</th><th scope=col>carb</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>Mazda RX4</th><td>21</td><td>6</td><td>160</td><td>110</td><td>3.9</td><td>2.62</td><td>16.46</td><td>0</td><td>1</td><td>4</td><td>4</td></tr>
+    	<tr><th scope=row>Mazda RX4 Wag</th><td>21</td><td>6</td><td>160</td><td>110</td><td>3.9</td><td>2.875</td><td>17.02</td><td>0</td><td>1</td><td>4</td><td>4</td></tr>
+    	<tr><th scope=row>Datsun 710</th><td>22.8</td><td>4</td><td>108</td><td>93</td><td>3.85</td><td>2.32</td><td>18.61</td><td>1</td><td>1</td><td>4</td><td>1</td></tr>
+    	<tr><th scope=row>Hornet 4 Drive</th><td>21.4</td><td>6</td><td>258</td><td>110</td><td>3.08</td><td>3.215</td><td>19.44</td><td>1</td><td>0</td><td>3</td><td>1</td></tr>
+    	<tr><th scope=row>Hornet Sportabout</th><td>18.7</td><td>8</td><td>360</td><td>175</td><td>3.15</td><td>3.44</td><td>17.02</td><td>0</td><td>0</td><td>3</td><td>2</td></tr>
+    	<tr><th scope=row>Valiant</th><td>18.1</td><td>6</td><td>225</td><td>105</td><td>2.76</td><td>3.46</td><td>20.22</td><td>1</td><td>0</td><td>3</td><td>1</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    with(mtcars, plot(wt, mpg))
+
+.. image:: BaseGraphics_files/BaseGraphics_7_0.png
+   :width: 600
+
+.. code:: python
+
+    scatter.smooth(mtcars$wt, mtcars$mpg)
+
+.. image:: BaseGraphics_files/BaseGraphics_8_0.png
+   :width: 600
+
+
+
+
+.. code:: python
+
+    df <- mtcars[order(mtcars$wt),]
+    with(df, plot(wt, mpg, type="b"))
+
+.. image:: BaseGraphics_files/BaseGraphics_9_0.png
+   :width: 600
+
+
+
+
+.. code:: python
+
+    with(mtcars, hist(mpg, breaks=10))
+
+
+.. image:: BaseGraphics_files/BaseGraphics_10_0.png
+   :width: 600
+
+
+
+.. code:: python
+
+    plot(density(mtcars$mpg), main="Density plot")
+
+.. image:: BaseGraphics_files/BaseGraphics_11_0.png
+   :width: 600
+
+
+
+
+.. code:: python
+
+    attach(mtcars)
+    hist(mpg, breaks=10, probability = TRUE, main="")
+    rug(mpg)
+    x <- seq(min(mpg), max(mpg), length.out = 50)
+    lines(x, dnorm(x, mean=mean(x), sd=sd(x)), col="red", lwd=2)
+    detach(mtcars)
+
+.. image:: BaseGraphics_files/BaseGraphics_12_0.png
+   :width: 600
+
+
+
+
+.. code:: python
+
+    with(mtcars, pie(table(carb)))
+
+.. image:: BaseGraphics_files/BaseGraphics_13_0.png
+   :width: 600
+
+
+
+
+.. code:: python
+
+    with(mtcars, barplot(table(carb)))
+
+.. image:: BaseGraphics_files/BaseGraphics_14_0.png
+   :width: 600
+
+
+
+
+.. code:: python
+
+    with(mtcars, barplot(table(carb), horiz=TRUE))
+
+
+.. image:: BaseGraphics_files/BaseGraphics_15_0.png
+   :width: 600
+
+
+
+.. code:: python
+
+    attach(mtcars)
+    (tbl <- table(carb, am))
+    barplot(tbl, beside=TRUE, legend=rownames(tbl), col=heat.colors(carb))
+    detach(mtcars)
+
+.. image:: BaseGraphics_files/BaseGraphics_16_0.png
+   :width: 600
+
+
+
+
+.. parsed-literal::
+
+        am
+    carb 0 1
+       1 3 4
+       2 6 4
+       3 3 0
+       4 7 3
+       6 0 1
+       8 0 1
+
+
+
+
+
+.. code:: python
+
+    boxplot(log1p(mtcars))
+
+.. image:: BaseGraphics_files/BaseGraphics_17_0.png
+   :width: 600
+
+
+
+
+.. code:: python
+
+    df <- mtcars[order(-mtcars$mpg),]
+    dotchart(df$mpg, labels=row.names(df))
+
+.. image:: BaseGraphics_files/BaseGraphics_18_0.png
+   :width: 600
+
+
+
+
+.. code:: python
+
+    dotchart(df$mpg, labels=row.names(df), groups=df$cyl, color=df$cyl, pch=19)
+
+.. image:: BaseGraphics_files/BaseGraphics_19_0.png
+   :width: 600
+
+
+
+
+.. code:: python
+
+    pairs(~mpg + drat + wt, data=mtcars)
+
+.. image:: BaseGraphics_files/BaseGraphics_20_0.png
+   :width: 600
+
+
+
+
+Building plots
+~~~~~~~~~~~~~~
+
+-  Local customization of plots
+-  Glaobl customization of plots
+-  Adding more stuff to a plot
+
+   -  points
+   -  lines
+   -  text
+   -  mathematical expressions
+
+-  Combining plots
+-  Saving plots
+
+Scatterplot
+^^^^^^^^^^^
+
+.. code:: python
+
+    df <- mtcars[order(mtcars$wt),]
+    attach(df)
+    plot(wt, mpg)
+    detach(df)
+
+.. image:: BaseGraphics_files/BaseGraphics_23_0.png
+   :width: 600
+
+
+
+
+Combining plots
+~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    par(mfrow=c(2,2))
+    plot(rnorm(10))
+    plot(rnorm(10))
+    plot(rnorm(10))
+    plot(rnorm(10))
+
+
+.. image:: BaseGraphics_files/BaseGraphics_25_0.png
+   :width: 600
+
+
+
+.. code:: python
+
+    (m <- matrix(c(1,1,2,3), 2, 2, byrow=TRUE))
+
+
+
+
+.. raw:: html
+
+    <table>
+    <tbody>
+    	<tr><td>1</td><td>1</td></tr>
+    	<tr><td>2</td><td>3</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    layout(m)
+    plot(rnorm(10))
+    plot(rnorm(10))
+    plot(rnorm(10))
+
+.. image:: BaseGraphics_files/BaseGraphics_27_0.png
+   :width: 600
+
+
+
+
+.. code:: python
+
+    layout(m, widths=c(1,2), heights=c(2,1))
+    plot(rnorm(10))
+    plot(rnorm(10))
+    plot(rnorm(10))
+
+
+.. image:: BaseGraphics_files/BaseGraphics_28_0.png
+   :width: 600
+
+
+
+.. code:: python
+
+    orig <- par(no.readonly=TRUE)
+    x <- rnorm(10)
+    y <- rnorm(10)
+    par(fig = c(0, 0.8, 0, 0.8))
+    plot(x, y)
+    par(fig = c(0, 0.8, 0.6, 1), new=TRUE)
+    plot(density(x), axes=FALSE, main="", xlab="")
+    par(fig = c(0.6, 1, 0, 0.8), new=TRUE)
+    boxplot(y, axes=FALSE)
+    par(orig)
+
+.. image:: BaseGraphics_files/BaseGraphics_29_0.png
+   :width: 600
+
+
+
+
+Plotting Graphcs and Heatmpas
+----------------------------------------
+
+Graphs
+~~~~~~
+
+It may be necessary to install first
+
+.. code:: r
+
+    install.packages("igraphdata", repos = "http://cran.r-project.org")
+
+.. code:: python
+
+    library(igraph)
+    library(igraphdata)
+
+.. code:: python
+
+    data(macaque)
+
+.. code:: python
+
+    plot(macaque, layout=layout.auto, vertex.shape="circle",
+         vertex.size=8, edge.arrow.size=0.5, vertex.label=NA)
+
+.. image:: MiscGraphics_files/MiscGraphics_4_0.png
+   :width: 600
+
+
+
+Heatmap
+~~~~~~~
+
+.. code:: python
+
+    heatmap(as.matrix(mtcars), Rowv = NA, Colv = NA, scale = "column")
+
+
+.. image:: MiscGraphics_files/MiscGraphics_6_0.png
+   :width: 600
+	   
+Heatmap with dendrogram
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    heatmap(as.matrix(mtcars), scale = "column")
+
+.. image:: MiscGraphics_files/MiscGraphics_8_0.png
+   :width: 600
+	   
+
+
+
+Fancy heatmaps
+~~~~~~~~~~~~~~
+
+Also see `d3heatmaps <https://github.com/rstudio/d3heatmap>`__ if you
+want an interactive heatmap. This does not seem to work within the
+notebook but will work in RStudio or an R script.
+
+.. code:: python
+
+    library(pheatmap)
+
+.. code:: python
+
+    pheatmap(as.matrix(mtcars), scale = "column")
+
+
+
+.. image:: MiscGraphics_files/MiscGraphics_11_0.png
+   :width: 600
+
+
+.. code:: python
+
+    library(gplots)
+
+.. code:: python
+
+    heatmap.2(as.matrix(mtcars), scale = "column", col=redgreen)
+
+.. image:: MiscGraphics_files/MiscGraphics_13_0.png
+   :width: 600
+
+
+
+
+Work!
+^^^^^
+
+Here we will try to replicate the noise discovery heatmap shown in the
+statistics class.
+
+.. code:: python
+
+    suppressMessages(library(genefilter))
+
+Perform noise discovery
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    set.seed(123)
+    
+    n <- 20 # number of subjects
+    m <- 20000 # number of genes 
+    alpha <- 0.005 # significance level
+    
+    # create a matrix of gene expression values with m rows and 2*n columns
+    M <- matrix(rnorm(2*n*m), m, 2*n)
+    
+    # give row and column names
+    rownames(M) <- paste("G", 1:m, sep="")
+    colnames(M) <- paste("id", 1:(2*n), sep="")
+    
+    # assign subjects inot equal sized groups
+    grp <- factor(rep(0:1, c(n, n)))
+    
+    # calculate p-value using t-test for mean experession value of each gene
+    pvals <- rowttests(M, grp)$p.value
+    
+    # extract the genes which meet the specified significance level
+    hits <- M[pvals < alpha,]
+
+-  Use pheatmap to plot a heatmap
+-  Remove the row names (Google or use R's built-in help to figure out
+   to do this)
+-  Use this color palette to map expression values to a red-blakc-green
+   scale
+
+``colorRampPalette(c("red3", "black", "green3"))(50)``
+

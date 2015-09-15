@@ -1,0 +1,1143 @@
+
+Grouping and Aggregation
+========================
+
+Sorting data
+------------
+
+.. code:: python
+
+    head(iris, 6)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Sepal.Length</th><th scope=col>Sepal.Width</th><th scope=col>Petal.Length</th><th scope=col>Petal.Width</th><th scope=col>Species</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>5.1</td><td>3.5</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+    	<tr><th scope=row>2</th><td>4.9</td><td>3</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+    	<tr><th scope=row>3</th><td>4.7</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+    	<tr><th scope=row>4</th><td>4.6</td><td>3.1</td><td>1.5</td><td>0.2</td><td>setosa</td></tr>
+    	<tr><th scope=row>5</th><td>5</td><td>3.6</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+    	<tr><th scope=row>6</th><td>5.4</td><td>3.9</td><td>1.7</td><td>0.4</td><td>setosa</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    ridx <- order(iris$Sepal.Length)
+    head(iris[ridx,], 4)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Sepal.Length</th><th scope=col>Sepal.Width</th><th scope=col>Petal.Length</th><th scope=col>Petal.Width</th><th scope=col>Species</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>14</th><td>4.3</td><td>3</td><td>1.1</td><td>0.1</td><td>setosa</td></tr>
+    	<tr><th scope=row>9</th><td>4.4</td><td>2.9</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+    	<tr><th scope=row>39</th><td>4.4</td><td>3</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+    	<tr><th scope=row>43</th><td>4.4</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    ridx <- order(iris$Sepal.Length, decreasing = TRUE)
+    head(iris[ridx,], 4)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Sepal.Length</th><th scope=col>Sepal.Width</th><th scope=col>Petal.Length</th><th scope=col>Petal.Width</th><th scope=col>Species</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>132</th><td>7.9</td><td>3.8</td><td>6.4</td><td>2</td><td>virginica</td></tr>
+    	<tr><th scope=row>118</th><td>7.7</td><td>3.8</td><td>6.7</td><td>2.2</td><td>virginica</td></tr>
+    	<tr><th scope=row>119</th><td>7.7</td><td>2.6</td><td>6.9</td><td>2.3</td><td>virginica</td></tr>
+    	<tr><th scope=row>123</th><td>7.7</td><td>2.8</td><td>6.7</td><td>2</td><td>virginica</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    ridx <- order(iris$Sepal.Length, iris$Petal.Length)
+    head(iris[ridx,], 4)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Sepal.Length</th><th scope=col>Sepal.Width</th><th scope=col>Petal.Length</th><th scope=col>Petal.Width</th><th scope=col>Species</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>14</th><td>4.3</td><td>3</td><td>1.1</td><td>0.1</td><td>setosa</td></tr>
+    	<tr><th scope=row>39</th><td>4.4</td><td>3</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+    	<tr><th scope=row>43</th><td>4.4</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+    	<tr><th scope=row>9</th><td>4.4</td><td>2.9</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    ridx <- order(iris$Sepal.Length, -iris$Petal.Length)
+    head(iris[ridx,], 4)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Sepal.Length</th><th scope=col>Sepal.Width</th><th scope=col>Petal.Length</th><th scope=col>Petal.Width</th><th scope=col>Species</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>14</th><td>4.3</td><td>3</td><td>1.1</td><td>0.1</td><td>setosa</td></tr>
+    	<tr><th scope=row>9</th><td>4.4</td><td>2.9</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+    	<tr><th scope=row>39</th><td>4.4</td><td>3</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+    	<tr><th scope=row>43</th><td>4.4</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Trnasposing data
+----------------
+
+.. code:: python
+
+    ir6 <- iris[sample(1:nrow(iris), 6, replace=FALSE),]
+    ir6
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Sepal.Length</th><th scope=col>Sepal.Width</th><th scope=col>Petal.Length</th><th scope=col>Petal.Width</th><th scope=col>Species</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>112</th><td>6.4</td><td>2.7</td><td>5.3</td><td>1.9</td><td>virginica</td></tr>
+    	<tr><th scope=row>146</th><td>6.7</td><td>3</td><td>5.2</td><td>2.3</td><td>virginica</td></tr>
+    	<tr><th scope=row>56</th><td>5.7</td><td>2.8</td><td>4.5</td><td>1.3</td><td>versicolor</td></tr>
+    	<tr><th scope=row>32</th><td>5.4</td><td>3.4</td><td>1.5</td><td>0.4</td><td>setosa</td></tr>
+    	<tr><th scope=row>98</th><td>6.2</td><td>2.9</td><td>4.3</td><td>1.3</td><td>versicolor</td></tr>
+    	<tr><th scope=row>129</th><td>6.4</td><td>2.8</td><td>5.6</td><td>2.1</td><td>virginica</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    t(ir6)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>112</th><th scope=col>146</th><th scope=col>56</th><th scope=col>32</th><th scope=col>98</th><th scope=col>129</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>Sepal.Length</th><td>6.4</td><td>6.7</td><td>5.7</td><td>5.4</td><td>6.2</td><td>6.4</td></tr>
+    	<tr><th scope=row>Sepal.Width</th><td>2.7</td><td>3.0</td><td>2.8</td><td>3.4</td><td>2.9</td><td>2.8</td></tr>
+    	<tr><th scope=row>Petal.Length</th><td>5.3</td><td>5.2</td><td>4.5</td><td>1.5</td><td>4.3</td><td>5.6</td></tr>
+    	<tr><th scope=row>Petal.Width</th><td>1.9</td><td>2.3</td><td>1.3</td><td>0.4</td><td>1.3</td><td>2.1</td></tr>
+    	<tr><th scope=row>Species</th><td>virginica </td><td>virginica </td><td>versicolor</td><td>setosa    </td><td>versicolor</td><td>virginica </td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Aggregation (Subgrouping)
+-------------------------
+
+.. code:: python
+
+    mt10 <- mtcars[sample(1:nrow(mtcars), 10, replace=FALSE),]
+    mt10
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>mpg</th><th scope=col>cyl</th><th scope=col>disp</th><th scope=col>hp</th><th scope=col>drat</th><th scope=col>wt</th><th scope=col>qsec</th><th scope=col>vs</th><th scope=col>am</th><th scope=col>gear</th><th scope=col>carb</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>Dodge Challenger</th><td>15.5</td><td>8</td><td>318</td><td>150</td><td>2.76</td><td>3.52</td><td>16.87</td><td>0</td><td>0</td><td>3</td><td>2</td></tr>
+    	<tr><th scope=row>Hornet Sportabout</th><td>18.7</td><td>8</td><td>360</td><td>175</td><td>3.15</td><td>3.44</td><td>17.02</td><td>0</td><td>0</td><td>3</td><td>2</td></tr>
+    	<tr><th scope=row>Fiat 128</th><td>32.4</td><td>4</td><td>78.7</td><td>66</td><td>4.08</td><td>2.2</td><td>19.47</td><td>1</td><td>1</td><td>4</td><td>1</td></tr>
+    	<tr><th scope=row>Merc 450SLC</th><td>15.2</td><td>8</td><td>275.8</td><td>180</td><td>3.07</td><td>3.78</td><td>18</td><td>0</td><td>0</td><td>3</td><td>3</td></tr>
+    	<tr><th scope=row>Chrysler Imperial</th><td>14.7</td><td>8</td><td>440</td><td>230</td><td>3.23</td><td>5.345</td><td>17.42</td><td>0</td><td>0</td><td>3</td><td>4</td></tr>
+    	<tr><th scope=row>Volvo 142E</th><td>21.4</td><td>4</td><td>121</td><td>109</td><td>4.11</td><td>2.78</td><td>18.6</td><td>1</td><td>1</td><td>4</td><td>2</td></tr>
+    	<tr><th scope=row>Toyota Corolla</th><td>33.9</td><td>4</td><td>71.1</td><td>65</td><td>4.22</td><td>1.835</td><td>19.9</td><td>1</td><td>1</td><td>4</td><td>1</td></tr>
+    	<tr><th scope=row>Merc 450SE</th><td>16.4</td><td>8</td><td>275.8</td><td>180</td><td>3.07</td><td>4.07</td><td>17.4</td><td>0</td><td>0</td><td>3</td><td>3</td></tr>
+    	<tr><th scope=row>Mazda RX4</th><td>21</td><td>6</td><td>160</td><td>110</td><td>3.9</td><td>2.62</td><td>16.46</td><td>0</td><td>1</td><td>4</td><td>4</td></tr>
+    	<tr><th scope=row>Porsche 914-2</th><td>26</td><td>4</td><td>120.3</td><td>91</td><td>4.43</td><td>2.14</td><td>16.7</td><td>0</td><td>1</td><td>5</td><td>2</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    with(mtcars, aggregate(mtcars, by=list(cyl=cyl), FUN=mean))
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>cyl</th><th scope=col>mpg</th><th scope=col>cyl</th><th scope=col>disp</th><th scope=col>hp</th><th scope=col>drat</th><th scope=col>wt</th><th scope=col>qsec</th><th scope=col>vs</th><th scope=col>am</th><th scope=col>gear</th><th scope=col>carb</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>4</td><td>26.66364</td><td>4</td><td>105.1364</td><td>82.63636</td><td>4.070909</td><td>2.285727</td><td>19.13727</td><td>0.9090909</td><td>0.7272727</td><td>4.090909</td><td>1.545455</td></tr>
+    	<tr><th scope=row>2</th><td>6</td><td>19.74286</td><td>6</td><td>183.3143</td><td>122.2857</td><td>3.585714</td><td>3.117143</td><td>17.97714</td><td>0.5714286</td><td>0.4285714</td><td>3.857143</td><td>3.428571</td></tr>
+    	<tr><th scope=row>3</th><td>8</td><td>15.1</td><td>8</td><td>353.1</td><td>209.2143</td><td>3.229286</td><td>3.999214</td><td>16.77214</td><td>0</td><td>0.1428571</td><td>3.285714</td><td>3.5</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    with(mtcars, aggregate(mtcars, by=list(cyl=cyl, gear=gear), FUN=median))
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>cyl</th><th scope=col>gear</th><th scope=col>mpg</th><th scope=col>cyl</th><th scope=col>disp</th><th scope=col>hp</th><th scope=col>drat</th><th scope=col>wt</th><th scope=col>qsec</th><th scope=col>vs</th><th scope=col>am</th><th scope=col>gear</th><th scope=col>carb</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>4</td><td>3</td><td>21.5</td><td>4</td><td>120.1</td><td>97</td><td>3.7</td><td>2.465</td><td>20.01</td><td>1</td><td>0</td><td>3</td><td>1</td></tr>
+    	<tr><th scope=row>2</th><td>6</td><td>3</td><td>19.75</td><td>6</td><td>241.5</td><td>107.5</td><td>2.92</td><td>3.3375</td><td>19.83</td><td>1</td><td>0</td><td>3</td><td>1</td></tr>
+    	<tr><th scope=row>3</th><td>8</td><td>3</td><td>15.2</td><td>8</td><td>355</td><td>180</td><td>3.075</td><td>3.81</td><td>17.35</td><td>0</td><td>0</td><td>3</td><td>3</td></tr>
+    	<tr><th scope=row>4</th><td>4</td><td>4</td><td>25.85</td><td>4</td><td>93.5</td><td>66</td><td>4.08</td><td>2.26</td><td>19.185</td><td>1</td><td>1</td><td>4</td><td>1.5</td></tr>
+    	<tr><th scope=row>5</th><td>6</td><td>4</td><td>20.1</td><td>6</td><td>163.8</td><td>116.5</td><td>3.91</td><td>3.1575</td><td>17.66</td><td>0.5</td><td>0.5</td><td>4</td><td>4</td></tr>
+    	<tr><th scope=row>6</th><td>4</td><td>5</td><td>28.2</td><td>4</td><td>107.7</td><td>102</td><td>4.1</td><td>1.8265</td><td>16.8</td><td>0.5</td><td>1</td><td>5</td><td>2</td></tr>
+    	<tr><th scope=row>7</th><td>6</td><td>5</td><td>19.7</td><td>6</td><td>145</td><td>175</td><td>3.62</td><td>2.77</td><td>15.5</td><td>0</td><td>1</td><td>5</td><td>6</td></tr>
+    	<tr><th scope=row>8</th><td>8</td><td>5</td><td>15.4</td><td>8</td><td>326</td><td>299.5</td><td>3.88</td><td>3.37</td><td>14.55</td><td>0</td><td>1</td><td>5</td><td>6</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Reshaping data
+--------------
+
+.. code:: python
+
+    library(reshape2)
+    library(plyr) # needed for the . function
+
+
+.. parsed-literal::
+
+    Warning message:
+    : package ‘plyr’ was built under R version 3.1.3
+
+Starting data frame
+~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    ID <- factor(rep(1:2, each=3))
+    Time <- rep(1:3, 2)
+    Gene1 <- c(0,5,10,10,5,0) + rnorm(6)
+    Gene2 <- c(0,5,10,0,5,10) + rnorm(6)
+    expt <- data.frame(PID=ID, Time=Time, Gene1=Gene1, Gene2=Gene2)
+    expt
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>PID</th><th scope=col>Time</th><th scope=col>Gene1</th><th scope=col>Gene2</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>1</td><td>-1.658798</td><td>-1.509927</td></tr>
+    	<tr><th scope=row>2</th><td>1</td><td>2</td><td>6.422999</td><td>2.617535</td></tr>
+    	<tr><th scope=row>3</th><td>1</td><td>3</td><td>8.703917</td><td>11.20532</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>1</td><td>11.80803</td><td>-0.9115341</td></tr>
+    	<tr><th scope=row>5</th><td>2</td><td>2</td><td>4.670361</td><td>4.869456</td></tr>
+    	<tr><th scope=row>6</th><td>2</td><td>3</td><td>-0.5982849</td><td>8.871238</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+"Melt" into a "tall" format with all values in a single column. This
+reuqires identifying all the columns that are needed to uniquely define
+a row value. In this csse, the "id" columns are "PID" and "Time".
+
+.. code:: python
+
+    m.expt <- melt(expt, id=c("PID", "Time"), variable.name="Gene")
+    m.expt
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>PID</th><th scope=col>Time</th><th scope=col>Gene</th><th scope=col>value</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>1</td><td>Gene1</td><td>-1.658798</td></tr>
+    	<tr><th scope=row>2</th><td>1</td><td>2</td><td>Gene1</td><td>6.422999</td></tr>
+    	<tr><th scope=row>3</th><td>1</td><td>3</td><td>Gene1</td><td>8.703917</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>1</td><td>Gene1</td><td>11.80803</td></tr>
+    	<tr><th scope=row>5</th><td>2</td><td>2</td><td>Gene1</td><td>4.670361</td></tr>
+    	<tr><th scope=row>6</th><td>2</td><td>3</td><td>Gene1</td><td>-0.5982849</td></tr>
+    	<tr><th scope=row>7</th><td>1</td><td>1</td><td>Gene2</td><td>-1.509927</td></tr>
+    	<tr><th scope=row>8</th><td>1</td><td>2</td><td>Gene2</td><td>2.617535</td></tr>
+    	<tr><th scope=row>9</th><td>1</td><td>3</td><td>Gene2</td><td>11.20532</td></tr>
+    	<tr><th scope=row>10</th><td>2</td><td>1</td><td>Gene2</td><td>-0.9115341</td></tr>
+    	<tr><th scope=row>11</th><td>2</td><td>2</td><td>Gene2</td><td>4.869456</td></tr>
+    	<tr><th scope=row>12</th><td>2</td><td>3</td><td>Gene2</td><td>8.871238</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Use dcast to reshape
+~~~~~~~~~~~~~~~~~~~~
+
+Show the time series for each (PID, Gene) combination.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    dcast(m.expt, PID + Gene ~ Time)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>PID</th><th scope=col>Gene</th><th scope=col>1</th><th scope=col>2</th><th scope=col>3</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>Gene1</td><td>-1.658798</td><td>6.422999</td><td>8.703917</td></tr>
+    	<tr><th scope=row>2</th><td>1</td><td>Gene2</td><td>-1.509927</td><td>2.617535</td><td>11.20532</td></tr>
+    	<tr><th scope=row>3</th><td>2</td><td>Gene1</td><td>11.80803</td><td>4.670361</td><td>-0.5982849</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>Gene2</td><td>-0.9115341</td><td>4.869456</td><td>8.871238</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Show the time series for each (Gene, PID) combination.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    dcast(m.expt, Gene + PID ~ Time)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Gene</th><th scope=col>PID</th><th scope=col>1</th><th scope=col>2</th><th scope=col>3</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>Gene1</td><td>1</td><td>-1.658798</td><td>6.422999</td><td>8.703917</td></tr>
+    	<tr><th scope=row>2</th><td>Gene1</td><td>2</td><td>11.80803</td><td>4.670361</td><td>-0.5982849</td></tr>
+    	<tr><th scope=row>3</th><td>Gene2</td><td>1</td><td>-1.509927</td><td>2.617535</td><td>11.20532</td></tr>
+    	<tr><th scope=row>4</th><td>Gene2</td><td>2</td><td>-0.9115341</td><td>4.869456</td><td>8.871238</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Recreate the original data set
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    dcast(m.expt, PID + Time ~ Gene)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>PID</th><th scope=col>Time</th><th scope=col>Gene1</th><th scope=col>Gene2</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>1</td><td>-1.658798</td><td>-1.509927</td></tr>
+    	<tr><th scope=row>2</th><td>1</td><td>2</td><td>6.422999</td><td>2.617535</td></tr>
+    	<tr><th scope=row>3</th><td>1</td><td>3</td><td>8.703917</td><td>11.20532</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>1</td><td>11.80803</td><td>-0.9115341</td></tr>
+    	<tr><th scope=row>5</th><td>2</td><td>2</td><td>4.670361</td><td>4.869456</td></tr>
+    	<tr><th scope=row>6</th><td>2</td><td>3</td><td>-0.5982849</td><td>8.871238</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Show all data for each subject in a single row
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    dcast(m.expt, PID ~ Gene + Time)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>PID</th><th scope=col>Gene1_1</th><th scope=col>Gene1_2</th><th scope=col>Gene1_3</th><th scope=col>Gene2_1</th><th scope=col>Gene2_2</th><th scope=col>Gene2_3</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>-1.658798</td><td>6.422999</td><td>8.703917</td><td>-1.509927</td><td>2.617535</td><td>11.20532</td></tr>
+    	<tr><th scope=row>2</th><td>2</td><td>11.80803</td><td>4.670361</td><td>-0.5982849</td><td>-0.9115341</td><td>4.869456</td><td>8.871238</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+We can also aggregate while reshaping
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+What is the average expression value for each gene for each subject over all time points?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    dcast(m.expt, PID ~ Gene, mean)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>PID</th><th scope=col>Gene1</th><th scope=col>Gene2</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>4.489372</td><td>4.104311</td></tr>
+    	<tr><th scope=row>2</th><td>2</td><td>5.293369</td><td>4.276387</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+What is the average expression value for each gene for each time point over all subjects?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    dcast(m.expt, Time ~ Gene, mean)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Time</th><th scope=col>Gene1</th><th scope=col>Gene2</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>5.074616</td><td>-1.210731</td></tr>
+    	<tr><th scope=row>2</th><td>2</td><td>5.54668</td><td>3.743496</td></tr>
+    	<tr><th scope=row>3</th><td>3</td><td>4.052816</td><td>10.03828</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Finally, we can perform subssetting on the named vairables.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For example, restrict the previous query to subject with PID= 1.
+
+.. code:: python
+
+    dcast(m.expt, Time ~ Gene, mean, subset = .(PID == 1))
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Time</th><th scope=col>Gene1</th><th scope=col>Gene2</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>-1.658798</td><td>-1.509927</td></tr>
+    	<tr><th scope=row>2</th><td>2</td><td>6.422999</td><td>2.617535</td></tr>
+    	<tr><th scope=row>3</th><td>3</td><td>8.703917</td><td>11.20532</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Merging data
+------------
+
+A common task in data analysis is to link data from two or more datasts,
+for example, to relate assay data to clinical phenoytpe.
+
+Here we will work thought a typical example where the genotype and
+phenoytpe information come from two different data sets, and the ID
+information needed to link the two is from a third data set.
+
+.. code:: python
+
+    phenodat <- read.csv("phenodat.csv") 
+    gdat1 <- read.csv("gdat1.csv") 
+    gdat2 <- read.csv("gdat2.csv")
+    iddat <- read.csv("iddat.csv")
+
+Eyeball data sett
+-----------------
+
+A quick sanity check to see what the data look like.
+
+.. code:: python
+
+    (dim(phenodat))
+    (dim(gdat1))
+    (dim(gdat2))
+    (dim(iddat))
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>10</li>
+    	<li>2</li>
+    </ol>
+
+
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>11</li>
+    	<li>3</li>
+    </ol>
+
+
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>11</li>
+    	<li>3</li>
+    </ol>
+
+
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>20</li>
+    	<li>2</li>
+    </ol>
+
+
+
+
+.. code:: python
+
+    head(phenodat, 3)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>pid6</td><td>0</td></tr>
+    	<tr><th scope=row>2</th><td>pid15</td><td>1</td></tr>
+    	<tr><th scope=row>3</th><td>pid8</td><td>0</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    head(gdat1, 3)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td></tr>
+    	<tr><th scope=row>2</th><td>100018</td><td>-1.318938</td><td>0.7935853</td></tr>
+    	<tr><th scope=row>3</th><td>100013</td><td>1.242919</td><td>-1.334354</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    head(gdat2, 3)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>100009</td><td>-1.220512</td><td>-0.2416898</td></tr>
+    	<tr><th scope=row>2</th><td>100008</td><td>0.2865486</td><td>1.685887</td></tr>
+    	<tr><th scope=row>3</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    head(iddat, 3)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>expid</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>pid20</td><td>100020</td></tr>
+    	<tr><th scope=row>2</th><td>pid9</td><td>100009</td></tr>
+    	<tr><th scope=row>3</th><td>pid13</td><td>100013</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Combine gene data from two data sets
+------------------------------------
+
+Often, we have the same type of data stroed in mulitple data sets, for
+example, one per batch. In this case, we want to combine **rows**.
+
+.. code:: python
+
+    gdat <- rbind(gdat1, gdat2)
+
+Checking for duplicates
+-----------------------
+
+.. code:: python
+
+    show.dups <- function(df) {
+        return(df[duplicated(df), ])
+        }
+
+.. code:: python
+
+    show.dups(phenodat)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+    <tbody>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    show.dups(iddat)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>expid</th></tr></thead>
+    <tbody>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    show.dups(gdat)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>13</th><td>100008</td><td>0.2865486</td><td>1.685887</td></tr>
+    	<tr><th scope=row>15</th><td>100003</td><td>0.8867361</td><td>0.2760235</td></tr>
+    	<tr><th scope=row>17</th><td>100004</td><td>-0.151396</td><td>-1.048976</td></tr>
+    	<tr><th scope=row>18</th><td>100018</td><td>-1.318938</td><td>0.7935853</td></tr>
+    	<tr><th scope=row>20</th><td>100011</td><td>0.8001769</td><td>-0.7729782</td></tr>
+    	<tr><th scope=row>21</th><td>100001</td><td>-0.5996083</td><td>1.689873</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Remove duplicates
+-----------------
+
+.. code:: python
+
+    gdat <- unique(gdat)
+
+.. code:: python
+
+    dim(gdat)
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>16</li>
+    	<li>3</li>
+    </ol>
+
+
+
+
+.. code:: python
+
+    show.dups(gdat)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th></tr></thead>
+    <tbody>
+    </tbody>
+    </table>
+
+
+
+
+Merging
+-------
+
+To combine columns from different data sets, we can perform a ``merge``
+operation. Rows in the different data set need some common identifier to
+be merged, typcialy information from one or more "ID" columns.
+
+Merge all rows with information for both phenotype and gene
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+First we merge phnenoytpe data with the ID data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    (df1 <- merge(phenodat, iddat, by="pid", all.x=TRUE))
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>trt</th><th scope=col>expid</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>pid1</td><td>0</td><td>100001</td></tr>
+    	<tr><th scope=row>2</th><td>pid12</td><td>1</td><td>100012</td></tr>
+    	<tr><th scope=row>3</th><td>pid15</td><td>1</td><td>100015</td></tr>
+    	<tr><th scope=row>4</th><td>pid16</td><td>0</td><td>100016</td></tr>
+    	<tr><th scope=row>5</th><td>pid17</td><td>0</td><td>100017</td></tr>
+    	<tr><th scope=row>6</th><td>pid18</td><td>1</td><td>100018</td></tr>
+    	<tr><th scope=row>7</th><td>pid20</td><td>0</td><td>100020</td></tr>
+    	<tr><th scope=row>8</th><td>pid6</td><td>0</td><td>100006</td></tr>
+    	<tr><th scope=row>9</th><td>pid7</td><td>0</td><td>100007</td></tr>
+    	<tr><th scope=row>10</th><td>pid8</td><td>0</td><td>100008</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Then we merge with gene data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    (df2 <- merge(gdat, df1, by="expid"))
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    	<tr><th scope=row>2</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    	<tr><th scope=row>3</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+    	<tr><th scope=row>4</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    	<tr><th scope=row>5</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    	<tr><th scope=row>6</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    	<tr><th scope=row>7</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Note that there are now only 7 rows becasue 3 phenotypes did not have
+matching gene data.
+
+What if we want to show all genes even if there is no matching phenotype data?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    (df3 <- merge(gdat, df1, by="expid", all.x=TRUE))
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    	<tr><th scope=row>2</th><td>100002</td><td>-0.1294107</td><td>1.228393</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>3</th><td>100003</td><td>0.8867361</td><td>0.2760235</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>4</th><td>100004</td><td>-0.151396</td><td>-1.048976</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>5</th><td>100005</td><td>0.3297912</td><td>-0.5208693</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>6</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    	<tr><th scope=row>7</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+    	<tr><th scope=row>8</th><td>100009</td><td>-1.220512</td><td>-0.2416898</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>9</th><td>100011</td><td>0.8001769</td><td>-0.7729782</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>10</th><td>100013</td><td>1.242919</td><td>-1.334354</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>11</th><td>100014</td><td>-0.9343851</td><td>0.4958705</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>12</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    	<tr><th scope=row>13</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    	<tr><th scope=row>14</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    	<tr><th scope=row>15</th><td>100019</td><td>0.02884391</td><td>-0.1524106</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>16</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+What if we want to show all phenotypes even if there is no matching gene data?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    (df4 <- merge(gdat, df1, by="expid", all.y=TRUE))
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    	<tr><th scope=row>2</th><td>100006</td><td>NA</td><td>NA</td><td>pid6</td><td>0</td></tr>
+    	<tr><th scope=row>3</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    	<tr><th scope=row>4</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+    	<tr><th scope=row>5</th><td>100012</td><td>NA</td><td>NA</td><td>pid12</td><td>1</td></tr>
+    	<tr><th scope=row>6</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    	<tr><th scope=row>7</th><td>100016</td><td>NA</td><td>NA</td><td>pid16</td><td>0</td></tr>
+    	<tr><th scope=row>8</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    	<tr><th scope=row>9</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    	<tr><th scope=row>10</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+What if we want to show everything?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    (df5 <- merge(gdat, df1, by="expid", all.x=TRUE, all.y=TRUE))
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    	<tr><th scope=row>2</th><td>100002</td><td>-0.1294107</td><td>1.228393</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>3</th><td>100003</td><td>0.8867361</td><td>0.2760235</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>4</th><td>100004</td><td>-0.151396</td><td>-1.048976</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>5</th><td>100005</td><td>0.3297912</td><td>-0.5208693</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>6</th><td>100006</td><td>NA</td><td>NA</td><td>pid6</td><td>0</td></tr>
+    	<tr><th scope=row>7</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    	<tr><th scope=row>8</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+    	<tr><th scope=row>9</th><td>100009</td><td>-1.220512</td><td>-0.2416898</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>10</th><td>100011</td><td>0.8001769</td><td>-0.7729782</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>11</th><td>100012</td><td>NA</td><td>NA</td><td>pid12</td><td>1</td></tr>
+    	<tr><th scope=row>12</th><td>100013</td><td>1.242919</td><td>-1.334354</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>13</th><td>100014</td><td>-0.9343851</td><td>0.4958705</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>14</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    	<tr><th scope=row>15</th><td>100016</td><td>NA</td><td>NA</td><td>pid16</td><td>0</td></tr>
+    	<tr><th scope=row>16</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    	<tr><th scope=row>17</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    	<tr><th scope=row>18</th><td>100019</td><td>0.02884391</td><td>-0.1524106</td><td>NA</td><td>NA</td></tr>
+    	<tr><th scope=row>19</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Rearrange column order
+----------------------
+
+.. code:: python
+
+    df2[, c(4,1,2,3,5)]
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>trt</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>pid1</td><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>0</td></tr>
+    	<tr><th scope=row>2</th><td>pid7</td><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>0</td></tr>
+    	<tr><th scope=row>3</th><td>pid8</td><td>100008</td><td>0.2865486</td><td>1.685887</td><td>0</td></tr>
+    	<tr><th scope=row>4</th><td>pid15</td><td>100015</td><td>0.3937087</td><td>1.233976</td><td>1</td></tr>
+    	<tr><th scope=row>5</th><td>pid17</td><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>0</td></tr>
+    	<tr><th scope=row>6</th><td>pid18</td><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>1</td></tr>
+    	<tr><th scope=row>7</th><td>pid20</td><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>0</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Sorting data
+------------
+
+.. code:: python
+
+    df2
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    	<tr><th scope=row>2</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    	<tr><th scope=row>3</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+    	<tr><th scope=row>4</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    	<tr><th scope=row>5</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    	<tr><th scope=row>6</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    	<tr><th scope=row>7</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Sort by expid
+^^^^^^^^^^^^^
+
+.. code:: python
+
+    df2[order(df2$expid),]
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    	<tr><th scope=row>2</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    	<tr><th scope=row>3</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+    	<tr><th scope=row>4</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    	<tr><th scope=row>5</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    	<tr><th scope=row>6</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    	<tr><th scope=row>7</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Sort by pid
+^^^^^^^^^^^
+
+.. code:: python
+
+    df2[order(df2$pid),]
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    	<tr><th scope=row>4</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    	<tr><th scope=row>5</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    	<tr><th scope=row>6</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    	<tr><th scope=row>7</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+    	<tr><th scope=row>2</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    	<tr><th scope=row>3</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Sort by pid, then by expid
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    df2[order(df2$pid, df2$expid),]
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    	<tr><th scope=row>4</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    	<tr><th scope=row>5</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    	<tr><th scope=row>6</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    	<tr><th scope=row>7</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+    	<tr><th scope=row>2</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    	<tr><th scope=row>3</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Sort by gene1 in decreasing order
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    df2[order(df2$gene1, decreasing = TRUE),]
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>4</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    	<tr><th scope=row>3</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+    	<tr><th scope=row>7</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+    	<tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    	<tr><th scope=row>2</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    	<tr><th scope=row>5</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    	<tr><th scope=row>6</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    </tbody>
+    </table>
+
+
+

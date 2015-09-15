@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction to DESeq2 &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../SupervisedLearningWhatCouldGoWrong.html">Supervised Learning Continued - What Could Go Wrong?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../PracticeONE-Solutions.html">Practice ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../PracticeTWOSolutions.html">Practice TWO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../PracticeTHREESolutions.html">Practice THREE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../PracticeFOURSolutions.html">Practice FOUR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DESeq2NotebookFromMatrix.html">Import count data using basic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Introduction to DESeq2</a><ul>
+<li><a class="reference internal" href="#load-packages">Load packages</a><ul>
+<li><a class="reference internal" href="#importing-and-inspecting-data">Importing and Inspecting Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inspect-object">Inspect object</a></li>
+<li><a class="reference internal" href="#slots-of-an-s4-class">Slots of an S4 class</a><ul>
+<li><a class="reference internal" href="#estimate-size-factors-and-dispersion-parameters">Estimate Size Factors and Dispersion Parameters</a></li>
+<li><a class="reference internal" href="#size-factors">Size Factors</a></li>
+<li><a class="reference internal" href="#dispersion-parameters">Dispersion Parameters</a></li>
+<li><a class="reference internal" href="#differential-expression-analysis">Differential Expression Analysis</a></li>
+<li><a class="reference internal" href="#converting-normalizing-counts-to-expressions">Converting/Normalizing Counts to &#8220;Expressions&#8221;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#normalized-counts">Normalized Counts</a></li>
+<li><a class="reference internal" href="#fpm">FPM</a><ul>
+<li><a class="reference internal" href="#fpkm">FPKM</a></li>
+<li><a class="reference internal" href="#regularized-log-transformation">Regularized log transformation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../_sources/src/DESeq2 Notebooks/DESeq2_Notebook.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="introduction-to-deseq2">
+<h1>Introduction to DESeq2<a class="headerlink" href="#introduction-to-deseq2" title="Permalink to this headline">¶</a></h1>
+<p>This notebook serves as a tutorial for using the DESeq2 package. Please
+be sure to consult the excellent vignette provided by the DESeq2
+package. Hopefully, we will also get a chance to review the edgeR
+package (which also has a very nice vignette which I suggest that you
+review)</p>
+<div class="section" id="load-packages">
+<h2>Load packages<a class="headerlink" href="#load-packages" title="Permalink to this headline">¶</a></h2>
+<p>Load requisite R packages</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">DESeq2</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">tools</span><span class="p">)</span>
+<span class="n">options</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="importing-and-inspecting-data">
+<h3>Importing and Inspecting Data<a class="headerlink" href="#importing-and-inspecting-data" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s set the file name containing the phenotype data and the directory
+storing the count files from the htseq-count step. You will have to
+adjust these strings. Note that it is assumed that all count files are
+stored under a single directory.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">phfile</span><span class="o">=</span><span class="s">&quot;/home/owzar001/CURRENT/summercourse-2015/Data/sampletable.txt&quot;</span>
+<span class="n">cntdir</span><span class="o">=</span><span class="s">&quot;/home/owzar001/CURRENT/summercourse-2015/Data/COUNTS&quot;</span>
+</pre></div>
+</div>
+<p>Next, read in the phenotype data from the sample file. It is always a
+good idea to display the md5sum hash key for the file. Note that when
+importing the file using read.table(), the stringsAsFactor argument is
+set to FALSE. This imports strings as character rather than factor
+objects.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">md5sum</span><span class="p">(</span><span class="n">phfile</span><span class="p">)</span>
+<span class="n">phdata</span><span class="o">=</span><span class="n">read</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">phfile</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&quot;,&quot;</span><span class="p">,</span><span class="n">stringsAsFactor</span><span class="o">=</span><span class="n">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+<strong>/home/owzar001/CURRENT/summercourse-2015/Data/sampletable.txt:</strong> '10cdaaa6e5fc76ab92b6d845d33a2a2f'<p>It is always a good idea to check the dimension of the file you have
+read in</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">dim</span><span class="p">(</span><span class="n">phdata</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>6</li>
+    <li>3</li>
+</ol><p>Finally, it is a good idea to print out the sample data (or at least the
+first few rows)</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">phdata</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>V1</th><th scope=col>V2</th><th scope=col>V3</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>AGTCAA_counts.tsv</td><td>AGTCAA</td><td>0</td></tr>
+    <tr><th scope=row>2</th><td>AGTTCC_counts.tsv</td><td>AGTTCC</td><td>0</td></tr>
+    <tr><th scope=row>3</th><td>ATGTCA_counts.tsv</td><td>ATGTCA</td><td>0</td></tr>
+    <tr><th scope=row>4</th><td>CCGTCC_counts.tsv</td><td>CCGTCC</td><td>1</td></tr>
+    <tr><th scope=row>5</th><td>GTCCGC_counts.tsv</td><td>GTCCGC</td><td>1</td></tr>
+    <tr><th scope=row>6</th><td>GTGAAA_counts.tsv</td><td>GTGAAA</td><td>1</td></tr>
+</tbody>
+</table><p>Next, we reformat the phenotype data object with more informative column
+names and by adding the md5sum hash keys for the count files. When
+dealing with directory and file names you should use file.path(),
+dirname() and basename(). Check out the help files</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">colnames</span><span class="p">(</span><span class="n">phdata</span><span class="p">)</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s">&quot;filename&quot;</span><span class="p">,</span><span class="s">&quot;sampid&quot;</span><span class="p">,</span><span class="s">&quot;trt&quot;</span><span class="p">)</span>
+<span class="n">phdata</span><span class="p">[[</span><span class="s">&quot;md5sum&quot;</span><span class="p">]]</span><span class="o">=</span><span class="n">md5sum</span><span class="p">(</span><span class="nb">file</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="n">cntdir</span><span class="p">,</span><span class="n">phdata</span><span class="p">[[</span><span class="s">&quot;filename&quot;</span><span class="p">]]))</span>
+<span class="n">phdata</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>filename</th><th scope=col>sampid</th><th scope=col>trt</th><th scope=col>md5sum</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>AGTCAA_counts.tsv</td><td>AGTCAA</td><td>0</td><td>a9eaa959aba1b02b3831583c2a9751c8</td></tr>
+    <tr><th scope=row>2</th><td>AGTTCC_counts.tsv</td><td>AGTTCC</td><td>0</td><td>4183767e4eeb75dc582bcf438af13500</td></tr>
+    <tr><th scope=row>3</th><td>ATGTCA_counts.tsv</td><td>ATGTCA</td><td>0</td><td>26fbba06520758e5a3acd9bd432ebed4</td></tr>
+    <tr><th scope=row>4</th><td>CCGTCC_counts.tsv</td><td>CCGTCC</td><td>1</td><td>50036a88fd48645f740a31f4f4352cfb</td></tr>
+    <tr><th scope=row>5</th><td>GTCCGC_counts.tsv</td><td>GTCCGC</td><td>1</td><td>bb1cecd886127159157e9431d072cad5</td></tr>
+    <tr><th scope=row>6</th><td>GTGAAA_counts.tsv</td><td>GTGAAA</td><td>1</td><td>fa544c0a076eedb54937c7189f4e1fbc</td></tr>
+</tbody>
+</table><p>The first step to an analysis using the DESeq2 package is to import the
+raw counts. If these counts stored in files generated by htseq-count,
+then you may use the DESeqDataSetFromHTSeqCount() function from the
+package. This function expects a sample table that contains the sample
+id in the first column and the count file name in teh second column. Our
+sample table is not in that format. It is easy to reorder the columns</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">phdata</span><span class="o">=</span><span class="n">phdata</span><span class="p">[</span><span class="n">c</span><span class="p">(</span><span class="s">&quot;sampid&quot;</span><span class="p">,</span><span class="s">&quot;filename&quot;</span><span class="p">,</span><span class="s">&quot;trt&quot;</span><span class="p">,</span><span class="s">&quot;md5sum&quot;</span><span class="p">)]</span>
+<span class="n">phdata</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>sampid</th><th scope=col>filename</th><th scope=col>trt</th><th scope=col>md5sum</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>AGTCAA</td><td>AGTCAA_counts.tsv</td><td>0</td><td>a9eaa959aba1b02b3831583c2a9751c8</td></tr>
+    <tr><th scope=row>2</th><td>AGTTCC</td><td>AGTTCC_counts.tsv</td><td>0</td><td>4183767e4eeb75dc582bcf438af13500</td></tr>
+    <tr><th scope=row>3</th><td>ATGTCA</td><td>ATGTCA_counts.tsv</td><td>0</td><td>26fbba06520758e5a3acd9bd432ebed4</td></tr>
+    <tr><th scope=row>4</th><td>CCGTCC</td><td>CCGTCC_counts.tsv</td><td>1</td><td>50036a88fd48645f740a31f4f4352cfb</td></tr>
+    <tr><th scope=row>5</th><td>GTCCGC</td><td>GTCCGC_counts.tsv</td><td>1</td><td>bb1cecd886127159157e9431d072cad5</td></tr>
+    <tr><th scope=row>6</th><td>GTGAAA</td><td>GTGAAA_counts.tsv</td><td>1</td><td>fa544c0a076eedb54937c7189f4e1fbc</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>Also, DESeq2 prefers that the treatment variable is of factor class. So we will convert it
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>phdata[[&quot;trt&quot;]]=as.factor(phdata[[&quot;trt&quot;]])
+</pre></div>
+</div>
+<p>Now, we import the counts. Note that the first argument is the sample
+table while the second is the directory storing the count files. The
+last argument specifies the design. More on this later.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">dds</span><span class="o">=</span><span class="n">DESeqDataSetFromHTSeqCount</span><span class="p">(</span><span class="n">sampleTable</span> <span class="o">=</span> <span class="n">phdata</span><span class="p">,</span><span class="n">directory</span> <span class="o">=</span> <span class="n">cntdir</span><span class="p">,</span><span class="n">design</span><span class="o">=~</span><span class="n">trt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="inspect-object">
+<h2>Inspect object<a class="headerlink" href="#inspect-object" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s has a look at the object we have created.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">dds</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>class: DESeqDataSet
+dim: 4436 6
+exptData(0):
+assays(1): counts
+rownames(4436): GeneID:12930114 GeneID:12930115 ... GeneID:13406005 GeneID:13406006
+rowRanges metadata column names(0):
+colnames(6): AGTCAA AGTTCC ... GTCCGC GTGAAA
+colData names(2): trt md5sum
+</pre></div>
+</div>
+<p>Note that this object is of class DESeqDataSet. It contains data on 4436
+genes on 6 samples. Use the colData() function to see what you have read
+in</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">colData</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>DataFrame with 6 rows and 2 columns
+            trt                           md5sum
+       &lt;factor&gt;                      &lt;character&gt;
+AGTCAA        0 a9eaa959aba1b02b3831583c2a9751c8
+AGTTCC        0 4183767e4eeb75dc582bcf438af13500
+ATGTCA        0 26fbba06520758e5a3acd9bd432ebed4
+CCGTCC        1 50036a88fd48645f740a31f4f4352cfb
+GTCCGC        1 bb1cecd886127159157e9431d072cad5
+GTGAAA        1 fa544c0a076eedb54937c7189f4e1fbc
+</pre></div>
+</div>
+<p>The first thing you may want to do is to have a look at the raw counts
+you have imported. You can use the counts(). Let&#8217;s looks the first three
+genes (use the head() function to avoid printing out all genes). Before
+that notw the dimension of the count matrix (does it look correct?)</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">dim</span><span class="p">(</span><span class="n">counts</span><span class="p">(</span><span class="n">dds</span><span class="p">))</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>4436</li>
+    <li>6</li>
+</ol><p>Now print the raw counts for the first three genes (how can you verify
+this looking at the files from htseq-count)</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">head</span><span class="p">(</span><span class="n">counts</span><span class="p">(</span><span class="n">dds</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>AGTCAA</th><th scope=col>AGTTCC</th><th scope=col>ATGTCA</th><th scope=col>CCGTCC</th><th scope=col>GTCCGC</th><th scope=col>GTGAAA</th></tr></thead>
+<tbody>
+    <tr><th scope=row>GeneID:12930114</th><td>118</td><td>137</td><td>149</td><td>120</td><td>161</td><td>174</td></tr>
+    <tr><th scope=row>GeneID:12930115</th><td>30</td><td>42</td><td>25</td><td>18</td><td>32</td><td>34</td></tr>
+    <tr><th scope=row>GeneID:12930116</th><td>15</td><td>55</td><td>37</td><td>49</td><td>36</td><td>27</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="slots-of-an-s4-class">
+<h2>Slots of an S4 class<a class="headerlink" href="#slots-of-an-s4-class" title="Permalink to this headline">¶</a></h2>
+<p>To get the slots of an S4 class use slotNames()</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">slotNames</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>'design'</li>
+    <li>'dispersionFunction'</li>
+    <li>'exptData'</li>
+    <li>'rowData'</li>
+    <li>'colData'</li>
+    <li>'assays'</li>
+</ol><p>Now let&#8217;s look at a few slots:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>This gives the design of the study
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>dds@design
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">~</span><span class="n">trt</span>
+</pre></div>
+</div>
+<p>The dispersion function is NULl for now (more on this later)</p>
+<div class="code python highlight-python"><div class="highlight"><pre>dds@dispersionFunction
+</pre></div>
+</div>
+<pre class=language-r><code>function ()
+NULL</code></pre><p>This slots return gene specific information (it will be populated later)</p>
+<div class="code python highlight-python"><div class="highlight"><pre>dds@rowData
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>GRangesList object of length 4436:
+$GeneID:12930114
+GRanges object with 0 ranges and 0 metadata columns:
+   seqnames    ranges strand
+      &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt;
+
+$GeneID:12930115
+GRanges object with 0 ranges and 0 metadata columns:
+     seqnames ranges strand
+
+$GeneID:12930116
+GRanges object with 0 ranges and 0 metadata columns:
+     seqnames ranges strand
+
+...
+&lt;4433 more elements&gt;
+-------
+seqinfo: no sequences
+</pre></div>
+</div>
+<p>This slot returns the sample data</p>
+<div class="code python highlight-python"><div class="highlight"><pre>dds@colData
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>DataFrame with 6 rows and 2 columns
+            trt                           md5sum
+       &lt;factor&gt;                      &lt;character&gt;
+AGTCAA        0 a9eaa959aba1b02b3831583c2a9751c8
+AGTTCC        0 4183767e4eeb75dc582bcf438af13500
+ATGTCA        0 26fbba06520758e5a3acd9bd432ebed4
+CCGTCC        1 50036a88fd48645f740a31f4f4352cfb
+GTCCGC        1 bb1cecd886127159157e9431d072cad5
+GTGAAA        1 fa544c0a076eedb54937c7189f4e1fbc
+</pre></div>
+</div>
+<p>Before, going to the next step, let&#8217;s look at the output from mcols()</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">mcols</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>DataFrame with 4436 rows and 0 columns
+</pre></div>
+</div>
+<div class="section" id="estimate-size-factors-and-dispersion-parameters">
+<h3>Estimate Size Factors and Dispersion Parameters<a class="headerlink" href="#estimate-size-factors-and-dispersion-parameters" title="Permalink to this headline">¶</a></h3>
+<p>You recall that DESeq requires that we have estimates for sample
+specific size factors and gene specific dispersion factors. More
+specifically, recall that DESeq models the count <span class="math">\(K_{ij}\)</span> (gene
+<span class="math">\(i\)</span>, sample <span class="math">\(j\)</span>) as negative binomial with mean
+<span class="math">\(\mu_{ij}\)</span> and dispersion parameter <span class="math">\(\alpha_i\)</span>. Here
+<span class="math">\(\mu_{ij}=s_j q_{ij}\)</span> where
+<span class="math">\(\log_2(q_{ij}) = \beta_{0i} + \beta_{1i} z_j\)</span>. Here <span class="math">\(s_j\)</span>
+is the sample <span class="math">\(j\)</span> specific size factor.</p>
+</div>
+<div class="section" id="size-factors">
+<h3>Size Factors<a class="headerlink" href="#size-factors" title="Permalink to this headline">¶</a></h3>
+<p>We begin by estimating the size factors <span class="math">\(s_1,\ldots,s_6\)</span>:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">dds</span> <span class="o">&lt;-</span> <span class="n">estimateSizeFactors</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, compare the dds object to that of before applying the
+estimateSizeFactors() function. What has changed? What remains
+unchanged?</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">dds</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>class: DESeqDataSet
+dim: 4436 6
+exptData(0):
+assays(1): counts
+rownames(4436): GeneID:12930114 GeneID:12930115 ... GeneID:13406005 GeneID:13406006
+rowRanges metadata column names(0):
+colnames(6): AGTCAA AGTTCC ... GTCCGC GTGAAA
+colData names(3): trt md5sum sizeFactor
+</pre></div>
+</div>
+<p>Note that there is a sizeFactor added to colData. Let&#8217;s look at it more
+carefully</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">colData</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>DataFrame with 6 rows and 3 columns
+            trt                           md5sum sizeFactor
+       &lt;factor&gt;                      &lt;character&gt;  &lt;numeric&gt;
+AGTCAA        0 a9eaa959aba1b02b3831583c2a9751c8  0.9398016
+AGTTCC        0 4183767e4eeb75dc582bcf438af13500  1.2343255
+ATGTCA        0 26fbba06520758e5a3acd9bd432ebed4  1.1173600
+CCGTCC        1 50036a88fd48645f740a31f4f4352cfb  0.8807831
+GTCCGC        1 bb1cecd886127159157e9431d072cad5  1.0855625
+GTGAAA        1 fa544c0a076eedb54937c7189f4e1fbc  0.8563576
+</pre></div>
+</div>
+<p>You can also get the size factors directly (why are there six size
+factors?)</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">sizeFactors</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class=dl-horizontal>
+    <dt>AGTCAA</dt>
+            <dd>0.93980157208525</dd>
+    <dt>AGTTCC</dt>
+            <dd>1.23432547052393</dd>
+    <dt>ATGTCA</dt>
+            <dd>1.11735999797428</dd>
+    <dt>CCGTCC</dt>
+            <dd>0.880783106173401</dd>
+    <dt>GTCCGC</dt>
+            <dd>1.08556249958198</dd>
+    <dt>GTGAAA</dt>
+            <dd>0.856357620661721</dd>
+</dl><p>It is preferable to limit the number of decimal places. Next show the
+size factors rounded to 3 decimal places</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nb">round</span><span class="p">(</span><span class="n">sizeFactors</span><span class="p">(</span><span class="n">dds</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class=dl-horizontal>
+    <dt>AGTCAA</dt>
+            <dd>0.94</dd>
+    <dt>AGTTCC</dt>
+            <dd>1.234</dd>
+    <dt>ATGTCA</dt>
+            <dd>1.117</dd>
+    <dt>CCGTCC</dt>
+            <dd>0.881</dd>
+    <dt>GTCCGC</dt>
+            <dd>1.086</dd>
+    <dt>GTGAAA</dt>
+            <dd>0.856</dd>
+</dl><p>Now that the size factors have been estimated, we can get &#8220;normalized&#8221;
+counts</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">head</span><span class="p">(</span><span class="n">counts</span><span class="p">(</span><span class="n">dds</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">head</span><span class="p">(</span><span class="n">counts</span><span class="p">(</span><span class="n">dds</span><span class="p">,</span><span class="n">normalize</span><span class="o">=</span><span class="n">TRUE</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>AGTCAA</th><th scope=col>AGTTCC</th><th scope=col>ATGTCA</th><th scope=col>CCGTCC</th><th scope=col>GTCCGC</th><th scope=col>GTGAAA</th></tr></thead>
+<tbody>
+    <tr><th scope=row>GeneID:12930114</th><td>118</td><td>137</td><td>149</td><td>120</td><td>161</td><td>174</td></tr>
+    <tr><th scope=row>GeneID:12930115</th><td>30</td><td>42</td><td>25</td><td>18</td><td>32</td><td>34</td></tr>
+    <tr><th scope=row>GeneID:12930116</th><td>15</td><td>55</td><td>37</td><td>49</td><td>36</td><td>27</td></tr>
+</tbody>
+</table><table>
+<thead><tr><th></th><th scope=col>AGTCAA</th><th scope=col>AGTTCC</th><th scope=col>ATGTCA</th><th scope=col>CCGTCC</th><th scope=col>GTCCGC</th><th scope=col>GTGAAA</th></tr></thead>
+<tbody>
+    <tr><th scope=row>GeneID:12930114</th><td>125.5584</td><td>110.9918</td><td>133.3500</td><td>136.2424</td><td>148.3102</td><td>203.1861</td></tr>
+    <tr><th scope=row>GeneID:12930115</th><td>31.92163</td><td>34.02668</td><td>22.37417</td><td>20.43636</td><td>29.47781</td><td>39.70304</td></tr>
+    <tr><th scope=row>GeneID:12930116</th><td>15.96082</td><td>44.55875</td><td>33.11377</td><td>55.63231</td><td>33.16253</td><td>31.52888</td></tr>
+</tbody>
+</table><p>Note that these are the counts divided by the size factors. Compare the
+first row of the last table (&#8220;normalized&#8221; counts for gene 1) to the hand
+calculation below.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">counts</span><span class="p">(</span><span class="n">dds</span><span class="p">)[</span><span class="mi">1</span><span class="p">,]</span><span class="o">/</span><span class="n">sizeFactors</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class=dl-horizontal>
+    <dt>AGTCAA</dt>
+            <dd>125.558419463142</dd>
+    <dt>AGTTCC</dt>
+            <dd>110.991795334053</dd>
+    <dt>ATGTCA</dt>
+            <dd>133.350039620292</dd>
+    <dt>CCGTCC</dt>
+            <dd>136.242395158264</dd>
+    <dt>GTCCGC</dt>
+            <dd>148.310207898667</dd>
+    <dt>GTGAAA</dt>
+            <dd>203.186140698494</dd>
+</dl><p>Exercise: How do you get the raw counts for gene &#8220;GeneID:12930116&#8221;?</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">counts</span><span class="p">(</span><span class="n">dds</span><span class="p">)[</span><span class="s">&quot;GeneID:12930116&quot;</span><span class="p">,]</span>
+</pre></div>
+</div>
+<dl class=dl-horizontal>
+    <dt>AGTCAA</dt>
+            <dd>15</dd>
+    <dt>AGTTCC</dt>
+            <dd>55</dd>
+    <dt>ATGTCA</dt>
+            <dd>37</dd>
+    <dt>CCGTCC</dt>
+            <dd>49</dd>
+    <dt>GTCCGC</dt>
+            <dd>36</dd>
+    <dt>GTGAAA</dt>
+            <dd>27</dd>
+</dl><p>Exercise: How do you get the normalized counts for gene
+&#8220;GeneID:12930116&#8221;?</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">counts</span><span class="p">(</span><span class="n">dds</span><span class="p">,</span><span class="n">normalize</span><span class="o">=</span><span class="n">TRUE</span><span class="p">)[</span><span class="s">&quot;GeneID:12930116&quot;</span><span class="p">,]</span>
+</pre></div>
+</div>
+<dl class=dl-horizontal>
+    <dt>AGTCAA</dt>
+            <dd>15.9608160334502</dd>
+    <dt>AGTTCC</dt>
+            <dd>44.558749951627</dd>
+    <dt>ATGTCA</dt>
+            <dd>33.1137682278579</dd>
+    <dt>CCGTCC</dt>
+            <dd>55.6323113562913</dd>
+    <dt>GTCCGC</dt>
+            <dd>33.1625309587081</dd>
+    <dt>GTGAAA</dt>
+            <dd>31.5288839014904</dd>
+</dl><p>Exercise: Get a summary (mean, median, quantiles etc ) of the size
+factors</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">summary</span><span class="p">(</span><span class="n">sizeFactors</span><span class="p">(</span><span class="n">dds</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>  Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+0.8564  0.8955  1.0130  1.0190  1.1090  1.2340
+</pre></div>
+</div>
+<p>Before going to the next step, let&#8217;s look at the dispersionFunction slot</p>
+<div class="code python highlight-python"><div class="highlight"><pre>dds@dispersionFunction
+</pre></div>
+</div>
+<pre class=language-r><code>function ()
+NULL</code></pre></div>
+<div class="section" id="dispersion-parameters">
+<h3>Dispersion Parameters<a class="headerlink" href="#dispersion-parameters" title="Permalink to this headline">¶</a></h3>
+<p>Next, we get the dispersion factors
+<span class="math">\(\alpha_1,\ldots,\alpha_{4436}\)</span></p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">dds</span><span class="o">=</span><span class="n">estimateDispersions</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>gene-wise dispersion estimates
+mean-dispersion relationship
+final dispersion estimates
+</pre></div>
+</div>
+<p>Now inspect the dds object again and note that the rowRanges slot has
+extra information (&#8220;metadata column names(0):&#8221; before versus &#8220;column
+names(9): baseMean baseVar ... dispOutlier dispMAP&#8221;)</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">dds</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>class: DESeqDataSet
+dim: 4436 6
+exptData(0):
+assays(2): counts mu
+rownames(4436): GeneID:12930114 GeneID:12930115 ... GeneID:13406005 GeneID:13406006
+rowRanges metadata column names(9): baseMean baseVar ... dispOutlier dispMAP
+colnames(6): AGTCAA AGTTCC ... GTCCGC GTGAAA
+colData names(3): trt md5sum sizeFactor
+</pre></div>
+</div>
+<p>We can extract the gene specific dispersion factors using dispersions().
+Note that there will be one number per gene. We look at the first four
+genes (rounded to 4 decimal places)</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">alphas</span><span class="o">=</span><span class="n">dispersions</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Verify that the number of dispersion factors equals the number of genes</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">length</span><span class="p">(</span><span class="n">alphas</span><span class="p">)</span>
+</pre></div>
+</div>
+4436<p>Print the dispersion factors for the first 5 genes rounded to four
+decimal points</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nb">round</span><span class="p">(</span><span class="n">alphas</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">],</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>0.0326</li>
+    <li>0.0865</li>
+    <li>0.1007</li>
+    <li>0.1917</li>
+    <li>0.0571</li>
+</ol><p>Extract the metadata using mcols() for the first four genes (recall that
+it was previously</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">mcols</span><span class="p">(</span><span class="n">dds</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>DataFrame with 4 rows and 9 columns
+   baseMean     baseVar   allZero dispGeneEst    dispFit dispersion  dispIter dispOutlier
+  &lt;numeric&gt;   &lt;numeric&gt; &lt;logical&gt;   &lt;numeric&gt;  &lt;numeric&gt;  &lt;numeric&gt; &lt;numeric&gt;   &lt;logical&gt;
+1 142.93983 1023.613795     FALSE  0.02039658 0.03791595 0.03261235         9       FALSE
+2  29.65661   52.647510     FALSE  0.03829112 0.10200717 0.08650694         7       FALSE
+3  35.65951  179.185117     FALSE  0.13809719 0.08839361 0.10069759         9       FALSE
+4  10.01145    7.636933     FALSE  0.00000001 0.26069544 0.19171019         6       FALSE
+     dispMAP
+   &lt;numeric&gt;
+1 0.03261235
+2 0.08650694
+3 0.10069759
+4 0.19171019
+</pre></div>
+</div>
+<p>Exercise: Provide statistical summaries of the dispersion factors</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">summary</span><span class="p">(</span><span class="n">dispersions</span><span class="p">(</span><span class="n">dds</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>   Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA&#39;s
+0.01212  0.02685  0.05387  0.45910  0.19760 10.00000      106
+</pre></div>
+</div>
+<p>Exercise: Summarize the dispersion factors using a box plot (may want to
+log transform)</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">boxplot</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">dispersions</span><span class="p">(</span><span class="n">dds</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="differential-expression-analysis">
+<h3>Differential Expression Analysis<a class="headerlink" href="#differential-expression-analysis" title="Permalink to this headline">¶</a></h3>
+<p>We can now conduct a differential expression analysis using the DESeq()
+function. Keep in mind that to get to this step, we first estimated the
+size factors and then the dispersion parameters.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">ddsDE</span><span class="o">=</span><span class="n">DESeq</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>using pre-existing size factors
+estimating dispersions
+found already estimated dispersions, replacing these
+gene-wise dispersion estimates
+mean-dispersion relationship
+final dispersion estimates
+fitting model and testing
+</pre></div>
+</div>
+<p>We can get the results for the differential expression analysis using
+results()</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">myres</span><span class="o">=</span><span class="n">results</span><span class="p">(</span><span class="n">ddsDE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let&#8217;s look at the results for the first four genes</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">myres</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>log2 fold change (MAP): trt 1 vs 0
+Wald test p-value: trt 1 vs 0
+DataFrame with 4 rows and 6 columns
+                 baseMean log2FoldChange     lfcSE        stat     pvalue      padj
+                &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt;  &lt;numeric&gt; &lt;numeric&gt;
+GeneID:12930114 142.93983     0.38754123 0.2283606  1.69705806 0.08968568 0.2322613
+GeneID:12930115  29.65661     0.01780841 0.3771759  0.04721511 0.96234178 0.9845476
+GeneID:12930116  35.65951     0.31723607 0.3883336  0.81691638 0.41397621 0.6333378
+GeneID:12930117  10.01145    -0.33211620 0.5315665 -0.62478765 0.53211044 0.7252468
+</pre></div>
+</div>
+<p>Calculate BH adjusted P-values by &#8220;hand&#8221; using the p.adjust() function</p>
+<div class="code python highlight-python"><div class="highlight"><pre>BH=p.adjust(myres$pvalue,&quot;BH&quot;)
+BH[1:4]
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>0.267389341443891</li>
+    <li>0.986964599211916</li>
+    <li>0.68787617390386</li>
+    <li>0.766812944707763</li>
+</ol><p>You can get the descriptions for the columns from the DE analysis</p>
+<div class="code python highlight-python"><div class="highlight"><pre>data.frame(desc=mcols(myres)$description)
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>desc</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>mean of normalized counts for all samples</td></tr>
+    <tr><th scope=row>2</th><td>log2 fold change (MAP): trt 1 vs 0</td></tr>
+    <tr><th scope=row>3</th><td>standard error: trt 1 vs 0</td></tr>
+    <tr><th scope=row>4</th><td>Wald statistic: trt 1 vs 0</td></tr>
+    <tr><th scope=row>5</th><td>Wald test p-value: trt 1 vs 0</td></tr>
+    <tr><th scope=row>6</th><td>BH adjusted p-values</td></tr>
+</tbody>
+</table><p>We can get summaries of the results:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">summary</span><span class="p">(</span><span class="n">myres</span><span class="p">,</span><span class="mf">0.05</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>out of 4330 with nonzero total read count
+adjusted p-value &lt; 0.05
+LFC &gt; 0 (up)     : 415, 9.6%
+LFC &lt; 0 (down)   : 446, 10%
+outliers [1]     : 1, 0.023%
+low counts [2]   : 649, 15%
+(mean count &lt; 5.1)
+[1] see &#39;cooksCutoff&#39; argument of ?results
+[2] see &#39;independentFiltering&#39; argument of ?results
+</pre></div>
+</div>
+<p>You can sort the results by say the unadjusted P-values</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">myres</span><span class="p">[</span><span class="n">order</span><span class="p">(</span><span class="n">myres</span><span class="p">[[</span><span class="s">&quot;pvalue&quot;</span><span class="p">]])[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">],]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>log2 fold change (MAP): trt 1 vs 0
+Wald test p-value: trt 1 vs 0
+DataFrame with 4 rows and 6 columns
+                 baseMean log2FoldChange     lfcSE      stat       pvalue         padj
+                &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;    &lt;numeric&gt;    &lt;numeric&gt;
+GeneID:12931678 3003.9529       3.860438 0.1874546  20.59399 3.107121e-94 1.143420e-90
+GeneID:12930177  753.7226      -2.637364 0.1670864 -15.78443 3.982238e-56 7.327317e-53
+GeneID:12931383  440.8970      -3.457843 0.2210372 -15.64372 3.666822e-55 4.497968e-52
+GeneID:12933669 5394.4990      -2.084425 0.1391204 -14.98289 9.499917e-51 8.739923e-48
+</pre></div>
+</div>
+<p>To get the list of genes with unadjusted P-values &lt; 0.00001 and absolute
+log2 FC of more than 4</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">subset</span><span class="p">(</span><span class="n">myres</span><span class="p">,</span><span class="n">pvalue</span><span class="o">&lt;</span><span class="mf">0.00001</span><span class="o">&amp;</span><span class="nb">abs</span><span class="p">(</span><span class="n">log2FoldChange</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>log2 fold change (MAP): trt 1 vs 0
+Wald test p-value: trt 1 vs 0
+DataFrame with 5 rows and 6 columns
+                  baseMean log2FoldChange     lfcSE       stat       pvalue         padj
+                 &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt;    &lt;numeric&gt;    &lt;numeric&gt;
+GeneID:12931377   77.54592      -4.702584 0.4144309 -11.347090 7.667210e-30 8.817292e-28
+GeneID:12932008   72.76239       4.100720 0.3704581  11.069324 1.767296e-28 1.970802e-26
+GeneID:12932226 1276.69035       4.443572 0.6376555   6.968610 3.200888e-12 8.413761e-11
+GeneID:12933119  238.56980       4.459221 0.3267031  13.649153 2.042379e-42 6.263295e-40
+GeneID:12934075  837.42714       4.343292 0.5294396   8.203564 2.333629e-16 9.649162e-15
+</pre></div>
+</div>
+<p>To get the list of genes with unadjusted P-values &lt; 0.00001 and
+upregulated genes with log2 FC of more than 4</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">subset</span><span class="p">(</span><span class="n">myres</span><span class="p">,</span><span class="n">pvalue</span><span class="o">&lt;</span><span class="mf">0.00001</span><span class="o">&amp;</span><span class="n">log2FoldChange</span><span class="o">&gt;</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>log2 fold change (MAP): trt 1 vs 0
+Wald test p-value: trt 1 vs 0
+DataFrame with 4 rows and 6 columns
+                  baseMean log2FoldChange     lfcSE      stat       pvalue         padj
+                 &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;    &lt;numeric&gt;    &lt;numeric&gt;
+GeneID:12932008   72.76239       4.100720 0.3704581 11.069324 1.767296e-28 1.970802e-26
+GeneID:12932226 1276.69035       4.443572 0.6376555  6.968610 3.200888e-12 8.413761e-11
+GeneID:12933119  238.56980       4.459221 0.3267031 13.649153 2.042379e-42 6.263295e-40
+GeneID:12934075  837.42714       4.343292 0.5294396  8.203564 2.333629e-16 9.649162e-15
+</pre></div>
+</div>
+<p>The P-values for the four top genes are beyond machine precision. You
+can use the format.pval() function to properly format the P-values.
+PLEASE promote ending the practice of publishing P-values below machine
+precision. (that would be akin to stating the weight of an object that
+weighs less than one pound with scale that whose minimum weight spec is
+1lbs).</p>
+<div class="code python highlight-python"><div class="highlight"><pre>myres$pval=format.pval(myres$pvalue)
+myres[order(myres[[&quot;pvalue&quot;]])[1:4],]
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>log2 fold change (MAP): trt 1 vs 0
+Wald test p-value: trt 1 vs 0
+DataFrame with 4 rows and 7 columns
+                 baseMean log2FoldChange     lfcSE      stat       pvalue         padj        pval
+                &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;    &lt;numeric&gt;    &lt;numeric&gt; &lt;character&gt;
+GeneID:12931678 3003.9529       3.860438 0.1874546  20.59399 3.107121e-94 1.143420e-90  &lt; 2.22e-16
+GeneID:12930177  753.7226      -2.637364 0.1670864 -15.78443 3.982238e-56 7.327317e-53  &lt; 2.22e-16
+GeneID:12931383  440.8970      -3.457843 0.2210372 -15.64372 3.666822e-55 4.497968e-52  &lt; 2.22e-16
+GeneID:12933669 5394.4990      -2.084425 0.1391204 -14.98289 9.499917e-51 8.739923e-48  &lt; 2.22e-16
+</pre></div>
+</div>
+<p>Let&#8217;s look at a volcano plot</p>
+<div class="code python highlight-python"><div class="highlight"><pre>plot(myres$log2FoldChange,-log10(myres$padj),pch=19,cex=0.3,xlab=&quot;Log2 FC&quot;,ylab=&quot;-log10(BH Adjusted P-value)&quot;)
+</pre></div>
+</div>
+<p>Extract results for genes GeneID:12932226 and GeneID:12930116</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">myres</span><span class="p">[</span><span class="n">c</span><span class="p">(</span><span class="s">&quot;GeneID:12932226&quot;</span><span class="p">,</span><span class="s">&quot;GeneID:12930116&quot;</span><span class="p">),]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>log2 fold change (MAP): trt 1 vs 0
+Wald test p-value: trt 1 vs 0
+DataFrame with 2 rows and 6 columns
+                  baseMean log2FoldChange     lfcSE      stat       pvalue         padj
+                 &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;    &lt;numeric&gt;    &lt;numeric&gt;
+GeneID:12932226 1276.69035      4.4435720 0.6376555 6.9686095 3.200888e-12 8.413761e-11
+GeneID:12930116   35.65951      0.3172361 0.3883336 0.8169164 4.139762e-01 6.333378e-01
+</pre></div>
+</div>
+<p>Exercise: Annotate the hits with adjusted P-values &lt; 0.05 and absolute
+log2 FC greater than 2 in red</p>
+<div class="code python highlight-python"><div class="highlight"><pre>plot(myres$log2FoldChange,-log10(myres$padj),pch=19,cex=0.3,xlab=&quot;Log2 FC&quot;,ylab=&quot;-log10(BH Adjusted P-value)&quot;,col=ifelse(myres$padj&lt;0.05&amp;abs(myres$log2FoldChange)&gt;2,&quot;red&quot;,&quot;black&quot;))
+</pre></div>
+</div>
+</div>
+<div class="section" id="converting-normalizing-counts-to-expressions">
+<h3>Converting/Normalizing Counts to &#8220;Expressions&#8221;<a class="headerlink" href="#converting-normalizing-counts-to-expressions" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="normalized-counts">
+<h2>Normalized Counts<a class="headerlink" href="#normalized-counts" title="Permalink to this headline">¶</a></h2>
+<p>We have already shown how to &#8220;normalize&#8221; the counts using the estimated
+size factors</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">head</span><span class="p">(</span><span class="n">counts</span><span class="p">(</span><span class="n">dds</span><span class="p">,</span><span class="n">normalize</span><span class="o">=</span><span class="n">TRUE</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>AGTCAA</th><th scope=col>AGTTCC</th><th scope=col>ATGTCA</th><th scope=col>CCGTCC</th><th scope=col>GTCCGC</th><th scope=col>GTGAAA</th></tr></thead>
+<tbody>
+    <tr><th scope=row>GeneID:12930114</th><td>125.5584</td><td>110.9918</td><td>133.3500</td><td>136.2424</td><td>148.3102</td><td>203.1861</td></tr>
+    <tr><th scope=row>GeneID:12930115</th><td>31.92163</td><td>34.02668</td><td>22.37417</td><td>20.43636</td><td>29.47781</td><td>39.70304</td></tr>
+    <tr><th scope=row>GeneID:12930116</th><td>15.96082</td><td>44.55875</td><td>33.11377</td><td>55.63231</td><td>33.16253</td><td>31.52888</td></tr>
+</tbody>
+</table><p>Plot the counts stratified by treatment for the 2nd gene</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plotCounts</span><span class="p">(</span><span class="n">dds</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="n">intgroup</span><span class="o">=</span><span class="s">&quot;trt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or alternatively (better)</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plotCounts</span><span class="p">(</span><span class="n">dds</span><span class="p">,</span> <span class="s">&quot;GeneID:12930115&quot;</span><span class="p">,</span><span class="n">intgroup</span><span class="o">=</span><span class="s">&quot;trt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now get this plot for the top hit</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plotCounts</span><span class="p">(</span><span class="n">dds</span><span class="p">,</span> <span class="s">&quot;GeneID:12931678&quot;</span><span class="p">,</span><span class="n">intgroup</span><span class="o">=</span><span class="s">&quot;trt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fpm">
+<h2>FPM<a class="headerlink" href="#fpm" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>Another approach is to FPM: fragments per million mapped fragments
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">head</span><span class="p">(</span><span class="n">fpm</span><span class="p">(</span><span class="n">dds</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>AGTCAA</th><th scope=col>AGTTCC</th><th scope=col>ATGTCA</th><th scope=col>CCGTCC</th><th scope=col>GTCCGC</th><th scope=col>GTGAAA</th></tr></thead>
+<tbody>
+    <tr><th scope=row>GeneID:12930114</th><td>49.01406</td><td>43.32771</td><td>52.05567</td><td>53.18475</td><td>57.89565</td><td>79.31749</td></tr>
+    <tr><th scope=row>GeneID:12930115</th><td>12.461202</td><td>13.282948</td><td> 8.734172</td><td> 7.977713</td><td>11.507209</td><td>15.498819</td></tr>
+    <tr><th scope=row>GeneID:12930116</th><td> 6.230601</td><td>17.394336</td><td>12.926575</td><td>21.717107</td><td>12.945610</td><td>12.307886</td></tr>
+</tbody>
+</table><p>Let&#8217;s calculate the FPM manually. For gene <span class="math">\(i\)</span> sample <span class="math">\(j\)</span>,
+the FPM is defined as <span class="math">\(\frac{K_{ij}}{D_j}\times 10^{6}\)</span> where
+<span class="math">\(D_j=\sum_{i=1} K_{ij}\)</span> is the read depth for sample <span class="math">\(j\)</span>.
+First get the read depth for each sample</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">D</span><span class="o">=</span><span class="n">colSums</span><span class="p">(</span><span class="n">counts</span><span class="p">(</span><span class="n">dds</span><span class="p">))</span>
+<span class="n">D</span>
+</pre></div>
+</div>
+<dl class=dl-horizontal>
+    <dt>AGTCAA</dt>
+            <dd>2324804</dd>
+    <dt>AGTTCC</dt>
+            <dd>3199231</dd>
+    <dt>ATGTCA</dt>
+            <dd>3032225</dd>
+    <dt>CCGTCC</dt>
+            <dd>2237181</dd>
+    <dt>GTCCGC</dt>
+            <dd>2662410</dd>
+    <dt>GTGAAA</dt>
+            <dd>2224981</dd>
+</dl><p>By default, the fpm() function uses a robust approach. We will disable
+this right now as to replicate the standard FPM. Let&#8217;s look at gene 1</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">fpm1</span><span class="o">=</span><span class="n">fpm</span><span class="p">(</span><span class="n">dds</span><span class="p">,</span><span class="n">robust</span><span class="o">=</span><span class="n">FALSE</span><span class="p">)[</span><span class="mi">1</span><span class="p">,]</span>
+<span class="n">fpm1</span>
+</pre></div>
+</div>
+<dl class=dl-horizontal>
+    <dt>AGTCAA</dt>
+            <dd>50.7569670389418</dd>
+    <dt>AGTTCC</dt>
+            <dd>42.8227908519266</dd>
+    <dt>ATGTCA</dt>
+            <dd>49.1388336947291</dd>
+    <dt>CCGTCC</dt>
+            <dd>53.6389322097765</dd>
+    <dt>GTCCGC</dt>
+            <dd>60.4715276760529</dd>
+    <dt>GTGAAA</dt>
+            <dd>78.2029149911842</dd>
+</dl><p>Now get the raw counts for gene 1</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">cnt1</span><span class="o">=</span><span class="n">counts</span><span class="p">(</span><span class="n">dds</span><span class="p">)[</span><span class="mi">1</span><span class="p">,]</span>
+<span class="n">cnt1</span>
+</pre></div>
+</div>
+<dl class=dl-horizontal>
+    <dt>AGTCAA</dt>
+            <dd>118</dd>
+    <dt>AGTTCC</dt>
+            <dd>137</dd>
+    <dt>ATGTCA</dt>
+            <dd>149</dd>
+    <dt>CCGTCC</dt>
+            <dd>120</dd>
+    <dt>GTCCGC</dt>
+            <dd>161</dd>
+    <dt>GTGAAA</dt>
+            <dd>174</dd>
+</dl><p>Now calculate the FPM for gene 1</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">myfpm1</span><span class="o">=</span><span class="n">cnt1</span><span class="o">/</span><span class="n">D</span><span class="o">*</span><span class="mf">1e6</span>
+<span class="n">myfpm1</span>
+</pre></div>
+</div>
+<dl class=dl-horizontal>
+    <dt>AGTCAA</dt>
+            <dd>50.7569670389418</dd>
+    <dt>AGTTCC</dt>
+            <dd>42.8227908519266</dd>
+    <dt>ATGTCA</dt>
+            <dd>49.1388336947291</dd>
+    <dt>CCGTCC</dt>
+            <dd>53.6389322097765</dd>
+    <dt>GTCCGC</dt>
+            <dd>60.4715276760529</dd>
+    <dt>GTGAAA</dt>
+            <dd>78.2029149911842</dd>
+</dl><p>This is how you check if two numeric columns are &#8220;equal&#8221;</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nb">min</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fpm1</span><span class="o">-</span><span class="n">myfpm1</span><span class="p">))</span>
+</pre></div>
+</div>
+0<div class="section" id="fpkm">
+<h3>FPKM<a class="headerlink" href="#fpkm" title="Permalink to this headline">¶</a></h3>
+<p>To calculate the FPKM (fragments per kilobase per million mapped
+fragments) we need to add annotation to assign the feature lengths. More
+specifically, for gene <span class="math">\(i\)</span> sample <span class="math">\(j\)</span>, the FPKM is defined
+as <span class="math">\(\frac{K_{ij}}{\ell_i D_j}\times 10^3 \times 10^{6}\)</span> where
+<span class="math">\(\ell_i\)</span> is the &#8220;length&#8221; of gene <span class="math">\(i\)</span> (fragments for each
+<span class="math">\(10^3\)</span> bases in the gene for every <span class="math">\(\frac{D_j}{10^6}\)</span>
+fragments. More on this later.</p>
+</div>
+<div class="section" id="regularized-log-transformation">
+<h3>Regularized log transformation<a class="headerlink" href="#regularized-log-transformation" title="Permalink to this headline">¶</a></h3>
+<p>The regularized log transform can be obtained using the rlog() function.
+Note that an important argument for this function is blind (TRUE by
+default). The default &#8220;blinds&#8221; the normalization to the design. This is
+very important so as to not bias the analyses (e.g. class discovery</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">rld</span><span class="o">=</span><span class="n">rlog</span><span class="p">(</span><span class="n">dds</span><span class="p">,</span><span class="n">blind</span><span class="o">=</span><span class="n">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Hierarchical clustering using rlog transformation</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">dists</span><span class="o">=</span><span class="n">dist</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">assay</span><span class="p">(</span><span class="n">rld</span><span class="p">)))</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">hclust</span><span class="p">(</span><span class="n">dists</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>PC Analysis using the rlog transformation</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plotPCA</span><span class="p">(</span><span class="n">rld</span><span class="p">,</span><span class="n">intgroup</span><span class="o">=</span><span class="s">&quot;trt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">sessionInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>R version 3.2.1 (2015-06-18)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Debian GNU/Linux 8 (jessie)
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8
+ [4] LC_COLLATE=en_US.UTF-8     LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                  LC_ADDRESS=C
+[10] LC_TELEPHONE=C             LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
+
+attached base packages:
+ [1] tools     parallel  stats4    stats     graphics  grDevices utils     datasets  methods
+[10] base
+
+other attached packages:
+ [1] MASS_7.3-40               knitr_1.10.5              DESeq2_1.8.1
+ [4] RcppArmadillo_0.5.200.1.0 Rcpp_0.11.6               GenomicRanges_1.20.5
+ [7] GenomeInfoDb_1.4.1        IRanges_2.2.5             S4Vectors_0.6.2
+[10] BiocGenerics_0.14.0
+
+loaded via a namespace (and not attached):
+ [1] genefilter_1.50.0    locfit_1.5-9.1       repr_0.3             reshape2_1.4.1
+ [5] splines_3.2.1        lattice_0.20-31      colorspace_1.2-6     base64enc_0.1-3
+ [9] survival_2.38-2      XML_3.98-1.3         foreign_0.8-63       DBI_0.3.1
+[13] BiocParallel_1.2.9   RColorBrewer_1.1-2   lambda.r_1.1.7       uuid_0.1-2
+[17] plyr_1.8.3           stringr_1.0.0        munsell_0.4.2        gtable_0.1.2
+[21] futile.logger_1.4.1  evaluate_0.7         latticeExtra_0.6-26  Biobase_2.28.0
+[25] geneplotter_1.46.0   AnnotationDbi_1.30.1 rzmq_0.7.7           proto_0.3-10
+[29] IRdisplay_0.3        acepack_1.3-3.3      xtable_1.7-4         scales_0.2.5
+[33] IRkernel_0.4         Hmisc_3.16-0         jsonlite_0.9.16      annotate_1.46.1
+[37] XVector_0.8.0        gridExtra_2.0.0      ggplot2_1.0.1        digest_0.6.8
+[41] stringi_0.5-5        grid_3.2.1           magrittr_1.5         RSQLite_1.0.0
+[45] Formula_1.2-1        cluster_2.0.1        futile.options_1.0.0 rpart_4.1-9
+[49] nnet_7.3-9
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

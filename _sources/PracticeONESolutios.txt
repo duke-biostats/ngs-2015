@@ -1,0 +1,1538 @@
+Coding Exercises
+========================================
+
+Practice 1
+----------------------------------------
+
+(1) Create a sequence of integers starting from 12 and ending at 17.
+
+.. code:: python
+
+    12:17
+    
+    
+
+
+
+
+
+.. parsed-literal::
+
+    [1] 12 13 14 15 16 17
+
+
+
+(2) Create a vector of length 10 starting from :math:`\pi` and ending at
+    :math:`2\pi` with evenly spaced intervals between numbers.
+
+.. code:: python
+
+    seq(pi, 2*pi, length.out = 10)
+    
+    
+
+
+
+
+
+.. parsed-literal::
+
+     [1] 3.141593 3.490659 3.839724 4.188790 4.537856 4.886922 5.235988 5.585054
+     [9] 5.934119 6.283185
+
+
+
+(3) Find the sum of all numbers between 1 and 1000 that are divisible by
+    3.
+
+.. code:: python
+
+    ns <- 1:1000
+    idx <- ns %% 3 == 0
+    sum(ns[idx])
+    
+    
+
+
+
+
+
+.. parsed-literal::
+
+    [1] 166833
+
+
+
+(4) Find the sum of the square numbers (e.g. 1, 4, 9, 16, ...) from 1
+    that are less than or equal to 10,000.
+
+.. code:: python
+
+    top <- sqrt(10000)
+    ns <- 1:top
+    sum(ns^2)
+    
+    
+
+
+
+
+
+.. parsed-literal::
+
+    [1] 338350
+
+
+
+(5) Loop through the numbers from 1 to 20. If the number is divisible by
+    3, print "Fizz". If the number is divisible by 5, print "Buzz". If
+    it is divisible by both 3 and 5 print "FizzBuzz". Otherwise just
+    print the number. Your output should look something like
+
+    ::
+
+        1
+        2
+        Fizz
+        4
+        Buzz
+        ...
+
+.. code:: python
+
+    for (i in 1:20) {
+        if (i %% 15 == 0)
+            print("FizzBuzz")
+        else if (i %% 3 == 0)
+            print("Fizz")
+        else if (i %% 5 == 0)
+            print("Buzz")
+        else print(i)
+    }
+    
+    
+
+
+
+.. parsed-literal::
+
+    [1] 1
+    [1] 2
+    [1] "Fizz"
+    [1] 4
+    [1] "Buzz"
+    [1] "Fizz"
+    [1] 7
+    [1] 8
+    [1] "Fizz"
+    [1] "Buzz"
+    [1] 11
+    [1] "Fizz"
+    [1] 13
+    [1] 14
+    [1] "FizzBuzz"
+    [1] 16
+    [1] 17
+    [1] "Fizz"
+    [1] 19
+    [1] "Buzz"
+
+
+(6) Generate 1000 numbers from the standard normal distirbution. How
+    many of these numbers are greater than 0?
+
+.. code:: python
+
+    xs <- rnorm(1000)
+    sum(xs > 0)
+    
+    
+
+
+
+
+
+.. parsed-literal::
+
+    [1] 503
+
+
+
+(7) Start by copying and pasting the code below in a Code cell
+
+    .. code:: r
+
+        set.seed(123)
+        n <- 10
+        case <- rnorm(n, 0, 1)
+        ctrl <- rnorm(n, 0.1, 1)
+
+Run the above code, then state the null hypothesis for comparing the
+mean between cases and controls. Perform a t-test with :math:`n = 10`
+and $n = :math:`1000`.
+
+.. code:: python
+
+    set.seed(123)
+    n <- 10
+    case <- rnorm(n, 0, 1)
+    ctrl <- rnorm(n, 0.1, 1)
+    
+    t.test(case, ctrl)
+    
+
+
+
+
+
+.. parsed-literal::
+
+    
+    	Welch Two Sample t-test
+    
+    data:  case and ctrl
+    t = -0.5249, df = 17.872, p-value = 0.6061
+    alternative hypothesis: true difference in means is not equal to 0
+    95 percent confidence interval:
+     -1.1710488  0.7030562
+    sample estimates:
+     mean of x  mean of y 
+    0.07462564 0.30862196 
+
+
+
+
+.. code:: python
+
+    set.seed(123)
+    n <- 1000
+    case <- rnorm(n, 0, 1)
+    ctrl <- rnorm(n, 0.1, 1)
+    
+    t.test(case, ctrl)
+
+
+
+
+.. parsed-literal::
+
+    
+    	Welch Two Sample t-test
+    
+    data:  case and ctrl
+    t = -2.8229, df = 1997.355, p-value = 0.004806
+    alternative hypothesis: true difference in means is not equal to 0
+    95 percent confidence interval:
+     -0.2141064 -0.0385684
+    sample estimates:
+     mean of x  mean of y 
+    0.01612787 0.14246525 
+
+
+
+
+(8) You are plannning an experiment to test the effect of a new drug on
+    mouse growth as measured in grams. You plan to give the drug to a
+    treatment group and not to an otherwise identical control group. You
+    consider differences to be meaningful if the mean weights differ by
+    at least 10 grams. From previous experiments, you know that the
+    standard deviation between mice weights is 20 grams. What sample
+    size do you need in each group for 80%, 90% and 100% power (use
+    p=0.05)? If you recorded weights in kilograms instead, would the
+    sample sizes need to change?
+
+
+.. code:: python
+
+    library(pwr)
+    pwr.t.test(d = 10/20, sig.level = 0.05, power = 0.8, type = "two.sample")
+    
+    
+
+
+
+
+
+.. parsed-literal::
+
+    
+         Two-sample t test power calculation 
+    
+                  n = 63.76561
+                  d = 0.5
+          sig.level = 0.05
+              power = 0.8
+        alternative = two.sided
+    
+    NOTE: n is number in *each* group
+
+
+
+
+(9) Make a plot of sample size (y-axis) against power (x-axis) for
+    powers ranging from 0.01 to 0.99 in steps of 0.01 with an effect
+    size of 0.1. Add in curves of different colors for effect sizes of
+    0.5 and 1.0. Add a legend for each curve.
+
+.. code:: python
+
+    ans <- pwr.t.test(d = 10/20, sig.level = 0.05, power = 0.8, type = "two.sample")
+    ans$n
+
+
+
+
+.. parsed-literal::
+
+    [1] 63.76561
+
+
+
+.. code:: python
+
+    pwrs <- seq(0.5, 0.99, by=0.01)
+    ds <- c(0.1, 0.5, 1.0)
+    nrow <- length(pwrs)
+    ncol <- length(ds)
+    ns <- matrix(, nrow=nrow, ncol=ncol)
+    for (i in 1:nrow) {
+        for (j in 1:ncol) {
+            ns[i, j] <- pwr.t.test(d = ds[j], sig.level = 0.05, power = pwrs[i], type = "two.sample")$n
+        }
+    }
+    plot(pwrs, ns[,1], type='o', col="red", ylim = c(0, 3800))
+    lines(pwrs, ns[,2], type='o', col="blue")
+    lines(pwrs, ns[,3], type='o', col="green")
+    legend(0.5, 3500, paste("effeect size =", c("0.1", "0.5", "1.0")), col=c("red", "blue", "green"), pch="o")
+
+
+
+.. image:: PracticeONESolutios_files/PracticeONESolutios_21_0.png
+
+
+(10) Calcualte the probabity that you will see the sequence H, H, H, H when you toss a coin 4 times (on pen and paper!). Now conduct 10,000 simulation experiments in which you perform 4 coin tosses per experiment and record the number of heads. What is the frequency of all heads and is this similar to what you calculated?
+
+.. code:: python
+
+    0.5^4
+
+
+
+
+.. parsed-literal::
+
+    [1] 0.0625
+
+
+
+.. code:: python
+
+    expts <- rbinom(10000, size=4, prob=0.5)
+    sum(expts == 4)
+
+
+
+
+.. parsed-literal::
+
+    [1] 613
+
+
+
+(11) The ``anscombe`` dataframe has 8 columns and 11 rows. Perform a
+     linear regression of :math:`y1` against :math:`x1`, :math:`y2`
+     against :math:`x2` and so on and report what the intercept and
+     slope are in each case (Note: the anscombe dataframe is already
+     loaded).
+
+.. code:: python
+
+    model <- lm(y1 ~ x1, data=anscombe)
+    model$coefficients
+
+
+
+
+.. parsed-literal::
+
+    (Intercept)          x1 
+      3.0000909   0.5000909 
+
+
+
+.. code:: python
+
+    model <- lm(y2 ~ x2, data=anscombe)
+    model$coefficients
+
+.. code:: python
+
+    model <- lm(y3 ~ x3, data=anscombe)
+    model$coefficients
+
+.. code:: python
+
+    model <- lm(y4 ~ x4, data=anscombe)
+    model$coefficients
+
+
+
+
+.. parsed-literal::
+
+    (Intercept)          x4 
+      3.0017273   0.4999091 
+
+
+
+(12) Now plot four scatter plots, one for :math:`y1` against x1$,
+     :math:`y2` against :math:`x2` and so on for the same anscombe
+     datafraem.
+
+.. code:: python
+
+    par(mfrow=c(2,2))
+    with(anscombe, plot(x1, y1, type="p"))
+    with(anscombe, plot(x2, y2, type="p"))
+    with(anscombe, plot(x3, y3, type="p"))
+    with(anscombe, plot(x4, y4, type="p"))  
+
+
+
+.. image:: PracticeONESolutios_files/PracticeONESolutios_31_0.png
+
+
+(13) Write a function that takes two p-dimensional vectors and retunrs
+     the Euclidean distance between them. The definitiion for Euclidean
+     distance in p dimensions extneds the 2-dimensional definition in
+     the obvious way. For example, the distance between the 3-dimensonal
+     vectors :math:`(1,2,3)` and :math:`(2,4,6)` is
+     :math:`\sqrt{((1-2)^2 + (2-4)^2 + (3-6)^2)}`.
+
+.. code:: python
+
+    my.dist <- function(v1, v2) {
+        return(sqrt(sum((v1-v2)^2)))
+    }
+    
+    my.dist(c(0,0), c(3,4))
+
+
+
+
+.. parsed-literal::
+
+    [1] 5
+
+
+
+(14) Write a function to calculate the median of a vector of numbers.
+     Recall that if the vector is of odd length, the median is the
+     central number of the sorted vacotr; othersise it is the average of
+     the two central numbers.
+
+.. code:: python
+
+    my.median <- function(v) {
+        v <- sort(v)
+        n <- length(v)
+        if (n %% 2 == 1) 
+            ans <- v[floor(n/2)]
+        else {
+            low <- floor(n/2)
+            ans <- mean(v[low:(low+1)])
+        }
+        return(ans)
+    }
+    
+    
+
+
+.. code:: python
+
+    my.median(1:11)
+
+
+
+
+.. parsed-literal::
+
+    [1] 5
+
+
+
+.. code:: python
+
+    my.median(1:12)
+
+
+
+
+.. parsed-literal::
+
+    [1] 6.5
+
+
+
+(15) Write a function called ``peek`` that will take a dataframe and a
+     number as arguments - so you would eovke the function with a call
+     like ``peek(df, n)``. What this function does is return :math:`n`
+     rows at random (no duplicate rows). If :math:`n` is greater than
+     the number of rows, the enitre data frame is returned.
+
+.. code:: python
+
+    peek <- function(df, n) {
+        if (n > length(df)) {
+            ans <- df
+        }
+        else {
+            idx <- sample(1:length(df), n, replace=FALSE)
+            ans <- df[idx,]
+        }
+        return(ans)
+    }
+    
+    
+
+
+.. code:: python
+
+    peek(anscombe, 3)
+
+
+
+
+.. parsed-literal::
+
+      x1 x2 x3 x4   y1   y2    y3   y4
+    4  9  9  9  8 8.81 8.77  7.11 8.84
+    3 13 13 13  8 7.58 8.74 12.74 7.71
+    5 11 11 11  8 8.33 9.26  7.81 8.47
+
+
+
+
+Practice 2
+----------------------------------------
+
+Working with dataframes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Practice TWO is meant to help you get comfortable working with data
+frames, and the basic ways you can slice and dice datafrmaes.
+
+(1) How many rows and columns are there in the ``mtcars`` dataframe?
+
+.. code:: python
+
+    (nrow(mtcars))
+    (ncol(mtcars))
+
+
+
+
+.. parsed-literal::
+
+    [1] 32
+
+
+
+
+
+.. parsed-literal::
+
+    [1] 11
+
+
+
+.. code:: python
+
+    dim(mtcars)
+
+
+
+
+.. parsed-literal::
+
+    [1] 32 11
+
+
+
+(2) Show the last 6 rows of ``mtcars``.
+
+.. code:: python
+
+    tail(mtcars, 6)
+
+
+
+
+.. parsed-literal::
+
+                    mpg cyl  disp  hp drat    wt qsec vs am gear carb
+    Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.7  0  1    5    2
+    Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2
+    Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.5  0  1    5    4
+    Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.5  0  1    5    6
+    Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.6  0  1    5    8
+    Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2
+
+
+
+(3) Show 6 rows at random (no duplicates) from ``mtcars``
+
+.. code:: python
+
+    ridx <- sample(1:nrow(mtcars), 6, replace=FALSE)
+    mtcars[ridx,]
+
+
+
+
+.. parsed-literal::
+
+                   mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+    Toyota Corona 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+    Camaro Z28    13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+    Valiant       18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+    Merc 280C     17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+    Fiat 128      32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+    AMC Javelin   15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+
+
+
+(4) Display information only for the subset of cars with automatic
+    transmission.
+
+.. code:: python
+
+    mtcars[mtcars$am == 1,]
+
+
+
+
+.. parsed-literal::
+
+                    mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+    Mazda RX4      21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+    Mazda RX4 Wag  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+    Datsun 710     22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+    Fiat 128       32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+    Honda Civic    30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+    Toyota Corolla 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+    Fiat X1-9      27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+    Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+    Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+    Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+    Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+    Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+    Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+
+
+
+(5) Display information only for the subset of cars with weight between
+    2 and 3.
+
+.. code:: python
+
+    mtcars[(2 < mtcars$wt) & (mtcars$wt < 3),]
+
+
+
+
+.. parsed-literal::
+
+                   mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+    Mazda RX4     21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+    Mazda RX4 Wag 21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+    Datsun 710    22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+    Fiat 128      32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+    Toyota Corona 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+    Porsche 914-2 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+    Ferrari Dino  19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+    Volvo 142E    21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+
+
+
+(6) What is the mean weight of all cars?
+
+.. code:: python
+
+    mean(mtcars$wt)
+
+
+
+
+.. parsed-literal::
+
+    [1] 3.21725
+
+
+
+.. code:: python
+
+    (7) What is the mean weight of cars wtih `mpg` greater than 20?
+
+.. code:: python
+
+    mean(mtcars[mtcars$mpg > 20, "wt"])
+
+
+
+
+.. parsed-literal::
+
+    [1] 2.418071
+
+
+
+(8) Add a column ``kpl`` showing the number of kilometers per liter (1
+    mile = 1.609344 kilometers, and 1 gallon = 3.78541178 liters)
+
+.. code:: python
+
+    mpg.to.kpl <- function(mpg) {
+        return(mpg * 1.609344 / 3.78541178)
+    }
+
+.. code:: python
+
+    mtcars$kpl <- mpg.to.kpl(mtcars$mpg)
+    head(mtcars)
+
+
+
+
+.. parsed-literal::
+
+                       mpg cyl disp  hp drat    wt  qsec vs am gear carb      kpl
+    Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 8.928018
+    Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 8.928018
+    Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 9.693277
+    Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1 9.098075
+    Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 7.950187
+    Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 7.695101
+
+
+
+(9) Make a new dataframe ``mtcars.1`` with only the ``mpg`` and ``kpl``
+    columns.
+
+.. code:: python
+
+    mtcars.1 <- mtcars[, c("mpg", "kpl")]
+    head(mtcars.1)
+
+
+
+
+.. parsed-literal::
+
+                       mpg      kpl
+    Mazda RX4         21.0 8.928018
+    Mazda RX4 Wag     21.0 8.928018
+    Datsun 710        22.8 9.693277
+    Hornet 4 Drive    21.4 9.098075
+    Hornet Sportabout 18.7 7.950187
+    Valiant           18.1 7.695101
+
+
+
+(10) Perform a linear regression model of ``mpg`` against ``wt``. Plot
+     the model fit.
+
+.. code:: python
+
+    fit <- lm(mpg ~ wt, data=mtcars)
+    summary(fit)
+
+
+
+
+.. parsed-literal::
+
+    
+    Call:
+    lm(formula = mpg ~ wt, data = mtcars)
+    
+    Residuals:
+        Min      1Q  Median      3Q     Max 
+    -4.5432 -2.3647 -0.1252  1.4096  6.8727 
+    
+    Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+    (Intercept)  37.2851     1.8776  19.858  < 2e-16 ***
+    wt           -5.3445     0.5591  -9.559 1.29e-10 ***
+    ---
+    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    
+    Residual standard error: 3.046 on 30 degrees of freedom
+    Multiple R-squared:  0.7528,	Adjusted R-squared:  0.7446 
+    F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10
+
+
+
+
+.. code:: python
+
+    plot(mtcars$wt, mtcars$mpg, col=rgb(0,0,1,0.5), pch=16, cex=2.0, 
+        xlab="Weigth", ylab="Miles per gallon", 
+         main="Linear regression of MPG against wt")
+    abline(fit, col="red", lwd=2)
+
+
+
+.. image:: PracticeTWOSolutions_files/PracticeTWOSolutions_24_0.png
+
+
+(11) Print 10 rows at ranodm from the ``iris`` dataframe
+
+.. code:: python
+
+    ridx <- sample(1:nrow(iris), 10, replace = FALSE)
+    iris[ridx,]
+
+
+
+
+.. parsed-literal::
+
+        Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+    136          7.7         3.0          6.1         2.3  virginica
+    10           4.9         3.1          1.5         0.1     setosa
+    29           5.2         3.4          1.4         0.2     setosa
+    80           5.7         2.6          3.5         1.0 versicolor
+    54           5.5         2.3          4.0         1.3 versicolor
+    11           5.4         3.7          1.5         0.2     setosa
+    58           4.9         2.4          3.3         1.0 versicolor
+    56           5.7         2.8          4.5         1.3 versicolor
+    150          5.9         3.0          5.1         1.8  virginica
+    59           6.6         2.9          4.6         1.3 versicolor
+
+
+
+(12) Find the mean Sepal.Length Sepal.Width Petal.Length Petal.Width for
+     each iris species using the ``aggregate`` command.
+
+.. code:: python
+
+    aggregate(iris[,1:4], by=list(iris$Species), FUN=mean)
+
+
+
+
+.. parsed-literal::
+
+         Group.1 Sepal.Length Sepal.Width Petal.Length Petal.Width
+    1     setosa        5.006       3.428        1.462       0.246
+    2 versicolor        5.936       2.770        4.260       1.326
+    3  virginica        6.588       2.974        5.552       2.026
+
+
+
+Practice 3
+----------------------------------------
+
+(1) Make a plot of the standard normal curve on the interval [-4, 4].
+    Give the plot a title "Standard normal curve", an x label of "Normal
+    deviate" and a y label of "Density".
+
+.. code:: python
+
+    x <- pretty(-4:4, n=100)
+    y <- dnorm(x)
+    plot(x, y, type="l", main="Standard normal curve", xlab="Normal deviate", ylab="Density")
+
+.. image:: PracticeTHREESolutions_files/PracticeTHREESolutions_2_0.png
+   :width: 600
+
+
+(2) What is the area under the curve to the right of x=3? In other
+    words, what is the probability of drawing a random number from the
+    normal distribution that is 3 standard deviations or more larger
+    than the mean?
+
+.. code:: python
+
+    1 - pnorm(3)
+
+
+
+
+.. raw:: html
+
+    0.0013498980316301
+
+
+
+(3) If the expression valuse for a gene are normally distributed with
+    mean 10 and standard deviation 2, what is the value of a gene at the
+    95th percentile?
+
+.. code:: python
+
+    qnorm(0.95, mean=10, sd=2)
+
+
+
+
+.. raw:: html
+
+    13.2897072539029
+
+
+
+Generate 50 numbers from a normal distribtuion with mean=10 and sd=2.
+Now trnaform this vector so that the numbers have a stnadard normal
+distribtuion with mean=0 and sd=1.
+
+.. code:: python
+
+    x <- rnorm(50, 10, 2)
+    z <- (x - mean(x))/sd(x)
+
+(4) A t-test with 6 degrees of freedom has a score of 3.5. Using only
+    the dt, pt, qt or rt probability functions, what is the p-value if
+    this was a two-sided test? Recall that a p-value is the probailty of
+    seeing a value as extreme or more extreme than the observed score,
+    assuming the score was drawn from the specified distirbution.
+
+.. code:: python
+
+    2*(1 - pt(3.5, df = 6))
+
+
+
+
+.. raw:: html
+
+    0.0128263383328053
+
+
+
+(5) Draw 1 million random numbers from the t-distirbution with 6 degrees
+    of freedom. How many times is the numbr less than -3.5 or greater
+    than 3.5?
+
+.. code:: python
+
+    x <- rt(100000, df=6)
+    sum(abs(x) > 3.5)
+
+
+
+
+.. raw:: html
+
+    1238
+
+
+
+(6) Find the mean value of all numeric variables for the mtcars data,
+    grouping by number of gears and automtatic or manual transmission.
+    (Hint: Use the aggregate function)
+
+.. code:: python
+
+    with(mtcars, aggregate(mtcars, by=list(gear=gear, transmission=am), FUN=mean))
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>gear</th><th scope=col>transmission</th><th scope=col>mpg</th><th scope=col>cyl</th><th scope=col>disp</th><th scope=col>hp</th><th scope=col>drat</th><th scope=col>wt</th><th scope=col>qsec</th><th scope=col>vs</th><th scope=col>am</th><th scope=col>gear</th><th scope=col>carb</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>3</td><td>0</td><td>16.10667</td><td>7.466667</td><td>326.3</td><td>176.1333</td><td>3.132667</td><td>3.8926</td><td>17.692</td><td>0.2</td><td>0</td><td>3</td><td>2.666667</td></tr>
+    	<tr><th scope=row>2</th><td>4</td><td>0</td><td>21.05</td><td>5</td><td>155.675</td><td>100.75</td><td>3.8625</td><td>3.305</td><td>20.025</td><td>1</td><td>0</td><td>4</td><td>3</td></tr>
+    	<tr><th scope=row>3</th><td>4</td><td>1</td><td>26.275</td><td>4.5</td><td>106.6875</td><td>83.875</td><td>4.13375</td><td>2.2725</td><td>18.435</td><td>0.75</td><td>1</td><td>4</td><td>2</td></tr>
+    	<tr><th scope=row>4</th><td>5</td><td>1</td><td>21.38</td><td>6</td><td>202.48</td><td>195.6</td><td>3.916</td><td>2.6326</td><td>15.64</td><td>0.2</td><td>1</td><td>5</td><td>4.4</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    library(plyr)
+    library(reshape2)
+    data(airquality)
+
+
+.. parsed-literal::
+
+    Warning message:
+    : package ‘plyr’ was built under R version 3.1.3
+
+.. code:: python
+
+    head(airquality)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Ozone</th><th scope=col>Solar.R</th><th scope=col>Wind</th><th scope=col>Temp</th><th scope=col>Month</th><th scope=col>Day</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>41</td><td>190</td><td>7.4</td><td>67</td><td>5</td><td>1</td></tr>
+    	<tr><th scope=row>2</th><td>36</td><td>118</td><td>8</td><td>72</td><td>5</td><td>2</td></tr>
+    	<tr><th scope=row>3</th><td>12</td><td>149</td><td>12.6</td><td>74</td><td>5</td><td>3</td></tr>
+    	<tr><th scope=row>4</th><td>18</td><td>313</td><td>11.5</td><td>62</td><td>5</td><td>4</td></tr>
+    	<tr><th scope=row>5</th><td>NA</td><td>NA</td><td>14.3</td><td>56</td><td>5</td><td>5</td></tr>
+    	<tr><th scope=row>6</th><td>28</td><td>NA</td><td>14.9</td><td>66</td><td>5</td><td>6</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+(7) Use ``melt`` to convert the airquality dataframe into a "tall"
+    format using Month and Day as teh id variables, saving it as a new
+    datafrmae. Print the first 6 rows.
+
+.. code:: python
+
+    md <- melt(airquality, id=c("Month", "Day"))
+    head(md)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Month</th><th scope=col>Day</th><th scope=col>variable</th><th scope=col>value</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>5</td><td>1</td><td>Ozone</td><td>41</td></tr>
+    	<tr><th scope=row>2</th><td>5</td><td>2</td><td>Ozone</td><td>36</td></tr>
+    	<tr><th scope=row>3</th><td>5</td><td>3</td><td>Ozone</td><td>12</td></tr>
+    	<tr><th scope=row>4</th><td>5</td><td>4</td><td>Ozone</td><td>18</td></tr>
+    	<tr><th scope=row>5</th><td>5</td><td>5</td><td>Ozone</td><td>NA</td></tr>
+    	<tr><th scope=row>6</th><td>5</td><td>6</td><td>Ozone</td><td>28</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+(8) Find the avarage values of Ozone, Solar.R, Wind and Temp for each
+    month using ``dcast``. Hint: Give an extra argument ``na.rm = TRUE``
+    to ignore missing data.
+
+.. code:: python
+
+    dcast(md, Month ~ variable, mean, na.rm = TRUE)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Month</th><th scope=col>Ozone</th><th scope=col>Solar.R</th><th scope=col>Wind</th><th scope=col>Temp</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>5</td><td>23.61538</td><td>181.2963</td><td>11.62258</td><td>65.54839</td></tr>
+    	<tr><th scope=row>2</th><td>6</td><td>29.44444</td><td>190.1667</td><td>10.26667</td><td>79.1</td></tr>
+    	<tr><th scope=row>3</th><td>7</td><td>59.11538</td><td>216.4839</td><td>8.941935</td><td>83.90323</td></tr>
+    	<tr><th scope=row>4</th><td>8</td><td>59.96154</td><td>171.8571</td><td>8.793548</td><td>83.96774</td></tr>
+    	<tr><th scope=row>5</th><td>9</td><td>31.44828</td><td>167.4333</td><td>10.18</td><td>76.9</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+(9) Find the avarage values of Ozone, Solar.R, Wind and Temp for each
+    month using ``dcast``, but only for the first 2 weeks of each month.
+    Hint: Give an extra argument ``na.rm = TRUE`` to ignore missing
+    data. Hint: Use the subset argument.
+
+.. code:: python
+
+    dcast(md, Month ~ variable, mean, subset = .(Day < 15), na.rm = TRUE)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Month</th><th scope=col>Ozone</th><th scope=col>Solar.R</th><th scope=col>Wind</th><th scope=col>Temp</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>5</td><td>19.41667</td><td>200.0909</td><td>11.17857</td><td>66.28571</td></tr>
+    	<tr><th scope=row>2</th><td>6</td><td>40.5</td><td>249.1429</td><td>10.73571</td><td>82.85714</td></tr>
+    	<tr><th scope=row>3</th><td>7</td><td>64.81818</td><td>228.7143</td><td>9.007143</td><td>84.85714</td></tr>
+    	<tr><th scope=row>4</th><td>8</td><td>58.41667</td><td>168.7273</td><td>8.721429</td><td>85.5</td></tr>
+    	<tr><th scope=row>5</th><td>9</td><td>43.35714</td><td>188.6429</td><td>9.407143</td><td>82.21429</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+**Questions below use the day.1 and day.2 dataframes**
+
+.. code:: python
+
+    set.seed(123)
+    pid.1 <- c(1,1,2,2)
+    gid.1 <- c(1,2,1,2)
+    val.1 <- rnorm(4)
+    day.1 <- data.frame(pid=pid.1, gid=gid.1, val=val.1)
+    
+    pid.2 <- c(1,1,2,2)
+    gid.2 <- c(1,2,1,2)
+    val.2 <- 1 + rnorm(4)
+    day.2 <- data.frame(pid=pid.2, gid=gid.2, val=val.2)
+
+.. code:: python
+
+    day.1
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td></tr>
+    	<tr><th scope=row>2</th><td>1</td><td>2</td><td>-0.2301775</td></tr>
+    	<tr><th scope=row>3</th><td>2</td><td>1</td><td>1.558708</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    day.2
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>1</td><td>1.129288</td></tr>
+    	<tr><th scope=row>2</th><td>1</td><td>2</td><td>2.715065</td></tr>
+    	<tr><th scope=row>3</th><td>2</td><td>1</td><td>1.460916</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>2</td><td>-0.2650612</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+(10) Suppose day.1 and day.2 are results from experiments performed on
+     differnet days. Merge the data from day.1 and day.2 into a single
+     dataframe caleld ``days`` to combine the data sets.
+
+.. code:: python
+
+    days <- merge(day.1, day.2, by=c("pid", "gid"), suffixes = 1:2)
+
+.. code:: python
+
+    days
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val1</th><th scope=col>val2</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    	<tr><th scope=row>2</th><td>1</td><td>2</td><td>-0.2301775</td><td>2.715065</td></tr>
+    	<tr><th scope=row>3</th><td>2</td><td>1</td><td>1.558708</td><td>1.460916</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+(11) Sort the ``days`` dataframe by val1 in decreasing order.
+
+.. code:: python
+
+    days[order(-days$val1),]
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val1</th><th scope=col>val2</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>3</th><td>2</td><td>1</td><td>1.558708</td><td>1.460916</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    	<tr><th scope=row>2</th><td>1</td><td>2</td><td>-0.2301775</td><td>2.715065</td></tr>
+    	<tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    (12) Remove duplicate rows from the following dataframe.
+
+.. code:: python
+
+    df <- read.csv("df.csv")
+    df
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val1</th><th scope=col>val2</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    	<tr><th scope=row>2</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    	<tr><th scope=row>3</th><td>1</td><td>2</td><td>-0.2301775</td><td>2.715065</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    	<tr><th scope=row>5</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    	<tr><th scope=row>6</th><td>2</td><td>1</td><td>1.558708</td><td>1.460916</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    unique(df)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val1</th><th scope=col>val2</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    	<tr><th scope=row>3</th><td>1</td><td>2</td><td>-0.2301775</td><td>2.715065</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    	<tr><th scope=row>6</th><td>2</td><td>1</td><td>1.558708</td><td>1.460916</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+
+Practice 4
+----------------------------------------
+
+.. code:: python
+
+    library(ggplot2)
+    library(reshape2)
+    library(pheatmap)
+    library(genefilter) # for rowttests
+    library(nlme)
+    data(Rail)
+
+
+.. parsed-literal::
+
+    
+    Attaching package: ‘genefilter’
+    
+    The following object is masked from ‘package:base’:
+    
+        anyNA
+    
+
+
+**Exericse 0**
+
+Using base graphics, make a 2 x 2 grid for plotting.
+
+Top left - Generate 100 random numbers from a t-distribution with 5
+degrees of freedom - Plot a normalized histogram (i.e. area sums to 1)
+with 8 breaks - Overlay a smoothed density estimate (using ``density``)
+in orange - Overlay the true density estimate (using ``dt``) in red -
+Add a rug
+
+Tor right - Using the ``iris`` data set, make a scatter plot of Sepal
+length agaisnt Sepal width. Color the points by Species. - Add your own
+title and x and y lables
+
+Bottom left - Generate 100 numbers from a Poisson distribution with rate
+= 3 - Plot a bar chart showing the counts for each value
+
+Bottom right - Make a box and whiskers plot of the 4 numeric variables
+in the ``iris`` data set - Show vertical labels for all Species names -
+Adjust the margins so that the labels are visible using the ``mar``
+(bottom, left, top, right) parameter. You can see the default values
+with ``par()$mar``. Remember to restore the orignal parameters at the
+end.
+
+Save the plot as a Portable Neetwork Graphics (png) file.
+
+.. code:: python
+
+    png("myplot.png")
+    par(mfrow=c(2,2))
+    x <- rt(100, df=5)
+    hist(x, breaks = 8, probability = TRUE)
+    lines(density(x), col="orange")
+    xp <- seq(min(x), max(x), length.out = 50)
+    lines(xp, dt(xp, df=5), col="red")
+    rug(x)
+    plot(iris$Sepal.Width, iris$Sepal.Length, col=iris$Species, 
+         main="Scatter by Iris species", ylab="Length", xlab="Width")
+    n <- rpois(100, lambda = 3)
+    barplot(table(n))
+    orig <- par(no.readonly=TRUE)
+    par(mar=c(6.1,4.1,4.1,2.1))
+    boxplot(iris[,1:4], las=2)
+    par(orig)
+    dev.off()
+
+.. raw:: html
+
+    <strong>pdf:</strong> 2
+
+
+
+.. code:: python
+
+    head(Rail)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Rail</th><th scope=col>travel</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>55</td></tr>
+    	<tr><th scope=row>2</th><td>1</td><td>53</td></tr>
+    	<tr><th scope=row>3</th><td>1</td><td>54</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>26</td></tr>
+    	<tr><th scope=row>5</th><td>2</td><td>37</td></tr>
+    	<tr><th scope=row>6</th><td>2</td><td>32</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Exercise 1
+^^^^^^^^^^
+
+-  Use the ggplot function
+-  Create a scatter plot with Rail on the x-axis and travel on the
+   y-axis.
+-  CHange the title to "I made this!"
+-  Change the y-axis label to be "Zero-force travel time (nano-seconds)"
+-  Change the size of the points to 5
+-  Change the color of potins to blue and transparency to 0.5
+-  Add a simple linear regression line to the plot with 90% confidence
+   intervals
+
+.. code:: python
+
+    ggplot(Rail, aes(x=as.numeric(Rail), y=travel)) +
+    geom_point(size=5, color="blue", alpha=0.5) +
+    geom_smooth(method="lm") +
+    labs(title="I made this", ylab="Zero-force travel time (nano-seconds)")
+
+
+.. image:: PracticeFOURSolutions_files/PracticeFOURSolutions_6_0.png
+   :width: 600
+
+
+
+
+Exercise 2
+^^^^^^^^^^
+
+Here we will try to replicate the noise discovery heatmaps shown in the
+statistics class.
+
+.. code:: python
+
+    set.seed(123)
+    
+    n <- 20 # number of subjects
+    m <- 20000 # number of genes 
+    alpha <- 0.005 # significance level
+    
+    # create a matrix of gene expression values with m rows and 2*n columns
+    M <- matrix(rnorm(2*n*m), m, 2*n)
+    
+    # give row and column names
+    rownames(M) <- paste("G", 1:m, sep="")
+    colnames(M) <- paste("id", 1:(2*n), sep="")
+    
+    # assign subjects inot equal sized groups
+    grp <- factor(rep(0:1, c(n, n)))
+    
+    # calculate p-value using t-test for mean experession value of each gene
+    pvals <- rowttests(M, grp)$p.value
+    
+    # extract the genes which meet the specified significance level
+    hits <- M[pvals < alpha,]
+
+-  Use pheatmap to plot a heatmap
+-  Remove the row names (Use tAB or R's built-in help to figure out to
+   do this)
+-  Use this color palette to map expression values to a red-blakc-green
+   scale ``colorRampPalette(c("red3", "black", "green3"))(50)``
+
+.. code:: python
+
+    pheatmap(hits, show_rownames = FALSE, color = colorRampPalette(c("red3", "black", "green3"))(50))
+
+
+
+.. image:: PracticeFOURSolutions_files/PracticeFOURSolutions_10_0.png
+   :width: 600
+
+
+
+.. code:: python
+
+    a1 <- 1
+    a2 <- 2
+    sigma1 <- 25
+    sigma2 <- 25
+    
+    subject <- paste("PID", rep(1:2, each=5))
+    dose <- rep(seq(10, 100, 20), 2)
+    geneA <- a1 * dose + rnorm(length(dose), sd=sigma1)
+    geneB <- a2 * dose + rnorm(length(dose), sd=sigma2)
+    
+    df <- data.frame(subject=subject, dose=dose, geneA=geneA, geneB=geneB)
+
+.. code:: python
+
+    df
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>subject</th><th scope=col>dose</th><th scope=col>geneA</th><th scope=col>geneB</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>PID 1</td><td>10</td><td>-3.367338</td><td>-31.18716</td></tr>
+    	<tr><th scope=row>2</th><td>PID 1</td><td>30</td><td>54.03613</td><td>91.78636</td></tr>
+    	<tr><th scope=row>3</th><td>PID 1</td><td>50</td><td>22.40099</td><td>124.477</td></tr>
+    	<tr><th scope=row>4</th><td>PID 1</td><td>70</td><td>73.61274</td><td>111.6039</td></tr>
+    	<tr><th scope=row>5</th><td>PID 1</td><td>90</td><td>84.05749</td><td>188.5058</td></tr>
+    	<tr><th scope=row>6</th><td>PID 2</td><td>10</td><td>-13.63179</td><td>12.04911</td></tr>
+    	<tr><th scope=row>7</th><td>PID 2</td><td>30</td><td>40.03472</td><td>57.40407</td></tr>
+    	<tr><th scope=row>8</th><td>PID 2</td><td>50</td><td>64.98747</td><td>79.04738</td></tr>
+    	<tr><th scope=row>9</th><td>PID 2</td><td>70</td><td>91.22307</td><td>147.4357</td></tr>
+    	<tr><th scope=row>10</th><td>PID 2</td><td>90</td><td>70.94818</td><td>166.8696</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+**Exercise 3**
+
+Using ``ggplot2``, plot gene expression agaisnt does, using differnt
+colors for differetn genes and differnet shapes for different subjects.
+(Hint: The ``reshape2`` library may come in useful)
+
+.. code:: python
+
+    md <- melt(df, id=c("subject", "dose"))
+
+.. code:: python
+
+    md
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>subject</th><th scope=col>dose</th><th scope=col>variable</th><th scope=col>value</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>PID 1</td><td>10</td><td>geneA</td><td>-3.367338</td></tr>
+    	<tr><th scope=row>2</th><td>PID 1</td><td>30</td><td>geneA</td><td>54.03613</td></tr>
+    	<tr><th scope=row>3</th><td>PID 1</td><td>50</td><td>geneA</td><td>22.40099</td></tr>
+    	<tr><th scope=row>4</th><td>PID 1</td><td>70</td><td>geneA</td><td>73.61274</td></tr>
+    	<tr><th scope=row>5</th><td>PID 1</td><td>90</td><td>geneA</td><td>84.05749</td></tr>
+    	<tr><th scope=row>6</th><td>PID 2</td><td>10</td><td>geneA</td><td>-13.63179</td></tr>
+    	<tr><th scope=row>7</th><td>PID 2</td><td>30</td><td>geneA</td><td>40.03472</td></tr>
+    	<tr><th scope=row>8</th><td>PID 2</td><td>50</td><td>geneA</td><td>64.98747</td></tr>
+    	<tr><th scope=row>9</th><td>PID 2</td><td>70</td><td>geneA</td><td>91.22307</td></tr>
+    	<tr><th scope=row>10</th><td>PID 2</td><td>90</td><td>geneA</td><td>70.94818</td></tr>
+    	<tr><th scope=row>11</th><td>PID 1</td><td>10</td><td>geneB</td><td>-31.18716</td></tr>
+    	<tr><th scope=row>12</th><td>PID 1</td><td>30</td><td>geneB</td><td>91.78636</td></tr>
+    	<tr><th scope=row>13</th><td>PID 1</td><td>50</td><td>geneB</td><td>124.477</td></tr>
+    	<tr><th scope=row>14</th><td>PID 1</td><td>70</td><td>geneB</td><td>111.6039</td></tr>
+    	<tr><th scope=row>15</th><td>PID 1</td><td>90</td><td>geneB</td><td>188.5058</td></tr>
+    	<tr><th scope=row>16</th><td>PID 2</td><td>10</td><td>geneB</td><td>12.04911</td></tr>
+    	<tr><th scope=row>17</th><td>PID 2</td><td>30</td><td>geneB</td><td>57.40407</td></tr>
+    	<tr><th scope=row>18</th><td>PID 2</td><td>50</td><td>geneB</td><td>79.04738</td></tr>
+    	<tr><th scope=row>19</th><td>PID 2</td><td>70</td><td>geneB</td><td>147.4357</td></tr>
+    	<tr><th scope=row>20</th><td>PID 2</td><td>90</td><td>geneB</td><td>166.8696</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    ggplot(md, aes(x=dose, y=value, color=variable, shape=subject)) + 
+    geom_point(size=5)
+
+
+
+.. image:: PracticeFOURSolutions_files/PracticeFOURSolutions_16_0.png
+   :width: 600
+
+
+
+**Exercise 4**
+
+Usign ``ggplot2``, make a grid of plots with separae colummsn for each
+subject and separate rows for each gene. Vary the color and size by the
+gene expression value. Add a linear regression fit with 95% confidence
+intervals to each plot.
+
+.. code:: python
+
+    ggplot(md, aes(x=dose, y=value, color=value)) + 
+    geom_point(size=3) +
+    geom_smooth(method="lm") +
+    facet_grid(variable ~ subject)
+
+
+
+.. image:: PracticeFOURSolutions_files/PracticeFOURSolutions_18_0.png
+   :width: 600
+
+

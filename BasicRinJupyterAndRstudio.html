@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Basic R in the Jupyter Notebook and RStudio &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+    <link rel="next" title="Introduction to R" href="IntroductionToR.html" />
+    <link rel="prev" title="How to Claim and Access Your Virtual Machine" href="VMsAtDuke.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearningWhatCouldGoWrong.html">Supervised Learning Continued - What Could Go Wrong?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONE-Solutions.html">Practice ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTWOSolutions.html">Practice TWO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTHREESolutions.html">Practice THREE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeFOURSolutions.html">Practice FOUR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2NotebookFromMatrix.html">Import count data using basic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Basic R in the Jupyter Notebook and RStudio</a><ul>
+<li><a class="reference internal" href="#the-notebook">The Notebook</a><ul>
+<li><a class="reference internal" href="#r-basics-data-types">R Basics - Data Types</a><ul>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#r-basics-creating-objects">R Basics - Creating Objects</a><ul>
+<li><a class="reference internal" href="#c-concatenate">c - Concatenate</a></li>
+<li><a class="reference internal" href="#rbind">rbind</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#getting-help-in-the-notebook">Getting Help in the Notebook</a></li>
+<li><a class="reference internal" href="#don-t-forget-google">Don&#8217;t forget Google</a></li>
+<li><a class="reference internal" href="#play">Play!</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rstudio">Rstudio</a><ul>
+<li><a class="reference internal" href="#work">Work!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="VMsAtDuke.html" title="Previous Chapter: How to Claim and Access Your Virtual Machine"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; How to Claim ...</span>
+    </a>
+  </li>
+  <li>
+    <a href="IntroductionToR.html" title="Next Chapter: Introduction to R"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Introduction ... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/BasicRinJupyterAndRstudio.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="basic-r-in-the-jupyter-notebook-and-rstudio">
+<h1>Basic R in the Jupyter Notebook and RStudio<a class="headerlink" href="#basic-r-in-the-jupyter-notebook-and-rstudio" title="Permalink to this headline">¶</a></h1>
+<p>The first thing you should do with this notebook is make a copy! Go to
+the file menu and choose &#8216;Make a Copy&#8217;.</p>
+<p><em>Great! Now you should be working in a file called
+&#8216;BasicRinJupyterAndRstudio-Copy1&#8217;</em></p>
+<p>Briefly go back to the other tab and choose &#8216;Close and Halt&#8217; from the
+file menu. Why did we do this? Because we have the lecture materials in
+something called a &#8216;github repository&#8217;. We may need to make changes to
+notebooks and if and when we do, we will show you how to update your VM
+with the new materials. We want whatever changes you make to be saved
+under different files and this seems to be the easiest way. (Note: even
+if you don&#8217;t think you are making changes, the notebook &#8216;autosaves&#8217; - so
+your notebook will almost always be considered &#8216;changed&#8217; as far as
+github is concerned... anyway - just trust me!</p>
+<p>R is a programming environment created specifically for statistics. It
+is a scripting language (if you don&#8217;t know what that means, don&#8217;t worry
+for now). R can be used interactively (as we will see in this notebook),
+or it can be told to execute a list of commands stored in a plain text
+file (called a &#8216;script&#8217;).</p>
+<p>From within the Jupyter notebook, we can access the R &#8216;kernel&#8217; (the
+program that interprets R code and returns results). This is just one
+way to use R. We will also learn to use a program called Rstudio.</p>
+<div class="section" id="the-notebook">
+<h2>The Notebook<a class="headerlink" href="#the-notebook" title="Permalink to this headline">¶</a></h2>
+<p>As you can see, the notebook is browser based (it opens a window in your
+browser) and works a lot like a web server. This notebook is running an
+R kernel, but we could chooose a Python kernel, a bash kernel (unix
+shell) or from a long list that is currently expanding:</p>
+<p><a class="reference external" href="https://github.com/ipython/ipython/wiki/IPython-kernels-for-other-languages">https://github.com/ipython/ipython/wiki/IPython-kernels-for-other-languages</a></p>
+<p>Be careful, though. Much of this is under development and considered
+&#8216;beta&#8217; (or even alpha) - the tools can be buggy. We will be careful to
+use only the better developed parts of the Jupyter universe.</p>
+<p>The notebook is comprised of &#8216;cells&#8217;. Cells can either be &#8216;code&#8217; or
+&#8216;markdown&#8217;. Code is for writing R commands. Markdown is for text and is
+an extension of html. This cell is a markdown cell.</p>
+<p>More about markdown here:</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Markdown">https://en.wikipedia.org/wiki/Markdown</a></p>
+<p>You can type anything you want in markdown (though there are some
+special characters that will be interpreted as commands).</p>
+<p>Code cells require R syntax. The following cell is an R cell:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c"># This is an R cell. The &#39;#&#39; tells R this is a comment</span>
+<span class="mi">3</span><span class="o">+</span><span class="mi">1</span>
+</pre></div>
+</div>
+4<p>When I run the code cell, it executes the R code (3+1) and returns the
+output in an output cell. To run a code cell, you can type shift-enter,
+or press the run button at the top of the screen.</p>
+<div class="section" id="r-basics-data-types">
+<h3>R Basics - Data Types<a class="headerlink" href="#r-basics-data-types" title="Permalink to this headline">¶</a></h3>
+<p>In any programming language, we have the notion of &#8216;data modes&#8217; and
+&#8216;data structures&#8217;. This is because programs manipulate data, and
+different kinds of data require different manipulations. For example,
+numbers are treated differently than characters (or strings of
+characters) and single numbers are treated differently than lists of
+numbers (vectors) or arrays of numbers (matrices).</p>
+<p>The following are some simple R data modes:</p>
+<ul class="simple">
+<li>numeric</li>
+<li>character</li>
+<li>logical (TRUE or FALSE)</li>
+<li>complex (we won&#8217;t worry about these!)</li>
+</ul>
+<p>Modes can be combined to form data structures:</p>
+<ul class="simple">
+<li>Vectors</li>
+<li>Matrices</li>
+<li>Strings</li>
+<li>Data Frames</li>
+</ul>
+<div class="section" id="examples">
+<h4>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-python"><div class="highlight"><pre>class(c(1,3,2,8.4)) #This is a vector
+</pre></div>
+</div>
+'numeric'<div class="code python highlight-python"><div class="highlight"><pre>class(matrix(c(1,3,2,4,5,6),nrow=2,ncol=3)) #This is a matrix
+</pre></div>
+</div>
+'matrix'<div class="code python highlight-python"><div class="highlight"><pre><span class="s">&quot;This is a string!&quot;</span>
+</pre></div>
+</div>
+'This is a string!'<div class="code python highlight-python"><div class="highlight"><pre>data.frame(c(&quot;This is a string&quot;,&quot;This is another string&quot;),matrix(c(1:6),nrow=2,ncol=3))
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>c..This.is.a.string....This.is.another.string..</th><th scope=col>X1</th><th scope=col>X2</th><th scope=col>X3</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>This is a string</td><td>1</td><td>3</td><td>5</td></tr>
+    <tr><th scope=row>2</th><td>This is another string</td><td>2</td><td>4</td><td>6</td></tr>
+</tbody>
+</table><p>The important thing to note above is the combination of both character
+and numeric data into one object! That is what is special about data
+frames.</p>
+</div>
+</div>
+<div class="section" id="r-basics-creating-objects">
+<h3>R Basics - Creating Objects<a class="headerlink" href="#r-basics-creating-objects" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="c-concatenate">
+<h4>c - Concatenate<a class="headerlink" href="#c-concatenate" title="Permalink to this headline">¶</a></h4>
+<p>We have just seen this command in action. The &#8216;c&#8217; command combines
+objects by concatenation. For example:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">c</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+</ol><p>creates a vector of length 3. We can append to that vector, like so:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">c</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+</ol><p>Of course, we would usually have named the first vector something:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">v1</span><span class="o">&lt;-</span><span class="n">c</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">v2</span><span class="o">&lt;-</span><span class="n">c</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 5 6 7
+[1] 5 6 7 8
+</pre></div>
+</div>
+</div>
+<div class="section" id="rbind">
+<h4>rbind<a class="headerlink" href="#rbind" title="Permalink to this headline">¶</a></h4>
+<p>Now, if we would like to create a matrix, we could use the matrix
+command as above:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">matrix</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span><span class="n">nrow</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<tbody>
+    <tr><td>1</td><td>2</td><td>5</td></tr>
+    <tr><td>3</td><td>4</td><td>6</td></tr>
+</tbody>
+</table><p>Or, we could create two vectors and combine them:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>v1&lt;-c(1,2,5)
+v2&lt;-c(3,4,6)
+m1&lt;-rbind(v1,v2)
+m1
+class(m1)
+</pre></div>
+</div>
+<table>
+<tbody>
+    <tr><th scope=row>v1</th><td>1</td><td>2</td><td>5</td></tr>
+    <tr><th scope=row>v2</th><td>3</td><td>4</td><td>6</td></tr>
+</tbody>
+</table>'matrix'<p>Notice that R has automatically assigned row names for us. Thank you, R!
+We can also use the column-based version (rbind means &#8216;row bind&#8217;) to
+append a column to a matrix:</p>
+<h4><p>cbind</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">m1</span><span class="o">&lt;-</span><span class="n">matrix</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">nrow</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">m1</span>
+</pre></div>
+</div>
+<table>
+<tbody>
+    <tr><td>1</td><td>3</td></tr>
+    <tr><td>2</td><td>4</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre><span class="n">m2</span><span class="o">&lt;-</span><span class="n">cbind</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">c</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">m2</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Error in cbind(m1, c(5, 6)): object &#39;m1&#39; not found
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Error in eval(expr, envir, enclos): object &#39;m2&#39; not found
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="getting-help-in-the-notebook">
+<h3>Getting Help in the Notebook<a class="headerlink" href="#getting-help-in-the-notebook" title="Permalink to this headline">¶</a></h3>
+<p>If you know the name of the command you want to use, you can just type
+&#8216;? command_name&#8217; in a code cell and run it, like so:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>?help
+</pre></div>
+</div>
+<table width="100%" summary="page for help {utils}"><tr><td>help {utils}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Documentation</h2>
+
+<h3>Description</h3>
+
+<p><code>help</code> is the primary interface to the help systems.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+help(topic, package = NULL, lib.loc = NULL,
+     verbose = getOption("verbose"),
+     try.all.packages = getOption("help.try.all.packages"),
+     help_type = getOption("help_type"))
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>topic</code></td>
+<td>
+<p>usually, a name or character string specifying the
+topic for which help is sought.  A character string (enclosed in
+explicit single or double quotes) is always taken as naming a topic.
+</p>
+<p>If the value of <code>topic</code> is a length-one
+character vector the topic is taken to be the value of the only
+element.  Otherwise <code>topic</code> must be a name or a reserved
+word (if syntactically valid) or character string.
+</p>
+<p>See &lsquo;Details&rsquo; for what happens if this is omitted.
+</p>
+</td></tr>
+<tr valign="top"><td><code>package</code></td>
+<td>
+<p>a name or character vector giving the packages to look
+into for documentation, or <code>NULL</code>.  By default, all packages
+whose namespaces are loaded are used.  To avoid a name being deparsed use e.g.
+<code>(pkg_ref)</code> (see the examples).</p>
+</td></tr>
+<tr valign="top"><td><code>lib.loc</code></td>
+<td>
+<p>a character vector of directory names of <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> libraries,
+or <code>NULL</code>.  The default value of <code>NULL</code> corresponds to all
+libraries currently known.  If the default is used, the loaded
+packages are searched before the libraries.  This is not used for
+HTML help (see &lsquo;Details&rsquo;.</p>
+</td></tr>
+<tr valign="top"><td><code>verbose</code></td>
+<td>
+<p>logical; if <code>TRUE</code>, the file name is reported.</p>
+</td></tr>
+<tr valign="top"><td><code>try.all.packages</code></td>
+<td>
+<p>logical; see <code>Note</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>help_type</code></td>
+<td>
+<p>character string: the type of help required.
+Possible values are <code>"text"</code>, <code>"html"</code> and <code>"pdf"</code>.
+Case is ignored, and partial matching is allowed.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>The following types of help are available:
+</p>
+
+<ul>
+<li><p> Plain text help
+</p>
+</li>
+<li><p> HTML help pages with hyperlinks to other topics, shown in a
+browser by <code>browseURL</code>.
+(Where possible an existing browser window is re-used: the OS X
+GUI uses its own browser window.)
+If for some reason HTML help is unavailable (see
+<code>startDynamicHelp</code>), plain text help will be used
+instead.
+</p>
+</li>
+<li><p> For <code>help</code> only, typeset as PDF &ndash;
+see the section on &lsquo;Offline help&rsquo;.
+</p>
+</li></ul>
+
+<p>The &lsquo;factory-fresh&rsquo; default is text help except from the OS X
+GUI, which uses HTML help displayed in its own browser window.
+</p>
+<p>The rendering of text help will use directional quotes in suitable
+locales (UTF-8 and single-byte Windows locales): sometimes the fonts
+used do not support these quotes so this can be turned off by setting
+<code>options(useFancyQuotes = FALSE)</code>.
+</p>
+<p><code>topic</code> is not optional: if it is omitted <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> will give
+</p>
+
+<ul>
+<li><p> If a package is specified, (text or, in interactive use only,
+HTML) information on the package, including hints/links to suitable
+help topics.
+</p>
+</li>
+<li><p> If <code>lib.loc</code> only is specified, a (text) list of available
+packages.
+</p>
+</li>
+<li><p> Help on <code>help</code> itself if none of the first three
+arguments is specified.
+</p>
+</li></ul>
+
+<p>Some topics need to be quoted (by backticks) or given as a
+character string.  These include those which cannot syntactically
+appear on their own such as unary and binary operators,
+<code>function</code> and control-flow reserved words (including
+<code>if</code>, <code>else</code> <code>for</code>, <code>in</code>, <code>repeat</code>,
+<code>while</code>, <code>break</code> and <code>next</code>).  The other <code>reserved</code>
+words can be used as if they were names, for example <code>TRUE</code>,
+<code>NA</code> and <code>Inf</code>.
+</p>
+<p>If multiple help files matching <code>topic</code> are found, in interactive
+use a menu is presented for the user to choose one: in batch use the
+first on the search path is used.  (For HTML help the menu will be an
+HTML page, otherwise a graphical menu if possible if
+<code>getOption("menu.graphics")</code> is true, the default.)
+</p>
+<p>Note that HTML help does not make use of <code>lib.loc</code>: it will
+always look first in the loaded packages and then along
+<code>.libPaths()</code>.
+</p>
+
+
+<h3>Offline help</h3>
+
+<p>Typeset documentation is produced by running the LaTeX version of the
+help page through <code>pdflatex</code>: this will produce a PDF file.
+</p>
+<p>The appearance of the output can be customized through a file
+&lsquo;<span class="file">Rhelp.cfg</span>&rsquo; somewhere in your LaTeX search path: this will be
+input as a LaTeX style file after <code>Rd.sty</code>.  Some
+environment variables are consulted, notably <span class="env">R_PAPERSIZE</span>
+(<em>via</em> <code>getOption("papersize")</code>) and <span class="env">R_RD4PDF</span> (see
+&lsquo;Making manuals&rsquo; in the &lsquo;R Installation and
+Administration Manual&rsquo;).
+</p>
+<p>If there is a function <code>offline_help_helper</code> in the workspace or
+further down the search path it is used to do the typesetting,
+otherwise the function of that name in the <code>utils</code> namespace (to
+which the first paragraph applies).  It should accept at least two
+arguments, the name of the LaTeX file to be typeset and the type
+(which is nowadays ignored).  It accepts a third argument,
+<code>texinputs</code>, which will give the graphics path when the help
+document contains figures, and will otherwise not be supplied.
+</p>
+
+
+<h3>Note</h3>
+
+<p>Unless <code>lib.loc</code> is specified explicitly, the loaded packages are
+searched before those in the specified libraries.  This ensures that
+if a library is loaded from a library not in the known library trees,
+then the help from the loaded library is used.  If <code>lib.loc</code> is
+specified explicitly, the loaded packages are <em>not</em> searched.
+</p>
+<p>If this search fails and argument <code>try.all.packages</code> is
+<code>TRUE</code> and neither <code>packages</code> nor <code>lib.loc</code> is
+specified, then all the packages in the known library trees are
+searched for help on <code>topic</code> and a list of (any) packages where
+help may be found is displayed (with hyperlinks for <code>help_type =
+  "html"</code>).  <strong>NB:</strong> searching all packages can be slow, especially
+the first time (caching of files by the OS can expedite subsequent
+searches dramatically).
+</p>
+
+
+<h3>References</h3>
+
+<p>Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
+<em>The New S Language</em>.
+Wadsworth &amp; Brooks/Cole.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>?</code> for shortcuts to help topics.
+</p>
+<p><code>help.search()</code> or <code>??</code> for finding help pages
+on a vague topic;
+<code>help.start()</code> which opens the HTML version of the <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span>
+help pages;
+<code>library()</code> for listing available packages and the
+help objects they contain;
+<code>data()</code> for listing available data sets;
+<code>methods()</code>.
+</p>
+<p>Use <code>prompt()</code> to get a prototype for writing <code>help</code>
+pages of your own package.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+help()
+help(help)              # the same
+
+help(lapply)
+
+help("for")             # or ?"for", but quotes/backticks are needed
+
+try({# requires working TeX installation:
+ help(dgamma, help_type = "pdf")
+ ## -&gt; nicely formatted pdf -- including math formula -- for help(dgamma):
+ system2(getOption("pdfviewer"), "dgamma.pdf", wait = FALSE)
+})
+
+help(package = "splines") # get help even when package is not loaded
+
+topi &lt;- "women"
+help(topi)
+
+try(help("bs", try.all.packages = FALSE)) # reports not found (an error)
+help("bs", try.all.packages = TRUE)       # reports can be found
+                                          # in package 'splines'
+
+## For programmatic use:
+topic &lt;- "family"; pkg_ref &lt;- "stats"
+help((topic), (pkg_ref))
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>utils</em> version 3.2.0 ]</div></div>
+<div class="section" id="don-t-forget-google">
+<h3>Don&#8217;t forget Google<a class="headerlink" href="#don-t-forget-google" title="Permalink to this headline">¶</a></h3>
+<p>If you want to do something, but don&#8217;t know the command in R, Google can
+be a great tool! Go ahead and google how to create a histogram in R.</p>
+</div>
+<div class="section" id="play">
+<h3>Play!<a class="headerlink" href="#play" title="Permalink to this headline">¶</a></h3>
+<p>Sure, we know we need to work to learn new things - but let&#8217;s not
+underestimate the power of play! Take a few moments to play in this new
+sandbox. Create some vectors, matrices, strings, etc. What can you do?
+Can you figure out how to make R multiply a matrix times (an
+appropriately sized) vector? Multiply two matrices? What happens if you
+add two vectors? Multiply? Do you get the answer you expect?</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c"># Start here - you can work within the lecture notes! How cool is that?</span>
+</pre></div>
+</div>
+<p>Now, the notebook is a great environment, especially for doing
+reproducible research, documenting all your steps and keeping track of
+things during exploratory analysis. There is another R interface
+available, and it is much more &#8216;mature&#8217; than the Jupyter project (mature
+does not mean &#8216;better&#8217; - just that some features available in R and
+Rstudio may not yet be incorporated in the Jupyter R kernel).</p>
+</div>
+</div>
+<div class="section" id="rstudio">
+<h2>Rstudio<a class="headerlink" href="#rstudio" title="Permalink to this headline">¶</a></h2>
+<p>Your VM has been setup as an Rstudio &#8216;server&#8217;. This means that you can
+connect to it in a similar manner as you did to the notebook server. Use
+the following URL:</p>
+<p><a class="reference external" href="http://colab-sbx-XXX.oit.duke.edu:8787">http://colab-sbx-XXX.oit.duke.edu:8787</a></p>
+<p>Rstudio Server uses the system login authentication, so type in your VM
+username (bitnami) and the password you were assigned by Duke&#8217;s OIT.</p>
+<p>Your window should look like so:</p>
+<p>​</p>
+<p>In the upper right corner, we have a &#8216;script&#8217; window. This is where you
+type code that you would like to save into a file. In the lower right is
+a console window. This is where you type code to execute. It is just
+like the command line in unix. You type code, press enter, and it gets
+executed.</p>
+<p>On the right hand side is a window with tabs for Files, Plots, Packages,
+Help and Viewer. As we are beginners, the &#8216;help&#8217; tab will be the most
+relevant. Here, we can find information on syntax, what functions do
+what, tutorials, etc.</p>
+<div class="section" id="work">
+<h3>Work!<a class="headerlink" href="#work" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Plot a histogram of 100 numbers generated from the standard normal
+distribution. Hint: Use the &#8216;Search Engine&#8217; feature under &#8216;Help&#8217; to
+find out how to generate random numbers from the standard normal,
+then search for &#8216;histogram&#8217;. Don&#8217;t use the ggplot histogram. We&#8217;ll
+cover graphics grammar later on!</li>
+<li>Use the script window to compute the mean, variance and median of the
+following list: (1,2,5,5,2,5,6,8,1,10) and save the script under the
+name &#8216;Example1.R&#8217;</li>
+<li>Do the same below, using Jupyter! (Hint: Go to the &#8216;home&#8217; screen for
+Jupyter and click on the &#8216;new&#8217; button on the upper right of the
+screen. Choose &#8216;text&#8217; file and enter your commands. Save the file
+under the appropriate name. Use the &#8216;source&#8217; command to run the code
+in and R cell.)</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

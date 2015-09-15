@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Practice 3 &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONESolutios.html">Coding Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Practice 3</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/PracticeTHREESolutions.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="practice-3">
+<h1>Practice 3<a class="headerlink" href="#practice-3" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li>Make a plot of the standard normal curve on the interval [-4, 4].
+Give the plot a title &#8220;Standard normal curve&#8221;, an x label of &#8220;Normal
+deviate&#8221; and a y label of &#8220;Density&#8221;.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>x &lt;- pretty(-4:4, n=100)
+y &lt;- dnorm(x)
+plot(x, y, type=&quot;l&quot;, main=&quot;Standard normal curve&quot;, xlab=&quot;Normal deviate&quot;, ylab=&quot;Density&quot;)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/PracticeTHREESolutions_2_0.png"><img alt="_images/PracticeTHREESolutions_2_0.png" src="_images/PracticeTHREESolutions_2_0.png" style="width: 600px;" /></a>
+<ol class="arabic simple" start="2">
+<li>What is the area under the curve to the right of x=3? In other
+words, what is the probability of drawing a random number from the
+normal distribution that is 3 standard deviations or more larger
+than the mean?</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="mi">1</span> <span class="o">-</span> <span class="n">pnorm</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+0.0013498980316301<ol class="arabic simple" start="3">
+<li>If the expression valuse for a gene are normally distributed with
+mean 10 and standard deviation 2, what is the value of a gene at the
+95th percentile?</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">qnorm</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+13.2897072539029<p>Generate 50 numbers from a normal distribtuion with mean=10 and sd=2.
+Now trnaform this vector so that the numbers have a stnadard normal
+distribtuion with mean=0 and sd=1.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rnorm</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">sd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>A t-test with 6 degrees of freedom has a score of 3.5. Using only
+the dt, pt, qt or rt probability functions, what is the p-value if
+this was a two-sided test? Recall that a p-value is the probailty of
+seeing a value as extreme or more extreme than the observed score,
+assuming the score was drawn from the specified distirbution.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pt</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+0.0128263383328053<ol class="arabic simple" start="5">
+<li>Draw 1 million random numbers from the t-distirbution with 6 degrees
+of freedom. How many times is the numbr less than -3.5 or greater
+than 3.5?</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rt</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">3.5</span><span class="p">)</span>
+</pre></div>
+</div>
+1238<ol class="arabic simple" start="6">
+<li>Find the mean value of all numeric variables for the mtcars data,
+grouping by number of gears and automtatic or manual transmission.
+(Hint: Use the aggregate function)</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>with(mtcars, aggregate(mtcars, by=list(gear=gear, transmission=am), FUN=mean))
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>gear</th><th scope=col>transmission</th><th scope=col>mpg</th><th scope=col>cyl</th><th scope=col>disp</th><th scope=col>hp</th><th scope=col>drat</th><th scope=col>wt</th><th scope=col>qsec</th><th scope=col>vs</th><th scope=col>am</th><th scope=col>gear</th><th scope=col>carb</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>3</td><td>0</td><td>16.10667</td><td>7.466667</td><td>326.3</td><td>176.1333</td><td>3.132667</td><td>3.8926</td><td>17.692</td><td>0.2</td><td>0</td><td>3</td><td>2.666667</td></tr>
+    <tr><th scope=row>2</th><td>4</td><td>0</td><td>21.05</td><td>5</td><td>155.675</td><td>100.75</td><td>3.8625</td><td>3.305</td><td>20.025</td><td>1</td><td>0</td><td>4</td><td>3</td></tr>
+    <tr><th scope=row>3</th><td>4</td><td>1</td><td>26.275</td><td>4.5</td><td>106.6875</td><td>83.875</td><td>4.13375</td><td>2.2725</td><td>18.435</td><td>0.75</td><td>1</td><td>4</td><td>2</td></tr>
+    <tr><th scope=row>4</th><td>5</td><td>1</td><td>21.38</td><td>6</td><td>202.48</td><td>195.6</td><td>3.916</td><td>2.6326</td><td>15.64</td><td>0.2</td><td>1</td><td>5</td><td>4.4</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">plyr</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">reshape2</span><span class="p">)</span>
+<span class="n">data</span><span class="p">(</span><span class="n">airquality</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Warning message:
+: package ‘plyr’ was built under R version 3.1.3
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">head</span><span class="p">(</span><span class="n">airquality</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Ozone</th><th scope=col>Solar.R</th><th scope=col>Wind</th><th scope=col>Temp</th><th scope=col>Month</th><th scope=col>Day</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>41</td><td>190</td><td>7.4</td><td>67</td><td>5</td><td>1</td></tr>
+    <tr><th scope=row>2</th><td>36</td><td>118</td><td>8</td><td>72</td><td>5</td><td>2</td></tr>
+    <tr><th scope=row>3</th><td>12</td><td>149</td><td>12.6</td><td>74</td><td>5</td><td>3</td></tr>
+    <tr><th scope=row>4</th><td>18</td><td>313</td><td>11.5</td><td>62</td><td>5</td><td>4</td></tr>
+    <tr><th scope=row>5</th><td>NA</td><td>NA</td><td>14.3</td><td>56</td><td>5</td><td>5</td></tr>
+    <tr><th scope=row>6</th><td>28</td><td>NA</td><td>14.9</td><td>66</td><td>5</td><td>6</td></tr>
+</tbody>
+</table><ol class="arabic simple" start="7">
+<li>Use <code class="docutils literal"><span class="pre">melt</span></code> to convert the airquality dataframe into a &#8220;tall&#8221;
+format using Month and Day as teh id variables, saving it as a new
+datafrmae. Print the first 6 rows.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">md</span> <span class="o">&lt;-</span> <span class="n">melt</span><span class="p">(</span><span class="n">airquality</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s">&quot;Month&quot;</span><span class="p">,</span> <span class="s">&quot;Day&quot;</span><span class="p">))</span>
+<span class="n">head</span><span class="p">(</span><span class="n">md</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Month</th><th scope=col>Day</th><th scope=col>variable</th><th scope=col>value</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>5</td><td>1</td><td>Ozone</td><td>41</td></tr>
+    <tr><th scope=row>2</th><td>5</td><td>2</td><td>Ozone</td><td>36</td></tr>
+    <tr><th scope=row>3</th><td>5</td><td>3</td><td>Ozone</td><td>12</td></tr>
+    <tr><th scope=row>4</th><td>5</td><td>4</td><td>Ozone</td><td>18</td></tr>
+    <tr><th scope=row>5</th><td>5</td><td>5</td><td>Ozone</td><td>NA</td></tr>
+    <tr><th scope=row>6</th><td>5</td><td>6</td><td>Ozone</td><td>28</td></tr>
+</tbody>
+</table><ol class="arabic simple" start="8">
+<li>Find the avarage values of Ozone, Solar.R, Wind and Temp for each
+month using <code class="docutils literal"><span class="pre">dcast</span></code>. Hint: Give an extra argument <code class="docutils literal"><span class="pre">na.rm</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>
+to ignore missing data.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>dcast(md, Month ~ variable, mean, na.rm = TRUE)
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Month</th><th scope=col>Ozone</th><th scope=col>Solar.R</th><th scope=col>Wind</th><th scope=col>Temp</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>5</td><td>23.61538</td><td>181.2963</td><td>11.62258</td><td>65.54839</td></tr>
+    <tr><th scope=row>2</th><td>6</td><td>29.44444</td><td>190.1667</td><td>10.26667</td><td>79.1</td></tr>
+    <tr><th scope=row>3</th><td>7</td><td>59.11538</td><td>216.4839</td><td>8.941935</td><td>83.90323</td></tr>
+    <tr><th scope=row>4</th><td>8</td><td>59.96154</td><td>171.8571</td><td>8.793548</td><td>83.96774</td></tr>
+    <tr><th scope=row>5</th><td>9</td><td>31.44828</td><td>167.4333</td><td>10.18</td><td>76.9</td></tr>
+</tbody>
+</table><ol class="arabic simple" start="9">
+<li>Find the avarage values of Ozone, Solar.R, Wind and Temp for each
+month using <code class="docutils literal"><span class="pre">dcast</span></code>, but only for the first 2 weeks of each month.
+Hint: Give an extra argument <code class="docutils literal"><span class="pre">na.rm</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> to ignore missing
+data. Hint: Use the subset argument.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>dcast(md, Month ~ variable, mean, subset = .(Day &lt; 15), na.rm = TRUE)
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Month</th><th scope=col>Ozone</th><th scope=col>Solar.R</th><th scope=col>Wind</th><th scope=col>Temp</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>5</td><td>19.41667</td><td>200.0909</td><td>11.17857</td><td>66.28571</td></tr>
+    <tr><th scope=row>2</th><td>6</td><td>40.5</td><td>249.1429</td><td>10.73571</td><td>82.85714</td></tr>
+    <tr><th scope=row>3</th><td>7</td><td>64.81818</td><td>228.7143</td><td>9.007143</td><td>84.85714</td></tr>
+    <tr><th scope=row>4</th><td>8</td><td>58.41667</td><td>168.7273</td><td>8.721429</td><td>85.5</td></tr>
+    <tr><th scope=row>5</th><td>9</td><td>43.35714</td><td>188.6429</td><td>9.407143</td><td>82.21429</td></tr>
+</tbody>
+</table><p><strong>Questions below use the day.1 and day.2 dataframes</strong></p>
+<div class="code python highlight-python"><div class="highlight"><pre>set.seed(123)
+pid.1 &lt;- c(1,1,2,2)
+gid.1 &lt;- c(1,2,1,2)
+val.1 &lt;- rnorm(4)
+day.1 &lt;- data.frame(pid=pid.1, gid=gid.1, val=val.1)
+
+pid.2 &lt;- c(1,1,2,2)
+gid.2 &lt;- c(1,2,1,2)
+val.2 &lt;- 1 + rnorm(4)
+day.2 &lt;- data.frame(pid=pid.2, gid=gid.2, val=val.2)
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>day.1
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>2</td><td>-0.2301775</td></tr>
+    <tr><th scope=row>3</th><td>2</td><td>1</td><td>1.558708</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>day.2
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>1</td><td>1.129288</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>2</td><td>2.715065</td></tr>
+    <tr><th scope=row>3</th><td>2</td><td>1</td><td>1.460916</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>2</td><td>-0.2650612</td></tr>
+</tbody>
+</table><ol class="arabic simple" start="10">
+<li>Suppose day.1 and day.2 are results from experiments performed on
+differnet days. Merge the data from day.1 and day.2 into a single
+dataframe caleld <code class="docutils literal"><span class="pre">days</span></code> to combine the data sets.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>days &lt;- merge(day.1, day.2, by=c(&quot;pid&quot;, &quot;gid&quot;), suffixes = 1:2)
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">days</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val1</th><th scope=col>val2</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>2</td><td>-0.2301775</td><td>2.715065</td></tr>
+    <tr><th scope=row>3</th><td>2</td><td>1</td><td>1.558708</td><td>1.460916</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+</tbody>
+</table><ol class="arabic simple" start="11">
+<li>Sort the <code class="docutils literal"><span class="pre">days</span></code> dataframe by val1 in decreasing order.</li>
+</ol>
+<div class="code python highlight-python"><div class="highlight"><pre>days[order(-days$val1),]
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val1</th><th scope=col>val2</th></tr></thead>
+<tbody>
+    <tr><th scope=row>3</th><td>2</td><td>1</td><td>1.558708</td><td>1.460916</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>2</td><td>-0.2301775</td><td>2.715065</td></tr>
+    <tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>(12) Remove duplicate rows from the following dataframe.
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">df</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s">&quot;df.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val1</th><th scope=col>val2</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    <tr><th scope=row>3</th><td>1</td><td>2</td><td>-0.2301775</td><td>2.715065</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    <tr><th scope=row>5</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    <tr><th scope=row>6</th><td>2</td><td>1</td><td>1.558708</td><td>1.460916</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val1</th><th scope=col>val2</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    <tr><th scope=row>3</th><td>1</td><td>2</td><td>-0.2301775</td><td>2.715065</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    <tr><th scope=row>6</th><td>2</td><td>1</td><td>1.558708</td><td>1.460916</td></tr>
+</tbody>
+</table></div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

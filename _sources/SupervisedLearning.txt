@@ -1,0 +1,776 @@
+
+Using R for supervised learning
+===============================
+
+This notebook goes over the basic concept of how to construct and use a
+supervised learning pipleine for classificaioon. We will use the
+k-nearest neighbors algorithm for illustration, but the baisc ideas
+carry over to all algorithms for classificaiton and regression.
+
+.. code:: python
+
+    healthdy <- read.table('healthdy.txt', header = TRUE)
+
+.. code:: python
+
+    head(healthdy)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>ID</th><th scope=col>GENDER</th><th scope=col>FLEXPRE</th><th scope=col>FLEXPOS</th><th scope=col>BAWPRE</th><th scope=col>BAWPOS</th><th scope=col>BWWPRE</th><th scope=col>BWWPOS</th><th scope=col>BFPPRE</th><th scope=col>BFPPOS</th><th scope=col>FVCPRE</th><th scope=col>FVPOS</th><th scope=col>METSPRE</th><th scope=col>METSPOS</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>0</td><td>1</td><td>21.000</td><td>21.500</td><td>70.5</td><td>75.6</td><td>3.3</td><td>3.7</td><td>14.58</td><td>14.17</td><td>5.1</td><td>5.1</td><td>12.7</td><td>18.0</td></tr>
+    	<tr><th scope=row>2</th><td>2</td><td>1</td><td>21.000</td><td>21.250</td><td>71.3</td><td>70.7</td><td>3.2</td><td>3.6</td><td>16.79</td><td>13.95</td><td>4.3</td><td>4.3</td><td>11.1</td><td>12.0</td></tr>
+    	<tr><th scope=row>3</th><td>3</td><td>1</td><td>21.500</td><td>20.000</td><td>64.5</td><td>66.6</td><td>4.1</td><td>4.0</td><td>6.6</td><td>08.98</td><td>4.5</td><td>4.5</td><td>15.3</td><td>16.7</td></tr>
+    	<tr><th scope=row>4</th><td>4</td><td>1</td><td>23.000</td><td>23.375</td><td>97</td><td>95.0</td><td>4.4</td><td>4.3</td><td>18.04</td><td>17.32</td><td>4.7</td><td>4.3</td><td>12.0</td><td>17.5</td></tr>
+    	<tr><th scope=row>5</th><td>5</td><td>1</td><td>21.000</td><td>21.000</td><td>71</td><td>73.2</td><td>3.7</td><td>3.8</td><td>11.12</td><td>11.50</td><td>5.8</td><td>5.8</td><td>12.2</td><td>12.2</td></tr>
+    	<tr><th scope=row>6</th><td>6</td><td>1</td><td>20.500</td><td>20.750</td><td>72.5</td><td>73.1</td><td>3.1</td><td>3.4</td><td>17.88</td><td>16.22</td><td>4.3</td><td>4.3</td><td>11.1</td><td>10.0</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Data from Health Dynamics class at Hope College--collected about 1985 by Gregg Afman.
+Downloaded from http://www.math.hope.edu/swanson/data/healthdy.txt
+
+Gender 1 = Male
+Gender 2 = Female
+
+Flexpre = Flexability at the beginning of the semester
+Flexpro = Flexability at the end of the semester
+
+Bawpre = Air Weight at the beginning of the semester
+Bawpro = Air weight at the end of the semester
+
+Bwwpre = Water weight at the beginning of the semester
+Bwwpro = Water weight at the end of the semester
+
+Bfppre = Body fat at the beginning of the semester
+Bfppro = Body fat at the end of the semester
+
+Fvcpre = Forced capacity at the beginning of the semester
+Fvcpro = Forced capacity at the end of the semester
+
+Metspre = Mets at the beginning of the semester
+Metspro = Mets at the end of the semester
+
+Supervised learning problem
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For simplicity and ease of visualization, we will just use the first 2
+indepdendent variables as fearures for predicitng gender. In practice,
+the selection of approprieate features to use as predictors can be a
+challenging problem that greatly affects the effectiveness of supervised
+learning.
+
+So the problme is: How accurately can we guess the gender of a student
+from the Flexpre and Bawpre variables?
+
+Visualizing the data
+--------------------
+
+First let's make a smaller dataframe containing just the variables of
+interest, and make some plots.
+
+.. code:: python
+
+    df <- healthdy[,c("ID", "GENDER", "FLEXPRE", "BAWPRE")]
+    df$ID <- factor(df$ID)
+    df$GENDER <- factor(df$GENDER, labels = c("Male", "Female"))
+    df$FLEXPRE <- as.numeric(df$FLEXPRE)
+
+.. code:: python
+
+    summary(df)
+
+
+
+
+.. parsed-literal::
+
+           ID         GENDER       FLEXPRE          BAWPRE     
+     0      :  2   Male  : 82   Min.   : 1.00   Min.   :35.20  
+     2      :  2   Female:100   1st Qu.:26.00   1st Qu.:57.73  
+     3      :  2                Median :42.00   Median :65.05  
+     4      :  2                Mean   :38.76   Mean   :66.99  
+     5      :  2                3rd Qu.:52.00   3rd Qu.:74.50  
+     6      :  2                Max.   :67.00   Max.   :98.50  
+     (Other):170                                               
+
+
+
+Let's check the mean flexibilitiy and weights for boys and girls.
+
+.. code:: python
+
+    with(df, aggregate(df[,3:4], by=list(Gender=GENDER), FUN=mean))
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Gender</th><th scope=col>FLEXPRE</th><th scope=col>BAWPRE</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>Male</td><td>33.46341</td><td>75.89024</td></tr>
+    	<tr><th scope=row>2</th><td>Female</td><td>43.1</td><td>59.695</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+On average, girls are more flexible and weigh less than boys. This is
+confirmed viually.
+
+.. code:: python
+
+    plot(df$FLEXPRE, df$BAWPRE, col=df$GENDER,
+         xlab="Flexibility", ylab="Weight", 
+         main="Flexibility and Weight grouped by Gender")
+    legend(0, 100, c("Male", "Female"), pch=1, col=1:2)
+
+
+.. image:: SupervisedLearning_files/SupervisedLearning_11_0.png
+   :width: 600
+
+Comments
+~~~~~~~~
+
+It looks like there is a pretty good probablility that we can guess the
+gender from the body weight and flexibilty alone. The k-nearest neighbor
+does this guessing in a very simple fashion - Given any point in the
+data set, it looks for the nearest k neighboring points, and simply uses
+the majority gender among these neighbors as the guess. In the sections
+below, we'll implement a supervised learnign pipeline using k-nearest
+neighbors.
+
+Work!
+-----
+
+Review questions to make sure you are up to speed with basic data
+manipulation and plotting.
+
+**Q1**. Tabulate the median value of FLEXPRE and BAWPRE by gender.
+
+
+**Q2**. Tabluate the average change in weight from the beginnig to the
+end of the semester by gender.
+
+
+**Q3**. Identify from the plot above the IDs of 3 individuals for whom
+you expect k-nearest neighbors to make the wrong gender prediction.
+HInt: Make a scatterplot but add the IDs as labels for each point, using
+a small x-offset of 2.5 so that labels are immediately to the right of
+each point.
+
+
+Splitting data into training and test data sets
+-----------------------------------------------
+
+We will use 3/4 of the data to train the algorithm and 1/4 to test how
+good it is. The reason for doing this is that if we train on the full
+data set, the algorithm has "seen" its test points before, and hence
+will seem more accurate than it really is with respect to new data
+samples. 'Holding out" some of the data for testing that is not used for
+training the algorithm allows us to honestly evaluate the "out of
+sample" error accurately.
+
+.. code:: python
+
+    set.seed(123) # set ranodm number seed for reproducibility
+    size <- floor(0.75 * nrow(df)) # desired size of training set
+    df <- df[sample(nrow(df), replace = FALSE),] # shuffle rows randomly
+    df.train <- df[1:size, ] # take first size rows of shuffled data frame as training set
+    df.test <- df[(size+1):nrow(df), ] # take the remaining rows as the test set
+    x.train <- df.train[,c("FLEXPRE", "BAWPRE")]
+    y.train <- df.train[,"GENDER"]
+    x.test <- df.test[,c("FLEXPRE", "BAWPRE")]
+    y.test <- df.test[,"GENDER"]
+
+.. code:: python
+
+    summary(df.train)
+
+
+
+
+.. parsed-literal::
+
+           ID         GENDER      FLEXPRE          BAWPRE     
+     2      :  2   Male  :58   Min.   : 1.00   Min.   :35.20  
+     4      :  2   Female:78   1st Qu.:24.75   1st Qu.:57.67  
+     5      :  2               Median :42.00   Median :64.75  
+     7      :  2               Mean   :38.37   Mean   :66.20  
+     8      :  2               3rd Qu.:52.00   3rd Qu.:73.42  
+     10     :  2               Max.   :67.00   Max.   :97.00  
+     (Other):124                                              
+
+
+
+.. code:: python
+
+    summary(df.test)
+
+
+
+
+.. parsed-literal::
+
+           ID        GENDER      FLEXPRE          BAWPRE     
+     45     : 2   Male  :24   Min.   : 3.00   Min.   :46.60  
+     49     : 2   Female:22   1st Qu.:31.75   1st Qu.:59.33  
+     59     : 2               Median :43.00   Median :70.50  
+     68     : 2               Mean   :39.91   Mean   :69.34  
+     0      : 1               3rd Qu.:49.75   3rd Qu.:80.10  
+     1      : 1               Max.   :65.00   Max.   :98.50  
+     (Other):36                                              
+
+
+
+Train knn on training set
+-------------------------
+
+.. code:: python
+
+    library(class)
+    y.pred <- knn(x.train, x.test, cl=y.train, k=3)
+
+.. code:: python
+
+    y.pred
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>Male</li>
+    	<li>Male</li>
+    	<li>Female</li>
+    	<li>Female</li>
+    	<li>Male</li>
+    	<li>Female</li>
+    	<li>Female</li>
+    	<li>Male</li>
+    	<li>Male</li>
+    	<li>Male</li>
+    	<li>Male</li>
+    	<li>Female</li>
+    	<li>Female</li>
+    	<li>Male</li>
+    	<li>Male</li>
+    	<li>Female</li>
+    	<li>Male</li>
+    	<li>Male</li>
+    	<li>Male</li>
+    	<li>Female</li>
+    	<li>Female</li>
+    	<li>Male</li>
+    	<li>Female</li>
+    	<li>Female</li>
+    	<li>Female</li>
+    	<li>Female</li>
+    	<li>Male</li>
+    	<li>Female</li>
+    	<li>Female</li>
+    	<li>Female</li>
+    	<li>Male</li>
+    	<li>Male</li>
+    	<li>Female</li>
+    	<li>Female</li>
+    	<li>Male</li>
+    	<li>Female</li>
+    	<li>Female</li>
+    	<li>Male</li>
+    	<li>Female</li>
+    	<li>Male</li>
+    	<li>Female</li>
+    	<li>Female</li>
+    	<li>Male</li>
+    	<li>Male</li>
+    	<li>Male</li>
+    	<li>Male</li>
+    </ol>
+
+
+
+
+Evaluate the model
+------------------
+
+.. code:: python
+
+    table(y.pred, y.test)
+
+
+
+
+.. parsed-literal::
+
+            y.test
+    y.pred   Male Female
+      Male     21      2
+      Female    3     20
+
+
+
+Who was predicted wrongly?
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    misses <- y.pred != y.test
+
+.. code:: python
+
+    df.test[misses,]
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>ID</th><th scope=col>GENDER</th><th scope=col>FLEXPRE</th><th scope=col>BAWPRE</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>65</th><td>65</td><td>Male</td><td>29</td><td>68.7</td></tr>
+    	<tr><th scope=row>77</th><td>77</td><td>Male</td><td>36</td><td>61.4</td></tr>
+    	<tr><th scope=row>149</th><td>66</td><td>Female</td><td>6</td><td>90.8</td></tr>
+    	<tr><th scope=row>21</th><td>21</td><td>Male</td><td>52</td><td>61.7</td></tr>
+    	<tr><th scope=row>147</th><td>64</td><td>Female</td><td>49</td><td>77</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    plot(df.test$FLEXPRE, df.test$BAWPRE, col=df.test$GENDER,
+         xlab="Flexibility", ylab="Weight", 
+         main="Flexibility and Weight grouped by Gender")
+    points(df.test$FLEXPRE[misses], df.test$BAWPRE[misses], col="blue", cex=2)
+    
+    legend(0, 100, c("Male", "Female"), pch=1, col=1:2)
+
+
+.. image:: SupervisedLearning_files/SupervisedLearning_32_0.png
+   :width: 600
+
+
+Work!
+-----
+
+Repeat the analysis using the Bfppre and Fvcpre variables as predictors
+instead. Do you get better or worse predictions?
+
+**Q!**. Extract the relevant variables into a new data frame.
+
+
+**Q2**. Visualize Bfppre and Fvcpre grouped by gender.
+
+
+**Q3**. Split the data into training and test data sets using a 2/3, 1/3
+ratio.
+
+
+**Q4**. Find the predictions make by knn with 5 neighbors.
+
+
+**Q5**.. Make a table of true positives, false positives, true negatives
+and false negatives. Calculate
+
+1. accuracy
+2. sensitivity
+3. specificity
+4. possitive predicrvie value
+5. negative predictive value
+6. f-score (harmonic mean of senistivity and specificity)
+
+Look up definitions in Wikipedia if you don't know what these mean.
+
+
+**Q6** Make a plot to identify mis-classified subjects if any.
+
+
+Cross-validation
+----------------
+
+Splitting into training and test data set is all well and good, but when
+the amound data we have is small, it is wastful to have 1/4 or 1/3 as
+"hold out" test data that is not used to train the algorithm. An
+alternaitve is to perform cross-validation, in which we split the data
+into k equal groups and cycle through all possible combinatinos of k-1
+training and 1 test group. For example, if we split the data into 4
+groups ("4-fold cross-validation"), we would do
+
+-  Train on 1,2,3 and Test on 4
+-  Train on 1,2,4 and Test on 3
+-  Train on 1,3,4 and Test on 2
+-  Train on 2,3,4 and Test on 1
+
+then finally sum the test results to evalate the algorithm's
+performance. The limiting example where we split into as many n groups
+(where n is the number of data poits) and test on only 1 data point each
+time is known as Leave-One-Out-Cross-Validation (LOOCV).
+
+LOOCV
+~~~~~
+
+We will use a simple (inefficient) loop version of the algorithm that
+should be quite easy to understand.
+
+First, we will recreat the data set in case you overwrote the variables
+in the exercises.
+
+.. code:: python
+
+    df <- healthdy[,c("ID", "GENDER", "FLEXPRE", "BAWPRE")]
+    df$ID <- factor(df$ID)
+    df$GENDER <- factor(df$GENDER, labels = c("Male", "Female"))
+    df$FLEXPRE <- as.numeric(df$FLEXPRE)
+
+.. code:: python
+
+    summary(df)
+
+
+
+
+.. parsed-literal::
+
+           ID         GENDER       FLEXPRE          BAWPRE     
+     0      :  2   Male  : 82   Min.   : 1.00   Min.   :35.20  
+     2      :  2   Female:100   1st Qu.:26.00   1st Qu.:57.73  
+     3      :  2                Median :42.00   Median :65.05  
+     4      :  2                Mean   :38.76   Mean   :66.99  
+     5      :  2                3rd Qu.:52.00   3rd Qu.:74.50  
+     6      :  2                Max.   :67.00   Max.   :98.50  
+     (Other):170                                               
+
+
+
+.. code:: python
+
+    y.test <- df[,"GENDER"]
+    y.pred <- y.test # we will overwirite the entries in the loop
+    for (i in 1:nrow(df)) {
+        x.test <- df[i, c("FLEXPRE", "BAWPRE")]
+        x.train <- df[-i, c("FLEXPRE", "BAWPRE")] # the minus menas keep all rows except i
+        y.train <- df[-i, "GENDER"]
+        y.pred[i] <- knn(x.train, x.test, cl=y.train, k=3)
+    }
+
+.. code:: python
+
+    table(y.pred, y.test)
+
+
+
+
+.. parsed-literal::
+
+            y.test
+    y.pred   Male Female
+      Male     62     18
+      Female   20     82
+
+
+
+.. code:: python
+
+    misses <- y.test != y.pred
+    
+    plot(df$FLEXPRE, df$BAWPRE, col=df$GENDER,
+         xlab="Flexibility", ylab="Weight", 
+         main="Flexibility and Weight grouped by Gender")
+    points(df$FLEXPRE[misses], df$BAWPRE[misses], col="blue", cex=2)
+    
+    legend(0, 100, c("Male", "Female"), pch=1, col=1:2)
+
+
+.. image:: SupervisedLearning_files/SupervisedLearning_54_0.png
+   :width: 600
+
+
+Work!
+-----
+
+**Q1**. Increase the number of neighbors to 7. Does it improve the
+reuslts? Whatt are the tradeoff of increasing or decraesaing the number
+of neighbors?
+
+
+**Q2**. Implement 5-fold cross-validation for the FLEXPRE and BAWPRE
+variables. Tablutate the hits and misses and make a plot as in the
+previous examples.
+
+
+Supervised Learning Continued - What Could Go Wrong?
+----------------------------------------
+
+In this lab, we will demonstrate some common pitfalls that may be
+encountered in performing a supervised learning analysis. To this end,
+we will simulate data under the null (meaning, we will simulate no
+relationship between outcome and independent variables) to observe
+situations where we may commit type I error.
+
+.. code:: python
+
+    ## Supervised
+    
+    # Simulate noisy data matrix (EXPRS)
+    set.seed(123)
+    # We'll use 2 groups of 20 subjects - think 20 cases and 20 controls
+    n=20
+    # Simulate 1000 genes
+    m=1000
+    
+    # randomly generate a matrix of 'expression levels' -- any continuous variable we may be interested in
+    EXPRS=matrix(rnorm(2*n*m),2*n,m)
+    
+    # Just naming rows and columns
+    rownames(EXPRS)=paste("patient",1:(2*n),sep="")
+    colnames(EXPRS)=paste("gene exp",1:m,sep="")
+    
+    # The group labels are assigned arbitrarily - i.e. we are just randomly assigning 
+    #                case/control status with no reference to gene expression
+    grp=rep(0:1,c(n,n))
+
+
+.. code:: python
+
+    #Pick the top 10 features based on the 
+    #two-sample $t$-test
+    
+    # load the library 'genefilter' - part of the Bioconductor suite
+    library(genefilter)
+    
+    # rowttests is a genefilter function that performs a student t test on rows.
+    
+    ttest.data=rowttests(t(EXPRS), factor(grp))
+    head(ttest.data)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>statistic</th><th scope=col>dm</th><th scope=col>p.value</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>gene exp1</th><td>0.6746243</td><td>0.192881</td><td>0.5039985</td></tr>
+    	<tr><th scope=row>gene exp2</th><td>0.7417175</td><td>0.2264023</td><td>0.4628184</td></tr>
+    	<tr><th scope=row>gene exp3</th><td>3.025423</td><td>0.7344752</td><td>0.004436959</td></tr>
+    	<tr><th scope=row>gene exp4</th><td>0.4030939</td><td>0.1349871</td><td>0.6891382</td></tr>
+    	<tr><th scope=row>gene exp5</th><td>0.9545301</td><td>0.3004477</td><td>0.3458485</td></tr>
+    	<tr><th scope=row>gene exp6</th><td>0.3305064</td><td>0.09782354</td><td>0.7428327</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    # Extract the absolute value of the statistic
+    stats=abs(ttest.data$statistic)
+    
+    # 'order' will return the indices of ascending values of it's argument
+    ii=order(-stats)
+    
+    #Filter out all genes (i.e. columns of the matrix) except the top 10 rated by stats
+    
+    TOPEXPRS=EXPRS[, ii[1:10]]
+    dim(TOPEXPRS)
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>40</li>
+    	<li>10</li>
+    </ol>
+
+
+
+
+Now we will perform a 3-nearest-neighbor clustering, just like we did
+with the health dynamics class data.
+
+.. code:: python
+
+    plot(TOPEXPRS, col=grp+1,
+          main="Gene Expression")
+    legend(-2, 2, c("Case", "Control"), pch=1, col=1:2)
+
+
+.. image:: SupervisedLearningWhatCouldGoWrong_files/SupervisedLearningWhatCouldGoWrong_6_0.png
+   :width: 600
+
+.. code:: python
+
+    # Fit 3-NN
+    library(class)
+    mod0=knn(train=TOPEXPRS,test=TOPEXPRS,cl=grp,k=3)
+    print(mod0)
+    
+    # Error Resubstituion
+    table(mod0,grp)
+
+
+
+.. parsed-literal::
+
+     [1] 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+    [39] 1 1
+    Levels: 0 1
+
+
+
+
+.. parsed-literal::
+
+        grp
+    mod0  0  1
+       0 17  0
+       1  3 20
+
+
+
+.. code:: python
+
+    # Naive CV
+    mod1=knn.cv(TOPEXPRS,grp,k=3)
+    table(mod1,grp)
+
+
+
+
+
+.. parsed-literal::
+
+        grp
+    mod1  0  1
+       0 16  0
+       1  4 20
+
+
+
+This looks like differential gene expression. We can accurately predict
+case-control status, based on gene expression. But, we haven't
+cross-validated. And we have only 40 subjects and have looked at 1000
+genes! Let's do it the right way now. This is like tossing a coin 40
+times, and repeating that 1000 times. We *will* see some very long
+strings of heads and tails in some replicates - just by chance!
+
+.. code:: python
+
+    # Oh! Super fancy code! I'll rewrite if there is time. Otherwise, we need to skip through.
+    
+    # Proper CV
+    top.features=function(EXP,resp,test,fsnum)
+      {
+        top.features.i=function(i,EXP,resp,test,fsnum)
+          {
+            stats=abs(mt.teststat(EXP[,-i],resp[-i],test=test))
+            ii=order(-stats)[1:fsnum]
+            rownames(EXP)[ii]
+          }
+        sapply(1:ncol(EXP),top.features.i,EXP=EXP,resp=resp,test=test,fsnum=fsnum)
+      }
+    
+    
+
+
+.. code:: python
+
+    # This function evaluates the knn
+    
+    knn.loocv=function(EXP,resp,test,k,fsnum,tabulate=FALSE,permute=FALSE)
+      {
+        if(permute)
+          resp=sample(resp)
+        topfeat=top.features(EXP,resp,test,fsnum)
+        pids=rownames(EXP)
+        EXP=t(EXP)
+        colnames(EXP)=as.character(pids)
+        knn.loocv.i=function(i,EXP,resp,k,topfeat)
+          {
+            ii=topfeat[,i]
+            mod=knn(train=EXP[-i,ii],test=EXP[i,ii],cl=resp[-i],k=k)[1]
+          }
+        out=sapply(1:nrow(EXP),knn.loocv.i,EXP=EXP,resp=resp,k=k,topfeat=topfeat)
+        if(tabulate)
+          out=ftable(pred=out,obs=resp)
+        return(out)
+    }
+    
+
+
+.. code:: python
+
+    library(multtest)
+    knn.loocv(t(EXPRS),as.integer(grp),"t.equalvar",3,10,TRUE)
+
+
+
+.. parsed-literal::
+
+    Loading required package: Biobase
+    Loading required package: BiocGenerics
+    Loading required package: parallel
+    
+    Attaching package: ‘BiocGenerics’
+    
+    The following objects are masked from ‘package:parallel’:
+    
+        clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+        clusterExport, clusterMap, parApply, parCapply, parLapply,
+        parLapplyLB, parRapply, parSapply, parSapplyLB
+    
+    The following object is masked from ‘package:stats’:
+    
+        xtabs
+    
+    The following objects are masked from ‘package:base’:
+    
+        anyDuplicated, append, as.data.frame, as.vector, cbind, colnames,
+        do.call, duplicated, eval, evalq, Filter, Find, get, intersect,
+        is.unsorted, lapply, Map, mapply, match, mget, order, paste, pmax,
+        pmax.int, pmin, pmin.int, Position, rank, rbind, Reduce, rep.int,
+        rownames, sapply, setdiff, sort, table, tapply, union, unique,
+        unlist
+    
+    Welcome to Bioconductor
+    
+        Vignettes contain introductory material; view with
+        'browseVignettes()'. To cite Bioconductor, see
+        'citation("Biobase")', and for packages 'citation("pkgname")'.
+    
+
+
+
+
+.. parsed-literal::
+
+         obs  0  1
+    pred          
+    0         7  7
+    1        13 13
+
+
+
+Well, now that looks right! We are no longer fitting noise. What's the
+difference? Everytime we perform a validation step, we need to
+re-evaluate the top ten picks!

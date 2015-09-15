@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Grouping and Aggregation &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+    <link rel="next" title="Hypothesis Testing and Power Calculations" href="Hypothesistestingandpowercalcuations.html" />
+    <link rel="prev" title="Working with Data" href="WorkingWithData.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearningWhatCouldGoWrong.html">Supervised Learning Continued - What Could Go Wrong?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONE-Solutions.html">Practice ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTWOSolutions.html">Practice TWO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTHREESolutions.html">Practice THREE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeFOURSolutions.html">Practice FOUR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2NotebookFromMatrix.html">Import count data using basic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Grouping and Aggregation</a><ul>
+<li><a class="reference internal" href="#sorting-data">Sorting data</a></li>
+<li><a class="reference internal" href="#trnasposing-data">Trnasposing data</a></li>
+<li><a class="reference internal" href="#aggregation-subgrouping">Aggregation (Subgrouping)</a></li>
+<li><a class="reference internal" href="#reshaping-data">Reshaping data</a><ul>
+<li><a class="reference internal" href="#starting-data-frame">Starting data frame</a></li>
+<li><a class="reference internal" href="#use-dcast-to-reshape">Use dcast to reshape</a><ul>
+<li><a class="reference internal" href="#show-the-time-series-for-each-pid-gene-combination">Show the time series for each (PID, Gene) combination.</a></li>
+<li><a class="reference internal" href="#show-the-time-series-for-each-gene-pid-combination">Show the time series for each (Gene, PID) combination.</a></li>
+<li><a class="reference internal" href="#recreate-the-original-data-set">Recreate the original data set</a></li>
+<li><a class="reference internal" href="#show-all-data-for-each-subject-in-a-single-row">Show all data for each subject in a single row</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#we-can-also-aggregate-while-reshaping">We can also aggregate while reshaping</a><ul>
+<li><a class="reference internal" href="#what-is-the-average-expression-value-for-each-gene-for-each-subject-over-all-time-points">What is the average expression value for each gene for each subject over all time points?</a></li>
+<li><a class="reference internal" href="#what-is-the-average-expression-value-for-each-gene-for-each-time-point-over-all-subjects">What is the average expression value for each gene for each time point over all subjects?</a></li>
+<li><a class="reference internal" href="#finally-we-can-perform-subssetting-on-the-named-vairables">Finally, we can perform subssetting on the named vairables.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#merging-data">Merging data</a></li>
+<li><a class="reference internal" href="#eyeball-data-sett">Eyeball data sett</a></li>
+<li><a class="reference internal" href="#combine-gene-data-from-two-data-sets">Combine gene data from two data sets</a></li>
+<li><a class="reference internal" href="#checking-for-duplicates">Checking for duplicates</a></li>
+<li><a class="reference internal" href="#remove-duplicates">Remove duplicates</a></li>
+<li><a class="reference internal" href="#merging">Merging</a><ul>
+<li><a class="reference internal" href="#merge-all-rows-with-information-for-both-phenotype-and-gene">Merge all rows with information for both phenotype and gene</a><ul>
+<li><a class="reference internal" href="#first-we-merge-phnenoytpe-data-with-the-id-data">First we merge phnenoytpe data with the ID data</a></li>
+<li><a class="reference internal" href="#then-we-merge-with-gene-data">Then we merge with gene data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#what-if-we-want-to-show-all-genes-even-if-there-is-no-matching-phenotype-data">What if we want to show all genes even if there is no matching phenotype data?</a></li>
+<li><a class="reference internal" href="#what-if-we-want-to-show-all-phenotypes-even-if-there-is-no-matching-gene-data">What if we want to show all phenotypes even if there is no matching gene data?</a></li>
+<li><a class="reference internal" href="#what-if-we-want-to-show-everything">What if we want to show everything?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rearrange-column-order">Rearrange column order</a></li>
+<li><a class="reference internal" href="#id1">Sorting data</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="WorkingWithData.html" title="Previous Chapter: Working with Data"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Working with ...</span>
+    </a>
+  </li>
+  <li>
+    <a href="Hypothesistestingandpowercalcuations.html" title="Next Chapter: Hypothesis Testing and Power Calculations"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Hypothesis Te... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/GroupingandAggregation.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="grouping-and-aggregation">
+<h1>Grouping and Aggregation<a class="headerlink" href="#grouping-and-aggregation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="sorting-data">
+<h2>Sorting data<a class="headerlink" href="#sorting-data" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">head</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Sepal.Length</th><th scope=col>Sepal.Width</th><th scope=col>Petal.Length</th><th scope=col>Petal.Width</th><th scope=col>Species</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>5.1</td><td>3.5</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+    <tr><th scope=row>2</th><td>4.9</td><td>3</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+    <tr><th scope=row>3</th><td>4.7</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+    <tr><th scope=row>4</th><td>4.6</td><td>3.1</td><td>1.5</td><td>0.2</td><td>setosa</td></tr>
+    <tr><th scope=row>5</th><td>5</td><td>3.6</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+    <tr><th scope=row>6</th><td>5.4</td><td>3.9</td><td>1.7</td><td>0.4</td><td>setosa</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>ridx &lt;- order(iris$Sepal.Length)
+head(iris[ridx,], 4)
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Sepal.Length</th><th scope=col>Sepal.Width</th><th scope=col>Petal.Length</th><th scope=col>Petal.Width</th><th scope=col>Species</th></tr></thead>
+<tbody>
+    <tr><th scope=row>14</th><td>4.3</td><td>3</td><td>1.1</td><td>0.1</td><td>setosa</td></tr>
+    <tr><th scope=row>9</th><td>4.4</td><td>2.9</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+    <tr><th scope=row>39</th><td>4.4</td><td>3</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+    <tr><th scope=row>43</th><td>4.4</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>ridx &lt;- order(iris$Sepal.Length, decreasing = TRUE)
+head(iris[ridx,], 4)
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Sepal.Length</th><th scope=col>Sepal.Width</th><th scope=col>Petal.Length</th><th scope=col>Petal.Width</th><th scope=col>Species</th></tr></thead>
+<tbody>
+    <tr><th scope=row>132</th><td>7.9</td><td>3.8</td><td>6.4</td><td>2</td><td>virginica</td></tr>
+    <tr><th scope=row>118</th><td>7.7</td><td>3.8</td><td>6.7</td><td>2.2</td><td>virginica</td></tr>
+    <tr><th scope=row>119</th><td>7.7</td><td>2.6</td><td>6.9</td><td>2.3</td><td>virginica</td></tr>
+    <tr><th scope=row>123</th><td>7.7</td><td>2.8</td><td>6.7</td><td>2</td><td>virginica</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>ridx &lt;- order(iris$Sepal.Length, iris$Petal.Length)
+head(iris[ridx,], 4)
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Sepal.Length</th><th scope=col>Sepal.Width</th><th scope=col>Petal.Length</th><th scope=col>Petal.Width</th><th scope=col>Species</th></tr></thead>
+<tbody>
+    <tr><th scope=row>14</th><td>4.3</td><td>3</td><td>1.1</td><td>0.1</td><td>setosa</td></tr>
+    <tr><th scope=row>39</th><td>4.4</td><td>3</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+    <tr><th scope=row>43</th><td>4.4</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+    <tr><th scope=row>9</th><td>4.4</td><td>2.9</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>ridx &lt;- order(iris$Sepal.Length, -iris$Petal.Length)
+head(iris[ridx,], 4)
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Sepal.Length</th><th scope=col>Sepal.Width</th><th scope=col>Petal.Length</th><th scope=col>Petal.Width</th><th scope=col>Species</th></tr></thead>
+<tbody>
+    <tr><th scope=row>14</th><td>4.3</td><td>3</td><td>1.1</td><td>0.1</td><td>setosa</td></tr>
+    <tr><th scope=row>9</th><td>4.4</td><td>2.9</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+    <tr><th scope=row>39</th><td>4.4</td><td>3</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+    <tr><th scope=row>43</th><td>4.4</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="trnasposing-data">
+<h2>Trnasposing data<a class="headerlink" href="#trnasposing-data" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>ir6 &lt;- iris[sample(1:nrow(iris), 6, replace=FALSE),]
+ir6
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Sepal.Length</th><th scope=col>Sepal.Width</th><th scope=col>Petal.Length</th><th scope=col>Petal.Width</th><th scope=col>Species</th></tr></thead>
+<tbody>
+    <tr><th scope=row>112</th><td>6.4</td><td>2.7</td><td>5.3</td><td>1.9</td><td>virginica</td></tr>
+    <tr><th scope=row>146</th><td>6.7</td><td>3</td><td>5.2</td><td>2.3</td><td>virginica</td></tr>
+    <tr><th scope=row>56</th><td>5.7</td><td>2.8</td><td>4.5</td><td>1.3</td><td>versicolor</td></tr>
+    <tr><th scope=row>32</th><td>5.4</td><td>3.4</td><td>1.5</td><td>0.4</td><td>setosa</td></tr>
+    <tr><th scope=row>98</th><td>6.2</td><td>2.9</td><td>4.3</td><td>1.3</td><td>versicolor</td></tr>
+    <tr><th scope=row>129</th><td>6.4</td><td>2.8</td><td>5.6</td><td>2.1</td><td>virginica</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre><span class="n">t</span><span class="p">(</span><span class="n">ir6</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>112</th><th scope=col>146</th><th scope=col>56</th><th scope=col>32</th><th scope=col>98</th><th scope=col>129</th></tr></thead>
+<tbody>
+    <tr><th scope=row>Sepal.Length</th><td>6.4</td><td>6.7</td><td>5.7</td><td>5.4</td><td>6.2</td><td>6.4</td></tr>
+    <tr><th scope=row>Sepal.Width</th><td>2.7</td><td>3.0</td><td>2.8</td><td>3.4</td><td>2.9</td><td>2.8</td></tr>
+    <tr><th scope=row>Petal.Length</th><td>5.3</td><td>5.2</td><td>4.5</td><td>1.5</td><td>4.3</td><td>5.6</td></tr>
+    <tr><th scope=row>Petal.Width</th><td>1.9</td><td>2.3</td><td>1.3</td><td>0.4</td><td>1.3</td><td>2.1</td></tr>
+    <tr><th scope=row>Species</th><td>virginica </td><td>virginica </td><td>versicolor</td><td>setosa    </td><td>versicolor</td><td>virginica </td></tr>
+</tbody>
+</table></div>
+<div class="section" id="aggregation-subgrouping">
+<h2>Aggregation (Subgrouping)<a class="headerlink" href="#aggregation-subgrouping" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>mt10 &lt;- mtcars[sample(1:nrow(mtcars), 10, replace=FALSE),]
+mt10
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>mpg</th><th scope=col>cyl</th><th scope=col>disp</th><th scope=col>hp</th><th scope=col>drat</th><th scope=col>wt</th><th scope=col>qsec</th><th scope=col>vs</th><th scope=col>am</th><th scope=col>gear</th><th scope=col>carb</th></tr></thead>
+<tbody>
+    <tr><th scope=row>Dodge Challenger</th><td>15.5</td><td>8</td><td>318</td><td>150</td><td>2.76</td><td>3.52</td><td>16.87</td><td>0</td><td>0</td><td>3</td><td>2</td></tr>
+    <tr><th scope=row>Hornet Sportabout</th><td>18.7</td><td>8</td><td>360</td><td>175</td><td>3.15</td><td>3.44</td><td>17.02</td><td>0</td><td>0</td><td>3</td><td>2</td></tr>
+    <tr><th scope=row>Fiat 128</th><td>32.4</td><td>4</td><td>78.7</td><td>66</td><td>4.08</td><td>2.2</td><td>19.47</td><td>1</td><td>1</td><td>4</td><td>1</td></tr>
+    <tr><th scope=row>Merc 450SLC</th><td>15.2</td><td>8</td><td>275.8</td><td>180</td><td>3.07</td><td>3.78</td><td>18</td><td>0</td><td>0</td><td>3</td><td>3</td></tr>
+    <tr><th scope=row>Chrysler Imperial</th><td>14.7</td><td>8</td><td>440</td><td>230</td><td>3.23</td><td>5.345</td><td>17.42</td><td>0</td><td>0</td><td>3</td><td>4</td></tr>
+    <tr><th scope=row>Volvo 142E</th><td>21.4</td><td>4</td><td>121</td><td>109</td><td>4.11</td><td>2.78</td><td>18.6</td><td>1</td><td>1</td><td>4</td><td>2</td></tr>
+    <tr><th scope=row>Toyota Corolla</th><td>33.9</td><td>4</td><td>71.1</td><td>65</td><td>4.22</td><td>1.835</td><td>19.9</td><td>1</td><td>1</td><td>4</td><td>1</td></tr>
+    <tr><th scope=row>Merc 450SE</th><td>16.4</td><td>8</td><td>275.8</td><td>180</td><td>3.07</td><td>4.07</td><td>17.4</td><td>0</td><td>0</td><td>3</td><td>3</td></tr>
+    <tr><th scope=row>Mazda RX4</th><td>21</td><td>6</td><td>160</td><td>110</td><td>3.9</td><td>2.62</td><td>16.46</td><td>0</td><td>1</td><td>4</td><td>4</td></tr>
+    <tr><th scope=row>Porsche 914-2</th><td>26</td><td>4</td><td>120.3</td><td>91</td><td>4.43</td><td>2.14</td><td>16.7</td><td>0</td><td>1</td><td>5</td><td>2</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>with(mtcars, aggregate(mtcars, by=list(cyl=cyl), FUN=mean))
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>cyl</th><th scope=col>mpg</th><th scope=col>cyl</th><th scope=col>disp</th><th scope=col>hp</th><th scope=col>drat</th><th scope=col>wt</th><th scope=col>qsec</th><th scope=col>vs</th><th scope=col>am</th><th scope=col>gear</th><th scope=col>carb</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>4</td><td>26.66364</td><td>4</td><td>105.1364</td><td>82.63636</td><td>4.070909</td><td>2.285727</td><td>19.13727</td><td>0.9090909</td><td>0.7272727</td><td>4.090909</td><td>1.545455</td></tr>
+    <tr><th scope=row>2</th><td>6</td><td>19.74286</td><td>6</td><td>183.3143</td><td>122.2857</td><td>3.585714</td><td>3.117143</td><td>17.97714</td><td>0.5714286</td><td>0.4285714</td><td>3.857143</td><td>3.428571</td></tr>
+    <tr><th scope=row>3</th><td>8</td><td>15.1</td><td>8</td><td>353.1</td><td>209.2143</td><td>3.229286</td><td>3.999214</td><td>16.77214</td><td>0</td><td>0.1428571</td><td>3.285714</td><td>3.5</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>with(mtcars, aggregate(mtcars, by=list(cyl=cyl, gear=gear), FUN=median))
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>cyl</th><th scope=col>gear</th><th scope=col>mpg</th><th scope=col>cyl</th><th scope=col>disp</th><th scope=col>hp</th><th scope=col>drat</th><th scope=col>wt</th><th scope=col>qsec</th><th scope=col>vs</th><th scope=col>am</th><th scope=col>gear</th><th scope=col>carb</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>4</td><td>3</td><td>21.5</td><td>4</td><td>120.1</td><td>97</td><td>3.7</td><td>2.465</td><td>20.01</td><td>1</td><td>0</td><td>3</td><td>1</td></tr>
+    <tr><th scope=row>2</th><td>6</td><td>3</td><td>19.75</td><td>6</td><td>241.5</td><td>107.5</td><td>2.92</td><td>3.3375</td><td>19.83</td><td>1</td><td>0</td><td>3</td><td>1</td></tr>
+    <tr><th scope=row>3</th><td>8</td><td>3</td><td>15.2</td><td>8</td><td>355</td><td>180</td><td>3.075</td><td>3.81</td><td>17.35</td><td>0</td><td>0</td><td>3</td><td>3</td></tr>
+    <tr><th scope=row>4</th><td>4</td><td>4</td><td>25.85</td><td>4</td><td>93.5</td><td>66</td><td>4.08</td><td>2.26</td><td>19.185</td><td>1</td><td>1</td><td>4</td><td>1.5</td></tr>
+    <tr><th scope=row>5</th><td>6</td><td>4</td><td>20.1</td><td>6</td><td>163.8</td><td>116.5</td><td>3.91</td><td>3.1575</td><td>17.66</td><td>0.5</td><td>0.5</td><td>4</td><td>4</td></tr>
+    <tr><th scope=row>6</th><td>4</td><td>5</td><td>28.2</td><td>4</td><td>107.7</td><td>102</td><td>4.1</td><td>1.8265</td><td>16.8</td><td>0.5</td><td>1</td><td>5</td><td>2</td></tr>
+    <tr><th scope=row>7</th><td>6</td><td>5</td><td>19.7</td><td>6</td><td>145</td><td>175</td><td>3.62</td><td>2.77</td><td>15.5</td><td>0</td><td>1</td><td>5</td><td>6</td></tr>
+    <tr><th scope=row>8</th><td>8</td><td>5</td><td>15.4</td><td>8</td><td>326</td><td>299.5</td><td>3.88</td><td>3.37</td><td>14.55</td><td>0</td><td>1</td><td>5</td><td>6</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="reshaping-data">
+<h2>Reshaping data<a class="headerlink" href="#reshaping-data" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">reshape2</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">plyr</span><span class="p">)</span> <span class="c"># needed for the . function</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Warning message:
+: package ‘plyr’ was built under R version 3.1.3
+</pre></div>
+</div>
+<div class="section" id="starting-data-frame">
+<h3>Starting data frame<a class="headerlink" href="#starting-data-frame" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-python"><div class="highlight"><pre>ID &lt;- factor(rep(1:2, each=3))
+Time &lt;- rep(1:3, 2)
+Gene1 &lt;- c(0,5,10,10,5,0) + rnorm(6)
+Gene2 &lt;- c(0,5,10,0,5,10) + rnorm(6)
+expt &lt;- data.frame(PID=ID, Time=Time, Gene1=Gene1, Gene2=Gene2)
+expt
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>PID</th><th scope=col>Time</th><th scope=col>Gene1</th><th scope=col>Gene2</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>1</td><td>-1.658798</td><td>-1.509927</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>2</td><td>6.422999</td><td>2.617535</td></tr>
+    <tr><th scope=row>3</th><td>1</td><td>3</td><td>8.703917</td><td>11.20532</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>1</td><td>11.80803</td><td>-0.9115341</td></tr>
+    <tr><th scope=row>5</th><td>2</td><td>2</td><td>4.670361</td><td>4.869456</td></tr>
+    <tr><th scope=row>6</th><td>2</td><td>3</td><td>-0.5982849</td><td>8.871238</td></tr>
+</tbody>
+</table><p>&#8220;Melt&#8221; into a &#8220;tall&#8221; format with all values in a single column. This
+reuqires identifying all the columns that are needed to uniquely define
+a row value. In this csse, the &#8220;id&#8221; columns are &#8220;PID&#8221; and &#8220;Time&#8221;.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">m</span><span class="o">.</span><span class="n">expt</span> <span class="o">&lt;-</span> <span class="n">melt</span><span class="p">(</span><span class="n">expt</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s">&quot;PID&quot;</span><span class="p">,</span> <span class="s">&quot;Time&quot;</span><span class="p">),</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;Gene&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">expt</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>PID</th><th scope=col>Time</th><th scope=col>Gene</th><th scope=col>value</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>1</td><td>Gene1</td><td>-1.658798</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>2</td><td>Gene1</td><td>6.422999</td></tr>
+    <tr><th scope=row>3</th><td>1</td><td>3</td><td>Gene1</td><td>8.703917</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>1</td><td>Gene1</td><td>11.80803</td></tr>
+    <tr><th scope=row>5</th><td>2</td><td>2</td><td>Gene1</td><td>4.670361</td></tr>
+    <tr><th scope=row>6</th><td>2</td><td>3</td><td>Gene1</td><td>-0.5982849</td></tr>
+    <tr><th scope=row>7</th><td>1</td><td>1</td><td>Gene2</td><td>-1.509927</td></tr>
+    <tr><th scope=row>8</th><td>1</td><td>2</td><td>Gene2</td><td>2.617535</td></tr>
+    <tr><th scope=row>9</th><td>1</td><td>3</td><td>Gene2</td><td>11.20532</td></tr>
+    <tr><th scope=row>10</th><td>2</td><td>1</td><td>Gene2</td><td>-0.9115341</td></tr>
+    <tr><th scope=row>11</th><td>2</td><td>2</td><td>Gene2</td><td>4.869456</td></tr>
+    <tr><th scope=row>12</th><td>2</td><td>3</td><td>Gene2</td><td>8.871238</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="use-dcast-to-reshape">
+<h3>Use dcast to reshape<a class="headerlink" href="#use-dcast-to-reshape" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="show-the-time-series-for-each-pid-gene-combination">
+<h4>Show the time series for each (PID, Gene) combination.<a class="headerlink" href="#show-the-time-series-for-each-pid-gene-combination" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-python"><div class="highlight"><pre>dcast(m.expt, PID + Gene ~ Time)
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>PID</th><th scope=col>Gene</th><th scope=col>1</th><th scope=col>2</th><th scope=col>3</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>Gene1</td><td>-1.658798</td><td>6.422999</td><td>8.703917</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>Gene2</td><td>-1.509927</td><td>2.617535</td><td>11.20532</td></tr>
+    <tr><th scope=row>3</th><td>2</td><td>Gene1</td><td>11.80803</td><td>4.670361</td><td>-0.5982849</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>Gene2</td><td>-0.9115341</td><td>4.869456</td><td>8.871238</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="show-the-time-series-for-each-gene-pid-combination">
+<h4>Show the time series for each (Gene, PID) combination.<a class="headerlink" href="#show-the-time-series-for-each-gene-pid-combination" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-python"><div class="highlight"><pre>dcast(m.expt, Gene + PID ~ Time)
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Gene</th><th scope=col>PID</th><th scope=col>1</th><th scope=col>2</th><th scope=col>3</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>Gene1</td><td>1</td><td>-1.658798</td><td>6.422999</td><td>8.703917</td></tr>
+    <tr><th scope=row>2</th><td>Gene1</td><td>2</td><td>11.80803</td><td>4.670361</td><td>-0.5982849</td></tr>
+    <tr><th scope=row>3</th><td>Gene2</td><td>1</td><td>-1.509927</td><td>2.617535</td><td>11.20532</td></tr>
+    <tr><th scope=row>4</th><td>Gene2</td><td>2</td><td>-0.9115341</td><td>4.869456</td><td>8.871238</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="recreate-the-original-data-set">
+<h4>Recreate the original data set<a class="headerlink" href="#recreate-the-original-data-set" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-python"><div class="highlight"><pre>dcast(m.expt, PID + Time ~ Gene)
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>PID</th><th scope=col>Time</th><th scope=col>Gene1</th><th scope=col>Gene2</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>1</td><td>-1.658798</td><td>-1.509927</td></tr>
+    <tr><th scope=row>2</th><td>1</td><td>2</td><td>6.422999</td><td>2.617535</td></tr>
+    <tr><th scope=row>3</th><td>1</td><td>3</td><td>8.703917</td><td>11.20532</td></tr>
+    <tr><th scope=row>4</th><td>2</td><td>1</td><td>11.80803</td><td>-0.9115341</td></tr>
+    <tr><th scope=row>5</th><td>2</td><td>2</td><td>4.670361</td><td>4.869456</td></tr>
+    <tr><th scope=row>6</th><td>2</td><td>3</td><td>-0.5982849</td><td>8.871238</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="show-all-data-for-each-subject-in-a-single-row">
+<h4>Show all data for each subject in a single row<a class="headerlink" href="#show-all-data-for-each-subject-in-a-single-row" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-python"><div class="highlight"><pre>dcast(m.expt, PID ~ Gene + Time)
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>PID</th><th scope=col>Gene1_1</th><th scope=col>Gene1_2</th><th scope=col>Gene1_3</th><th scope=col>Gene2_1</th><th scope=col>Gene2_2</th><th scope=col>Gene2_3</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>-1.658798</td><td>6.422999</td><td>8.703917</td><td>-1.509927</td><td>2.617535</td><td>11.20532</td></tr>
+    <tr><th scope=row>2</th><td>2</td><td>11.80803</td><td>4.670361</td><td>-0.5982849</td><td>-0.9115341</td><td>4.869456</td><td>8.871238</td></tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" id="we-can-also-aggregate-while-reshaping">
+<h3>We can also aggregate while reshaping<a class="headerlink" href="#we-can-also-aggregate-while-reshaping" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="what-is-the-average-expression-value-for-each-gene-for-each-subject-over-all-time-points">
+<h4>What is the average expression value for each gene for each subject over all time points?<a class="headerlink" href="#what-is-the-average-expression-value-for-each-gene-for-each-subject-over-all-time-points" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-python"><div class="highlight"><pre>dcast(m.expt, PID ~ Gene, mean)
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>PID</th><th scope=col>Gene1</th><th scope=col>Gene2</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>4.489372</td><td>4.104311</td></tr>
+    <tr><th scope=row>2</th><td>2</td><td>5.293369</td><td>4.276387</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="what-is-the-average-expression-value-for-each-gene-for-each-time-point-over-all-subjects">
+<h4>What is the average expression value for each gene for each time point over all subjects?<a class="headerlink" href="#what-is-the-average-expression-value-for-each-gene-for-each-time-point-over-all-subjects" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-python"><div class="highlight"><pre>dcast(m.expt, Time ~ Gene, mean)
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Time</th><th scope=col>Gene1</th><th scope=col>Gene2</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>5.074616</td><td>-1.210731</td></tr>
+    <tr><th scope=row>2</th><td>2</td><td>5.54668</td><td>3.743496</td></tr>
+    <tr><th scope=row>3</th><td>3</td><td>4.052816</td><td>10.03828</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="finally-we-can-perform-subssetting-on-the-named-vairables">
+<h4>Finally, we can perform subssetting on the named vairables.<a class="headerlink" href="#finally-we-can-perform-subssetting-on-the-named-vairables" title="Permalink to this headline">¶</a></h4>
+<p>For example, restrict the previous query to subject with PID= 1.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>dcast(m.expt, Time ~ Gene, mean, subset = .(PID == 1))
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>Time</th><th scope=col>Gene1</th><th scope=col>Gene2</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>1</td><td>-1.658798</td><td>-1.509927</td></tr>
+    <tr><th scope=row>2</th><td>2</td><td>6.422999</td><td>2.617535</td></tr>
+    <tr><th scope=row>3</th><td>3</td><td>8.703917</td><td>11.20532</td></tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="section" id="merging-data">
+<h2>Merging data<a class="headerlink" href="#merging-data" title="Permalink to this headline">¶</a></h2>
+<p>A common task in data analysis is to link data from two or more datasts,
+for example, to relate assay data to clinical phenoytpe.</p>
+<p>Here we will work thought a typical example where the genotype and
+phenoytpe information come from two different data sets, and the ID
+information needed to link the two is from a third data set.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">phenodat</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s">&quot;phenodat.csv&quot;</span><span class="p">)</span>
+<span class="n">gdat1</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s">&quot;gdat1.csv&quot;</span><span class="p">)</span>
+<span class="n">gdat2</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s">&quot;gdat2.csv&quot;</span><span class="p">)</span>
+<span class="n">iddat</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s">&quot;iddat.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="eyeball-data-sett">
+<h2>Eyeball data sett<a class="headerlink" href="#eyeball-data-sett" title="Permalink to this headline">¶</a></h2>
+<p>A quick sanity check to see what the data look like.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="n">dim</span><span class="p">(</span><span class="n">phenodat</span><span class="p">))</span>
+<span class="p">(</span><span class="n">dim</span><span class="p">(</span><span class="n">gdat1</span><span class="p">))</span>
+<span class="p">(</span><span class="n">dim</span><span class="p">(</span><span class="n">gdat2</span><span class="p">))</span>
+<span class="p">(</span><span class="n">dim</span><span class="p">(</span><span class="n">iddat</span><span class="p">))</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>10</li>
+    <li>2</li>
+</ol><ol class=list-inline>
+    <li>11</li>
+    <li>3</li>
+</ol><ol class=list-inline>
+    <li>11</li>
+    <li>3</li>
+</ol><ol class=list-inline>
+    <li>20</li>
+    <li>2</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre><span class="n">head</span><span class="p">(</span><span class="n">phenodat</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>pid6</td><td>0</td></tr>
+    <tr><th scope=row>2</th><td>pid15</td><td>1</td></tr>
+    <tr><th scope=row>3</th><td>pid8</td><td>0</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre><span class="n">head</span><span class="p">(</span><span class="n">gdat1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td></tr>
+    <tr><th scope=row>2</th><td>100018</td><td>-1.318938</td><td>0.7935853</td></tr>
+    <tr><th scope=row>3</th><td>100013</td><td>1.242919</td><td>-1.334354</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre><span class="n">head</span><span class="p">(</span><span class="n">gdat2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>100009</td><td>-1.220512</td><td>-0.2416898</td></tr>
+    <tr><th scope=row>2</th><td>100008</td><td>0.2865486</td><td>1.685887</td></tr>
+    <tr><th scope=row>3</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre><span class="n">head</span><span class="p">(</span><span class="n">iddat</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>expid</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>pid20</td><td>100020</td></tr>
+    <tr><th scope=row>2</th><td>pid9</td><td>100009</td></tr>
+    <tr><th scope=row>3</th><td>pid13</td><td>100013</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="combine-gene-data-from-two-data-sets">
+<h2>Combine gene data from two data sets<a class="headerlink" href="#combine-gene-data-from-two-data-sets" title="Permalink to this headline">¶</a></h2>
+<p>Often, we have the same type of data stroed in mulitple data sets, for
+example, one per batch. In this case, we want to combine <strong>rows</strong>.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">gdat</span> <span class="o">&lt;-</span> <span class="n">rbind</span><span class="p">(</span><span class="n">gdat1</span><span class="p">,</span> <span class="n">gdat2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="checking-for-duplicates">
+<h2>Checking for duplicates<a class="headerlink" href="#checking-for-duplicates" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>show.dups &lt;- function(df) {
+    return(df[duplicated(df), ])
+    }
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">show</span><span class="o">.</span><span class="n">dups</span><span class="p">(</span><span class="n">phenodat</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+<tbody>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre><span class="n">show</span><span class="o">.</span><span class="n">dups</span><span class="p">(</span><span class="n">iddat</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>expid</th></tr></thead>
+<tbody>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre><span class="n">show</span><span class="o">.</span><span class="n">dups</span><span class="p">(</span><span class="n">gdat</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th></tr></thead>
+<tbody>
+    <tr><th scope=row>13</th><td>100008</td><td>0.2865486</td><td>1.685887</td></tr>
+    <tr><th scope=row>15</th><td>100003</td><td>0.8867361</td><td>0.2760235</td></tr>
+    <tr><th scope=row>17</th><td>100004</td><td>-0.151396</td><td>-1.048976</td></tr>
+    <tr><th scope=row>18</th><td>100018</td><td>-1.318938</td><td>0.7935853</td></tr>
+    <tr><th scope=row>20</th><td>100011</td><td>0.8001769</td><td>-0.7729782</td></tr>
+    <tr><th scope=row>21</th><td>100001</td><td>-0.5996083</td><td>1.689873</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="remove-duplicates">
+<h2>Remove duplicates<a class="headerlink" href="#remove-duplicates" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">gdat</span> <span class="o">&lt;-</span> <span class="n">unique</span><span class="p">(</span><span class="n">gdat</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">dim</span><span class="p">(</span><span class="n">gdat</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>16</li>
+    <li>3</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre><span class="n">show</span><span class="o">.</span><span class="n">dups</span><span class="p">(</span><span class="n">gdat</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th></tr></thead>
+<tbody>
+</tbody>
+</table></div>
+<div class="section" id="merging">
+<h2>Merging<a class="headerlink" href="#merging" title="Permalink to this headline">¶</a></h2>
+<p>To combine columns from different data sets, we can perform a <code class="docutils literal"><span class="pre">merge</span></code>
+operation. Rows in the different data set need some common identifier to
+be merged, typcialy information from one or more &#8220;ID&#8221; columns.</p>
+<div class="section" id="merge-all-rows-with-information-for-both-phenotype-and-gene">
+<h3>Merge all rows with information for both phenotype and gene<a class="headerlink" href="#merge-all-rows-with-information-for-both-phenotype-and-gene" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="first-we-merge-phnenoytpe-data-with-the-id-data">
+<h4>First we merge phnenoytpe data with the ID data<a class="headerlink" href="#first-we-merge-phnenoytpe-data-with-the-id-data" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="n">df1</span> <span class="o">&lt;-</span> <span class="n">merge</span><span class="p">(</span><span class="n">phenodat</span><span class="p">,</span> <span class="n">iddat</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s">&quot;pid&quot;</span><span class="p">,</span> <span class="nb">all</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="n">TRUE</span><span class="p">))</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>trt</th><th scope=col>expid</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>pid1</td><td>0</td><td>100001</td></tr>
+    <tr><th scope=row>2</th><td>pid12</td><td>1</td><td>100012</td></tr>
+    <tr><th scope=row>3</th><td>pid15</td><td>1</td><td>100015</td></tr>
+    <tr><th scope=row>4</th><td>pid16</td><td>0</td><td>100016</td></tr>
+    <tr><th scope=row>5</th><td>pid17</td><td>0</td><td>100017</td></tr>
+    <tr><th scope=row>6</th><td>pid18</td><td>1</td><td>100018</td></tr>
+    <tr><th scope=row>7</th><td>pid20</td><td>0</td><td>100020</td></tr>
+    <tr><th scope=row>8</th><td>pid6</td><td>0</td><td>100006</td></tr>
+    <tr><th scope=row>9</th><td>pid7</td><td>0</td><td>100007</td></tr>
+    <tr><th scope=row>10</th><td>pid8</td><td>0</td><td>100008</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="then-we-merge-with-gene-data">
+<h4>Then we merge with gene data<a class="headerlink" href="#then-we-merge-with-gene-data" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="n">df2</span> <span class="o">&lt;-</span> <span class="n">merge</span><span class="p">(</span><span class="n">gdat</span><span class="p">,</span> <span class="n">df1</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s">&quot;expid&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    <tr><th scope=row>2</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    <tr><th scope=row>3</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+    <tr><th scope=row>4</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    <tr><th scope=row>5</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    <tr><th scope=row>6</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    <tr><th scope=row>7</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+</tbody>
+</table><p>Note that there are now only 7 rows becasue 3 phenotypes did not have
+matching gene data.</p>
+</div>
+</div>
+<div class="section" id="what-if-we-want-to-show-all-genes-even-if-there-is-no-matching-phenotype-data">
+<h3>What if we want to show all genes even if there is no matching phenotype data?<a class="headerlink" href="#what-if-we-want-to-show-all-genes-even-if-there-is-no-matching-phenotype-data" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="n">df3</span> <span class="o">&lt;-</span> <span class="n">merge</span><span class="p">(</span><span class="n">gdat</span><span class="p">,</span> <span class="n">df1</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s">&quot;expid&quot;</span><span class="p">,</span> <span class="nb">all</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="n">TRUE</span><span class="p">))</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    <tr><th scope=row>2</th><td>100002</td><td>-0.1294107</td><td>1.228393</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>3</th><td>100003</td><td>0.8867361</td><td>0.2760235</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>4</th><td>100004</td><td>-0.151396</td><td>-1.048976</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>5</th><td>100005</td><td>0.3297912</td><td>-0.5208693</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>6</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    <tr><th scope=row>7</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+    <tr><th scope=row>8</th><td>100009</td><td>-1.220512</td><td>-0.2416898</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>9</th><td>100011</td><td>0.8001769</td><td>-0.7729782</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>10</th><td>100013</td><td>1.242919</td><td>-1.334354</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>11</th><td>100014</td><td>-0.9343851</td><td>0.4958705</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>12</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    <tr><th scope=row>13</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    <tr><th scope=row>14</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    <tr><th scope=row>15</th><td>100019</td><td>0.02884391</td><td>-0.1524106</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>16</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="what-if-we-want-to-show-all-phenotypes-even-if-there-is-no-matching-gene-data">
+<h3>What if we want to show all phenotypes even if there is no matching gene data?<a class="headerlink" href="#what-if-we-want-to-show-all-phenotypes-even-if-there-is-no-matching-gene-data" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="n">df4</span> <span class="o">&lt;-</span> <span class="n">merge</span><span class="p">(</span><span class="n">gdat</span><span class="p">,</span> <span class="n">df1</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s">&quot;expid&quot;</span><span class="p">,</span> <span class="nb">all</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="n">TRUE</span><span class="p">))</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    <tr><th scope=row>2</th><td>100006</td><td>NA</td><td>NA</td><td>pid6</td><td>0</td></tr>
+    <tr><th scope=row>3</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    <tr><th scope=row>4</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+    <tr><th scope=row>5</th><td>100012</td><td>NA</td><td>NA</td><td>pid12</td><td>1</td></tr>
+    <tr><th scope=row>6</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    <tr><th scope=row>7</th><td>100016</td><td>NA</td><td>NA</td><td>pid16</td><td>0</td></tr>
+    <tr><th scope=row>8</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    <tr><th scope=row>9</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    <tr><th scope=row>10</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="what-if-we-want-to-show-everything">
+<h3>What if we want to show everything?<a class="headerlink" href="#what-if-we-want-to-show-everything" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="n">df5</span> <span class="o">&lt;-</span> <span class="n">merge</span><span class="p">(</span><span class="n">gdat</span><span class="p">,</span> <span class="n">df1</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s">&quot;expid&quot;</span><span class="p">,</span> <span class="nb">all</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="nb">all</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="n">TRUE</span><span class="p">))</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    <tr><th scope=row>2</th><td>100002</td><td>-0.1294107</td><td>1.228393</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>3</th><td>100003</td><td>0.8867361</td><td>0.2760235</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>4</th><td>100004</td><td>-0.151396</td><td>-1.048976</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>5</th><td>100005</td><td>0.3297912</td><td>-0.5208693</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>6</th><td>100006</td><td>NA</td><td>NA</td><td>pid6</td><td>0</td></tr>
+    <tr><th scope=row>7</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    <tr><th scope=row>8</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+    <tr><th scope=row>9</th><td>100009</td><td>-1.220512</td><td>-0.2416898</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>10</th><td>100011</td><td>0.8001769</td><td>-0.7729782</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>11</th><td>100012</td><td>NA</td><td>NA</td><td>pid12</td><td>1</td></tr>
+    <tr><th scope=row>12</th><td>100013</td><td>1.242919</td><td>-1.334354</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>13</th><td>100014</td><td>-0.9343851</td><td>0.4958705</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>14</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    <tr><th scope=row>15</th><td>100016</td><td>NA</td><td>NA</td><td>pid16</td><td>0</td></tr>
+    <tr><th scope=row>16</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    <tr><th scope=row>17</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    <tr><th scope=row>18</th><td>100019</td><td>0.02884391</td><td>-0.1524106</td><td>NA</td><td>NA</td></tr>
+    <tr><th scope=row>19</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" id="rearrange-column-order">
+<h2>Rearrange column order<a class="headerlink" href="#rearrange-column-order" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>df2[, c(4,1,2,3,5)]
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>pid</th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>trt</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>pid1</td><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>0</td></tr>
+    <tr><th scope=row>2</th><td>pid7</td><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>0</td></tr>
+    <tr><th scope=row>3</th><td>pid8</td><td>100008</td><td>0.2865486</td><td>1.685887</td><td>0</td></tr>
+    <tr><th scope=row>4</th><td>pid15</td><td>100015</td><td>0.3937087</td><td>1.233976</td><td>1</td></tr>
+    <tr><th scope=row>5</th><td>pid17</td><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>0</td></tr>
+    <tr><th scope=row>6</th><td>pid18</td><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>1</td></tr>
+    <tr><th scope=row>7</th><td>pid20</td><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>0</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="id1">
+<h2>Sorting data<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">df2</span>
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    <tr><th scope=row>2</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    <tr><th scope=row>3</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+    <tr><th scope=row>4</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    <tr><th scope=row>5</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    <tr><th scope=row>6</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    <tr><th scope=row>7</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>df2[order(df2$expid),]
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    <tr><th scope=row>2</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    <tr><th scope=row>3</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+    <tr><th scope=row>4</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    <tr><th scope=row>5</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    <tr><th scope=row>6</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    <tr><th scope=row>7</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>df2[order(df2$pid),]
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    <tr><th scope=row>4</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    <tr><th scope=row>5</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    <tr><th scope=row>6</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    <tr><th scope=row>7</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+    <tr><th scope=row>2</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    <tr><th scope=row>3</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>df2[order(df2$pid, df2$expid),]
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+<tbody>
+    <tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    <tr><th scope=row>4</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    <tr><th scope=row>5</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    <tr><th scope=row>6</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+    <tr><th scope=row>7</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+    <tr><th scope=row>2</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    <tr><th scope=row>3</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre>df2[order(df2$gene1, decreasing = TRUE),]
+</pre></div>
+</div>
+<table>
+<thead><tr><th></th><th scope=col>expid</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>pid</th><th scope=col>trt</th></tr></thead>
+<tbody>
+    <tr><th scope=row>4</th><td>100015</td><td>0.3937087</td><td>1.233976</td><td>pid15</td><td>1</td></tr>
+    <tr><th scope=row>3</th><td>100008</td><td>0.2865486</td><td>1.685887</td><td>pid8</td><td>0</td></tr>
+    <tr><th scope=row>7</th><td>100020</td><td>-0.4321298</td><td>-0.2288958</td><td>pid20</td><td>0</td></tr>
+    <tr><th scope=row>1</th><td>100001</td><td>-0.5996083</td><td>1.689873</td><td>pid1</td><td>0</td></tr>
+    <tr><th scope=row>2</th><td>100007</td><td>-0.7717918</td><td>-1.070068</td><td>pid7</td><td>0</td></tr>
+    <tr><th scope=row>5</th><td>100017</td><td>-0.8864367</td><td>0.4120223</td><td>pid17</td><td>0</td></tr>
+    <tr><th scope=row>6</th><td>100018</td><td>-1.318938</td><td>0.7935853</td><td>pid18</td><td>1</td></tr>
+</tbody>
+</table></div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+
+Installing R, RStudio and IPython notebook with the R kernel
+============================================================
+
+Install R
+---------
+
+Download and install the appropriate version for your operating system
+from http://archive.linux.duke.edu/cran/
+
+Install RStudio
+---------------
+
+Download and install the appropriate version for your operating system
+from https://www.rstudio.com/products/rstudio/download/
+
+Install Jupyter
+---------------
+
+Download and install the appropriate version for your operating system
+from http://continuum.io/downloads
+
+Install the R kernel for Jupyter
+--------------------------------
+
+This is the most complex step and you might need a little help from a
+programmer friend to decipher the instructions.
+
+Follow the instructions for your operating system at
+https://github.com/IRkernel/IRkernel
+
+Some people rerpot issues with the OS X installation - if you run into
+problems, see if `this
+page <http://www.michaelpacer.com/maths/r-kernel-for-ipython-notebook>`__
+helps.
+
+
+Installing R Graphics packages
+----------------------------------------
+
+.. code:: python
+
+    # from https://gist.github.com/stevenworthington/3178163
+    ipak <- function(pkg){
+        new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+        if (length(new.pkg)) 
+            install.packages(new.pkg, dependencies = TRUE, repos = "http://cran.r-project.org")
+        sapply(pkg, require, character.only = TRUE)
+    }
+     
+    # usage
+    packages <- c("ggplot2",  "gplots", "lattice", "plyr", "reshape2",
+                  "RColorBrewer", "grid", "gridExtra", "igraph", "igraphdata")
+    suppressMessages(ipak(packages))
+
+
+
+
+.. raw:: html
+
+    <dl class=dl-horizontal>
+    	<dt>ggplot2</dt>
+    		<dd>TRUE</dd>
+    	<dt>gplots</dt>
+    		<dd>TRUE</dd>
+    	<dt>lattice</dt>
+    		<dd>TRUE</dd>
+    	<dt>plyr</dt>
+    		<dd>TRUE</dd>
+    	<dt>reshape2</dt>
+    		<dd>TRUE</dd>
+    	<dt>RColorBrewer</dt>
+    		<dd>TRUE</dd>
+    	<dt>grid</dt>
+    		<dd>TRUE</dd>
+    	<dt>gridExtra</dt>
+    		<dd>TRUE</dd>
+    	<dt>igraph</dt>
+    		<dd>TRUE</dd>
+    	<dt>igraphdata</dt>
+    		<dd>TRUE</dd>
+    </dl>
+
+
+Check
+-----
+
+If everything went well, you should be able to start the Jupyter
+notebook from the launhcer (see icon below). Select Launch for the
+IPython Notebook (same as Jupyter notebook). The **New** menu on the
+right should show both Python and R options.
+
+.. code:: python
+
+    from IPython.display import Image
+    Image(filename='launcher.png') 
+
+
+
+
+.. image:: Installation_files/Installation_6_0.png
+
+
+

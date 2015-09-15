@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Counting Models/Discrete Distributions &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+    <link rel="next" title="Generalized Linear Models" href="LogisticRegression.html" />
+    <link rel="prev" title="Multiple Testing" href="MultipleTesting.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearningWhatCouldGoWrong.html">Supervised Learning Continued - What Could Go Wrong?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONESolutios.html">Practice ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTWOSolutions.html">Practice TWO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTHREESolutions.html">Practice THREE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeFOURSolutions.html">Practice FOUR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2NotebookFromMatrix.html">Import count data using basic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Counting Models/Discrete Distributions</a><ul>
+<li><a class="reference internal" href="#binomial-distribution-and-bernoulli-trials">Binomial Distribution and Bernoulli Trials</a></li>
+<li><a class="reference internal" href="#binomial-distribution">Binomial Distribution</a><ul>
+<li><a class="reference internal" href="#work">Work!</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#negative-binomial">Negative Binomial</a><ul>
+<li><a class="reference internal" href="#id1">Work !</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#poisson-distribution">Poisson Distribution</a><ul>
+<li><a class="reference internal" href="#id2">Work!</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#binomial-and-poisson-distributions">Binomial and Poisson Distributions</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="MultipleTesting.html" title="Previous Chapter: Multiple Testing"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Multiple Testing</span>
+    </a>
+  </li>
+  <li>
+    <a href="LogisticRegression.html" title="Next Chapter: Generalized Linear Models"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Generalized L... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/CountModels.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="counting-models-discrete-distributions">
+<h1>Counting Models/Discrete Distributions<a class="headerlink" href="#counting-models-discrete-distributions" title="Permalink to this headline">¶</a></h1>
+<p>This lab will cover the discrete distributions used in the analysis of
+RNAseq data.</p>
+<div class="section" id="binomial-distribution-and-bernoulli-trials">
+<h2>Binomial Distribution and Bernoulli Trials<a class="headerlink" href="#binomial-distribution-and-bernoulli-trials" title="Permalink to this headline">¶</a></h2>
+<p>One of the simplest examples in probability is the coin toss. It is an
+experiment with only two possible outcomes. Arbritrarily, we say that
+the outcome &#8216;heads&#8217; is a &#8216;success&#8217; and &#8216;tails&#8217; is a &#8216;failure&#8217;. This
+simple example is powerful, because many, many relevant experiments have
+only two possible outcomes, such as whether a person has a disease or
+does not or whether a component of some product is defective or not.
+Because such examples are common, they are given a name:</p>
+<p><strong>Bernoulli trial: an experiment that has two possible outcomes, usually
+denoted &#8216;success&#8217; and &#8216;failure&#8217;. Success probability is denote :math:`p`
+and failure probability is denoted :math:`q` (or :math:`1-p`).</strong></p>
+<p>Often, we are interested in the result of a number of repeated,
+independent Bernoulli trials. The outcome of interest of such a series
+of trials determines a discrete probability distribution.</p>
+</div>
+<div class="section" id="binomial-distribution">
+<h2>Binomial Distribution<a class="headerlink" href="#binomial-distribution" title="Permalink to this headline">¶</a></h2>
+<p>The binomial distribution gives the probability of <span class="math">\(x\)</span> number of
+success in <span class="math">\(n\)</span> Bernoulli trials. For example, suppose we want to
+know the probability of getting <span class="math">\(2\)</span> heads when tossing a <em>biased</em>
+coin <span class="math">\(5\)</span> times. First, we consider the different ways to get
+<span class="math">\(2\)</span> heads in <span class="math">\(5\)</span> tosses:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Outcome</th>
+<th class="head">Probaility</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>HHTTT</td>
+<td>ppqqq</td>
+</tr>
+<tr class="row-odd"><td>HTHTT</td>
+<td>pqpqq</td>
+</tr>
+<tr class="row-even"><td>HTTHT</td>
+<td>pqqpq</td>
+</tr>
+<tr class="row-odd"><td>HTTTH</td>
+<td>pqqqp</td>
+</tr>
+<tr class="row-even"><td>THHTT</td>
+<td>qppqq</td>
+</tr>
+<tr class="row-odd"><td>THTHT</td>
+<td>qpqpq</td>
+</tr>
+<tr class="row-even"><td>THTTH</td>
+<td>qpqqp</td>
+</tr>
+<tr class="row-odd"><td>TTHHT</td>
+<td>qqppq</td>
+</tr>
+<tr class="row-even"><td>TTHTH</td>
+<td>qqpqp</td>
+</tr>
+<tr class="row-odd"><td>TTTHH</td>
+<td>qqqpp</td>
+</tr>
+</tbody>
+</table>
+<p>We can see that the right hand column of the table is the same for each
+outcome, i.e. <span class="math">\(p^2q^3\)</span>. Thus, the total probaility is the number
+of rows (number of ways to get <span class="math">\(2\)</span> heads and <span class="math">\(3\)</span> tails)
+times <span class="math">\(p^2q^3\)</span>.</p>
+<div class="math">
+\[Pr(2 \textrm{ heads in }5 \textrm{ trials}) = 10 p^2q^2\]</div>
+<p>In general:</p>
+<div class="math">
+\[Pr(x \textrm{ heads in }n \textrm{ trials}) = C p^xq^{n-x}\]</div>
+<p>where <span class="math">\(C\)</span> is the number of ways to get <span class="math">\(x\)</span> heads in
+<span class="math">\(n\)</span> trials. This is simply:</p>
+<div class="math">
+\[\begin{split}\left(\begin{matrix}n\\x\end{matrix}\right) = \frac{n!}{x!(n-x)!}\end{split}\]</div>
+<div class="section" id="work">
+<h3>Work!<a class="headerlink" href="#work" title="Permalink to this headline">¶</a></h3>
+<p>Use the R function pbinom to find the probability of getting <span class="math">\(2\)</span>
+heads in <span class="math">\(5\)</span> tosses for</p>
+<ul class="simple">
+<li>a fair coin</li>
+<li>a biased coin with P(H) = 1/3</li>
+</ul>
+<p>Draw a sample of 1000 values from the binomial distribution with
+<span class="math">\(10\)</span> trials and success probability <span class="math">\(p=.3\)</span> and plot a
+histogram of the result. Do the same but change the number of trials to
+<span class="math">\(100\)</span>.</p>
+<p>Often, a normal approximation to the binomial is used. Based on the
+above, is this a good idea in all situations?</p>
+</div>
+</div>
+<div class="section" id="negative-binomial">
+<h2>Negative Binomial<a class="headerlink" href="#negative-binomial" title="Permalink to this headline">¶</a></h2>
+<p>While the binomial distributions models the probability of <span class="math">\(x\)</span>
+successes (events) in <span class="math">\(n\)</span> trials, the negative binomial models the
+probability of requiring <span class="math">\(x\)</span> trials to get <span class="math">\(r\)</span> successes.</p>
+<div class="math">
+\[\begin{split}P(X=x) = \left(\begin{matrix}x+r -1\\x-1\end{matrix}\right)p^rq^x\end{split}\]</div>
+<p>where <span class="math">\(x = r, r+1, r+2,...\)</span></p>
+<p>The mean of this distribution is</p>
+<div class="math">
+\[\mu = \frac{pr}{q}\]</div>
+<p>and the variance is</p>
+<div class="math">
+\[\sigma^2 = \frac{pr}{q^2}\]</div>
+<p>We can do a bit of algebra and come up with a slightly different
+parametrization:</p>
+<div class="math">
+\[\sigma^2 = \frac{pr}{q^2} = \frac{\mu}{q}\]</div>
+<div class="math">
+\[= \mu + \frac{\mu}q -\mu\]</div>
+<div class="math">
+\[= \mu + \frac{\mu}q -\frac{\mu q}q\]</div>
+<div class="math">
+\[= \mu + \frac{\mu(1-q)}q\]</div>
+<div class="math">
+\[= \mu + \frac{\mu p}q\]</div>
+<p>and because <span class="math">\(\frac{p}{q} =\frac{\mu}{r}\)</span>, we have:</p>
+<div class="math">
+\[\sigma^2 = \mu + \frac{\mu^2}r\]</div>
+<p>Because the variance differs from the mean by the quantity</p>
+<div class="math">
+\[\frac{\mu^2}{r}\]</div>
+<p>we call this quantity the &#8216;dispersion parameter&#8217;.</p>
+<div class="section" id="id1">
+<h3>Work !<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Generate <span class="math">\(1000\)</span> samples from the negative binomial distribution
+for <span class="math">\(10\)</span> successes given a success probability of <span class="math">\(0.5\)</span> and
+plot a histogram. Do the same for success probability of <span class="math">\(0.05\)</span>.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">x</span><span class="o">&lt;-</span><span class="n">rnbinom</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">prob</span><span class="o">=.</span><span class="mo">05</span><span class="p">)</span>
+<span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">freq</span><span class="o">=</span><span class="n">FALSE</span><span class="p">,</span><span class="n">breaks</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">x</span><span class="o">&lt;-</span><span class="n">rnbinom</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">prob</span><span class="o">=.</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">freq</span><span class="o">=</span><span class="n">FALSE</span><span class="p">,</span><span class="n">breaks</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/CountModels_16_0.png"><img alt="_images/CountModels_16_0.png" src="_images/CountModels_16_0.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="_images/CountModels_16_1.png"><img alt="_images/CountModels_16_1.png" src="_images/CountModels_16_1.png" style="width: 600px;" /></a>
+</div>
+</div>
+<div class="section" id="poisson-distribution">
+<h2>Poisson Distribution<a class="headerlink" href="#poisson-distribution" title="Permalink to this headline">¶</a></h2>
+<p>The Poisson distribution models the probability of <span class="math">\(x\)</span> events in a
+given time period, assuming an average rate of <span class="math">\(\lambda\)</span></p>
+<div class="math">
+\[P(X=x) = \frac{\lambda^xe^{-\lambda}}{x!}\]</div>
+<p>An important thing to note is that the mean and variance of the Poisson
+distribution are <em>both</em> <span class="math">\(\lambda\)</span>.</p>
+<div class="section" id="id2">
+<h3>Work!<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Suppose a manufacturer receives on average 3 orders per day. What is
+the probability that <span class="math">\(5\)</span> orders come in on a given day?</li>
+<li>Draw a random sample of size 1000 from a poisson distribution with
+parameter <span class="math">\(\lambda = 1\)</span> and plot a histogram of those values.</li>
+<li>Draw histograms for poisson distributions with parameters
+<span class="math">\(\lambda = 1,4,10\)</span></li>
+</ul>
+</div>
+</div>
+<div class="section" id="binomial-and-poisson-distributions">
+<h2>Binomial and Poisson Distributions<a class="headerlink" href="#binomial-and-poisson-distributions" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre>In this section, we explore the relationship between the Binomial and Poisson distributions.
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">n</span><span class="o">&lt;-</span><span class="mi">1000000</span>  <span class="c"># Set number of trials to 1 million</span>
+<span class="n">p</span><span class="o">&lt;-</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span>      <span class="c"># Set success probability to 1/1million</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">9988</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">rbinom</span><span class="p">(</span><span class="mi">99999</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>  <span class="c"># Simulate 999,999 iterations of 1 million trials</span>
+<span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+99999<div class="code python highlight-python"><div class="highlight"><pre><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+1.00055000550005<div class="code python highlight-python"><div class="highlight"><pre>round(dpois(0:7,lambda=1),3) # generate cdf values for poisson
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>0.368</li>
+    <li>0.368</li>
+    <li>0.184</li>
+    <li>0.061</li>
+    <li>0.015</li>
+    <li>0.003</li>
+    <li>0.001</li>
+    <li>0</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre><span class="nb">round</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mi">99999</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c"># Same for binomial with p&lt;&lt;1</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>x
+    0     1     2     3     4     5     6
+0.004 0.004 0.002 0.001 0.000 0.000 0.000
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>hist(rpois(1000,lambda=1),freq=FALSE)
+hist(rbinom(1000,n,prob=p),freq=FALSE)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/CountModels_29_0.png"><img alt="_images/CountModels_29_0.png" src="_images/CountModels_29_0.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="_images/CountModels_29_1.png"><img alt="_images/CountModels_29_1.png" src="_images/CountModels_29_1.png" style="width: 600px;" /></a>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

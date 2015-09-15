@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How to Claim and Access Your Virtual Machine &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+    <link rel="next" title="Basic R in the Jupyter Notebook and RStudio" href="BasicRinJupyterAndRstudio.html" />
+    <link rel="prev" title="Duke NGS Course (Summer 2015)" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearningWhatCouldGoWrong.html">Supervised Learning Continued - What Could Go Wrong?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONE-Solutions.html">Practice ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTWOSolutions.html">Practice TWO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTHREESolutions.html">Practice THREE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeFOURSolutions.html">Practice FOUR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2NotebookFromMatrix.html">Import count data using basic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">How to Claim and Access Your Virtual Machine</a><ul>
+<li><a class="reference internal" href="#what-is-a-virtual-machine">What is a Virtual Machine?</a></li>
+<li><a class="reference internal" href="#how-to-claim-a-virtual-machine">How to Claim a Virtual Machine</a></li>
+<li><a class="reference internal" href="#how-to-access-the-vm">How to Access the VM</a><ul>
+<li><a class="reference internal" href="#ipython-notebook">Ipython Notebook</a></li>
+<li><a class="reference internal" href="#ssh">ssh</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="index.html" title="Previous Chapter: Duke NGS Course (Summer 2015)"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Duke NGS Cour...</span>
+    </a>
+  </li>
+  <li>
+    <a href="BasicRinJupyterAndRstudio.html" title="Next Chapter: Basic R in the Jupyter Notebook and RStudio"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Basic R in th... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/VMsAtDuke.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="how-to-claim-and-access-your-virtual-machine">
+<h1>How to Claim and Access Your Virtual Machine<a class="headerlink" href="#how-to-claim-and-access-your-virtual-machine" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-a-virtual-machine">
+<h2>What is a Virtual Machine?<a class="headerlink" href="#what-is-a-virtual-machine" title="Permalink to this headline">¶</a></h2>
+<p>A virtual machine (VM) is essentially a file together with a client
+program that interprets that file. The file&#8217;s contents include:</p>
+<ul class="simple">
+<li>An operating system</li>
+<li>Virtual devices</li>
+<li>A file system</li>
+<li>Some set of application programs</li>
+</ul>
+<p>From the user&#8217;s point of view, logging on to a VM looks very much the
+same as logging on to a remote server - with some important differences:</p>
+<ul class="simple">
+<li>The user/owner has total control of the machine and has root access.
+This makes it easy to install software and customize the environment.</li>
+<li>The &#8216;machine image&#8217; may be exported to other platforms that support
+VMs (such as Amazon Web Services). From the perspective of a
+developer, this means that entire &#8216;appliances&#8217; or specialized VMs can
+be exported whole, with all the software and virtual devices
+necessary to perform a particular task. From the perspective of a
+user, this means that all the tools necessary to complete a task may
+be easily accessed without having to install special packages and
+such (because this is done upfront by the developer). The VM for this
+course will be made available as an Amazon Web Services image and as
+an image that can be run by other VM clients.</li>
+</ul>
+</div>
+<div class="section" id="how-to-claim-a-virtual-machine">
+<h2>How to Claim a Virtual Machine<a class="headerlink" href="#how-to-claim-a-virtual-machine" title="Permalink to this headline">¶</a></h2>
+<p>We will be using VMs provided by Duke&#8217;s Office of Information Technology
+(OIT). Each student must first claim a VM. Go to the VM Manage website:</p>
+<p><a class="reference external" href="https://vm-manage.oit.duke.edu/">https://vm-manage.oit.duke.edu/</a></p>
+<p>Click the &#8216;New&#8217; option at the top of the page. You will be prompted to
+enter some identification information and your Duke NetID and password.
+Next, you will be asked to name and describe your project. Use whatever
+is meaningful to you. Finally, when you are asked to choose a server,
+choose:</p>
+<p>NGS Summer Workshop</p>
+<p>Accept the terms of use and click &#8216;Request VM&#8217;. Now you should see some
+information pertinent to your VM. Most importantly, you need to record
+your URL and password. The URL will be of the form:</p>
+<p>colab-sbx-XXX.oit.duke.edu</p>
+<p>The XXX part is unique. You will see an initial password that you can
+cut and paste to login. If you know how to change a Unix password and
+wish to change it - go ahead, but it is fine to leave the default one.
+Just don&#8217;t enter any banking information or credit card numbers. :)</p>
+</div>
+<div class="section" id="how-to-access-the-vm">
+<h2>How to Access the VM<a class="headerlink" href="#how-to-access-the-vm" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ipython-notebook">
+<h3>Ipython Notebook<a class="headerlink" href="#ipython-notebook" title="Permalink to this headline">¶</a></h3>
+<p>We will mostly be accessing the VMs using the Ipython Notebook. This
+lecture is written using said tool, and it is really, really useful! In
+this interactive environment, you can access the linux command line,
+write &#8216;markdown&#8217; type text, use latex, run code, create files (scripts -
+more about that later) and run graphics. We will probably not get to use
+the full capability in this workshop, but you can learn more here:</p>
+<p><a class="reference external" href="http://ipython.org/notebook.html">http://ipython.org/notebook.html</a></p>
+<p>We are going to setup the VM as a &#8216;notebook server&#8217;. This is essentially
+a web server that allows connections to the notebook via your browser.</p>
+<p>Before we can actually use the notebook properly we need to configure a
+password for it. That means we will dive right in to ssh.</p>
+</div>
+<div class="section" id="ssh">
+<h3>ssh<a class="headerlink" href="#ssh" title="Permalink to this headline">¶</a></h3>
+<p>You can access your VM using the command line (a non-graphical,
+text-based interface). Many non Computer Science types find the command
+line scary and confusing. Don&#8217;t worry - you can&#8217;t break anything (at
+least nothing that cannot be fixed). The first thing you need to do is
+get a terminal client. If you are using a Mac - Good News! There is one
+built right in. Find the little screen (terminal) icon and click on it.</p>
+<p>For Windows users: if you do not already have an ssh client, you will
+need to download and install one. Do this now:</p>
+<p><a class="reference external" href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</a></p>
+<p>Ok. Now that everyone has a way to ssh, do so using</p>
+<p>ssh <a class="reference external" href="mailto:bitnami&#37;&#52;&#48;colab-sbx-XXX&#46;oit&#46;duke&#46;edu">bitnami<span>&#64;</span>colab-sbx-XXX<span>&#46;</span>oit<span>&#46;</span>duke<span>&#46;</span>edu</a></p>
+<p>(or the equivalent in putty)</p>
+<p>Now, you should have a nice command line (shell) prompt:</p>
+<p><a class="reference external" href="mailto:bitnami&#37;&#52;&#48;ubuntu14-generic-template-01">bitnami<span>&#64;</span>ubuntu14-generic-template-01</a>:~$</p>
+<p>(For short, I will just use the &#8216;$&#8217; when representing the prompt)</p>
+<H3><p>Creating a Notebook Password</p>
+<p>We are going to access our VMs via an</p>
+<p>First thing we are going to do is to create a hashed password. This is a
+password that is encrypted using a &#8216;one-way&#8217; algorithm. The hashed
+password has fixed length and cannot be reverted to the actual password.
+There are lots of programs that do this, but as we have it installed,
+we&#8217;ll use ipython.</p>
+<p>$ ipython</p>
+<p>In [1]: from IPython.lib import passwd</p>
+<p>In [2]: passwd()</p>
+<p>Enter password:</p>
+<p>Verify password:</p>
+<p>Out[2]: &#8216;sha1:67c9e60bb8b6:9ffede0825894254b2e042ea597d771089e11aed&#8217;</p>
+<p>In[3]: quit</p>
+<p>The text following Out[2]: is your hashed password. Copy this into the
+buffer by selecting and either using Cmd-C (Mac) or the putty menu.
+Include the single quotes.</p>
+<p>Now, we are going to use a strange editor called &#8216;nano&#8217;.</p>
+<p>Type:</p>
+<p>$</p>
+<p>And then change the line:</p>
+<p>c.NotebookApp.password =
+u&#8217;sha1:51314c1d824e:c401b21da2e4bf6eb2c68a30d688b16858461f4b&#8217;</p>
+<p>to use the password you created.</p>
+<p>Type Ctrl-X to exit and <code class="docutils literal"><span class="pre">&lt;</span></code>enter<code class="docutils literal"><span class="pre">&gt;</span></code> to save.</p>
+<H3><p>Starting the Server</p>
+<p>There is a shell script (just a file with commands) in your VM&#8217;s home
+directory (user=bitnami) called &#8216;startnb&#8217;. Run this in the background:</p>
+<p>$ ./startnb &amp;</p>
+<p>Now, your notebook server should be up and running. To access it, open a
+browser window and point it to the URL:</p>
+<p><a class="reference external" href="https://colab-sbx-XXX.oit.duke.edu:9999">https://colab-sbx-XXX.oit.duke.edu:9999</a></p>
+<p>(XXX is your VM&#8217;s number).</p>
+<p>You will need to enter your password. This is the password you created
+and placed in your notebook server configuration file.</p>
+<H3><p>Time to Play!</p>
+<p>Once you have entered your password, you will see a directory listing.
+Let&#8217;s open the next lecture notebook!</p>
+<p>Click on the directory &#8216;ngs-computing-bootcamp&#8217; and the click on the
+file &#8216;BasicRinJupyterAndRstudio&#8217;</p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

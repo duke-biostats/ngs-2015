@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Writing Custom Functions &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+    <link rel="next" title="Functional Programming" href="FunctionalProgramming.html" />
+    <link rel="prev" title="Probability distributions and Random Number Genereation" href="Probabilitydistributionsandrandomnumbergeneration.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearningWhatCouldGoWrong.html">Supervised Learning Continued - What Could Go Wrong?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONESolutios.html">Practice ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTWOSolutions.html">Practice TWO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTHREESolutions.html">Practice THREE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeFOURSolutions.html">Practice FOUR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2NotebookFromMatrix.html">Import count data using basic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Writing Custom Functions</a><ul>
+<li><a class="reference internal" href="#anatomy-of-a-function">Anatomy of a function</a><ul>
+<li><a class="reference internal" href="#our-first-custom-function">Our first custom function</a><ul>
+<li><a class="reference internal" href="#work">Work!</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#our-second-custom-function">Our second custom function</a><ul>
+<li><a class="reference internal" href="#arguments-supplied-by-the-user-are-matched-by-position">Arguments supplied by the user are matched by <em>position</em></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#default-arguments">Default arguments</a></li>
+<li><a class="reference internal" href="#curve-fitting">Curve fitting</a><ul>
+<li><a class="reference internal" href="#lets-estimate-the-slope-and-inflection-by-nonlinear-least-squares-minimization">Lets estimate the slope and inflection by nonlinear least squares minimization</a><ul>
+<li><a class="reference internal" href="#when-there-are-many-statments-following-the-with-use-curly-braces-to-group-them-together-as-a-single-exprssion">When there are many statments following the <code class="docutils literal"><span class="pre">with</span></code>, use curly braces to group them together as a single exprssion</a></li>
+<li><a class="reference internal" href="#id1">Work!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#program-logic">Program Logic</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="Probabilitydistributionsandrandomnumbergeneration.html" title="Previous Chapter: Probability distributions and Random Number Genereation"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Probability d...</span>
+    </a>
+  </li>
+  <li>
+    <a href="FunctionalProgramming.html" title="Next Chapter: Functional Programming"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Functional Pr... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/WritingcustomfunctionsinRSolutions.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="writing-custom-functions">
+<h1>Writing Custom Functions<a class="headerlink" href="#writing-custom-functions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="anatomy-of-a-function">
+<h2>Anatomy of a function<a class="headerlink" href="#anatomy-of-a-function" title="Permalink to this headline">¶</a></h2>
+<p>The R function has the following structure</p>
+<div class="code r highlight-python"><div class="highlight"><pre>name &lt;- function(arg1, arg2, ...) {
+    body_of_function
+    return(value)
+    }
+</pre></div>
+</div>
+<p>A function is created using the <code class="docutils literal"><span class="pre">function</span></code> keyword, followed by a
+series of arguments in parentheses. The main work done by the function
+is enclosed witin curly braces, and a <code class="docutils literal"><span class="pre">return</span></code> function is used to
+indicate the output of the function. Finally we can assign the funciton,
+just like any other R object, to a named variable for later use.</p>
+<div class="section" id="our-first-custom-function">
+<h3>Our first custom function<a class="headerlink" href="#our-first-custom-function" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s write a function to calculate the mean of a vector of numbers.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>my.mean &lt;- function(xs) {
+    n &lt;- length(xs)
+    return(sum(xs)/n)
+}
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>my.mean(1:10)
+</pre></div>
+</div>
+5.5<div class="section" id="work">
+<h4>Work!<a class="headerlink" href="#work" title="Permalink to this headline">¶</a></h4>
+<p>Write a function <code class="docutils literal"><span class="pre">my.sd</span></code> that takes a vector of numbers and returns
+their standard deviation as calculated from the following formula:</p>
+<div class="math">
+\[\sqrt{\frac{\sum{(x - \bar{x})^2}}{n-1}}\]</div>
+<p>where <span class="math">\(x\)</span> is some vector of numbers, <span class="math">\(\bar{x}\)</span> is the mean
+of <span class="math">\(x\)</span> and <span class="math">\(n\)</span> is th number of elements in <span class="math">\(x\)</span>.</p>
+<p>What is the standard deviation of <code class="docutils literal"><span class="pre">1:10</span></code>?</p>
+<div class="code python highlight-python"><div class="highlight"><pre>my.sd &lt;- function(xs) {
+    n &lt;- length(xs)
+    xbar&lt;-my.mean(xs)
+    xdiff&lt;-xs-xbar
+    xdiffsquare&lt;-xdiff^2
+    sumsquare&lt;-sum(xdiffsquare)
+    sigmabar&lt;-sqrt(sumsquare/(n-1))
+    return(sigmabar)
+}
+
+my.sd(1:10)
+</pre></div>
+</div>
+3.02765035409749</div>
+</div>
+<div class="section" id="our-second-custom-function">
+<h3>Our second custom function<a class="headerlink" href="#our-second-custom-function" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s be more ambitious - let&#8217;s write a function that will generate a 4
+parameter logistic function commonly used for fitting dose-response
+curves</p>
+<div class="math">
+\[\frac{(A-D)}{1+\left(\frac{x}{C}\right)^B} + D\]</div>
+<p>where <span class="math">\(x\)</span> is the input and <span class="math">\(A\)</span>, <span class="math">\(B\)</span>, <span class="math">\(C\)</span> and
+<span class="math">\(D\)</span> are the parameters that determine the shape of the curve:</p>
+<ul class="simple">
+<li>A = minimum asymptote</li>
+<li>B = Hill slope</li>
+<li>C = inflection point</li>
+<li>D = maximum asymptote</li>
+</ul>
+<div class="code python highlight-python"><div class="highlight"><pre>log4 &lt;- function(x, a, b, c, d) {
+    return ((a-d)/(1 + ((x/c)^b)) + d)
+}
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">seq</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">length</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="mi">51</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="arguments-supplied-by-the-user-are-matched-by-position">
+<h4>Arguments supplied by the user are matched by <em>position</em><a class="headerlink" href="#arguments-supplied-by-the-user-are-matched-by-position" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">log4</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="nb">type</span><span class="o">=</span><span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/WritingcustomfunctionsinRSolutions_13_0.png"><img alt="_images/WritingcustomfunctionsinRSolutions_13_0.png" src="_images/WritingcustomfunctionsinRSolutions_13_0.png" style="width: 600px;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="default-arguments">
+<h2>Default arguments<a class="headerlink" href="#default-arguments" title="Permalink to this headline">¶</a></h2>
+<p>Perhaps we know that most of the time, the output will be normalized to
+fall between 0 and 1. In this case, we can set <em>default</em> arguments for
+<span class="math">\(A\)</span> and <span class="math">\(D\)</span> to simplify the function call.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>log4 &lt;- function(x, a=0, b, c, d=1) {
+    return ((a-d)/(1 + ((x/c)^b)) + d)
+}
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">log4</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="nb">type</span><span class="o">=</span><span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/WritingcustomfunctionsinRSolutions_16_0.png"><img alt="_images/WritingcustomfunctionsinRSolutions_16_0.png" src="_images/WritingcustomfunctionsinRSolutions_16_0.png" style="width: 600px;" /></a>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">log4</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="nb">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/WritingcustomfunctionsinRSolutions_21_0.png"><img alt="_images/WritingcustomfunctionsinRSolutions_21_0.png" src="_images/WritingcustomfunctionsinRSolutions_21_0.png" style="width: 600px;" /></a>
+<div class="code python highlight-python"><div class="highlight"><pre>log4 &lt;- function(x, slope, inflection, min=0, max=1 ) {
+    return ((min-max)/(1 + ((x/inflection)^slope)) + max)
+}
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">log4</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="nb">type</span><span class="o">=</span><span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/WritingcustomfunctionsinRSolutions_26_0.png"><img alt="_images/WritingcustomfunctionsinRSolutions_26_0.png" src="_images/WritingcustomfunctionsinRSolutions_26_0.png" style="width: 600px;" /></a>
+<p>The 4 parameter logistic function always generates a symmetric curve.
+There is a 5 parameter logistic function that can generate asymmetrical
+curves:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">A</span> <span class="o">+</span> <span class="p">(</span><span class="n">D</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">X</span><span class="o">/</span><span class="n">C</span><span class="p">)</span><span class="o">^</span><span class="n">B</span><span class="p">)</span><span class="o">^</span><span class="n">E</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where the new parameter <span class="math">\(E\)</span> controls the amount of asymmetry.</p>
+<p>Write a function that will generate the new 5PL curve, giving a default
+value for <span class="math">\(E\)</span> so that when the default is used, the 5PL and 4PL
+functions are the same. Use meaningful parameter names instead of A, B,
+C, D and E.</p>
+<p>Plot the 5 PL curve with the following values</p>
+<ul class="simple">
+<li>min = 0</li>
+<li>max = 1</li>
+<li>slope = 3</li>
+<li>inflection = 5</li>
+<li>assymetry = 2</li>
+</ul>
+<p>for x between 0 and 10.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>log5 &lt;- function(x, b, c,a=0, d=1,e=1) {
+    return ((d)/(1 + ((x/c)^b))^e + a)
+}
+
+x&lt;-0:10
+plot(x, log5(x, 3, 5,e=2), type=&quot;o&quot;, col=&quot;blue&quot;)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/WritingcustomfunctionsinRSolutions_33_0.png"><img alt="_images/WritingcustomfunctionsinRSolutions_33_0.png" src="_images/WritingcustomfunctionsinRSolutions_33_0.png" style="width: 600px;" /></a>
+<p>The EC50 for the 5PL is given by</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">C</span><span class="p">((</span><span class="mi">2</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">E</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">B</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Write a function to calculate the EC50 given <span class="math">\(B\)</span>, <span class="math">\(C\)</span> and
+<span class="math">\(E\)</span>.</p>
+</div>
+<div class="section" id="curve-fitting">
+<h2>Curve fitting<a class="headerlink" href="#curve-fitting" title="Permalink to this headline">¶</a></h2>
+<p>Suppose we have some experimental data that we want to fit to a 4PL
+function. The data is read in from a text file to an R dataframe. We
+will have much more discusion of data frames in subsequent lectures. For
+now, treat them as a convenient structure for storing tabular data.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">df</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&quot;4PL_data.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">with</span></code> makes the columns of the data frame appear as regular vectors</p>
+<div class="code python highlight-python"><div class="highlight"><pre>with(df,
+    plot(x, y, type=&quot;p&quot;, col=&quot;blue&quot;)
+     )
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/WritingcustomfunctionsinRSolutions_37_1.png"><img alt="_images/WritingcustomfunctionsinRSolutions_37_1.png" src="_images/WritingcustomfunctionsinRSolutions_37_1.png" style="width: 600px;" /></a>
+<div class="section" id="lets-estimate-the-slope-and-inflection-by-nonlinear-least-squares-minimization">
+<h3>Lets estimate the slope and inflection by nonlinear least squares minimization<a class="headerlink" href="#lets-estimate-the-slope-and-inflection-by-nonlinear-least-squares-minimization" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-python"><div class="highlight"><pre>with(df,(fit &lt;- nls(y ~ log4(x, slope, inflection), start=list(slope=1, inflection=30), data=df)))
+summary(fit)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Nonlinear regression model
+  model: y ~ log4(x, slope, inflection)
+   data: df
+     slope inflection
+     1.885     52.557
+ residual sum-of-squares: 1.564
+
+Number of iterations to convergence: 7
+Achieved convergence tolerance: 3.273e-06
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Error in summary(fit): object &#39;fit&#39; not found
+</pre></div>
+</div>
+<div class="section" id="when-there-are-many-statments-following-the-with-use-curly-braces-to-group-them-together-as-a-single-exprssion">
+<h4>When there are many statments following the <code class="docutils literal"><span class="pre">with</span></code>, use curly braces to group them together as a single exprssion<a class="headerlink" href="#when-there-are-many-statments-following-the-with-use-curly-braces-to-group-them-together-as-a-single-exprssion" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-python"><div class="highlight"><pre>with(df,
+     {
+         plot(x, y, &#39;p&#39;, col=&#39;blue&#39;)
+         lines(x, predict(fit, x), col=&quot;red&quot;, lty=2)
+         lines(x, log4(x, 2,50), col=&quot;blue&quot;)
+         legend(70, 0, lty=1:2, col=c(&quot;blue&quot;, &quot;red&quot;), legend=c(&quot;True&quot;, &quot;Fitted&quot;))
+     }
+    )
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Error in predict(fit, x): object &#39;fit&#39; not found
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h4>Work!<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>Fit the same data to the 5 PL and estimate the slope, inflection and
+asymmetry parameters. You may assume that min and max are 0 and 1
+respectively and do not have to be estimated. Plot the curve and fitted
+values as in the example above.</p>
+<p>What is the estimated ED50? You can use <code class="docutils literal"><span class="pre">fit$m$getPars()</span></code> to find the
+values of all fitted parameters.</p>
+</div>
+</div>
+</div>
+<div class="section" id="program-logic">
+<h2>Program Logic<a class="headerlink" href="#program-logic" title="Permalink to this headline">¶</a></h2>
+<p>A program is just a list of commands that fit together logically. There
+are some basic principles and concepts that are common to every
+programming language and environment. We will briefly introduce these in
+the context of R.</p>
+<p>Sometimes, a we want to execute a command only under certain conditions.
+For example, suppose we are calculating an admission price to a theater,
+where children under age 6 are admitted free and children age 6-11 are
+half-price:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>admission_price&lt;-function(full_price = 12,age=18){
+      if (age &lt; 6)
+         price_result&lt;-0.0
+      else
+     {
+      if (age &lt; 12)
+         price_result&lt;-full_price/2
+      else
+         price_result&lt;-full_price
+     }
+     return(price_result)
+}
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">admission_price</span><span class="p">(</span><span class="n">full_price</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">age</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>R has a nice shortcut for the if-else construct called &#8216;ifelse&#8217;:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>admission_price_mod&lt;-function(full_price = 12,age=18){
+     ifelse (age &lt; 6,price_result&lt;-0,ifelse (age&lt;12,price_result&lt;-full_price/2,price_result&lt;-full_price))
+     return(price_result)
+}
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">admission_price_mod</span><span class="p">(</span><span class="n">full_price</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">age</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Error in eval(expr, envir, enclos): could not find function &quot;admission_price_mod&quot;
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>x &lt;- 1:10
+ifelse(x &lt; 5, 0, 1)
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>0</li>
+    <li>0</li>
+    <li>0</li>
+    <li>0</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+</ol><p>Loops are used when a bit of code must be repeated many times. There are
+different types of loops, depending upon the &#8216;termination condition&#8217;
+(what makes the loop stop?)</p>
+<p>For loops are used when we know how many times a loop must be iterated.
+The number of times could be variable - say &#8216;n&#8217; times, but the important
+point is that at the time the loop is entered, the program knows how
+many iterations are necessary. For loops therefore have a counter and a
+termination condition that depends upon the value of the counter. One
+last element is an incrementor. Suppose we want a randomization scheme
+that assigns every third patient to a treatment:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>patient&lt;-1:100
+treatment&lt;-rep(0,100)
+patient_assignment&lt;-cbind(patient,treatment)
+for (counter in seq(3,100,3)){
+    patient_assignment[counter,2]&lt;-1
+    }
+patient_assignment
+</pre></div>
+</div>
+<table>
+<thead><tr><th scope=col>patient</th><th scope=col>treatment</th></tr></thead>
+<tbody>
+    <tr><td>1</td><td>0</td></tr>
+    <tr><td>2</td><td>0</td></tr>
+    <tr><td>3</td><td>1</td></tr>
+    <tr><td>4</td><td>0</td></tr>
+    <tr><td>5</td><td>0</td></tr>
+    <tr><td>6</td><td>1</td></tr>
+    <tr><td>7</td><td>0</td></tr>
+    <tr><td>8</td><td>0</td></tr>
+    <tr><td>9</td><td>1</td></tr>
+    <tr><td>10</td><td> 0</td></tr>
+    <tr><td>11</td><td> 0</td></tr>
+    <tr><td>12</td><td> 1</td></tr>
+    <tr><td>13</td><td> 0</td></tr>
+    <tr><td>14</td><td> 0</td></tr>
+    <tr><td>15</td><td> 1</td></tr>
+    <tr><td>16</td><td> 0</td></tr>
+    <tr><td>17</td><td> 0</td></tr>
+    <tr><td>18</td><td> 1</td></tr>
+    <tr><td>19</td><td> 0</td></tr>
+    <tr><td>20</td><td> 0</td></tr>
+    <tr><td>21</td><td> 1</td></tr>
+    <tr><td>22</td><td> 0</td></tr>
+    <tr><td>23</td><td> 0</td></tr>
+    <tr><td>24</td><td> 1</td></tr>
+    <tr><td>25</td><td> 0</td></tr>
+    <tr><td>26</td><td> 0</td></tr>
+    <tr><td>27</td><td> 1</td></tr>
+    <tr><td>28</td><td> 0</td></tr>
+    <tr><td>29</td><td> 0</td></tr>
+    <tr><td>30</td><td> 1</td></tr>
+    <tr><td>31</td><td> 0</td></tr>
+    <tr><td>32</td><td> 0</td></tr>
+    <tr><td>33</td><td> 1</td></tr>
+    <tr><td>34</td><td> 0</td></tr>
+    <tr><td>35</td><td> 0</td></tr>
+    <tr><td>36</td><td> 1</td></tr>
+    <tr><td>37</td><td> 0</td></tr>
+    <tr><td>38</td><td> 0</td></tr>
+    <tr><td>39</td><td> 1</td></tr>
+    <tr><td>40</td><td> 0</td></tr>
+    <tr><td>41</td><td> 0</td></tr>
+    <tr><td>42</td><td> 1</td></tr>
+    <tr><td>43</td><td> 0</td></tr>
+    <tr><td>44</td><td> 0</td></tr>
+    <tr><td>45</td><td> 1</td></tr>
+    <tr><td>46</td><td> 0</td></tr>
+    <tr><td>47</td><td> 0</td></tr>
+    <tr><td>48</td><td> 1</td></tr>
+    <tr><td>49</td><td> 0</td></tr>
+    <tr><td>50</td><td> 0</td></tr>
+    <tr><td>51</td><td> 1</td></tr>
+    <tr><td>52</td><td> 0</td></tr>
+    <tr><td>53</td><td> 0</td></tr>
+    <tr><td>54</td><td> 1</td></tr>
+    <tr><td>55</td><td> 0</td></tr>
+    <tr><td>56</td><td> 0</td></tr>
+    <tr><td>57</td><td> 1</td></tr>
+    <tr><td>58</td><td> 0</td></tr>
+    <tr><td>59</td><td> 0</td></tr>
+    <tr><td>60</td><td> 1</td></tr>
+    <tr><td>61</td><td> 0</td></tr>
+    <tr><td>62</td><td> 0</td></tr>
+    <tr><td>63</td><td> 1</td></tr>
+    <tr><td>64</td><td> 0</td></tr>
+    <tr><td>65</td><td> 0</td></tr>
+    <tr><td>66</td><td> 1</td></tr>
+    <tr><td>67</td><td> 0</td></tr>
+    <tr><td>68</td><td> 0</td></tr>
+    <tr><td>69</td><td> 1</td></tr>
+    <tr><td>70</td><td> 0</td></tr>
+    <tr><td>71</td><td> 0</td></tr>
+    <tr><td>72</td><td> 1</td></tr>
+    <tr><td>73</td><td> 0</td></tr>
+    <tr><td>74</td><td> 0</td></tr>
+    <tr><td>75</td><td> 1</td></tr>
+    <tr><td>76</td><td> 0</td></tr>
+    <tr><td>77</td><td> 0</td></tr>
+    <tr><td>78</td><td> 1</td></tr>
+    <tr><td>79</td><td> 0</td></tr>
+    <tr><td>80</td><td> 0</td></tr>
+    <tr><td>81</td><td> 1</td></tr>
+    <tr><td>82</td><td> 0</td></tr>
+    <tr><td>83</td><td> 0</td></tr>
+    <tr><td>84</td><td> 1</td></tr>
+    <tr><td>85</td><td> 0</td></tr>
+    <tr><td>86</td><td> 0</td></tr>
+    <tr><td>87</td><td> 1</td></tr>
+    <tr><td>88</td><td> 0</td></tr>
+    <tr><td>89</td><td> 0</td></tr>
+    <tr><td>90</td><td> 1</td></tr>
+    <tr><td>91</td><td> 0</td></tr>
+    <tr><td>92</td><td> 0</td></tr>
+    <tr><td>93</td><td> 1</td></tr>
+    <tr><td>94</td><td> 0</td></tr>
+    <tr><td>95</td><td> 0</td></tr>
+    <tr><td>96</td><td> 1</td></tr>
+    <tr><td>97</td><td> 0</td></tr>
+    <tr><td>98</td><td> 0</td></tr>
+    <tr><td>99</td><td> 1</td></tr>
+    <tr><td>100</td><td>  0</td></tr>
+</tbody>
+</table><p>A while loop is used when the termination condition can happen at any
+time, depending upon some action within the loop. Suppose we want to
+simulate a coin toss, but stop when we have 10 heads:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>nheads&lt;-0
+while (nheads&lt;10){
+       toss&lt;-rbinom(1,1,0.5)
+       if (nheads == 0)
+           experiment&lt;-toss
+       else
+           experiment&lt;-c(toss,experiment)
+       nheads&lt;-nheads+toss
+    }
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">experiment</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>0</li>
+    <li>1</li>
+    <li>1</li>
+    <li>0</li>
+    <li>1</li>
+    <li>0</li>
+    <li>0</li>
+    <li>1</li>
+</ol><p>Write loops for the following:</p>
+<ul class="simple">
+<li>Compute the mean of the vector v&lt;-c(1,4,2,4,6,8,1,0) using a <code class="docutils literal"><span class="pre">for</span></code>
+loop</li>
+<li>Flip a coin until you get a head</li>
+</ul>
+<p>What is wrong with the following code:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>v&lt;-c(1,4,2,4,6,8,1,0)
+s&lt;-0
+for (i in 1:length(v))
+    s&lt;-s+v[i]
+s/length(v)
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c"># n&lt;-1</span>
+<span class="c"># while (n&gt;0)</span>
+<span class="c">#    print(n-1)</span>
+</pre></div>
+</div>
+<p>Now that we have learned to write loops, it is time to tell you to avoid
+them at all costs! This is not always possible, and sometimes it is a
+whole lot easier to write a loop than to figure out how to get R to do
+what you want using so-called &#8216;vectorized&#8217; operations, but it is a whole
+lot faster. This doesn&#8217;t really matter when you have a small amount of
+data to process. But when sample sizes get large, using loops can slow
+you down to the point of futility.</p>
+<p>What is vectorization? Simply put, it means feeding a whole vector to an
+R function, rather than doing operations on each element. For example,
+you just wrote a <code class="docutils literal"><span class="pre">for</span></code> loop to compute the mean of a vector. You can
+do that - but it would be much better to just use the R base function
+<code class="docutils literal"><span class="pre">mean</span></code>. Compare the following:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>v&lt;-rnorm(1000000)
+sum&lt;-0
+system.time(for (i in 1:length(v))
+    sum&lt;-sum+v[i])
+
+mean_v&lt;-sum/length(v)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre> user  system elapsed
+0.472   0.004   0.476
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">system</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">mean_v</span><span class="o">&lt;-</span><span class="n">mean</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre> user  system elapsed
+0.002   0.000   0.002
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">v1</span><span class="o">&lt;-</span><span class="n">runif</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">v2</span><span class="o">&lt;-</span><span class="n">runif</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">v1</span><span class="o">+</span><span class="n">v2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[1] 0.686323807 0.229189741 0.943499958 0.008288366 0.512752363 0.104759536
+[7] 0.430474185 0.548812798 0.956030584 0.626014339
+[1] 0.6021211 0.0143703 0.2431529 0.3023300 0.6619266 0.8759128 0.9916874
+[8] 0.6461957 0.2210742 0.1097788
+[1] 1.2884449 0.2435600 1.1866529 0.3106184 1.1746789 0.9806723 1.4221616
+[8] 1.1950085 1.1771048 0.7357931
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">v1</span><span class="o">*</span><span class="n">v2</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>0.413250040622135</li>
+    <li>0.00329352514259808</li>
+    <li>0.229414788988682</li>
+    <li>0.00250582196841051</li>
+    <li>0.33940440606481</li>
+    <li>0.0917602164477226</li>
+    <li>0.426895838785259</li>
+    <li>0.354640479500077</li>
+    <li>0.211353693235109</li>
+    <li>0.0687231055505491</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre>v1%*%v2
+</pre></div>
+</div>
+<table>
+<tbody>
+    <tr><td>2.141242</td></tr>
+</tbody>
+</table><div class="code python highlight-python"><div class="highlight"><pre><span class="n">v1</span><span class="o">^</span><span class="mi">2</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>0.00147439053992795</li>
+    <li>0.339701587656185</li>
+    <li>0.412999970315692</li>
+    <li>0.940606334438599</li>
+    <li>0.00854328582552941</li>
+    <li>0.647123618604472</li>
+    <li>0.0933781801237613</li>
+    <li>0.426108013343745</li>
+    <li>1.79120931177294e-05</li>
+    <li>0.141703569870916</li>
+</ol><div class="code python highlight-python"><div class="highlight"><pre><span class="n">sqrt</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class=list-inline>
+    <li>0.195953549151954</li>
+    <li>0.763439091767827</li>
+    <li>0.801654999003421</li>
+    <li>0.984808922677922</li>
+    <li>0.304022855747082</li>
+    <li>0.896905759238667</li>
+    <li>0.552791493517679</li>
+    <li>0.807941516943993</li>
+    <li>0.065055884299408</li>
+    <li>0.613543271662989</li>
+</ol><p>Write a program to simulate 10,000 coin tosses and count the number of
+heads.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">v</span><span class="o">&lt;-</span><span class="n">rbinom</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">prob</span><span class="o">=.</span><span class="mi">5</span><span class="p">)</span>
+<span class="c">#print(v)</span>
+<span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+5059</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

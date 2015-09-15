@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Unsupervised Learning &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+    <link rel="next" title="Unsupervised Learning and NGS" href="UnsupervisedLearningAndNGS.html" />
+    <link rel="prev" title="Supervised Learning Continued - What Could Go Wrong?" href="SupervisedLearningWhatCouldGoWrong.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearningWhatCouldGoWrong.html">Supervised Learning Continued - What Could Go Wrong?</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstallPackages.html">Installing Graphics Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscGraphics.html">Plotting Graphcs and Heatmpas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Introdcution to <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GGPlot2Graphics.html">More <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONE-Solutions.html">Practice ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTWOSolutions.html">Practice TWO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeTHREESolutions.html">Practice THREE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeFOURSolutions.html">Practice FOUR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2NotebookFromMatrix.html">Import count data using basic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Unsupervised Learning</a><ul>
+<li><a class="reference internal" href="#preprocessing">Preprocessing</a><ul>
+<li><a class="reference internal" href="#pairwise-distances">Pairwise distances</a></li>
+<li><a class="reference internal" href="#scaling">Scaling</a></li>
+<li><a class="reference internal" href="#pairwsie-distances">Pairwsie distances</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dimension-reduction">Dimension reduction</a></li>
+<li><a class="reference internal" href="#clustering">Clustering</a></li>
+<li><a class="reference internal" href="#heatmaps">Heatmaps</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="SupervisedLearningWhatCouldGoWrong.html" title="Previous Chapter: Supervised Learning Continued - What Could Go Wrong?"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Supervised Le...</span>
+    </a>
+  </li>
+  <li>
+    <a href="UnsupervisedLearningAndNGS.html" title="Next Chapter: Unsupervised Learning and NGS"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Unsupervised ... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/UnsupervisedLearning.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="unsupervised-learning">
+<h1>Unsupervised Learning<a class="headerlink" href="#unsupervised-learning" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="preprocessing">
+<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
+<p>When calculating distances, we usually want the features to be measured
+on thes same scale. One popular way of doing this is to transform each
+feature so that it has a mean of zero (centering) and a standard
+devaition of one (scaling).</p>
+<div class="code python highlight-python"><div class="highlight"><pre>x &lt;- matrix(rnorm(20), nrow=5)
+colnames(x) &lt;- paste(&quot;Feature&quot;, 1:4)
+rownames(x) &lt;- paste(&quot;PDD&quot;, 1:5)
+x &lt;- matrix(rep(c(1,2,10,100), 5), nrow=5, byrow = TRUE) * x
+x
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>       Feature 1 Feature 2 Feature 3 Feature 4
+PDD 1 -0.6312717 1.3940762  12.62903 102.12761
+PDD 2 -0.4718824 0.1974441  12.38225 229.10370
+PDD 3  0.6633411 1.1548665  11.40228 -37.56147
+PDD 4 -0.7970284 1.3718478  11.82333  80.73873
+PDD 5  0.1236836 0.7267897 -24.07455 -85.34598
+</pre></div>
+</div>
+<div class="section" id="pairwise-distances">
+<h3>Pairwise distances<a class="headerlink" href="#pairwise-distances" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;euclidean&quot;</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>         PDD 1    PDD 2    PDD 3    PDD 4
+PDD 2 126.9821
+PDD 3 139.7007 266.6711
+PDD 4  21.4047 148.3710 118.3102
+PDD 5 191.0354 316.5570  59.5184 169.9237
+</pre></div>
+</div>
+</div>
+<div class="section" id="scaling">
+<h3>Scaling<a class="headerlink" href="#scaling" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">y</span> <span class="o">&lt;-</span> <span class="n">scale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">center</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">)</span>
+<span class="n">y</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>       Feature 1  Feature 2  Feature 3  Feature 4
+PDD 1 -0.6754783  0.8370665  0.4822636  0.3576222
+PDD 2 -0.4120093 -1.5193866  0.4669988  1.3823173
+PDD 3  1.4645045  0.3660058  0.4063815 -0.7696667
+PDD 4 -0.9494727  0.7932936  0.4324263  0.1850142
+PDD 5  0.5724557 -0.4769793 -1.7880703 -1.1552870
+attr(,&quot;scaled:center&quot;)
+ Feature 1  Feature 2  Feature 3  Feature 4
+-0.2226316  0.9690049  4.8324703 57.8125180
+attr(,&quot;scaled:scale&quot;)
+  Feature 1   Feature 2   Feature 3   Feature 4
+  0.6049641   0.5078107  16.1666007 123.9159591
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nb">apply</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">MARGIN</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">FUN</span> <span class="o">=</span> <span class="n">mean</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    Feature 1     Feature 2     Feature 3     Feature 4
+-4.440892e-17  9.992007e-17 -2.220446e-17  3.332837e-17
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nb">apply</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sd</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Feature 1 Feature 2 Feature 3 Feature 4
+        1         1         1         1
+</pre></div>
+</div>
+</div>
+<div class="section" id="pairwsie-distances">
+<h3>Pairwsie distances<a class="headerlink" href="#pairwsie-distances" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">dist</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>          PDD 1     PDD 2     PDD 3     PDD 4
+PDD 2 2.5831222
+PDD 3 2.4653525 3.4220926
+PDD 4 0.3305545 2.6593394 2.6309608
+PDD 5 3.2752658 3.6851807 2.5437564 3.2644864
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="dimension-reduction">
+<h2>Dimension reduction<a class="headerlink" href="#dimension-reduction" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">head</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>ir &lt;- iris[,1:4]
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>ir.pca &lt;- prcomp(ir,
+                 center = TRUE,
+                 scale. = TRUE)
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">summary</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">pca</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Importance of components:
+                          PC1    PC2     PC3     PC4
+Standard deviation     1.7084 0.9560 0.38309 0.14393
+Proportion of Variance 0.7296 0.2285 0.03669 0.00518
+Cumulative Proportion  0.7296 0.9581 0.99482 1.00000
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plot</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">pca</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/UnsupervisedLearning_18_0.png" src="_images/UnsupervisedLearning_18_0.png" />
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">options</span><span class="p">(</span><span class="n">warn</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">suppressMessages</span><span class="p">(</span><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s">&quot;devtools&quot;</span><span class="p">,</span><span class="n">repos</span> <span class="o">=</span> <span class="s">&quot;http://cran.r-project.org&quot;</span><span class="p">))</span>
+<span class="n">library</span><span class="p">(</span><span class="n">devtools</span><span class="p">)</span>
+<span class="n">suppressMessages</span><span class="p">(</span><span class="n">install_github</span><span class="p">(</span><span class="s">&quot;vqv/ggbiplot&quot;</span><span class="p">))</span>
+<span class="n">library</span><span class="p">(</span><span class="n">ggbiplot</span><span class="p">)</span>
+<span class="n">options</span><span class="p">(</span><span class="n">warn</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>The downloaded binary packages are in
+    /var/folders/bh/x038t1s943qftp7jzrnkg1vm0000gn/T//RtmpYzgefV/downloaded_packages
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Loading required package: ggplot2
+Loading required package: plyr
+Loading required package: scales
+Loading required package: grid
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>ggbiplot(ir.pca, groups = iris$Species, var.scale=1, obs.scale=1, ellipse = TRUE)
+</pre></div>
+</div>
+<img alt="_images/UnsupervisedLearning_20_1.png" src="_images/UnsupervisedLearning_20_1.png" />
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">ir</span><span class="o">.</span><span class="n">mds</span> <span class="o">&lt;-</span> <span class="n">cmdscale</span><span class="p">(</span><span class="n">dist</span><span class="p">(</span><span class="n">ir</span><span class="p">),</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>par(mfrow=c(1,2), pty=&quot;s&quot;)
+plot(iris[,1], iris[,2], type = &quot;p&quot;, asp = 1, col=iris$Species, pch=16, main=&quot;Sepal&quot;, xlab=&quot;Wddth&quot;, ylab=&quot;Length&quot;)
+plot(ir.mds[,1], ir.mds[,2], type = &quot;p&quot;, asp = 1, col=iris$Species, pch=16, main=&quot;MDS&quot;, xlab=&quot;&quot;, ylab=&quot;&quot;)
+</pre></div>
+</div>
+<img alt="_images/UnsupervisedLearning_23_0.png" src="_images/UnsupervisedLearning_23_0.png" />
+</div>
+<div class="section" id="clustering">
+<h2>Clustering<a class="headerlink" href="#clustering" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">ir</span><span class="o">.</span><span class="n">kmeans</span> <span class="o">&lt;-</span> <span class="n">kmeans</span><span class="p">(</span><span class="n">ir</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>par(mfrow=c(1,2), pty=&quot;s&quot;)
+plot(iris[,1], iris[,2], type = &quot;p&quot;, asp = 1, col=iris$Species, pch=16, main=&quot;True&quot;, xlab=&quot;Wddth&quot;, ylab=&quot;Length&quot;)
+plot(iris[,1], iris[,2], type = &quot;p&quot;, asp = 1, col=ir.kmeans$cluster, pch=16,
+     main=&quot;K-means&quot;, xlab=&quot;Wddth&quot;, ylab=&quot;Length&quot;)
+</pre></div>
+</div>
+<img alt="_images/UnsupervisedLearning_27_0.png" src="_images/UnsupervisedLearning_27_0.png" />
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">ir</span><span class="o">.</span><span class="n">kmeans</span> <span class="o">&lt;-</span> <span class="n">kmeans</span><span class="p">(</span><span class="n">ir</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>par(mfrow=c(1,2), pty=&quot;s&quot;)
+plot(iris[,1], iris[,2], type = &quot;p&quot;, asp = 1, col=iris$Species, pch=16, main=&quot;True&quot;, xlab=&quot;Wddth&quot;, ylab=&quot;Length&quot;)
+plot(iris[,1], iris[,2], type = &quot;p&quot;, asp = 1, col=ir.kmeans$cluster, pch=16,
+     main=&quot;K-means&quot;, xlab=&quot;Wddth&quot;, ylab=&quot;Length&quot;)
+</pre></div>
+</div>
+<img alt="_images/UnsupervisedLearning_30_0.png" src="_images/UnsupervisedLearning_30_0.png" />
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">ir</span><span class="o">.</span><span class="n">ahc</span> <span class="o">&lt;-</span> <span class="n">hclust</span><span class="p">(</span><span class="n">dist</span><span class="p">(</span><span class="n">ir</span><span class="p">),</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;complete&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plot</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">ahc</span><span class="p">)</span>
+<span class="n">rect</span><span class="o">.</span><span class="n">hclust</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">ahc</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">border</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/UnsupervisedLearning_33_0.png" src="_images/UnsupervisedLearning_33_0.png" />
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">groups</span> <span class="o">&lt;-</span> <span class="n">cutree</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">ahc</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>par(mfrow=c(1,2), pty=&quot;s&quot;)
+plot(iris[,1], iris[,2], type = &quot;p&quot;, asp = 1, col=iris$Species, pch=16, main=&quot;True&quot;, xlab=&quot;Wddth&quot;, ylab=&quot;Length&quot;)
+plot(iris[,1], iris[,2], type = &quot;p&quot;, asp = 1, col=groups, pch=16,
+     main=&quot;Hiearchical Clustering&quot;, xlab=&quot;Wddth&quot;, ylab=&quot;Length&quot;)
+</pre></div>
+</div>
+<img alt="_images/UnsupervisedLearning_35_0.png" src="_images/UnsupervisedLearning_35_0.png" />
+</div>
+<div class="section" id="heatmaps">
+<h2>Heatmaps<a class="headerlink" href="#heatmaps" title="Permalink to this headline">¶</a></h2>
+<p>Heatmaps are a grpahical means of displaying the results of
+agglomerative hierarchical clustering and a matrix of values (e.g. gene
+expression).</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="p">(</span><span class="n">pheatmap</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">pheatmap</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="s">&quot;column&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/UnsupervisedLearning_38_0.png" src="_images/UnsupervisedLearning_38_0.png" />
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

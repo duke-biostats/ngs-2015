@@ -1,0 +1,752 @@
+
+Working with Data
+=================
+
+Scalars
+-------
+
+.. code:: python
+
+    n <- 3.14
+    s <- 'c' 
+    b <- TRUE 
+
+.. code:: python
+
+    typeof(n)
+
+
+
+
+.. raw:: html
+
+    'double'
+
+
+
+.. code:: python
+
+    typeof(s)
+
+
+
+
+.. raw:: html
+
+    'character'
+
+
+
+.. code:: python
+
+    typeof(b)
+
+
+
+
+.. raw:: html
+
+    'logical'
+
+
+
+Vectors
+-------
+
+Vectors are 1D collections of the same scalar type.
+
+.. code:: python
+
+    xs <- c(1, 0.5, 0.25)
+    ss <- c('G', 'A', 'T', 'T', 'A', 'C', 'A')
+    bs <- c(T, T, F, F, T, T, F, F)
+
+.. code:: python
+
+    xs
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>1</li>
+    	<li>0.5</li>
+    	<li>0.25</li>
+    </ol>
+
+
+
+
+.. code:: python
+
+    ss
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>'G'</li>
+    	<li>'A'</li>
+    	<li>'T'</li>
+    	<li>'T'</li>
+    	<li>'A'</li>
+    	<li>'C'</li>
+    	<li>'A'</li>
+    </ol>
+
+
+
+
+.. code:: python
+
+    bs
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>TRUE</li>
+    	<li>TRUE</li>
+    	<li>FALSE</li>
+    	<li>FALSE</li>
+    	<li>TRUE</li>
+    	<li>TRUE</li>
+    	<li>FALSE</li>
+    	<li>FALSE</li>
+    </ol>
+
+
+
+
+Extracting a single element
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    xs[1]
+
+
+
+
+.. raw:: html
+
+    1
+
+
+
+Extracting elments with a position vector
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    ss[2:5]
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>'A'</li>
+    	<li>'T'</li>
+    	<li>'T'</li>
+    	<li>'A'</li>
+    </ol>
+
+
+
+
+Extracting elemnents wiht a logical vector
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    ss[bs]
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>'G'</li>
+    	<li>'A'</li>
+    	<li>'A'</li>
+    	<li>'C'</li>
+    </ol>
+
+
+
+
+Extracting elements with a logical condition
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    ss[ss %in% c('A', 'T')]
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>'A'</li>
+    	<li>'T'</li>
+    	<li>'T'</li>
+    	<li>'A'</li>
+    	<li>'A'</li>
+    </ol>
+
+
+
+
+Matrices and Arrays
+-------------------
+
+Like vecorrs, only in 2D (matrices) or more (arrays).
+
+.. code:: python
+
+    m <- matrix(1:12, ncol=4)
+
+.. code:: python
+
+    m
+
+
+
+
+.. raw:: html
+
+    <table>
+    <tbody>
+    	<tr><td> 1</td><td> 4</td><td> 7</td><td>10</td></tr>
+    	<tr><td> 2</td><td> 5</td><td> 8</td><td>11</td></tr>
+    	<tr><td> 3</td><td> 6</td><td> 9</td><td>12</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    m[6:10]
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>6</li>
+    	<li>7</li>
+    	<li>8</li>
+    	<li>9</li>
+    	<li>10</li>
+    </ol>
+
+
+
+
+.. code:: python
+
+    m[m < 10]
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>1</li>
+    	<li>2</li>
+    	<li>3</li>
+    	<li>4</li>
+    	<li>5</li>
+    	<li>6</li>
+    	<li>7</li>
+    	<li>8</li>
+    	<li>9</li>
+    </ol>
+
+
+
+
+.. code:: python
+
+    m[2,]
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>2</li>
+    	<li>5</li>
+    	<li>8</li>
+    	<li>11</li>
+    </ol>
+
+
+
+
+.. code:: python
+
+    m[,2]
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>4</li>
+    	<li>5</li>
+    	<li>6</li>
+    </ol>
+
+
+
+
+Work!
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Try to solve the following problems without searching the web. You can
+use the built-in ``help()`` function.
+
+Create the following :math:`3 \times 3` matrix and save in a variable
+called ``A``.
+
+-  Row 1 = 4, 5, 6
+-  Row 2 = 1, 2, 3
+-  Row 3 = 7, 8, 9
+
+
+What is the sum of all the numbers in A?
+
+
+Create a vector of the column sums in ``A`` using the ``colSums``
+function.
+
+
+Create a vector of the row sums in ``A`` using the ``apply`` function.
+
+
+What is the sum of the numbers in bottom right :math:`2 \times2` block
+(i.e the numbers 2, 3, 8, 9)
+
+
+Lists
+-----
+
+.. code:: python
+
+    ls <- list(dna=ss, ispurine=ss %in% c('A', 'G'))
+
+.. code:: python
+
+    ls
+
+
+
+
+.. raw:: html
+
+    <dl>
+    	<dt>$dna</dt>
+    		<dd><ol class=list-inline>
+    	<li>'G'</li>
+    	<li>'A'</li>
+    	<li>'T'</li>
+    	<li>'T'</li>
+    	<li>'A'</li>
+    	<li>'C'</li>
+    	<li>'A'</li>
+    </ol>
+    </dd>
+    	<dt>$ispurine</dt>
+    		<dd><ol class=list-inline>
+    	<li>TRUE</li>
+    	<li>TRUE</li>
+    	<li>FALSE</li>
+    	<li>FALSE</li>
+    	<li>TRUE</li>
+    	<li>FALSE</li>
+    	<li>TRUE</li>
+    </ol>
+    </dd>
+    </dl>
+
+
+
+
+Extracting a sublist from a list
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    ls[1]
+
+
+
+
+.. raw:: html
+
+    <strong>$dna</strong> = <ol class=list-inline>
+    	<li>'G'</li>
+    	<li>'A'</li>
+    	<li>'T'</li>
+    	<li>'T'</li>
+    	<li>'A'</li>
+    	<li>'C'</li>
+    	<li>'A'</li>
+    </ol>
+
+
+
+
+.. code:: python
+
+    class(ls[1])
+
+
+
+
+.. raw:: html
+
+    'list'
+
+
+
+Extracting an element from a list
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    ls$dna
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>'G'</li>
+    	<li>'A'</li>
+    	<li>'T'</li>
+    	<li>'T'</li>
+    	<li>'A'</li>
+    	<li>'C'</li>
+    	<li>'A'</li>
+    </ol>
+
+
+
+
+.. code:: python
+
+    class(ls$dna)
+
+
+
+
+.. raw:: html
+
+    'character'
+
+
+
+.. code:: python
+
+    ls[[1]]
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>'G'</li>
+    	<li>'A'</li>
+    	<li>'T'</li>
+    	<li>'T'</li>
+    	<li>'A'</li>
+    	<li>'C'</li>
+    	<li>'A'</li>
+    </ol>
+
+
+
+
+.. code:: python
+
+    class(ls[[1]])
+
+
+
+
+.. raw:: html
+
+    'character'
+
+
+
+Data frames
+-----------
+
+A data frame is a special list of vectors where all the vectors have the
+same length. Because all the vectors have the same length, it can also
+be thought of as a 2D table or matrix and manipulated in the same way.
+
+.. code:: python
+
+    df <- as.data.frame(ls)
+
+.. code:: python
+
+    class(ls)
+
+
+
+
+.. raw:: html
+
+    'list'
+
+
+
+.. code:: python
+
+    class(df)
+
+
+
+
+.. raw:: html
+
+    'data.frame'
+
+
+
+.. code:: python
+
+    df
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>dna</th><th scope=col>ispurine</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>G</td><td>TRUE</td></tr>
+    	<tr><th scope=row>2</th><td>A</td><td>TRUE</td></tr>
+    	<tr><th scope=row>3</th><td>T</td><td>FALSE</td></tr>
+    	<tr><th scope=row>4</th><td>T</td><td>FALSE</td></tr>
+    	<tr><th scope=row>5</th><td>A</td><td>TRUE</td></tr>
+    	<tr><th scope=row>6</th><td>C</td><td>FALSE</td></tr>
+    	<tr><th scope=row>7</th><td>A</td><td>TRUE</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    df[4:6, ]
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>dna</th><th scope=col>ispurine</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>4</th><td>T</td><td>FALSE</td></tr>
+    	<tr><th scope=row>5</th><td>A</td><td>TRUE</td></tr>
+    	<tr><th scope=row>6</th><td>C</td><td>FALSE</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    df$ispurine
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>TRUE</li>
+    	<li>TRUE</li>
+    	<li>FALSE</li>
+    	<li>FALSE</li>
+    	<li>TRUE</li>
+    	<li>FALSE</li>
+    	<li>TRUE</li>
+    </ol>
+
+
+
+
+.. code:: python
+
+    df[df$ispurine, ]
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>dna</th><th scope=col>ispurine</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>G</td><td>TRUE</td></tr>
+    	<tr><th scope=row>2</th><td>A</td><td>TRUE</td></tr>
+    	<tr><th scope=row>5</th><td>A</td><td>TRUE</td></tr>
+    	<tr><th scope=row>7</th><td>A</td><td>TRUE</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Creating a data frame from scrach
+---------------------------------
+
+.. code:: python
+
+    gender <- c('M', 'M', 'F', 'F', 'M', 'F', 'M')
+    height <- c(1.65, 1.82, 1.56, 1.66, 1.72, 1.6, 1.8)
+    weight <- c(65, 102, 55, 46, 78, 60, 72)
+    
+    bods <- data.frame(gender, height, weight)
+
+.. code:: python
+
+    bods
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>gender</th><th scope=col>height</th><th scope=col>weight</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>M</td><td>1.65</td><td>65</td></tr>
+    	<tr><th scope=row>2</th><td>M</td><td>1.82</td><td>102</td></tr>
+    	<tr><th scope=row>3</th><td>F</td><td>1.56</td><td>55</td></tr>
+    	<tr><th scope=row>4</th><td>F</td><td>1.66</td><td>46</td></tr>
+    	<tr><th scope=row>5</th><td>M</td><td>1.72</td><td>78</td></tr>
+    	<tr><th scope=row>6</th><td>F</td><td>1.6</td><td>60</td></tr>
+    	<tr><th scope=row>7</th><td>M</td><td>1.8</td><td>72</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+We can add a new calculated column easily. Let's include the body mass
+index (bmi).
+
+.. code:: python
+
+    bods$bmi <- bods$weight/bods$height^2
+
+.. code:: python
+
+    bods
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>gender</th><th scope=col>height</th><th scope=col>weight</th><th scope=col>bmi</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>M</td><td>1.65</td><td>65</td><td>23.87511</td></tr>
+    	<tr><th scope=row>2</th><td>M</td><td>1.82</td><td>102</td><td>30.79338</td></tr>
+    	<tr><th scope=row>3</th><td>F</td><td>1.56</td><td>55</td><td>22.60026</td></tr>
+    	<tr><th scope=row>4</th><td>F</td><td>1.66</td><td>46</td><td>16.69328</td></tr>
+    	<tr><th scope=row>5</th><td>M</td><td>1.72</td><td>78</td><td>26.3656</td></tr>
+    	<tr><th scope=row>6</th><td>F</td><td>1.6</td><td>60</td><td>23.4375</td></tr>
+    	<tr><th scope=row>7</th><td>M</td><td>1.8</td><td>72</td><td>22.22222</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Let's get rid of the bmi column.
+
+.. code:: python
+
+    bods$bmi <- NULL
+
+.. code:: python
+
+    bods
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>gender</th><th scope=col>height</th><th scope=col>weight</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>M</td><td>1.65</td><td>65</td></tr>
+    	<tr><th scope=row>2</th><td>M</td><td>1.82</td><td>102</td></tr>
+    	<tr><th scope=row>3</th><td>F</td><td>1.56</td><td>55</td></tr>
+    	<tr><th scope=row>4</th><td>F</td><td>1.66</td><td>46</td></tr>
+    	<tr><th scope=row>5</th><td>M</td><td>1.72</td><td>78</td></tr>
+    	<tr><th scope=row>6</th><td>F</td><td>1.6</td><td>60</td></tr>
+    	<tr><th scope=row>7</th><td>M</td><td>1.8</td><td>72</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+Work!
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+How many males are there?
+
+
+What is the mean height?
+
+
+
+What is the mean weight for femalse?
+
+
+A person is classified as obese if their BMI exceeds 30. Add the BMI
+column back into the data frame, as well as a new logical column
+``is.obese`` indicating if a person is obese or not.
+
+
+Reading data from files or URLs to dataframes
+---------------------------------------------
+
+See `Examples from the Quick-R
+website <http://www.statmethods.net/input/importingdata.html>`__
+

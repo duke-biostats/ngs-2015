@@ -1,0 +1,409 @@
+
+Practice 3
+----------------------------------------
+
+(1) Make a plot of the standard normal curve on the interval [-4, 4].
+    Give the plot a title "Standard normal curve", an x label of "Normal
+    deviate" and a y label of "Density".
+
+.. code:: python
+
+    x <- pretty(-4:4, n=100)
+    y <- dnorm(x)
+    plot(x, y, type="l", main="Standard normal curve", xlab="Normal deviate", ylab="Density")
+
+.. image:: PracticeTHREESolutions_files/PracticeTHREESolutions_2_0.png
+   :width: 600
+
+
+(2) What is the area under the curve to the right of x=3? In other
+    words, what is the probability of drawing a random number from the
+    normal distribution that is 3 standard deviations or more larger
+    than the mean?
+
+.. code:: python
+
+    1 - pnorm(3)
+
+
+
+
+.. raw:: html
+
+    0.0013498980316301
+
+
+
+(3) If the expression valuse for a gene are normally distributed with
+    mean 10 and standard deviation 2, what is the value of a gene at the
+    95th percentile?
+
+.. code:: python
+
+    qnorm(0.95, mean=10, sd=2)
+
+
+
+
+.. raw:: html
+
+    13.2897072539029
+
+
+
+Generate 50 numbers from a normal distribtuion with mean=10 and sd=2.
+Now trnaform this vector so that the numbers have a stnadard normal
+distribtuion with mean=0 and sd=1.
+
+.. code:: python
+
+    x <- rnorm(50, 10, 2)
+    z <- (x - mean(x))/sd(x)
+
+(4) A t-test with 6 degrees of freedom has a score of 3.5. Using only
+    the dt, pt, qt or rt probability functions, what is the p-value if
+    this was a two-sided test? Recall that a p-value is the probailty of
+    seeing a value as extreme or more extreme than the observed score,
+    assuming the score was drawn from the specified distirbution.
+
+.. code:: python
+
+    2*(1 - pt(3.5, df = 6))
+
+
+
+
+.. raw:: html
+
+    0.0128263383328053
+
+
+
+(5) Draw 1 million random numbers from the t-distirbution with 6 degrees
+    of freedom. How many times is the numbr less than -3.5 or greater
+    than 3.5?
+
+.. code:: python
+
+    x <- rt(100000, df=6)
+    sum(abs(x) > 3.5)
+
+
+
+
+.. raw:: html
+
+    1238
+
+
+
+(6) Find the mean value of all numeric variables for the mtcars data,
+    grouping by number of gears and automtatic or manual transmission.
+    (Hint: Use the aggregate function)
+
+.. code:: python
+
+    with(mtcars, aggregate(mtcars, by=list(gear=gear, transmission=am), FUN=mean))
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>gear</th><th scope=col>transmission</th><th scope=col>mpg</th><th scope=col>cyl</th><th scope=col>disp</th><th scope=col>hp</th><th scope=col>drat</th><th scope=col>wt</th><th scope=col>qsec</th><th scope=col>vs</th><th scope=col>am</th><th scope=col>gear</th><th scope=col>carb</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>3</td><td>0</td><td>16.10667</td><td>7.466667</td><td>326.3</td><td>176.1333</td><td>3.132667</td><td>3.8926</td><td>17.692</td><td>0.2</td><td>0</td><td>3</td><td>2.666667</td></tr>
+    	<tr><th scope=row>2</th><td>4</td><td>0</td><td>21.05</td><td>5</td><td>155.675</td><td>100.75</td><td>3.8625</td><td>3.305</td><td>20.025</td><td>1</td><td>0</td><td>4</td><td>3</td></tr>
+    	<tr><th scope=row>3</th><td>4</td><td>1</td><td>26.275</td><td>4.5</td><td>106.6875</td><td>83.875</td><td>4.13375</td><td>2.2725</td><td>18.435</td><td>0.75</td><td>1</td><td>4</td><td>2</td></tr>
+    	<tr><th scope=row>4</th><td>5</td><td>1</td><td>21.38</td><td>6</td><td>202.48</td><td>195.6</td><td>3.916</td><td>2.6326</td><td>15.64</td><td>0.2</td><td>1</td><td>5</td><td>4.4</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    library(plyr)
+    library(reshape2)
+    data(airquality)
+
+
+.. parsed-literal::
+
+    Warning message:
+    : package ‘plyr’ was built under R version 3.1.3
+
+.. code:: python
+
+    head(airquality)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Ozone</th><th scope=col>Solar.R</th><th scope=col>Wind</th><th scope=col>Temp</th><th scope=col>Month</th><th scope=col>Day</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>41</td><td>190</td><td>7.4</td><td>67</td><td>5</td><td>1</td></tr>
+    	<tr><th scope=row>2</th><td>36</td><td>118</td><td>8</td><td>72</td><td>5</td><td>2</td></tr>
+    	<tr><th scope=row>3</th><td>12</td><td>149</td><td>12.6</td><td>74</td><td>5</td><td>3</td></tr>
+    	<tr><th scope=row>4</th><td>18</td><td>313</td><td>11.5</td><td>62</td><td>5</td><td>4</td></tr>
+    	<tr><th scope=row>5</th><td>NA</td><td>NA</td><td>14.3</td><td>56</td><td>5</td><td>5</td></tr>
+    	<tr><th scope=row>6</th><td>28</td><td>NA</td><td>14.9</td><td>66</td><td>5</td><td>6</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+(7) Use ``melt`` to convert the airquality dataframe into a "tall"
+    format using Month and Day as teh id variables, saving it as a new
+    datafrmae. Print the first 6 rows.
+
+.. code:: python
+
+    md <- melt(airquality, id=c("Month", "Day"))
+    head(md)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Month</th><th scope=col>Day</th><th scope=col>variable</th><th scope=col>value</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>5</td><td>1</td><td>Ozone</td><td>41</td></tr>
+    	<tr><th scope=row>2</th><td>5</td><td>2</td><td>Ozone</td><td>36</td></tr>
+    	<tr><th scope=row>3</th><td>5</td><td>3</td><td>Ozone</td><td>12</td></tr>
+    	<tr><th scope=row>4</th><td>5</td><td>4</td><td>Ozone</td><td>18</td></tr>
+    	<tr><th scope=row>5</th><td>5</td><td>5</td><td>Ozone</td><td>NA</td></tr>
+    	<tr><th scope=row>6</th><td>5</td><td>6</td><td>Ozone</td><td>28</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+(8) Find the avarage values of Ozone, Solar.R, Wind and Temp for each
+    month using ``dcast``. Hint: Give an extra argument ``na.rm = TRUE``
+    to ignore missing data.
+
+.. code:: python
+
+    dcast(md, Month ~ variable, mean, na.rm = TRUE)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Month</th><th scope=col>Ozone</th><th scope=col>Solar.R</th><th scope=col>Wind</th><th scope=col>Temp</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>5</td><td>23.61538</td><td>181.2963</td><td>11.62258</td><td>65.54839</td></tr>
+    	<tr><th scope=row>2</th><td>6</td><td>29.44444</td><td>190.1667</td><td>10.26667</td><td>79.1</td></tr>
+    	<tr><th scope=row>3</th><td>7</td><td>59.11538</td><td>216.4839</td><td>8.941935</td><td>83.90323</td></tr>
+    	<tr><th scope=row>4</th><td>8</td><td>59.96154</td><td>171.8571</td><td>8.793548</td><td>83.96774</td></tr>
+    	<tr><th scope=row>5</th><td>9</td><td>31.44828</td><td>167.4333</td><td>10.18</td><td>76.9</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+(9) Find the avarage values of Ozone, Solar.R, Wind and Temp for each
+    month using ``dcast``, but only for the first 2 weeks of each month.
+    Hint: Give an extra argument ``na.rm = TRUE`` to ignore missing
+    data. Hint: Use the subset argument.
+
+.. code:: python
+
+    dcast(md, Month ~ variable, mean, subset = .(Day < 15), na.rm = TRUE)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>Month</th><th scope=col>Ozone</th><th scope=col>Solar.R</th><th scope=col>Wind</th><th scope=col>Temp</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>5</td><td>19.41667</td><td>200.0909</td><td>11.17857</td><td>66.28571</td></tr>
+    	<tr><th scope=row>2</th><td>6</td><td>40.5</td><td>249.1429</td><td>10.73571</td><td>82.85714</td></tr>
+    	<tr><th scope=row>3</th><td>7</td><td>64.81818</td><td>228.7143</td><td>9.007143</td><td>84.85714</td></tr>
+    	<tr><th scope=row>4</th><td>8</td><td>58.41667</td><td>168.7273</td><td>8.721429</td><td>85.5</td></tr>
+    	<tr><th scope=row>5</th><td>9</td><td>43.35714</td><td>188.6429</td><td>9.407143</td><td>82.21429</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+**Questions below use the day.1 and day.2 dataframes**
+
+.. code:: python
+
+    set.seed(123)
+    pid.1 <- c(1,1,2,2)
+    gid.1 <- c(1,2,1,2)
+    val.1 <- rnorm(4)
+    day.1 <- data.frame(pid=pid.1, gid=gid.1, val=val.1)
+    
+    pid.2 <- c(1,1,2,2)
+    gid.2 <- c(1,2,1,2)
+    val.2 <- 1 + rnorm(4)
+    day.2 <- data.frame(pid=pid.2, gid=gid.2, val=val.2)
+
+.. code:: python
+
+    day.1
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td></tr>
+    	<tr><th scope=row>2</th><td>1</td><td>2</td><td>-0.2301775</td></tr>
+    	<tr><th scope=row>3</th><td>2</td><td>1</td><td>1.558708</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    day.2
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>1</td><td>1.129288</td></tr>
+    	<tr><th scope=row>2</th><td>1</td><td>2</td><td>2.715065</td></tr>
+    	<tr><th scope=row>3</th><td>2</td><td>1</td><td>1.460916</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>2</td><td>-0.2650612</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+(10) Suppose day.1 and day.2 are results from experiments performed on
+     differnet days. Merge the data from day.1 and day.2 into a single
+     dataframe caleld ``days`` to combine the data sets.
+
+.. code:: python
+
+    days <- merge(day.1, day.2, by=c("pid", "gid"), suffixes = 1:2)
+
+.. code:: python
+
+    days
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val1</th><th scope=col>val2</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    	<tr><th scope=row>2</th><td>1</td><td>2</td><td>-0.2301775</td><td>2.715065</td></tr>
+    	<tr><th scope=row>3</th><td>2</td><td>1</td><td>1.558708</td><td>1.460916</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+(11) Sort the ``days`` dataframe by val1 in decreasing order.
+
+.. code:: python
+
+    days[order(-days$val1),]
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val1</th><th scope=col>val2</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>3</th><td>2</td><td>1</td><td>1.558708</td><td>1.460916</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    	<tr><th scope=row>2</th><td>1</td><td>2</td><td>-0.2301775</td><td>2.715065</td></tr>
+    	<tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    (12) Remove duplicate rows from the following dataframe.
+
+.. code:: python
+
+    df <- read.csv("df.csv")
+    df
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val1</th><th scope=col>val2</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    	<tr><th scope=row>2</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    	<tr><th scope=row>3</th><td>1</td><td>2</td><td>-0.2301775</td><td>2.715065</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    	<tr><th scope=row>5</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    	<tr><th scope=row>6</th><td>2</td><td>1</td><td>1.558708</td><td>1.460916</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    unique(df)
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th></th><th scope=col>pid</th><th scope=col>gid</th><th scope=col>val1</th><th scope=col>val2</th></tr></thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>1</td><td>1</td><td>-0.5604756</td><td>1.129288</td></tr>
+    	<tr><th scope=row>3</th><td>1</td><td>2</td><td>-0.2301775</td><td>2.715065</td></tr>
+    	<tr><th scope=row>4</th><td>2</td><td>2</td><td>0.07050839</td><td>-0.2650612</td></tr>
+    	<tr><th scope=row>6</th><td>2</td><td>1</td><td>1.558708</td><td>1.460916</td></tr>
+    </tbody>
+    </table>
+
+
+
+

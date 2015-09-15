@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installing R, RStudio and IPython notebook with the R kernel &mdash; Duke NGS Course (Summer 2015) 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Duke NGS Course (Summer 2015) 1.0 documentation" href="index.html" />
+    <link rel="next" title="Basic R in the Jupyter Notebook and RStudio" href="BasicRinJupyterAndRstudio.html" />
+    <link rel="prev" title="How to Claim and Access Your Virtual Machine" href="VMsAtDuke.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Duke NGS Course (Summer 2015)</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="VMsAtDuke.html">How to Claim and Access Your Virtual Machine</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Installing R, RStudio and IPython notebook with the R kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicRinJupyterAndRstudio.html">Basic R in the Jupyter Notebook and RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductionToR.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparingDataForAnalysis.html">Preparing Data for Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithData.html">Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GroupingandAggregation.html">Grouping and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hypothesistestingandpowercalcuations.html">Hypothesis Testing and Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Probabilitydistributionsandrandomnumbergeneration.html">Probability distributions and Random Number Genereation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingcustomfunctionsinRSolutions.html">Writing Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FunctionalProgramming.html">Functional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RFormulasAndStatisticalModeling.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SupervisedLearning.html">Using R for supervised learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearning.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnsupervisedLearningAndNGS.html">Unsupervised Learning and NGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultipleTesting.html">Multiple Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CountModels.html">Counting Models/Discrete Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Generalized Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphics.html">Base Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BaseGraphicsGGPlotComparison.html">Comparing Base Graphics with  <code class="docutils literal"><span class="pre">ggplot2</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeONESolutios.html">Coding Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DESeq2Notebook.html">Introduction to DESeq2</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Installing R, RStudio and IPython notebook with the R kernel</a><ul>
+<li><a class="reference internal" href="#install-r">Install R</a></li>
+<li><a class="reference internal" href="#install-rstudio">Install RStudio</a></li>
+<li><a class="reference internal" href="#install-jupyter">Install Jupyter</a></li>
+<li><a class="reference internal" href="#install-the-r-kernel-for-jupyter">Install the R kernel for Jupyter</a></li>
+<li><a class="reference internal" href="#installing-r-graphics-packages">Installing R Graphics packages</a></li>
+<li><a class="reference internal" href="#check">Check</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="VMsAtDuke.html" title="Previous Chapter: How to Claim and Access Your Virtual Machine"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; How to Claim ...</span>
+    </a>
+  </li>
+  <li>
+    <a href="BasicRinJupyterAndRstudio.html" title="Next Chapter: Basic R in the Jupyter Notebook and RStudio"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Basic R in th... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/Installation.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="installing-r-rstudio-and-ipython-notebook-with-the-r-kernel">
+<h1>Installing R, RStudio and IPython notebook with the R kernel<a class="headerlink" href="#installing-r-rstudio-and-ipython-notebook-with-the-r-kernel" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="install-r">
+<h2>Install R<a class="headerlink" href="#install-r" title="Permalink to this headline">¶</a></h2>
+<p>Download and install the appropriate version for your operating system
+from <a class="reference external" href="http://archive.linux.duke.edu/cran/">http://archive.linux.duke.edu/cran/</a></p>
+</div>
+<div class="section" id="install-rstudio">
+<h2>Install RStudio<a class="headerlink" href="#install-rstudio" title="Permalink to this headline">¶</a></h2>
+<p>Download and install the appropriate version for your operating system
+from <a class="reference external" href="https://www.rstudio.com/products/rstudio/download/">https://www.rstudio.com/products/rstudio/download/</a></p>
+</div>
+<div class="section" id="install-jupyter">
+<h2>Install Jupyter<a class="headerlink" href="#install-jupyter" title="Permalink to this headline">¶</a></h2>
+<p>Download and install the appropriate version for your operating system
+from <a class="reference external" href="http://continuum.io/downloads">http://continuum.io/downloads</a></p>
+</div>
+<div class="section" id="install-the-r-kernel-for-jupyter">
+<h2>Install the R kernel for Jupyter<a class="headerlink" href="#install-the-r-kernel-for-jupyter" title="Permalink to this headline">¶</a></h2>
+<p>This is the most complex step and you might need a little help from a
+programmer friend to decipher the instructions.</p>
+<p>Follow the instructions for your operating system at
+<a class="reference external" href="https://github.com/IRkernel/IRkernel">https://github.com/IRkernel/IRkernel</a></p>
+<p>Some people rerpot issues with the OS X installation - if you run into
+problems, see if <a class="reference external" href="http://www.michaelpacer.com/maths/r-kernel-for-ipython-notebook">this
+page</a>
+helps.</p>
+</div>
+<div class="section" id="installing-r-graphics-packages">
+<h2>Installing R Graphics packages<a class="headerlink" href="#installing-r-graphics-packages" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre># from https://gist.github.com/stevenworthington/3178163
+ipak &lt;- function(pkg){
+    new.pkg &lt;- pkg[!(pkg %in% installed.packages()[, &quot;Package&quot;])]
+    if (length(new.pkg))
+        install.packages(new.pkg, dependencies = TRUE, repos = &quot;http://cran.r-project.org&quot;)
+    sapply(pkg, require, character.only = TRUE)
+}
+
+# usage
+packages &lt;- c(&quot;ggplot2&quot;,  &quot;gplots&quot;, &quot;lattice&quot;, &quot;plyr&quot;, &quot;reshape2&quot;,
+              &quot;RColorBrewer&quot;, &quot;grid&quot;, &quot;gridExtra&quot;, &quot;igraph&quot;, &quot;igraphdata&quot;)
+suppressMessages(ipak(packages))
+</pre></div>
+</div>
+<dl class=dl-horizontal>
+    <dt>ggplot2</dt>
+            <dd>TRUE</dd>
+    <dt>gplots</dt>
+            <dd>TRUE</dd>
+    <dt>lattice</dt>
+            <dd>TRUE</dd>
+    <dt>plyr</dt>
+            <dd>TRUE</dd>
+    <dt>reshape2</dt>
+            <dd>TRUE</dd>
+    <dt>RColorBrewer</dt>
+            <dd>TRUE</dd>
+    <dt>grid</dt>
+            <dd>TRUE</dd>
+    <dt>gridExtra</dt>
+            <dd>TRUE</dd>
+    <dt>igraph</dt>
+            <dd>TRUE</dd>
+    <dt>igraphdata</dt>
+            <dd>TRUE</dd>
+</dl></div>
+<div class="section" id="check">
+<h2>Check<a class="headerlink" href="#check" title="Permalink to this headline">¶</a></h2>
+<p>If everything went well, you should be able to start the Jupyter
+notebook from the launhcer (see icon below). Select Launch for the
+IPython Notebook (same as Jupyter notebook). The <strong>New</strong> menu on the
+right should show both Python and R options.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&#39;launcher.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/Installation_6_0.png" src="_images/Installation_6_0.png" />
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Public Domain.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

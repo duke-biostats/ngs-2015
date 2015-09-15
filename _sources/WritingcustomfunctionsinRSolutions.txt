@@ -1,0 +1,836 @@
+
+Writing Custom Functions
+========================
+
+Anatomy of a function
+---------------------
+
+The R function has the following structure
+
+.. code:: r
+
+    name <- function(arg1, arg2, ...) {
+        body_of_function
+        return(value)
+        }
+
+A function is created using the ``function`` keyword, followed by a
+series of arguments in parentheses. The main work done by the function
+is enclosed witin curly braces, and a ``return`` function is used to
+indicate the output of the function. Finally we can assign the funciton,
+just like any other R object, to a named variable for later use.
+
+Our first custom function
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Let's write a function to calculate the mean of a vector of numbers.
+
+.. code:: python
+
+    my.mean <- function(xs) {
+        n <- length(xs)
+        return(sum(xs)/n)
+    }
+
+.. code:: python
+
+    my.mean(1:10)
+
+
+
+
+.. raw:: html
+
+    5.5
+
+
+
+Work!
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Write a function ``my.sd`` that takes a vector of numbers and returns
+their standard deviation as calculated from the following formula:
+
+.. math::
+
+
+   \sqrt{\frac{\sum{(x - \bar{x})^2}}{n-1}}
+
+where :math:`x` is some vector of numbers, :math:`\bar{x}` is the mean
+of :math:`x` and :math:`n` is th number of elements in :math:`x`.
+
+What is the standard deviation of ``1:10``?
+
+.. code:: python
+
+    my.sd <- function(xs) {
+        n <- length(xs)
+        xbar<-my.mean(xs)
+        xdiff<-xs-xbar
+        xdiffsquare<-xdiff^2
+        sumsquare<-sum(xdiffsquare)
+        sigmabar<-sqrt(sumsquare/(n-1))
+        return(sigmabar)
+    }
+    
+    my.sd(1:10)
+
+
+
+
+.. raw:: html
+
+    3.02765035409749
+
+
+
+Our second custom function
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Let's be more ambitious - let's write a function that will generate a 4
+parameter logistic function commonly used for fitting dose-response
+curves
+
+.. math:: \frac{(A-D)}{1+\left(\frac{x}{C}\right)^B} + D
+
+where :math:`x` is the input and :math:`A`, :math:`B`, :math:`C` and
+:math:`D` are the parameters that determine the shape of the curve:
+
+-  A = minimum asymptote
+-  B = Hill slope
+-  C = inflection point
+-  D = maximum asymptote
+
+.. code:: python
+
+    log4 <- function(x, a, b, c, d) {
+        return ((a-d)/(1 + ((x/c)^b)) + d)
+    }
+
+.. code:: python
+
+    x <- seq(0, 100, length.out = 51)
+
+Arguments supplied by the user are matched by *position*
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    plot(x, log4(x, 0, 2, 50, 1), type="o", col="blue")
+
+
+.. image:: WritingcustomfunctionsinRSolutions_files/WritingcustomfunctionsinRSolutions_13_0.png
+   :width: 600
+
+Default arguments
+-----------------
+
+Perhaps we know that most of the time, the output will be normalized to
+fall between 0 and 1. In this case, we can set *default* arguments for
+:math:`A` and :math:`D` to simplify the function call.
+
+.. code:: python
+
+    log4 <- function(x, a=0, b, c, d=1) {
+        return ((a-d)/(1 + ((x/c)^b)) + d)
+    }
+
+.. code:: python
+
+    plot(x, log4(x, b=2, c=50), type="o", col="blue")
+
+
+.. image:: WritingcustomfunctionsinRSolutions_files/WritingcustomfunctionsinRSolutions_16_0.png
+   :width: 600
+
+
+
+Note that we have to give *named* arguments otherwise R will assign the values to the wrong parameter.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    plot(x, log4(x, 2, 50), type="l", col="blue")
+
+.. image:: WritingcustomfunctionsinRSolutions_files/WritingcustomfunctionsinRSolutions_21_0.png
+   :width: 600
+
+    
+
+In many cases, it makes sense to move arguments with default to the end of the parameter list. While we're at it, we also use more meaningful parameter names.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    log4 <- function(x, slope, inflection, min=0, max=1 ) {
+        return ((min-max)/(1 + ((x/inflection)^slope)) + max)
+    }
+
+.. code:: python
+
+    plot(x, log4(x, 2, 50), type="o", col="blue")
+
+
+.. image:: WritingcustomfunctionsinRSolutions_files/WritingcustomfunctionsinRSolutions_26_0.png
+   :width: 600
+
+    
+
+
+Work!
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The 4 parameter logistic function always generates a symmetric curve.
+There is a 5 parameter logistic function that can generate asymmetrical
+curves:
+
+::
+
+    A + (D/(1+(X/C)^B)^E)
+
+where the new parameter :math:`E` controls the amount of asymmetry.
+
+Write a function that will generate the new 5PL curve, giving a default
+value for :math:`E` so that when the default is used, the 5PL and 4PL
+functions are the same. Use meaningful parameter names instead of A, B,
+C, D and E.
+
+
+
+Plot the 5 PL curve with the following values
+
+-  min = 0
+-  max = 1
+-  slope = 3
+-  inflection = 5
+-  assymetry = 2
+
+for x between 0 and 10.
+
+.. code:: python
+
+    log5 <- function(x, b, c,a=0, d=1,e=1) {
+        return ((d)/(1 + ((x/c)^b))^e + a)
+    }
+    
+    x<-0:10
+    plot(x, log5(x, 3, 5,e=2), type="o", col="blue")
+
+
+
+.. image:: WritingcustomfunctionsinRSolutions_files/WritingcustomfunctionsinRSolutions_33_0.png
+   :width: 600
+
+    
+
+
+The EC50 for the 5PL is given by
+
+::
+
+    C((2^(1/E) - 1)^(1/B))
+
+Write a function to calculate the EC50 given :math:`B`, :math:`C` and
+:math:`E`.
+
+
+Curve fitting
+-------------
+
+Suppose we have some experimental data that we want to fit to a 4PL
+function. The data is read in from a text file to an R dataframe. We
+will have much more discusion of data frames in subsequent lectures. For
+now, treat them as a convenient structure for storing tabular data.
+
+.. code:: python
+
+    df <- read.table("4PL_data.txt")
+
+``with`` makes the columns of the data frame appear as regular vectors
+
+.. code:: python
+
+    with(df,
+        plot(x, y, type="p", col="blue")
+         )
+
+
+
+.. image:: WritingcustomfunctionsinRSolutions_files/WritingcustomfunctionsinRSolutions_37_1.png
+   :width: 600
+
+    
+
+Lets estimate the slope and inflection by nonlinear least squares minimization
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    with(df,(fit <- nls(y ~ log4(x, slope, inflection), start=list(slope=1, inflection=30), data=df)))
+    summary(fit)
+
+
+
+
+.. parsed-literal::
+
+    Nonlinear regression model
+      model: y ~ log4(x, slope, inflection)
+       data: df
+         slope inflection 
+         1.885     52.557 
+     residual sum-of-squares: 1.564
+    
+    Number of iterations to convergence: 7 
+    Achieved convergence tolerance: 3.273e-06
+
+
+
+::
+
+
+    Error in summary(fit): object 'fit' not found
+
+
+
+When there are many statments following the ``with``, use curly braces to group them together as a single exprssion
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    with(df, 
+         {
+             plot(x, y, 'p', col='blue')
+             lines(x, predict(fit, x), col="red", lty=2)
+             lines(x, log4(x, 2,50), col="blue")
+             legend(70, 0, lty=1:2, col=c("blue", "red"), legend=c("True", "Fitted"))
+         }
+        )
+
+
+::
+
+
+    Error in predict(fit, x): object 'fit' not found
+
+
+
+
+
+Work!
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Fit the same data to the 5 PL and estimate the slope, inflection and
+asymmetry parameters. You may assume that min and max are 0 and 1
+respectively and do not have to be estimated. Plot the curve and fitted
+values as in the example above.
+
+
+What is the estimated ED50? You can use ``fit$m$getPars()`` to find the
+values of all fitted parameters.
+
+
+Program Logic
+-------------
+
+A program is just a list of commands that fit together logically. There
+are some basic principles and concepts that are common to every
+programming language and environment. We will briefly introduce these in
+the context of R.
+
+Flow Control
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If Else
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+Sometimes, a we want to execute a command only under certain conditions.
+For example, suppose we are calculating an admission price to a theater,
+where children under age 6 are admitted free and children age 6-11 are
+half-price:
+
+.. code:: python
+
+    admission_price<-function(full_price = 12,age=18){
+          if (age < 6)
+             price_result<-0.0
+          else
+         {
+          if (age < 12)
+             price_result<-full_price/2
+          else
+             price_result<-full_price
+         }
+         return(price_result)
+    }
+
+.. code:: python
+
+    admission_price(full_price=100,age=10)
+
+
+
+
+R has a nice shortcut for the if-else construct called 'ifelse':
+
+.. code:: python
+
+    admission_price_mod<-function(full_price = 12,age=18){
+         ifelse (age < 6,price_result<-0,ifelse (age<12,price_result<-full_price/2,price_result<-full_price)) 
+         return(price_result)
+    }
+
+.. code:: python
+
+    admission_price_mod(full_price=100,age=10)
+
+
+::
+
+
+    Error in eval(expr, envir, enclos): could not find function "admission_price_mod"
+
+
+
+.. code:: python
+
+    x <- 1:10
+    ifelse(x < 5, 0, 1)
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>1</li>
+    </ol>
+
+
+
+
+Loops
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+Loops are used when a bit of code must be repeated many times. There are
+different types of loops, depending upon the 'termination condition'
+(what makes the loop stop?)
+
+
+For Loops
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+For loops are used when we know how many times a loop must be iterated.
+The number of times could be variable - say 'n' times, but the important
+point is that at the time the loop is entered, the program knows how
+many iterations are necessary. For loops therefore have a counter and a
+termination condition that depends upon the value of the counter. One
+last element is an incrementor. Suppose we want a randomization scheme
+that assigns every third patient to a treatment:
+
+.. code:: python
+
+    patient<-1:100
+    treatment<-rep(0,100)
+    patient_assignment<-cbind(patient,treatment)
+    for (counter in seq(3,100,3)){
+        patient_assignment[counter,2]<-1
+        }
+    patient_assignment
+
+
+
+
+.. raw:: html
+
+    <table>
+    <thead><tr><th scope=col>patient</th><th scope=col>treatment</th></tr></thead>
+    <tbody>
+    	<tr><td>1</td><td>0</td></tr>
+    	<tr><td>2</td><td>0</td></tr>
+    	<tr><td>3</td><td>1</td></tr>
+    	<tr><td>4</td><td>0</td></tr>
+    	<tr><td>5</td><td>0</td></tr>
+    	<tr><td>6</td><td>1</td></tr>
+    	<tr><td>7</td><td>0</td></tr>
+    	<tr><td>8</td><td>0</td></tr>
+    	<tr><td>9</td><td>1</td></tr>
+    	<tr><td>10</td><td> 0</td></tr>
+    	<tr><td>11</td><td> 0</td></tr>
+    	<tr><td>12</td><td> 1</td></tr>
+    	<tr><td>13</td><td> 0</td></tr>
+    	<tr><td>14</td><td> 0</td></tr>
+    	<tr><td>15</td><td> 1</td></tr>
+    	<tr><td>16</td><td> 0</td></tr>
+    	<tr><td>17</td><td> 0</td></tr>
+    	<tr><td>18</td><td> 1</td></tr>
+    	<tr><td>19</td><td> 0</td></tr>
+    	<tr><td>20</td><td> 0</td></tr>
+    	<tr><td>21</td><td> 1</td></tr>
+    	<tr><td>22</td><td> 0</td></tr>
+    	<tr><td>23</td><td> 0</td></tr>
+    	<tr><td>24</td><td> 1</td></tr>
+    	<tr><td>25</td><td> 0</td></tr>
+    	<tr><td>26</td><td> 0</td></tr>
+    	<tr><td>27</td><td> 1</td></tr>
+    	<tr><td>28</td><td> 0</td></tr>
+    	<tr><td>29</td><td> 0</td></tr>
+    	<tr><td>30</td><td> 1</td></tr>
+    	<tr><td>31</td><td> 0</td></tr>
+    	<tr><td>32</td><td> 0</td></tr>
+    	<tr><td>33</td><td> 1</td></tr>
+    	<tr><td>34</td><td> 0</td></tr>
+    	<tr><td>35</td><td> 0</td></tr>
+    	<tr><td>36</td><td> 1</td></tr>
+    	<tr><td>37</td><td> 0</td></tr>
+    	<tr><td>38</td><td> 0</td></tr>
+    	<tr><td>39</td><td> 1</td></tr>
+    	<tr><td>40</td><td> 0</td></tr>
+    	<tr><td>41</td><td> 0</td></tr>
+    	<tr><td>42</td><td> 1</td></tr>
+    	<tr><td>43</td><td> 0</td></tr>
+    	<tr><td>44</td><td> 0</td></tr>
+    	<tr><td>45</td><td> 1</td></tr>
+    	<tr><td>46</td><td> 0</td></tr>
+    	<tr><td>47</td><td> 0</td></tr>
+    	<tr><td>48</td><td> 1</td></tr>
+    	<tr><td>49</td><td> 0</td></tr>
+    	<tr><td>50</td><td> 0</td></tr>
+    	<tr><td>51</td><td> 1</td></tr>
+    	<tr><td>52</td><td> 0</td></tr>
+    	<tr><td>53</td><td> 0</td></tr>
+    	<tr><td>54</td><td> 1</td></tr>
+    	<tr><td>55</td><td> 0</td></tr>
+    	<tr><td>56</td><td> 0</td></tr>
+    	<tr><td>57</td><td> 1</td></tr>
+    	<tr><td>58</td><td> 0</td></tr>
+    	<tr><td>59</td><td> 0</td></tr>
+    	<tr><td>60</td><td> 1</td></tr>
+    	<tr><td>61</td><td> 0</td></tr>
+    	<tr><td>62</td><td> 0</td></tr>
+    	<tr><td>63</td><td> 1</td></tr>
+    	<tr><td>64</td><td> 0</td></tr>
+    	<tr><td>65</td><td> 0</td></tr>
+    	<tr><td>66</td><td> 1</td></tr>
+    	<tr><td>67</td><td> 0</td></tr>
+    	<tr><td>68</td><td> 0</td></tr>
+    	<tr><td>69</td><td> 1</td></tr>
+    	<tr><td>70</td><td> 0</td></tr>
+    	<tr><td>71</td><td> 0</td></tr>
+    	<tr><td>72</td><td> 1</td></tr>
+    	<tr><td>73</td><td> 0</td></tr>
+    	<tr><td>74</td><td> 0</td></tr>
+    	<tr><td>75</td><td> 1</td></tr>
+    	<tr><td>76</td><td> 0</td></tr>
+    	<tr><td>77</td><td> 0</td></tr>
+    	<tr><td>78</td><td> 1</td></tr>
+    	<tr><td>79</td><td> 0</td></tr>
+    	<tr><td>80</td><td> 0</td></tr>
+    	<tr><td>81</td><td> 1</td></tr>
+    	<tr><td>82</td><td> 0</td></tr>
+    	<tr><td>83</td><td> 0</td></tr>
+    	<tr><td>84</td><td> 1</td></tr>
+    	<tr><td>85</td><td> 0</td></tr>
+    	<tr><td>86</td><td> 0</td></tr>
+    	<tr><td>87</td><td> 1</td></tr>
+    	<tr><td>88</td><td> 0</td></tr>
+    	<tr><td>89</td><td> 0</td></tr>
+    	<tr><td>90</td><td> 1</td></tr>
+    	<tr><td>91</td><td> 0</td></tr>
+    	<tr><td>92</td><td> 0</td></tr>
+    	<tr><td>93</td><td> 1</td></tr>
+    	<tr><td>94</td><td> 0</td></tr>
+    	<tr><td>95</td><td> 0</td></tr>
+    	<tr><td>96</td><td> 1</td></tr>
+    	<tr><td>97</td><td> 0</td></tr>
+    	<tr><td>98</td><td> 0</td></tr>
+    	<tr><td>99</td><td> 1</td></tr>
+    	<tr><td>100</td><td>  0</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. raw:: html
+
+
+While loop
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+A while loop is used when the termination condition can happen at any
+time, depending upon some action within the loop. Suppose we want to
+simulate a coin toss, but stop when we have 10 heads:
+
+.. code:: python
+
+    nheads<-0
+    while (nheads<10){
+           toss<-rbinom(1,1,0.5)
+           if (nheads == 0)
+               experiment<-toss
+           else
+               experiment<-c(toss,experiment)
+           nheads<-nheads+toss
+        }
+
+.. code:: python
+
+    experiment
+
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>1</li>
+    	<li>0</li>
+    	<li>0</li>
+    	<li>1</li>
+    </ol>
+
+
+
+
+.. raw:: html
+
+Work!
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Write loops for the following:
+
+-  Compute the mean of the vector v<-c(1,4,2,4,6,8,1,0) using a ``for``
+   loop
+-  Flip a coin until you get a head
+
+What is wrong with the following code:
+
+.. code:: python
+
+    v<-c(1,4,2,4,6,8,1,0)
+    s<-0
+    for (i in 1:length(v))
+        s<-s+v[i]
+    s/length(v)
+
+
+
+
+.. code:: python
+
+    # n<-1
+    # while (n>0)
+    #    print(n-1)
+
+Vectorization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Now that we have learned to write loops, it is time to tell you to avoid
+them at all costs! This is not always possible, and sometimes it is a
+whole lot easier to write a loop than to figure out how to get R to do
+what you want using so-called 'vectorized' operations, but it is a whole
+lot faster. This doesn't really matter when you have a small amount of
+data to process. But when sample sizes get large, using loops can slow
+you down to the point of futility.
+
+What is vectorization? Simply put, it means feeding a whole vector to an
+R function, rather than doing operations on each element. For example,
+you just wrote a ``for`` loop to compute the mean of a vector. You can
+do that - but it would be much better to just use the R base function
+``mean``. Compare the following:
+
+.. code:: python
+
+    v<-rnorm(1000000)
+    sum<-0
+    system.time(for (i in 1:length(v))
+        sum<-sum+v[i])
+        
+    mean_v<-sum/length(v)
+
+
+
+
+.. parsed-literal::
+
+       user  system elapsed 
+      0.472   0.004   0.476 
+
+
+
+.. code:: python
+
+    system.time(mean_v<-mean(v))
+
+
+
+
+.. parsed-literal::
+
+       user  system elapsed 
+      0.002   0.000   0.002 
+
+
+
+.. raw:: html
+
+
+Simple Examples
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+.. code:: python
+
+    v1<-runif(10)
+    v2<-runif(10)
+    print(v1)
+    print(v2)
+    print(v1+v2)
+
+
+.. parsed-literal::
+
+     [1] 0.686323807 0.229189741 0.943499958 0.008288366 0.512752363 0.104759536
+     [7] 0.430474185 0.548812798 0.956030584 0.626014339
+     [1] 0.6021211 0.0143703 0.2431529 0.3023300 0.6619266 0.8759128 0.9916874
+     [8] 0.6461957 0.2210742 0.1097788
+     [1] 1.2884449 0.2435600 1.1866529 0.3106184 1.1746789 0.9806723 1.4221616
+     [8] 1.1950085 1.1771048 0.7357931
+
+
+.. code:: python
+
+    v1*v2
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>0.413250040622135</li>
+    	<li>0.00329352514259808</li>
+    	<li>0.229414788988682</li>
+    	<li>0.00250582196841051</li>
+    	<li>0.33940440606481</li>
+    	<li>0.0917602164477226</li>
+    	<li>0.426895838785259</li>
+    	<li>0.354640479500077</li>
+    	<li>0.211353693235109</li>
+    	<li>0.0687231055505491</li>
+    </ol>
+
+
+
+
+.. code:: python
+
+    v1%*%v2
+
+
+
+
+.. raw:: html
+
+    <table>
+    <tbody>
+    	<tr><td>2.141242</td></tr>
+    </tbody>
+    </table>
+
+
+
+
+.. code:: python
+
+    v1^2
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>0.00147439053992795</li>
+    	<li>0.339701587656185</li>
+    	<li>0.412999970315692</li>
+    	<li>0.940606334438599</li>
+    	<li>0.00854328582552941</li>
+    	<li>0.647123618604472</li>
+    	<li>0.0933781801237613</li>
+    	<li>0.426108013343745</li>
+    	<li>1.79120931177294e-05</li>
+    	<li>0.141703569870916</li>
+    </ol>
+
+
+
+
+.. code:: python
+
+    sqrt(v1)
+
+
+
+
+.. raw:: html
+
+    <ol class=list-inline>
+    	<li>0.195953549151954</li>
+    	<li>0.763439091767827</li>
+    	<li>0.801654999003421</li>
+    	<li>0.984808922677922</li>
+    	<li>0.304022855747082</li>
+    	<li>0.896905759238667</li>
+    	<li>0.552791493517679</li>
+    	<li>0.807941516943993</li>
+    	<li>0.065055884299408</li>
+    	<li>0.613543271662989</li>
+    </ol>
+
+
+
+
+.. raw:: html
+
+Work!
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Write a program to simulate 10,000 coin tosses and count the number of
+heads.
+
+.. code:: python
+
+    v<-rbinom(10000,1,prob=.5)
+    #print(v)
+    sum(v)
+
+
+
+
+.. raw:: html
+
+    5059
+
+
+
